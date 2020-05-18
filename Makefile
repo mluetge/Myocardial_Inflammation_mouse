@@ -63,10 +63,10 @@ $(fastqdir)/$(Project)/$(1)/$(1)_$(2)_L002_R2_001.fastq.gz
 	--sample=$(1) --nosecondary \
 	--transcriptome=$(basedirref)/Ensembl_GRCm38.94_extended --localcores=8
 endef
-$(eval $(call cellrangerrule,1_20200317_TCRMxCcl19-EYFP_balbc_PDPN_v3,S13))
-$(eval $(call cellrangerrule,2_20200317_TCRMxCcl19-EYFP_balbc_PDPN_v3,S13))
-$(eval $(call cellrangerrule,3_20200317_Ccl19-EYFP_balbc_PDPN_v3,S13))
-$(eval $(call cellrangerrule,4_20200317_Ccl19-EYFP_balbc_PDPN_v3,S13))
+$(eval $(call cellrangerrule,1_20200317_TCRMxCcl19-EYFP_balbc_PDPN_v3,S1))
+$(eval $(call cellrangerrule,2_20200317_TCRMxCcl19-EYFP_balbc_PDPN_v3,S2))
+$(eval $(call cellrangerrule,3_20200317_Ccl19-EYFP_balbc_PDPN_v3,S3))
+$(eval $(call cellrangerrule,4_20200317_Ccl19-EYFP_balbc_PDPN_v3,S4))
 
 ## ------------------------------------------------------------------------------------ ##
 ## Generate sce object
