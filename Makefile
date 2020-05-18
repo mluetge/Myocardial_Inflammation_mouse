@@ -48,7 +48,7 @@ $(basedirref)/$(extendedgenomename)/reference.json: $(extendedgenome) $(extended
 ## Run CellRanger to count reads
 ## ------------------------------------------------------------------------------------ ##
 
-Project := NovaSeq_20200502_NOV358_o6900_DataDelivery
+Project := NovaSeq_20200507_NOV363_o6934_DataDelivery
 define cellrangerrule
 data/$(run)/$(1)/outs/web_summary.html: $(basedirref)/$(extendedgenomename)/reference.json \
 $(fastqdir)/$(Project)/$(1)/$(1)_$(2)_L001_I1_001.fastq.gz \
