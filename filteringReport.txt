@@ -1,0 +1,56 @@
+cells per dataset before filtering:
+1_20200317_TCRMxCcl19-EYFP_balbc_PDPN_v3
+11291
+cells with high percentage of mitochandrial genes:
+831
+cells with very high or low numbers of UMI counts:
+1528
+cells with very high or low numbers of detected genes:
+1666
+total cell count before outlier removal: 
+11291
+total number of cells detected as outlier: 
+2160
+
+cells per dataset before filtering:
+2_20200317_TCRMxCcl19-EYFP_balbc_PDPN_v3
+10866
+cells with high percentage of mitochandrial genes:
+851
+cells with very high or low numbers of UMI counts:
+664
+cells with very high or low numbers of detected genes:
+815
+total cell count before outlier removal: 
+10866
+total number of cells detected as outlier: 
+1294
+
+cells per dataset before filtering:
+3_20200317_Ccl19-EYFP_balbc_PDPN_v3
+10662
+cells with high percentage of mitochandrial genes:
+922
+cells with very high or low numbers of UMI counts:
+879
+cells with very high or low numbers of detected genes:
+1034
+total cell count before outlier removal: 
+10662
+total number of cells detected as outlier: 
+1568
+
+cells per dataset before filtering:
+4_20200317_Ccl19-EYFP_balbc_PDPN_v3
+10328
+cells with high percentage of mitochandrial genes:
+844
+cells with very high or low numbers of UMI counts:
+847
+cells with very high or low numbers of detected genes:
+992
+total cell count before outlier removal: 
+10328
+total number of cells detected as outlier: 
+1476
+

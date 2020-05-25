@@ -16,7 +16,7 @@ extendedgenomename := Ensembl_GRCm38.94_extended_orig
 
 
 R_OPTS := --vanilla
-R := R_LIBS=/mnt/tools/R-3.6.0/library/ /mnt/tools/R-3.6.0/bin/R
+R := R_LIBS=/mnt/tools/Rlibs/release-3.10-lib/ /mnt/tools/R-3.6.1/bin/R
 sce_Rscript := $(basedir)/analysis/processCellrangerOut.R
 org :=mouse
 

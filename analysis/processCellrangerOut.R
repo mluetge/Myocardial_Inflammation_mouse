@@ -32,7 +32,7 @@ for(i in seq_len(n-3)){
 ## create sce object and run QC
 sce <- createSCEobject(sampleDir=fastqdirs, dataset=datasetNam)
 sce <- runQC(sce = sce, organism=org)
-sce <- findOutlier(sce = sce, return.plot = F, QCfile=QCout)
+sce <- findOutlier(sce = sce, QCfile=QCout)
 sce <- sce[, !(sce$total_counts_drop | sce$total_features_drop |
                  sce$mito_drop)]
 ## save sce
