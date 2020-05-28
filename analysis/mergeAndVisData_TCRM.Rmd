@@ -144,7 +144,7 @@ seurat_markers_all <- FindAllMarkers(object = seurat, assay ="RNA",
 
 ```
 
-### top 15 marker genes per cluster
+### top 15 marker genes per cluster {.tabset}
 
 ```{r avg heatmap function, eval=T, include=FALSE}
 
