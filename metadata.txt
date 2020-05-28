@@ -1,0 +1,5 @@
+Sample	group	batch
+1_20200317_TCRMxCcl19-EYFP_balbc_PDPN_v3	TCRMxCcl19	batch1
+2_20200317_TCRMxCcl19-EYFP_balbc_PDPN_v3	TCRMxCcl19	batch1
+3_20200317_Ccl19-EYFP_balbc_PDPN_v3	Ccl19	batch1
+4_20200317_Ccl19-EYFP_balbc_PDPN_v3	Ccl19	batch1
