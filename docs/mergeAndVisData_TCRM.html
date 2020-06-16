@@ -15,7 +15,7 @@
 
 <title>Merge samples</title>
 
-<script src="site_libs/header-attrs-2.1/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.2/header-attrs.js"></script>
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
@@ -408,7 +408,7 @@ div.tocify {
 <div class="tab-content">
 <div id="summary" class="tab-pane fade in active">
 <p>
-<strong>Last updated:</strong> 2020-05-28
+<strong>Last updated:</strong> 2020-06-16
 </p>
 <p>
 <strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 6 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 1
@@ -499,16 +499,16 @@ This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcommluetgeTCRMChristinatree8054b2a0930a491be7dfc050eb9de220f59fd237targetblank8054b2aa"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/mluetge/TCRM_Christina/tree/8054b2a0930a491be7dfc050eb9de220f59fd237" target="_blank">8054b2a</a> </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcommluetgeTCRMChristinatree11cca85eae119312d6c697a24bad5ddc4692440atargetblank11cca85a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/mluetge/TCRM_Christina/tree/11cca85eae119312d6c697a24bad5ddc4692440a" target="_blank">11cca85</a> </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcommluetgeTCRMChristinatree8054b2a0930a491be7dfc050eb9de220f59fd237targetblank8054b2aa" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcommluetgeTCRMChristinatree11cca85eae119312d6c697a24bad5ddc4692440atargetblank11cca85a" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility.
 </p>
 <p>
-The results in this page were generated with repository version <a href="https://github.com/mluetge/TCRM_Christina/tree/8054b2a0930a491be7dfc050eb9de220f59fd237" target="_blank">8054b2a</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
+The results in this page were generated with repository version <a href="https://github.com/mluetge/TCRM_Christina/tree/11cca85eae119312d6c697a24bad5ddc4692440a" target="_blank">11cca85</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
 </p>
 <p>
 Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
@@ -518,6 +518,9 @@ Ignored files:
     Ignored:    .DS_Store
     Ignored:    .Rhistory
     Ignored:    .Rproj.user/
+
+Untracked files:
+    Untracked:  figure/
 
 Unstaged changes:
     Modified:   analysis/mergeAndVisData_TCRM.Rmd
@@ -559,6 +562,40 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/11cca85eae119312d6c697a24bad5ddc4692440a/analysis/mergeAndVisData_TCRM.Rmd" target="_blank">11cca85</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2020-05-28
+</td>
+<td>
+update merge
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/mluetge/TCRM_Christina/11cca85eae119312d6c697a24bad5ddc4692440a/docs/mergeAndVisData_TCRM.html" target="_blank">11cca85</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2020-05-28
+</td>
+<td>
+update merge
+</td>
+</tr>
 <tr>
 <td>
 Rmd
@@ -653,26 +690,26 @@ for(i in 1:length(metaDat$Sample)){
 
 remove(seuratX)</code></pre>
 </div>
-<div id="run-clustering-and-dr" class="section level2">
-<h2>run clustering and DR</h2>
+<div id="run-clustering-and-dr-and-remove-contaminating-cells" class="section level2">
+<h2>run clustering and DR and remove contaminating cells</h2>
 <pre class="r"><code>seurat &lt;- rerunSeurat3(seurat)</code></pre>
 <pre><code>Warning: The default method for RunUMAP has changed from calling Python UMAP via reticulate to the R-native UWOT using the cosine metric
 To use Python UMAP via reticulate, set umap.method to &#39;umap-learn&#39; and metric to &#39;correlation&#39;
 This message will be shown once per session</code></pre>
-<pre><code>13:21:18 UMAP embedding parameters a = 0.9922 b = 1.112</code></pre>
-<pre><code>13:21:18 Read 36649 rows and found 20 numeric columns</code></pre>
-<pre><code>13:21:18 Using Annoy for neighbor search, n_neighbors = 30</code></pre>
-<pre><code>13:21:18 Building Annoy index with metric = cosine, n_trees = 50</code></pre>
+<pre><code>10:33:03 UMAP embedding parameters a = 0.9922 b = 1.112</code></pre>
+<pre><code>10:33:03 Read 36649 rows and found 20 numeric columns</code></pre>
+<pre><code>10:33:03 Using Annoy for neighbor search, n_neighbors = 30</code></pre>
+<pre><code>10:33:03 Building Annoy index with metric = cosine, n_trees = 50</code></pre>
 <pre><code>0%   10   20   30   40   50   60   70   80   90   100%</code></pre>
 <pre><code>[----|----|----|----|----|----|----|----|----|----|</code></pre>
 <pre><code>**************************************************|
-13:21:22 Writing NN index file to temp file /var/folders/qf/923ylj6x3h56f3d86n07wmgr0000gs/T//RtmpXXGqPm/filec22d546d1059
-13:21:22 Searching Annoy index using 1 thread, search_k = 3000
-13:21:31 Annoy recall = 100%
-13:21:32 Commencing smooth kNN distance calibration using 1 thread
-13:21:34 Initializing from normalized Laplacian + noise
-13:21:35 Commencing optimization for 200 epochs, with 1535950 positive edges
-13:21:51 Optimization finished
+10:33:08 Writing NN index file to temp file /var/folders/qf/923ylj6x3h56f3d86n07wmgr0000gs/T//RtmpptLrcS/file21886b4c84c1
+10:33:08 Searching Annoy index using 1 thread, search_k = 3000
+10:33:17 Annoy recall = 100%
+10:33:18 Commencing smooth kNN distance calibration using 1 thread
+10:33:19 Initializing from normalized Laplacian + noise
+10:33:20 Commencing optimization for 200 epochs, with 1535950 positive edges
+10:33:37 Optimization finished
 Computing nearest neighbor graph
 Computing SNN</code></pre>
 <pre><code>Modularity Optimizer version 1.3.0 by Ludo Waltman and Nees Jan van Eck
@@ -683,7 +720,7 @@ Number of edges: 1091236
 Running Louvain algorithm...
 Maximum modularity in 10 random starts: 0.8965
 Number of communities: 8
-Elapsed time: 7 seconds
+Elapsed time: 8 seconds
 Modularity Optimizer version 1.3.0 by Ludo Waltman and Nees Jan van Eck
 
 Number of nodes: 36649
@@ -692,7 +729,7 @@ Number of edges: 1091236
 Running Louvain algorithm...
 Maximum modularity in 10 random starts: 0.8493
 Number of communities: 16
-Elapsed time: 7 seconds
+Elapsed time: 8 seconds
 Modularity Optimizer version 1.3.0 by Ludo Waltman and Nees Jan van Eck
 
 Number of nodes: 36649
@@ -711,6 +748,34 @@ Running Louvain algorithm...
 Maximum modularity in 10 random starts: 0.8709
 Number of communities: 12
 Elapsed time: 8 seconds</code></pre>
+<pre class="r"><code>## remove cluster 9 (cardiomyocytes: Fabp3, Tnnc1, Tnnt2, Myl2, Myl3, Myh6)
+seurat &lt;- subset(seurat, idents=9, invert=T)
+
+## remove cluster 10 (epithelial cells + endothelial cells: Krt19, Cldn5, Cdh5,
+## Esam, Pecam1)
+seurat &lt;- subset(seurat, idents=10, invert=T)
+
+## remove cluster 11 (proliferating cells: Mki67, Cdk1, Ckap2
+seurat &lt;- subset(seurat, idents=11, invert=T)
+
+## rerun DR
+seurat &lt;- RunPCA(object = seurat, npcs = 30, verbose = FALSE)
+seurat &lt;- RunTSNE(object = seurat, reduction = &quot;pca&quot;, dims = 1:20)
+seurat &lt;- RunUMAP(object = seurat, reduction = &quot;pca&quot;, dims = 1:20)</code></pre>
+<pre><code>10:37:21 UMAP embedding parameters a = 0.9922 b = 1.112
+10:37:21 Read 36117 rows and found 20 numeric columns
+10:37:21 Using Annoy for neighbor search, n_neighbors = 30
+10:37:21 Building Annoy index with metric = cosine, n_trees = 50
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+**************************************************|
+10:37:26 Writing NN index file to temp file /var/folders/qf/923ylj6x3h56f3d86n07wmgr0000gs/T//RtmpptLrcS/file21886c9fd1ef
+10:37:26 Searching Annoy index using 1 thread, search_k = 3000
+10:37:35 Annoy recall = 100%
+10:37:36 Commencing smooth kNN distance calibration using 1 thread
+10:37:38 Initializing from normalized Laplacian + noise
+10:37:39 Commencing optimization for 200 epochs, with 1515560 positive edges
+10:37:55 Optimization finished</code></pre>
 <pre class="r"><code>dat &lt;- data.frame(table(seurat$dataset))
 knitr::kable(dat)</code></pre>
 <table>
@@ -723,19 +788,19 @@ knitr::kable(dat)</code></pre>
 <tbody>
 <tr class="odd">
 <td align="left">1_20200317_TCRMxCcl19-EYFP_balbc_PDPN_v3</td>
-<td align="right">9131</td>
+<td align="right">8986</td>
 </tr>
 <tr class="even">
 <td align="left">2_20200317_TCRMxCcl19-EYFP_balbc_PDPN_v3</td>
-<td align="right">9572</td>
+<td align="right">9508</td>
 </tr>
 <tr class="odd">
 <td align="left">3_20200317_Ccl19-EYFP_balbc_PDPN_v3</td>
-<td align="right">9094</td>
+<td align="right">8858</td>
 </tr>
 <tr class="even">
 <td align="left">4_20200317_Ccl19-EYFP_balbc_PDPN_v3</td>
-<td align="right">8852</td>
+<td align="right">8765</td>
 </tr>
 <tr class="odd">
 <td align="left">## color vectors</td>
@@ -910,9 +975,6 @@ mluetge
 <pre><code>Calculating cluster 6</code></pre>
 <pre><code>Calculating cluster 7</code></pre>
 <pre><code>Calculating cluster 8</code></pre>
-<pre><code>Calculating cluster 9</code></pre>
-<pre><code>Calculating cluster 10</code></pre>
-<pre><code>Calculating cluster 11</code></pre>
 <div id="top-15-marker-genes-per-cluster" class="section level3 tabset">
 <h3 class="tabset">top 15 marker genes per cluster</h3>
 <pre class="r"><code>cluster &lt;- levels(seurat)
@@ -971,18 +1033,6 @@ plots_gp &lt;- lapply(cluster,
 <div id="section-8" class="section level4">
 <h4>8</h4>
 <p><img src="figure/mergeAndVisData_TCRM.Rmd/top marker 8-1.png" width="576" style="display: block; margin: auto;" /></p>
-</div>
-<div id="section-9" class="section level4">
-<h4>9</h4>
-<p><img src="figure/mergeAndVisData_TCRM.Rmd/top marker 9-1.png" width="576" style="display: block; margin: auto;" /></p>
-</div>
-<div id="section-10" class="section level4">
-<h4>10</h4>
-<p><img src="figure/mergeAndVisData_TCRM.Rmd/top marker 10-1.png" width="576" style="display: block; margin: auto;" /></p>
-</div>
-<div id="section-11" class="section level4">
-<h4>11</h4>
-<p><img src="figure/mergeAndVisData_TCRM.Rmd/top marker 11-1.png" width="576" style="display: block; margin: auto;" /></p>
 </div>
 </div>
 </div>
@@ -1057,6 +1107,210 @@ write.table(DEgenes,
             file=paste0(basedir, &quot;/data/TCRM_allMerged_DEGenes.txt&quot;),
             row.names = FALSE, col.names = TRUE, quote = FALSE, sep = &quot;\t&quot;)</code></pre>
 </div>
+<div id="tcrm-only" class="section level2">
+<h2>TCRM only</h2>
+<pre class="r"><code>(table(seurat$grp, seurat$seurat_clusters))</code></pre>
+<pre><code>            
+                0    1    2    3    4    5    6    7    8    9   10   11
+  Ccl19      7432   77 4514 4515   68   20   19  977    1    0    0    0
+  TCRMxCcl19  176 6271  333   60 4087 3358 2816  739  654    0    0    0</code></pre>
+<pre class="r"><code>## for characterization we subset on clusters pre-dominantly present in TCRM  
+seuratSub &lt;- subset(seurat, idents = c(&quot;0&quot;, &quot;2&quot;, &quot;3&quot;), invert=T)
+(table(seuratSub$grp, seuratSub$seurat_clusters))</code></pre>
+<pre><code>            
+                0    1    2    3    4    5    6    7    8    9   10   11
+  Ccl19         0   77    0    0   68   20   19  977    1    0    0    0
+  TCRMxCcl19    0 6271    0    0 4087 3358 2816  739  654    0    0    0</code></pre>
+<div id="vis-data-1" class="section level3 tabset">
+<h3 class="tabset">vis data</h3>
+<div id="clusters-1" class="section level4">
+<h4>clusters</h4>
+<pre class="r"><code>DimPlot(seuratSub, reduction = &quot;umap&quot;, cols=colPal)+
+  theme_bw() +
+  theme(axis.text = element_blank(), axis.ticks = element_blank(), 
+        panel.grid.minor = element_blank()) +
+  xlab(&quot;UMAP1&quot;) +
+  ylab(&quot;UMAP2&quot;)</code></pre>
+<p><img src="figure/mergeAndVisData_TCRM.Rmd/vis%20cluster%20TCRM-1.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+<div id="sample-1" class="section level4">
+<h4>Sample</h4>
+<pre class="r"><code>DimPlot(seuratSub, reduction = &quot;umap&quot;, group.by = &quot;dataset&quot;, cols=colSmp)+
+  theme_bw() +
+  theme(axis.text = element_blank(), axis.ticks = element_blank(), 
+        panel.grid.minor = element_blank()) +
+  xlab(&quot;UMAP1&quot;) +
+  ylab(&quot;UMAP2&quot;)</code></pre>
+<p><img src="figure/mergeAndVisData_TCRM.Rmd/vis%20sample%20TCRM-1.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+</div>
+<div id="marker-genes-1" class="section level3">
+<h3>marker genes</h3>
+<pre class="r"><code>seurat_markers_all &lt;- FindAllMarkers(object = seuratSub, assay =&quot;RNA&quot;,
+                                     only.pos = TRUE, min.pct = 0.25,
+                                     logfc.threshold = 0.25,
+                                     test.use = &quot;wilcox&quot;)</code></pre>
+<pre><code>Calculating cluster 1</code></pre>
+<pre><code>Calculating cluster 4</code></pre>
+<pre><code>Calculating cluster 5</code></pre>
+<pre><code>Calculating cluster 6</code></pre>
+<pre><code>Calculating cluster 7</code></pre>
+<pre><code>Calculating cluster 8</code></pre>
+</div>
+<div id="top-15-marker-genes-per-cluster-1" class="section level3 tabset">
+<h3 class="tabset">top 15 marker genes per cluster</h3>
+<pre class="r"><code>cluster &lt;- levels(seuratSub)
+selGenesAll &lt;- seurat_markers_all %&gt;% group_by(cluster) %&gt;% 
+  top_n(-15, p_val_adj) %&gt;% 
+  top_n(15, avg_logFC)
+
+template_hm &lt;- c(
+    &quot;#### {{cl}}\n&quot;,
+    &quot;```{r top marker TCRM {{cl}}, fig.height=8, fig.width=6, echo = FALSE}\n&quot;,
+    &quot;selGenes &lt;- selGenesAll %&gt;% filter(cluster==&#39;{{cl}}&#39;)&quot;,
+    &quot;pOut &lt;- avgHeatmap(seurat = seuratSub, selGenes = selGenes,
+                  colVecIdent = colPal, 
+                  ordVec=levels(seuratSub),
+                  gapVecR=NULL, gapVecC=NULL,cc=FALSE,
+                  cr=T, condCol=F)\n&quot;,
+    &quot;```\n&quot;,
+    &quot;\n&quot;
+  )
+
+plots_gp &lt;- lapply(cluster, 
+  function(cl) knitr::knit_expand(text = template_hm)
+)</code></pre>
+<div id="section-9" class="section level4">
+<h4>1</h4>
+<p><img src="figure/mergeAndVisData_TCRM.Rmd/top marker TCRM 1-1.png" width="576" style="display: block; margin: auto;" /></p>
+</div>
+<div id="section-10" class="section level4">
+<h4>4</h4>
+<p><img src="figure/mergeAndVisData_TCRM.Rmd/top marker TCRM 4-1.png" width="576" style="display: block; margin: auto;" /></p>
+</div>
+<div id="section-11" class="section level4">
+<h4>5</h4>
+<p><img src="figure/mergeAndVisData_TCRM.Rmd/top marker TCRM 5-1.png" width="576" style="display: block; margin: auto;" /></p>
+</div>
+<div id="section-12" class="section level4">
+<h4>6</h4>
+<p><img src="figure/mergeAndVisData_TCRM.Rmd/top marker TCRM 6-1.png" width="576" style="display: block; margin: auto;" /></p>
+</div>
+<div id="section-13" class="section level4">
+<h4>7</h4>
+<p><img src="figure/mergeAndVisData_TCRM.Rmd/top marker TCRM 7-1.png" width="576" style="display: block; margin: auto;" /></p>
+</div>
+<div id="section-14" class="section level4">
+<h4>8</h4>
+<p><img src="figure/mergeAndVisData_TCRM.Rmd/top marker TCRM 8-1.png" width="576" style="display: block; margin: auto;" /></p>
+</div>
+</div>
+</div>
+<div id="save-objects-1" class="section level2">
+<h2>save objects</h2>
+<pre class="r"><code>saveRDS(seuratSub, file = paste0(basedir, &quot;/data/TCRM_TCRM_seurat.rds&quot;))
+
+write.table(seurat_markers_all,
+            file=paste0(basedir, &quot;/data/TCRM_TCRM_markerGenes.txt&quot;),
+            row.names = FALSE, col.names = TRUE, quote = FALSE, sep = &quot;\t&quot;)</code></pre>
+</div>
+<div id="control-only" class="section level2">
+<h2>Control only</h2>
+<pre class="r"><code>(table(seurat$grp, seurat$seurat_clusters))</code></pre>
+<pre><code>            
+                0    1    2    3    4    5    6    7    8    9   10   11
+  Ccl19      7432   77 4514 4515   68   20   19  977    1    0    0    0
+  TCRMxCcl19  176 6271  333   60 4087 3358 2816  739  654    0    0    0</code></pre>
+<pre class="r"><code>## for characterization we subset on clusters pre-dominantly present in TCRM  
+seuratSub &lt;- subset(seurat, idents = c(&quot;0&quot;, &quot;2&quot;, &quot;3&quot;, &quot;7&quot;))
+(table(seuratSub$grp, seuratSub$seurat_clusters))</code></pre>
+<pre><code>            
+                0    1    2    3    4    5    6    7    8    9   10   11
+  Ccl19      7432    0 4514 4515    0    0    0  977    0    0    0    0
+  TCRMxCcl19  176    0  333   60    0    0    0  739    0    0    0    0</code></pre>
+<div id="vis-data-2" class="section level3 tabset">
+<h3 class="tabset">vis data</h3>
+<div id="clusters-2" class="section level4">
+<h4>clusters</h4>
+<pre class="r"><code>DimPlot(seuratSub, reduction = &quot;umap&quot;, cols=colPal)+
+  theme_bw() +
+  theme(axis.text = element_blank(), axis.ticks = element_blank(), 
+        panel.grid.minor = element_blank()) +
+  xlab(&quot;UMAP1&quot;) +
+  ylab(&quot;UMAP2&quot;)</code></pre>
+<p><img src="figure/mergeAndVisData_TCRM.Rmd/vis%20cluster%20Control-1.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+<div id="sample-2" class="section level4">
+<h4>Sample</h4>
+<pre class="r"><code>DimPlot(seuratSub, reduction = &quot;umap&quot;, group.by = &quot;dataset&quot;, cols=colSmp)+
+  theme_bw() +
+  theme(axis.text = element_blank(), axis.ticks = element_blank(), 
+        panel.grid.minor = element_blank()) +
+  xlab(&quot;UMAP1&quot;) +
+  ylab(&quot;UMAP2&quot;)</code></pre>
+<p><img src="figure/mergeAndVisData_TCRM.Rmd/vis%20sample%20Control-1.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+</div>
+<div id="marker-genes-2" class="section level3">
+<h3>marker genes</h3>
+<pre class="r"><code>seurat_markers_all &lt;- FindAllMarkers(object = seuratSub, assay =&quot;RNA&quot;,
+                                     only.pos = TRUE, min.pct = 0.25,
+                                     logfc.threshold = 0.25,
+                                     test.use = &quot;wilcox&quot;)</code></pre>
+<pre><code>Calculating cluster 0</code></pre>
+<pre><code>Calculating cluster 2</code></pre>
+<pre><code>Calculating cluster 3</code></pre>
+<pre><code>Calculating cluster 7</code></pre>
+</div>
+<div id="top-15-marker-genes-per-cluster-2" class="section level3 tabset">
+<h3 class="tabset">top 15 marker genes per cluster</h3>
+<pre class="r"><code>cluster &lt;- levels(seuratSub)
+selGenesAll &lt;- seurat_markers_all %&gt;% group_by(cluster) %&gt;% 
+  top_n(-15, p_val_adj) %&gt;% 
+  top_n(15, avg_logFC)
+
+template_hm &lt;- c(
+    &quot;#### {{cl}}\n&quot;,
+    &quot;```{r top marker Control {{cl}}, fig.height=8,fig.width=6,echo = FALSE}\n&quot;,
+    &quot;selGenes &lt;- selGenesAll %&gt;% filter(cluster==&#39;{{cl}}&#39;)&quot;,
+    &quot;pOut &lt;- avgHeatmap(seurat = seuratSub, selGenes = selGenes,
+                  colVecIdent = colPal, 
+                  ordVec=levels(seuratSub),
+                  gapVecR=NULL, gapVecC=NULL,cc=FALSE,
+                  cr=T, condCol=F)\n&quot;,
+    &quot;```\n&quot;,
+    &quot;\n&quot;
+  )
+
+plots_gp &lt;- lapply(cluster, 
+  function(cl) knitr::knit_expand(text = template_hm)
+)</code></pre>
+<div id="section-15" class="section level4">
+<h4>0</h4>
+<p><img src="figure/mergeAndVisData_TCRM.Rmd/top marker Control 0-1.png" width="576" style="display: block; margin: auto;" /></p>
+</div>
+<div id="section-16" class="section level4">
+<h4>2</h4>
+<p><img src="figure/mergeAndVisData_TCRM.Rmd/top marker Control 2-1.png" width="576" style="display: block; margin: auto;" /></p>
+</div>
+<div id="section-17" class="section level4">
+<h4>3</h4>
+<p><img src="figure/mergeAndVisData_TCRM.Rmd/top marker Control 3-1.png" width="576" style="display: block; margin: auto;" /></p>
+</div>
+<div id="section-18" class="section level4">
+<h4>7</h4>
+<p><img src="figure/mergeAndVisData_TCRM.Rmd/top marker Control 7-1.png" width="576" style="display: block; margin: auto;" /></p>
+</div>
+</div>
+</div>
+<div id="save-objects-2" class="section level2">
+<h2>save objects</h2>
+<pre class="r"><code>saveRDS(seuratSub, file = paste0(basedir, &quot;/data/TCRM_Control_seurat.rds&quot;))
+
+write.table(seurat_markers_all,
+            file=paste0(basedir, &quot;/data/TCRM_Control_markerGenes.txt&quot;),
+            row.names = FALSE, col.names = TRUE, quote = FALSE, sep = &quot;\t&quot;)</code></pre>
+</div>
 <div id="session-info" class="section level2">
 <h2>session info</h2>
 <pre class="r"><code>sessionInfo()</code></pre>
@@ -1077,8 +1331,8 @@ attached base packages:
 other attached packages:
  [1] pheatmap_1.0.12  ggsci_2.9        runSeurat3_0.1.0 here_0.1        
  [5] magrittr_1.5     Seurat_3.1.5     forcats_0.5.0    stringr_1.4.0   
- [9] dplyr_0.8.5      purrr_0.3.4      readr_1.3.1      tidyr_1.1.0     
-[13] tibble_3.0.1     ggplot2_3.3.0    tidyverse_1.3.0 
+ [9] dplyr_1.0.0      purrr_0.3.4      readr_1.3.1      tidyr_1.1.0     
+[13] tibble_3.0.1     ggplot2_3.3.1    tidyverse_1.3.0 
 
 loaded via a namespace (and not attached):
   [1] readxl_1.3.1                backports_1.1.7            
@@ -1102,7 +1356,7 @@ loaded via a namespace (and not attached):
  [37] future.apply_1.5.0          SingleCellExperiment_1.10.1
  [39] BiocGenerics_0.34.0         scales_1.1.1               
  [41] DBI_1.1.0                   Rcpp_1.0.4.6               
- [43] viridisLite_0.3.0           reticulate_1.15            
+ [43] viridisLite_0.3.0           reticulate_1.16            
  [45] rsvd_1.0.3                  stats4_4.0.0               
  [47] tsne_0.1-3                  htmlwidgets_1.5.1          
  [49] httr_1.4.1                  RColorBrewer_1.1-2         
@@ -1119,7 +1373,7 @@ loaded via a namespace (and not attached):
  [71] knitr_1.28                  fs_1.4.1                   
  [73] fitdistrplus_1.1-1          RANN_2.6.1                 
  [75] pbapply_1.4-2               future_1.17.0              
- [77] nlme_3.1-147                whisker_0.4                
+ [77] nlme_3.1-148                whisker_0.4                
  [79] xml2_1.3.2                  compiler_4.0.0             
  [81] rstudioapi_0.11             plotly_4.9.2.1             
  [83] png_0.1-7                   reprex_0.3.0               
@@ -1130,7 +1384,7 @@ loaded via a namespace (and not attached):
  [93] lmtest_0.9-37               RcppAnnoy_0.0.16           
  [95] data.table_1.12.8           cowplot_1.0.0              
  [97] bitops_1.0-6                irlba_2.3.3                
- [99] httpuv_1.5.2                patchwork_1.0.0            
+ [99] httpuv_1.5.3.1              patchwork_1.0.0            
 [101] GenomicRanges_1.40.0        R6_2.4.1                   
 [103] promises_1.1.0              KernSmooth_2.23-17         
 [105] gridExtra_2.3               IRanges_2.22.2             
@@ -1140,11 +1394,11 @@ loaded via a namespace (and not attached):
 [113] sctransform_0.2.1           S4Vectors_0.26.1           
 [115] GenomeInfoDbData_1.2.3      parallel_4.0.0             
 [117] hms_0.5.3                   grid_4.0.0                 
-[119] rmarkdown_2.1               Rtsne_0.15                 
+[119] rmarkdown_2.2               Rtsne_0.15                 
 [121] git2r_0.27.1                Biobase_2.48.0             
 [123] lubridate_1.7.8            </code></pre>
 <pre class="r"><code>date()</code></pre>
-<pre><code>[1] &quot;Thu May 28 13:33:56 2020&quot;</code></pre>
+<pre><code>[1] &quot;Tue Jun 16 10:55:19 2020&quot;</code></pre>
 <br>
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">
@@ -1170,8 +1424,8 @@ attached base packages:
 other attached packages:
  [1] pheatmap_1.0.12  ggsci_2.9        runSeurat3_0.1.0 here_0.1        
  [5] magrittr_1.5     Seurat_3.1.5     forcats_0.5.0    stringr_1.4.0   
- [9] dplyr_0.8.5      purrr_0.3.4      readr_1.3.1      tidyr_1.1.0     
-[13] tibble_3.0.1     ggplot2_3.3.0    tidyverse_1.3.0 
+ [9] dplyr_1.0.0      purrr_0.3.4      readr_1.3.1      tidyr_1.1.0     
+[13] tibble_3.0.1     ggplot2_3.3.1    tidyverse_1.3.0 
 
 loaded via a namespace (and not attached):
   [1] readxl_1.3.1                backports_1.1.7            
@@ -1195,7 +1449,7 @@ loaded via a namespace (and not attached):
  [37] future.apply_1.5.0          SingleCellExperiment_1.10.1
  [39] BiocGenerics_0.34.0         scales_1.1.1               
  [41] DBI_1.1.0                   Rcpp_1.0.4.6               
- [43] viridisLite_0.3.0           reticulate_1.15            
+ [43] viridisLite_0.3.0           reticulate_1.16            
  [45] rsvd_1.0.3                  stats4_4.0.0               
  [47] tsne_0.1-3                  htmlwidgets_1.5.1          
  [49] httr_1.4.1                  RColorBrewer_1.1-2         
@@ -1212,7 +1466,7 @@ loaded via a namespace (and not attached):
  [71] knitr_1.28                  fs_1.4.1                   
  [73] fitdistrplus_1.1-1          RANN_2.6.1                 
  [75] pbapply_1.4-2               future_1.17.0              
- [77] nlme_3.1-147                whisker_0.4                
+ [77] nlme_3.1-148                whisker_0.4                
  [79] xml2_1.3.2                  compiler_4.0.0             
  [81] rstudioapi_0.11             plotly_4.9.2.1             
  [83] png_0.1-7                   reprex_0.3.0               
@@ -1223,7 +1477,7 @@ loaded via a namespace (and not attached):
  [93] lmtest_0.9-37               RcppAnnoy_0.0.16           
  [95] data.table_1.12.8           cowplot_1.0.0              
  [97] bitops_1.0-6                irlba_2.3.3                
- [99] httpuv_1.5.2                patchwork_1.0.0            
+ [99] httpuv_1.5.3.1              patchwork_1.0.0            
 [101] GenomicRanges_1.40.0        R6_2.4.1                   
 [103] promises_1.1.0              KernSmooth_2.23-17         
 [105] gridExtra_2.3               IRanges_2.22.2             
@@ -1233,7 +1487,7 @@ loaded via a namespace (and not attached):
 [113] sctransform_0.2.1           S4Vectors_0.26.1           
 [115] GenomeInfoDbData_1.2.3      parallel_4.0.0             
 [117] hms_0.5.3                   grid_4.0.0                 
-[119] rmarkdown_2.1               Rtsne_0.15                 
+[119] rmarkdown_2.2               Rtsne_0.15                 
 [121] git2r_0.27.1                Biobase_2.48.0             
 [123] lubridate_1.7.8            </code></pre>
 </div>
@@ -1303,7 +1557,7 @@ $(document).ready(function ()  {
       theme: "bootstrap3",
       context: '.toc-content',
       hashGenerator: function (text) {
-        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
       },
       ignoreSelector: ".toc-ignore",
       scrollTo: 0
