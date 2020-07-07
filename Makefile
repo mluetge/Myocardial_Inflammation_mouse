@@ -1,5 +1,5 @@
 basedir := /mnt/data/TCRM_Christina
-basedirref := /mnt/data/referenceFiles/
+basedirref := /mnt/data/referenceFiles/balbc
 fastqdir := /data/scRNAseq/TCRM_Christina
 
 cellranger := /mnt/tools/cellranger-3.0.2/cellranger
