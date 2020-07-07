@@ -1,18 +1,18 @@
 basedir := /mnt/data/TCRM_Christina
-basedirref := /mnt/data/referenceFiles
+basedirref := /mnt/data/referenceFiles/
 fastqdir := /data/scRNAseq/TCRM_Christina
 
 cellranger := /mnt/tools/cellranger-3.0.2/cellranger
 
 genome := $(basedirref)/Mus_musculus.GRCm38.dna.primary_assembly.fa
-gtf := $(basedirref)/Mus_musculus.GRCm38.94.gtf
+gtf := $(basedirref)/Mus_musculus.GRCm38.100.gtf
 
 customtx := $(basedirref)/eyfp_tdtomato_sequences.fa
 customgtf := $(basedirref)/eyfp_tdtomato_sequences.gtf
 extendedgenome := $(basedirref)/Mus_musculus.GRCm38.dna.primary_assembly_extended_orig.fa
 
-extendedgtf := $(basedirref)/Mus_musculus.GRCm38.90_extended_orig.gtf
-extendedgenomename := Ensembl_GRCm38.94_extended_orig
+extendedgtf := $(basedirref)/Mus_musculus.GRCm38.100_extended_orig.gtf
+extendedgenomename := Ensembl_GRCm38.100_extended_orig
 
 
 R_OPTS := --vanilla
@@ -20,8 +20,7 @@ R := R_LIBS=/mnt/tools/Rlibs/release-3.10-lib/ /mnt/tools/R-3.6.1/bin/R
 sce_Rscript := $(basedir)/analysis/processCellrangerOut.R
 org :=mouse
 
-samples := 1_20200317_TCRMxCcl19-EYFP_balbc_PDPN_v3 2_20200317_TCRMxCcl19-EYFP_balbc_PDPN_v3 3_20200317_Ccl19-EYFP_balbc_PDPN_v3 4_20200317_Ccl19-EYFP_balbc_PDPN_v3
-samples := 6_20200610_TCRM_balbc_4w_PDPN_v3 7_20200610_TCRM_balbc_4w_PDPN_v3 8_20200610_TCRM_balbc_12w_PDPN_v3 9_20200610_TCRM_balbc_8w_PDPN_v3 10_20200610_Littermate_control_balbc_4w_PDPN_v3 11_20200610_Littermate_control_balbc_4w_PDPN_v3
+samples := 1_20200317_TCRMxCcl19-EYFP_balbc_PDPN_v3 2_20200317_TCRMxCcl19-EYFP_balbc_PDPN_v3 3_20200317_Ccl19-EYFP_balbc_PDPN_v3 4_20200317_Ccl19-EYFP_balbc_PDPN_v3 6_20200610_TCRM_balbc_4w_PDPN_v3 7_20200610_TCRM_balbc_4w_PDPN_v3 8_20200610_TCRM_balbc_12w_PDPN_v3 9_20200610_TCRM_balbc_8w_PDPN_v3 10_20200610_Littermate_control_balbc_4w_PDPN_v3 11_20200610_Littermate_control_balbc_4w_PDPN_v3
 run := CellRangerV3
 
 .PHONY: all
