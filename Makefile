@@ -61,7 +61,7 @@ $(fastqdir)/$(Project)/$(1)/$(1)_$(2)_L002_R2_001.fastq.gz
 	cd data/$(run) && \
 	$(cellranger) count --id=$(1) --fastqs=$(fastqdir)/$(Project)/$(1) \
 	--sample=$(1) --nosecondary \
-	--transcriptome=$(basedirref)/Ensembl_GRCm38.94_extended --localcores=8
+	--transcriptome=$(basedirref)/Ensembl_GRCm38.100_extended --localcores=8
 endef
 $(eval $(call cellrangerrule,1_20200317_TCRMxCcl19-EYFP_balbc_PDPN_v3,S1))
 $(eval $(call cellrangerrule,2_20200317_TCRMxCcl19-EYFP_balbc_PDPN_v3,S2))
@@ -83,7 +83,7 @@ $(fastqdir)/$(Project)/$(1)/$(1)_$(2)_L002_R2_001.fastq.gz
 	cd data/$(run) && \
 	$(cellranger) count --id=$(1) --fastqs=$(fastqdir)/$(Project)/$(1) \
 	--sample=$(1) --nosecondary \
-	--transcriptome=$(basedirref)/Ensembl_GRCm38.94_extended --localcores=8
+	--transcriptome=$(basedirref)/Ensembl_GRCm38.100_extended --localcores=8
 endef
 $(eval $(call cellrangerrule,6_20200610_TCRM_balbc_4w_PDPN_v3,S6))
 $(eval $(call cellrangerrule,7_20200610_TCRM_balbc_4w_PDPN_v3,S7))
