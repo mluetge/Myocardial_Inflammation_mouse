@@ -21,6 +21,7 @@ sce_Rscript := $(basedir)/analysis/processCellrangerOut.R
 org :=mouse
 
 samples := 1_20200317_TCRMxCcl19-EYFP_balbc_PDPN_v3 2_20200317_TCRMxCcl19-EYFP_balbc_PDPN_v3 3_20200317_Ccl19-EYFP_balbc_PDPN_v3 4_20200317_Ccl19-EYFP_balbc_PDPN_v3
+samples := 6_20200610_TCRM_balbc_4w_PDPN_v3 7_20200610_TCRM_balbc_4w_PDPN_v3 8_20200610_TCRM_balbc_12w_PDPN_v3 9_20200610_TCRM_balbc_8w_PDPN_v3 10_20200610_Littermate_control_balbc_4w_PDPN_v3 11_20200610_Littermate_control_balbc_4w_PDPN_v3
 run := CellRangerV3
 
 .PHONY: all
@@ -69,6 +70,31 @@ $(eval $(call cellrangerrule,3_20200317_Ccl19-EYFP_balbc_PDPN_v3,S3))
 $(eval $(call cellrangerrule,4_20200317_Ccl19-EYFP_balbc_PDPN_v3,S4))
 
 ## ------------------------------------------------------------------------------------ ##
+
+Project := NovaSeq_20200622_NOV394_o7096_DataDelivery
+define cellrangerrule
+data/$(run)/$(1)/outs/web_summary.html: $(basedirref)/$(extendedgenomename)/reference.json \
+$(fastqdir)/$(Project)/$(1)/$(1)_$(2)_L001_I1_001.fastq.gz \
+$(fastqdir)/$(Project)/$(1)/$(1)_$(2)_L001_R1_001.fastq.gz \
+$(fastqdir)/$(Project)/$(1)/$(1)_$(2)_L001_R2_001.fastq.gz \
+$(fastqdir)/$(Project)/$(1)/$(1)_$(2)_L002_I1_001.fastq.gz \
+$(fastqdir)/$(Project)/$(1)/$(1)_$(2)_L002_R1_001.fastq.gz \
+$(fastqdir)/$(Project)/$(1)/$(1)_$(2)_L002_R2_001.fastq.gz
+	mkdir -p data/$(run)
+	cd data/$(run) && \
+	$(cellranger) count --id=$(1) --fastqs=$(fastqdir)/$(Project)/$(1) \
+	--sample=$(1) --nosecondary \
+	--transcriptome=$(basedirref)/Ensembl_GRCm38.94_extended --localcores=8
+endef
+$(eval $(call cellrangerrule,6_20200610_TCRM_balbc_4w_PDPN_v3,S6))
+$(eval $(call cellrangerrule,7_20200610_TCRM_balbc_4w_PDPN_v3,S7))
+$(eval $(call cellrangerrule,8_20200610_TCRM_balbc_12w_PDPN_v3,S8))
+$(eval $(call cellrangerrule,9_20200610_TCRM_balbc_8w_PDPN_v3,S9))
+$(eval $(call cellrangerrule,10_20200610_Littermate_control_balbc_4w_PDPN_v3,S10))
+$(eval $(call cellrangerrule,11_20200610_Littermate_control_balbc_4w_PDPN_v3,S11))
+
+
+## ------------------------------------------------------------------------------------ ##
 ## Generate sce object
 ## ------------------------------------------------------------------------------------ ##
 #data/HungweiILCs_plus_LP_EYFP_$(shell date +%Y_%m_%d).rds: $(foreach S,$(run),data/$(S)/*/outs/web_summary.html) \
@@ -84,5 +110,9 @@ $(eval $(call processCRrule,1_20200317_TCRMxCcl19-EYFP_balbc_PDPN_v3))
 $(eval $(call processCRrule,2_20200317_TCRMxCcl19-EYFP_balbc_PDPN_v3))
 $(eval $(call processCRrule,3_20200317_Ccl19-EYFP_balbc_PDPN_v3))
 $(eval $(call processCRrule,4_20200317_Ccl19-EYFP_balbc_PDPN_v3))
-
-
+$(eval $(call processCRrule,6_20200610_TCRM_balbc_4w_PDPN_v3))
+$(eval $(call processCRrule,7_20200610_TCRM_balbc_4w_PDPN_v3))
+$(eval $(call processCRrule,8_20200610_TCRM_balbc_12w_PDPN_v3))
+$(eval $(call processCRrule,9_20200610_TCRM_balbc_8w_PDPN_v3))
+$(eval $(call processCRrule,10_20200610_Littermate_control_balbc_4w_PDPN_v3))
+$(eval $(call processCRrule,11_20200610_Littermate_control_balbc_4w_PDPN_v3))
