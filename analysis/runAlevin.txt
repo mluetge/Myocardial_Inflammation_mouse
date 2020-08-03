@@ -1,0 +1,38 @@
+######### **** ALEVIN **** ###############
+
+cd /mnt/data/referenceFiles/balbc
+
+## load reference files from ei database
+wget ftp://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_mouse/release_M25/gencode.vM25.transcripts.fa.gz
+wget ftp://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_mouse/release_M25/GRCm38.primary_assembly.genome.fa.gz
+wget ftp://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_mouse/release_M25/gencode.vM25.annotation.gtf.gz
+gunzip gencode.vM25.annotation.gtf.gz
+
+## generate txp2gene.txt file
+bioawk -c gff '$feature=="transcript" {print $group}' /mnt/data/referenceFiles/balbc/gencode.vM25.annotation.gtf | awk -F ' ' '{print substr($4,2,length($4)-3) "\t" substr($2,2,length($2)-3)}' - > /mnt/data/referenceFiles/balbc/gencode.vM25_txp2gene.tsv
+
+## create salmon index
+grep "^>" <(gunzip -c GRCm38.primary_assembly.genome.fa.gz) | cut -d " " -f 1 > decoys.txt
+sed -i.bak -e 's/>//g' decoys.txt
+cat gencode.vM23.transcripts.fa.gz GRCm38.primary_assembly.genome.fa.gz > gentrome.fa.gz
+/mnt/tools/salmon-latest_linux_x86_64/bin/salmon index -t gentrome.fa.gz -d decoys.txt -p 12 -i salmon_index --gencode
+
+## run alevin
+/mnt/tools/salmon-latest_linux_x86_64/bin/salmon alevin -lISR -1 /data/scRNAseq/TCRM_Christina/NovaSeq_20200507_NOV363_o6934_DataDelivery/1_20200317_TCRMxCcl19-EYFP_balbc_PDPN_v3/1_20200317_TCRMxCcl19-EYFP_balbc_PDPN_v3_S1_L001_R1_001.fastq.gz /data/scRNAseq/TCRM_Christina/NovaSeq_20200507_NOV363_o6934_DataDelivery/1_20200317_TCRMxCcl19-EYFP_balbc_PDPN_v3/1_20200317_TCRMxCcl19-EYFP_balbc_PDPN_v3_S1_L002_R1_001.fastq.gz -2 /data/scRNAseq/TCRM_Christina/NovaSeq_20200507_NOV363_o6934_DataDelivery/1_20200317_TCRMxCcl19-EYFP_balbc_PDPN_v3/1_20200317_TCRMxCcl19-EYFP_balbc_PDPN_v3_S1_L001_R2_001.fastq.gz /data/scRNAseq/TCRM_Christina/NovaSeq_20200507_NOV363_o6934_DataDelivery/1_20200317_TCRMxCcl19-EYFP_balbc_PDPN_v3/1_20200317_TCRMxCcl19-EYFP_balbc_PDPN_v3_S1_L002_R2_001.fastq.gz --chromiumV3 -i /mnt/data/referenceFiles/balbc/salmon_index -p 8 -o /mnt/data/TCRM_Christina_test/alevin_out --tgMap /mnt/data/referenceFiles/balbc/gencode.vM25_txp2gene.tsv
+
+
+## analyse data in R
+R_LIBS=/mnt/tools/Rlibs/release-3.10-lib/ /mnt/tools/R-3.6.1/bin/R
+
+library(tximeta)
+library(scater)
+library(scran)
+library(SC3)
+
+## Read alevin output with tximeta and generate a SummarizedExperiment object
+alevin <- tximeta::tximeta(coldata = data.frame(files = "/mnt/data/TCRM_Christina_test/alevin_out/alevin/quants_mat.gz",
+                                                names = "sample1"), 
+                           type = "alevin")
+
+dim(assay(alevin, "counts"))
+alevin <- as(alevin, "SingleCellExperiment")
