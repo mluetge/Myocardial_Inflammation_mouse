@@ -1,0 +1,1424 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+<meta name="author" content="Mechthild Lütge" />
+
+<meta name="date" content="2020-07-24" />
+
+<title>Analyse balbc LN samples</title>
+
+<script src="site_libs/header-attrs-2.3/header-attrs.js"></script>
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+
+<link rel="icon" href="https://github.com/workflowr/workflowr-assets/raw/master/img/reproducible.png">
+<!-- Add a small amount of space between sections. -->
+<style type="text/css">
+div.section {
+  padding-top: 12px;
+}
+</style>
+
+
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 51px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h2 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h3 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h4 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h5 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h6 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">TCRM_Christina</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+<li>
+  <a href="about.html">About</a>
+</li>
+<li>
+  <a href="license.html">License</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">Analyse balbc LN samples</h1>
+<h4 class="author">Mechthild Lütge</h4>
+<h4 class="date">24 July 2020</h4>
+
+</div>
+
+
+<p>
+<button type="button" class="btn btn-default btn-workflowr btn-workflowr-report" data-toggle="collapse" data-target="#workflowr-report">
+<span class="glyphicon glyphicon-list" aria-hidden="true"></span> workflowr <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span>
+</button>
+</p>
+<div id="workflowr-report" class="collapse">
+<ul class="nav nav-tabs">
+<li class="active">
+<a data-toggle="tab" href="#summary">Summary</a>
+</li>
+<li>
+<a data-toggle="tab" href="#checks"> Checks <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> </a>
+</li>
+<li>
+<a data-toggle="tab" href="#versions">Past versions</a>
+</li>
+</ul>
+<div class="tab-content">
+<div id="summary" class="tab-pane fade in active">
+<p>
+<strong>Last updated:</strong> 2020-08-14
+</p>
+<p>
+<strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 6 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 1
+</p>
+<p>
+<strong>Knit directory:</strong> <code>TCRM_Christina/</code> <span class="glyphicon glyphicon-question-sign" aria-hidden="true" title="This is the local directory in which the code in this file was executed."> </span>
+</p>
+<p>
+This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis was created with <a
+  href="https://github.com/jdblischak/workflowr">workflowr</a> (version 1.6.2). The <em>Checks</em> tab describes the reproducibility checks that were applied when the results were created. The <em>Past versions</em> tab lists the development history.
+</p>
+<hr>
+</div>
+<div id="checks" class="tab-pane fade">
+<div id="workflowr-checks" class="panel-group">
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguncommittedchanges"> <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> <strong>R Markdown file:</strong> uncommitted changes </a>
+</p>
+</div>
+<div id="strongRMarkdownfilestronguncommittedchanges" class="panel-collapse collapse">
+<div class="panel-body">
+<p>The R Markdown is untracked by Git. To know which version of the R Markdown file created these results, you’ll want to first commit it to the Git repo. If you’re still working on the analysis, you can ignore this warning. When you’re finished, you can run <code>wflow_publish</code> to commit the R Markdown file and build the HTML.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongEnvironmentstrongempty"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Environment:</strong> empty </a>
+</p>
+</div>
+<div id="strongEnvironmentstrongempty" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Great job! The global environment was empty. Objects defined in the global environment can affect the analysis in your R Markdown file in unknown ways. For reproduciblity it’s best to always run the code in an empty environment.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongSeedstrongcodesetseed20200518code"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Seed:</strong> <code>set.seed(20200518)</code> </a>
+</p>
+</div>
+<div id="strongSeedstrongcodesetseed20200518code" class="panel-collapse collapse">
+<div class="panel-body">
+<p>The command <code>set.seed(20200518)</code> was run prior to running the code in the R Markdown file. Setting a seed ensures that any results that rely on randomness, e.g. subsampling or permutations, are reproducible.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongSessioninformationstrongrecorded"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Session information:</strong> recorded </a>
+</p>
+</div>
+<div id="strongSessioninformationstrongrecorded" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Great job! Recording the operating system, R version, and package versions is critical for reproducibility.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongCachestrongnone"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Cache:</strong> none </a>
+</p>
+</div>
+<div id="strongCachestrongnone" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Nice! There were no cached chunks for this analysis, so you can be confident that you successfully produced the results during this run.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongFilepathsstrongrelative"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>File paths:</strong> relative </a>
+</p>
+</div>
+<div id="strongFilepathsstrongrelative" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Great job! Using relative paths to the files within your workflowr project makes it easier to run your code on other machines.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcommluetgeTCRMChristinatreebfce4304b292728fbb28d7f346082b4321248d1ctargetblankbfce430a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/mluetge/TCRM_Christina/tree/bfce4304b292728fbb28d7f346082b4321248d1c" target="_blank">bfce430</a> </a>
+</p>
+</div>
+<div id="strongRepositoryversionstrongahrefhttpsgithubcommluetgeTCRMChristinatreebfce4304b292728fbb28d7f346082b4321248d1ctargetblankbfce430a" class="panel-collapse collapse">
+<div class="panel-body">
+<p>
+Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility.
+</p>
+<p>
+The results in this page were generated with repository version <a href="https://github.com/mluetge/TCRM_Christina/tree/bfce4304b292728fbb28d7f346082b4321248d1c" target="_blank">bfce430</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
+</p>
+<p>
+Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
+</p>
+<pre><code>
+Ignored files:
+    Ignored:    .DS_Store
+    Ignored:    .Rhistory
+    Ignored:    .Rproj.user/
+    Ignored:    output/.DS_Store
+
+Untracked files:
+    Untracked:  analysis/analyseMedLN_balbc.Rmd
+    Untracked:  metadata_LN.txt
+
+</code></pre>
+<p>
+Note that any generated files, e.g. HTML, png, CSS, etc., are not included in this status report because it is ok for generated content to have uncommitted changes.
+</p>
+</div>
+</div>
+</div>
+</div>
+<hr>
+</div>
+<div id="versions" class="tab-pane fade">
+<p>
+There are no past versions. Publish this analysis with <code>wflow_publish()</code> to start tracking its development.
+</p>
+<hr>
+</div>
+</div>
+</div>
+<div id="load-packages" class="section level2">
+<h2>load packages</h2>
+<pre class="r"><code>suppressPackageStartupMessages({
+  library(SingleCellExperiment)
+  library(tidyverse)
+  library(Seurat)
+  library(magrittr)
+  library(dplyr)
+  library(purrr)
+  library(ggplot2)
+  library(here)
+  library(runSeurat3)
+  library(ggsci)
+  library(pheatmap)
+  library(ggpubr)
+  library(viridis)
+})</code></pre>
+</div>
+<div id="set-dir" class="section level2">
+<h2>set dir</h2>
+<pre class="r"><code>basedir &lt;- here()
+metaDat &lt;- read_tsv(paste0(basedir, &quot;/metadata_LN.txt&quot;), col_names = T)</code></pre>
+</div>
+<div id="load-and-assign-samples" class="section level2">
+<h2>load and assign samples</h2>
+<pre class="r"><code>assignSamples &lt;- function(smpNam, basedirSmp, smpGrp, smpBatch, smpLoc){
+  smpNamFull &lt;- list.files(path = paste0(basedirSmp, &quot;/data/&quot;),
+                 pattern = paste0(smpNam, &quot;.*_seurat.rds&quot;))
+  seuratSmp &lt;- readRDS(paste0(basedirSmp, &quot;/data/&quot;, smpNamFull))
+  seuratSmp$grp &lt;- smpGrp
+  seuratSmp$batch &lt;- smpBatch
+  seuratSmp$loc &lt;- smpLoc
+  return(seuratSmp)
+}
+
+####################################################################
+
+for(i in 1:length(metaDat$Sample)){
+  seuratX &lt;- assignSamples(smpNam = metaDat$Sample[i],
+                           basedirSmp = basedir,
+                           smpGrp = metaDat$group[i],
+                           smpBatch = metaDat$batch[i],
+                           smpLoc = metaDat$location[i])
+  if(exists(&quot;seurat&quot;)){
+    seurat &lt;- merge(x = seurat, y = seuratX, project = &quot;balbC_LN&quot;)
+  }else{
+    seurat &lt;- seuratX
+  }
+}
+
+remove(seuratX)</code></pre>
+</div>
+<div id="run-clustering-and-dr-and-remove-contaminating-cells" class="section level2">
+<h2>run clustering and DR and remove contaminating cells</h2>
+<pre class="r"><code>## remove contaminants
+seurat &lt;- subset(seurat, subset = ENSMUSG00000026395.Ptprc &gt;0, invert=T)
+seurat &lt;- subset(seurat, subset = ENSMUSG00000003379.Cd79a &gt;0, invert=T)
+seurat &lt;- subset(seurat, subset = ENSMUSG00000040592.Cd79b &gt;0, invert=T)
+seurat &lt;- subset(seurat, subset = ENSMUSG00000076928.Trac &gt;0, invert=T)
+seurat &lt;- subset(seurat, subset = ENSMUSG00000032094.Cd3d &gt;0, invert=T)
+
+seurat &lt;- rerunSeurat3(seurat)</code></pre>
+<pre><code>Modularity Optimizer version 1.3.0 by Ludo Waltman and Nees Jan van Eck
+
+Number of nodes: 12168
+Number of edges: 403074
+
+Running Louvain algorithm...
+Maximum modularity in 10 random starts: 0.9267
+Number of communities: 12
+Elapsed time: 1 seconds
+Modularity Optimizer version 1.3.0 by Ludo Waltman and Nees Jan van Eck
+
+Number of nodes: 12168
+Number of edges: 403074
+
+Running Louvain algorithm...
+Maximum modularity in 10 random starts: 0.8783
+Number of communities: 19
+Elapsed time: 1 seconds
+Modularity Optimizer version 1.3.0 by Ludo Waltman and Nees Jan van Eck
+
+Number of nodes: 12168
+Number of edges: 403074
+
+Running Louvain algorithm...
+Maximum modularity in 10 random starts: 0.8618
+Number of communities: 22
+Elapsed time: 1 seconds
+Modularity Optimizer version 1.3.0 by Ludo Waltman and Nees Jan van Eck
+
+Number of nodes: 12168
+Number of edges: 403074
+
+Running Louvain algorithm...
+Maximum modularity in 10 random starts: 0.9012
+Number of communities: 14
+Elapsed time: 1 seconds</code></pre>
+<pre class="r"><code>dat &lt;- data.frame(table(seurat$dataset))
+colnames(dat) &lt;- c(&quot;dataset&quot;, &quot;all&quot;)
+
+seuratSub &lt;- subset(seurat, subset = ENSMUSG00000074934.Grem1 &gt;0) ## 0 cells
+dat2 &lt;- data.frame(table(seuratSub$dataset))
+colnames(dat2) &lt;- c(&quot;dataset&quot;, &quot;Grem1&quot;)
+dat &lt;- dat %&gt;% left_join(., dat2, by=c(&quot;dataset&quot;))
+
+seuratSub &lt;- subset(seurat, subset = ENSMUSG00000050069.Grem2 &gt;0) ## 2 cells
+dat2 &lt;- data.frame(table(seuratSub$dataset))
+colnames(dat2) &lt;- c(&quot;dataset&quot;, &quot;Grem2&quot;)
+dat &lt;- dat %&gt;% left_join(., dat2, by=c(&quot;dataset&quot;))
+
+seuratSub &lt;- subset(seurat, subset = ENSMUSG00000027358.Bmp2 &gt;0) ## 418 cells
+dat2 &lt;- data.frame(table(seuratSub$dataset))
+colnames(dat2) &lt;- c(&quot;dataset&quot;, &quot;Bmp2&quot;)
+dat &lt;- dat %&gt;% left_join(., dat2, by=c(&quot;dataset&quot;))
+
+seuratSub &lt;- subset(seurat,subset = ENSMUSG00000021835.Bmp4 &gt;0) ## 1341 cells
+dat2 &lt;- data.frame(table(seuratSub$dataset))
+colnames(dat2) &lt;- c(&quot;dataset&quot;, &quot;Bmp4&quot;)
+dat &lt;- dat %&gt;% left_join(., dat2, by=c(&quot;dataset&quot;))
+
+seuratSub &lt;- subset(seurat,subset= ENSMUSG00000021796.Bmpr1a &gt;0) ## 1092 cells
+dat2 &lt;- data.frame(table(seuratSub$dataset))
+colnames(dat2) &lt;- c(&quot;dataset&quot;, &quot;Bmpr1a&quot;)
+dat &lt;- dat %&gt;% left_join(., dat2, by=c(&quot;dataset&quot;))
+
+seuratSub &lt;- subset(seurat, subset=ENSMUSG00000052430.Bmpr1b &gt;0) ## 2 cells
+dat2 &lt;- data.frame(table(seuratSub$dataset))
+colnames(dat2) &lt;- c(&quot;dataset&quot;, &quot;Bmpr1b&quot;)
+dat &lt;- dat %&gt;% left_join(., dat2, by=c(&quot;dataset&quot;))
+
+seuratSub &lt;- subset(seurat,subset= ENSMUSG00000067336.Bmpr2 &gt;0) ## 2201 cells
+dat2 &lt;- data.frame(table(seuratSub$dataset))
+colnames(dat2) &lt;- c(&quot;dataset&quot;, &quot;Bmpr2&quot;)
+dat &lt;- dat %&gt;% left_join(., dat2, by=c(&quot;dataset&quot;))
+dat[is.na(dat)] &lt;-0
+
+dat_fin &lt;-  dat %&gt;%
+  bind_rows(summarise_all(., funs(if(is.numeric(.)) sum(.) else &quot;total&quot;)))
+
+knitr::kable(dat_fin)</code></pre>
+<table style="width:100%;">
+<colgroup>
+<col width="51%" />
+<col width="6%" />
+<col width="6%" />
+<col width="6%" />
+<col width="5%" />
+<col width="5%" />
+<col width="7%" />
+<col width="7%" />
+<col width="6%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">dataset</th>
+<th align="right">all</th>
+<th align="right">Grem1</th>
+<th align="right">Grem2</th>
+<th align="right">Bmp2</th>
+<th align="right">Bmp4</th>
+<th align="right">Bmpr1a</th>
+<th align="right">Bmpr1b</th>
+<th align="right">Bmpr2</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">12_20200723_Mu_LN_Lin_neg_FSC_Balbc_v3</td>
+<td align="right">1645</td>
+<td align="right">179</td>
+<td align="right">200</td>
+<td align="right">217</td>
+<td align="right">172</td>
+<td align="right">439</td>
+<td align="right">7</td>
+<td align="right">887</td>
+</tr>
+<tr class="even">
+<td align="left">14_20200729_Mu_balbc_medisLN_TCRM_stromal_cells_v3</td>
+<td align="right">4969</td>
+<td align="right">1925</td>
+<td align="right">367</td>
+<td align="right">601</td>
+<td align="right">803</td>
+<td align="right">1460</td>
+<td align="right">0</td>
+<td align="right">2105</td>
+</tr>
+<tr class="odd">
+<td align="left">15_20200729_Mu_balbc_medisLN_LM_stromal_cells_v3</td>
+<td align="right">5554</td>
+<td align="right">2062</td>
+<td align="right">551</td>
+<td align="right">909</td>
+<td align="right">1515</td>
+<td align="right">1445</td>
+<td align="right">2</td>
+<td align="right">1870</td>
+</tr>
+<tr class="even">
+<td align="left">total</td>
+<td align="right">12168</td>
+<td align="right">4166</td>
+<td align="right">1118</td>
+<td align="right">1727</td>
+<td align="right">2490</td>
+<td align="right">3344</td>
+<td align="right">9</td>
+<td align="right">4862</td>
+</tr>
+</tbody>
+</table>
+<pre class="r"><code>## total 71484 cells</code></pre>
+</div>
+<div id="check-qc" class="section level2">
+<h2>check QC</h2>
+<pre class="r"><code>colDat &lt;- pal_npg()(length(unique(seurat$dataset)))
+names(colDat) &lt;- unique(seurat$dataset)
+
+sce &lt;- as.SingleCellExperiment(seurat)
+
+plotQC2 &lt;- function(sce, feature){
+  p &lt;- gghistogram(data = as.data.frame(sce@colData),
+              x=feature,
+              bins=70,
+              #title=unique(sce$dataset),
+              fill = &quot;dataset&quot;,
+              palette = colDat,
+              legend = &quot;right&quot;)
+  return(p)
+}
+
+plotQC3 &lt;- function(sce, feature){
+  p &lt;- gghistogram(data = as.data.frame(sce@colData),
+              x=feature,
+              y = &quot;..density..&quot;,
+              bins=70,
+              fill = &quot;dataset&quot;,
+              palette = colDat,
+              add_density = TRUE,
+              legend = &quot;right&quot;)
+  return(p)
+}
+
+plotQC2(sce, &quot;total_counts&quot;)</code></pre>
+<p><img src="figure/analyseMedLN_balbc.Rmd/check%20QC-1.png" width="672" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>plotQC3(sce, &quot;total_counts&quot;)</code></pre>
+<p><img src="figure/analyseMedLN_balbc.Rmd/check%20QC-2.png" width="672" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>plotQC2(sce, &quot;total_features_by_counts&quot;)</code></pre>
+<p><img src="figure/analyseMedLN_balbc.Rmd/check%20QC-3.png" width="672" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>plotQC3(sce, &quot;total_features_by_counts&quot;)</code></pre>
+<p><img src="figure/analyseMedLN_balbc.Rmd/check%20QC-4.png" width="672" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>#plotQC2(sce, &quot;pct_counts_Mt&quot;)
+#plotQC3(sce, &quot;pct_counts_Mt&quot;)
+
+plotQC2(sce, &quot;pct_counts_in_top_500_features&quot;)</code></pre>
+<p><img src="figure/analyseMedLN_balbc.Rmd/check%20QC-5.png" width="672" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>plotQC3(sce, &quot;pct_counts_in_top_500_features&quot;)</code></pre>
+<p><img src="figure/analyseMedLN_balbc.Rmd/check%20QC-6.png" width="672" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>#plotQC2(sce, &quot;pct_counts_endogenous&quot;)
+#plotQC3(sce, &quot;pct_counts_endogenous&quot;)
+
+#plotQC2(sce, &quot;total_features_by_counts_Mt&quot;)
+#plotQC3(sce, &quot;total_features_by_counts_Mt&quot;)
+
+#plotQC2(sce, &quot;total_counts_Mt&quot;)
+#plotQC3(sce, &quot;total_counts_Mt&quot;)
+
+#plotQC2(sce, &quot;pct_counts_in_top_500_features_endogenous&quot;)
+#plotQC3(sce, &quot;pct_counts_in_top_500_features_endogenous&quot;)</code></pre>
+</div>
+<div id="subset-on-med-ln" class="section level2">
+<h2>subset on med LN</h2>
+<pre class="r"><code>seurat &lt;- subset(seurat, loc == &quot;medLN&quot;)
+seurat &lt;- rerunSeurat3(seurat)</code></pre>
+<pre><code>Modularity Optimizer version 1.3.0 by Ludo Waltman and Nees Jan van Eck
+
+Number of nodes: 10523
+Number of edges: 352175
+
+Running Louvain algorithm...
+Maximum modularity in 10 random starts: 0.9125
+Number of communities: 8
+Elapsed time: 1 seconds
+Modularity Optimizer version 1.3.0 by Ludo Waltman and Nees Jan van Eck
+
+Number of nodes: 10523
+Number of edges: 352175
+
+Running Louvain algorithm...
+Maximum modularity in 10 random starts: 0.8590
+Number of communities: 14
+Elapsed time: 1 seconds
+Modularity Optimizer version 1.3.0 by Ludo Waltman and Nees Jan van Eck
+
+Number of nodes: 10523
+Number of edges: 352175
+
+Running Louvain algorithm...
+Maximum modularity in 10 random starts: 0.8366
+Number of communities: 16
+Elapsed time: 1 seconds
+Modularity Optimizer version 1.3.0 by Ludo Waltman and Nees Jan van Eck
+
+Number of nodes: 10523
+Number of edges: 352175
+
+Running Louvain algorithm...
+Maximum modularity in 10 random starts: 0.8830
+Number of communities: 13
+Elapsed time: 1 seconds</code></pre>
+</div>
+<div id="color-vectors" class="section level2">
+<h2>color vectors</h2>
+<pre class="r"><code>colPal &lt;- pal_igv()(length(levels(seurat)))
+colGrp &lt;- pal_jama()(length(unique(seurat$grp)))
+colSmp &lt;- pal_uchicago()(length(unique(seurat$dataset)))
+
+names(colPal) &lt;- levels(seurat)
+names(colGrp) &lt;- unique(seurat$grp)
+names(colSmp) &lt;- unique(seurat$dataset)</code></pre>
+</div>
+<div id="vis-data" class="section level2 tabset">
+<h2 class="tabset">vis data</h2>
+<div id="clusters" class="section level3">
+<h3>clusters</h3>
+<pre class="r"><code>DimPlot(seurat, reduction = &quot;umap&quot;, cols=colPal)+
+  theme_bw() +
+  theme(axis.text = element_blank(), axis.ticks = element_blank(), 
+        panel.grid.minor = element_blank()) +
+  xlab(&quot;UMAP1&quot;) +
+  ylab(&quot;UMAP2&quot;)</code></pre>
+<p><img src="figure/analyseMedLN_balbc.Rmd/vis%20cluster-1.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+<div id="group" class="section level3">
+<h3>group</h3>
+<pre class="r"><code>DimPlot(seurat, reduction = &quot;umap&quot;, group.by = &quot;grp&quot;, cols=colGrp)+
+  theme_bw() +
+  theme(axis.text = element_blank(), axis.ticks = element_blank(), 
+        panel.grid.minor = element_blank()) +
+  xlab(&quot;UMAP1&quot;) +
+  ylab(&quot;UMAP2&quot;)</code></pre>
+<p><img src="figure/analyseMedLN_balbc.Rmd/vis%20grp-1.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+<div id="sample" class="section level3">
+<h3>Sample</h3>
+<pre class="r"><code>DimPlot(seurat, reduction = &quot;umap&quot;, group.by = &quot;dataset&quot;, cols=colSmp)+
+  theme_bw() +
+  theme(axis.text = element_blank(), axis.ticks = element_blank(), 
+        panel.grid.minor = element_blank()) +
+  xlab(&quot;UMAP1&quot;) +
+  ylab(&quot;UMAP2&quot;)</code></pre>
+<p><img src="figure/analyseMedLN_balbc.Rmd/vis%20sample-1.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+</div>
+<div id="marker-genes" class="section level2">
+<h2>marker genes</h2>
+<pre class="r"><code>seurat_markers_all &lt;- FindAllMarkers(object = seurat, assay =&quot;RNA&quot;,
+                                     only.pos = TRUE, min.pct = 0.25,
+                                     logfc.threshold = 0.25,
+                                     test.use = &quot;wilcox&quot;)</code></pre>
+<div id="top-15-marker-genes-per-cluster" class="section level3 tabset">
+<h3 class="tabset">top 15 marker genes per cluster</h3>
+</div>
+</div>
+<div id="cluster-cnts" class="section level2">
+<h2>cluster cnts</h2>
+<pre class="r"><code>dat_cl &lt;- data.frame(table(seurat$seurat_clusters))
+colnames(dat_cl) &lt;- c(&quot;cluster&quot;, &quot;cnts&quot;) 
+
+knitr::kable(dat_cl)</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th align="left">cluster</th>
+<th align="right">cnts</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">0</td>
+<td align="right">1963</td>
+</tr>
+<tr class="even">
+<td align="left">1</td>
+<td align="right">1891</td>
+</tr>
+<tr class="odd">
+<td align="left">2</td>
+<td align="right">1641</td>
+</tr>
+<tr class="even">
+<td align="left">3</td>
+<td align="right">1494</td>
+</tr>
+<tr class="odd">
+<td align="left">4</td>
+<td align="right">1132</td>
+</tr>
+<tr class="even">
+<td align="left">5</td>
+<td align="right">694</td>
+</tr>
+<tr class="odd">
+<td align="left">6</td>
+<td align="right">651</td>
+</tr>
+<tr class="even">
+<td align="left">7</td>
+<td align="right">462</td>
+</tr>
+<tr class="odd">
+<td align="left">8</td>
+<td align="right">321</td>
+</tr>
+<tr class="even">
+<td align="left">9</td>
+<td align="right">109</td>
+</tr>
+<tr class="odd">
+<td align="left">10</td>
+<td align="right">82</td>
+</tr>
+<tr class="even">
+<td align="left">11</td>
+<td align="right">57</td>
+</tr>
+<tr class="odd">
+<td align="left">12</td>
+<td align="right">26</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="vis-grem-and-bmps" class="section level2 tabset">
+<h2 class="tabset">vis Grem and BMPs</h2>
+<div id="grem1" class="section level3">
+<h3>Grem1</h3>
+<pre class="r"><code>p &lt;- FeaturePlot(seurat, reduction = &quot;umap&quot;, 
+            features = &quot;ENSMUSG00000074934.Grem1&quot;,
+            cols=c(&quot;lightgrey&quot;, &quot;darkred&quot;),
+            order = T)+
+  theme(legend.position=&quot;right&quot;)
+p</code></pre>
+<p><img src="figure/analyseMedLN_balbc.Rmd/vis%20Grem1-1.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+<div id="grem2" class="section level3">
+<h3>Grem2</h3>
+<pre class="r"><code>p &lt;- FeaturePlot(seurat, reduction = &quot;umap&quot;, 
+            features = &quot;ENSMUSG00000050069.Grem2&quot;,
+            cols=c(&quot;lightgrey&quot;, &quot;darkred&quot;),
+            order = T)+
+  theme(legend.position=&quot;right&quot;)
+p</code></pre>
+<p><img src="figure/analyseMedLN_balbc.Rmd/vis%20Grem2-1.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+<div id="bmp2" class="section level3">
+<h3>Bmp2</h3>
+<pre class="r"><code>p &lt;- FeaturePlot(seurat, reduction = &quot;umap&quot;, 
+            features = &quot;ENSMUSG00000027358.Bmp2&quot;,
+            cols=c(&quot;lightgrey&quot;, &quot;darkred&quot;),
+            order = T)+
+  theme(legend.position=&quot;right&quot;)
+p</code></pre>
+<p><img src="figure/analyseMedLN_balbc.Rmd/vis%20Bmp2-1.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+<div id="bmp4" class="section level3">
+<h3>Bmp4</h3>
+<pre class="r"><code>p &lt;- FeaturePlot(seurat, reduction = &quot;umap&quot;, 
+            features = &quot;ENSMUSG00000021835.Bmp4&quot;,
+            cols=c(&quot;lightgrey&quot;, &quot;darkred&quot;),
+            order = T)+
+  theme(legend.position=&quot;right&quot;)
+p</code></pre>
+<p><img src="figure/analyseMedLN_balbc.Rmd/vis%20Bmp4-1.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+<div id="bmpr1a" class="section level3">
+<h3>Bmpr1a</h3>
+<pre class="r"><code>p &lt;- FeaturePlot(seurat, reduction = &quot;umap&quot;, 
+            features = &quot;ENSMUSG00000021796.Bmpr1a&quot;,
+            cols=c(&quot;lightgrey&quot;, &quot;darkred&quot;),
+            order = T)+
+  theme(legend.position=&quot;right&quot;)
+p</code></pre>
+<p><img src="figure/analyseMedLN_balbc.Rmd/vis%20Bmpr1a-1.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+<div id="bmpr2" class="section level3">
+<h3>Bmpr2</h3>
+<pre class="r"><code>p &lt;- FeaturePlot(seurat, reduction = &quot;umap&quot;, 
+            features = &quot;ENSMUSG00000052430.Bmpr1b&quot;,
+            cols=c(&quot;lightgrey&quot;, &quot;darkred&quot;),
+            order = T)+
+  theme(legend.position=&quot;right&quot;)
+p</code></pre>
+<p><img src="figure/analyseMedLN_balbc.Rmd/vis%20Bmpr2-1.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+</div>
+<div id="plot-selected-marker" class="section level2">
+<h2>plot selected marker</h2>
+<pre class="r"><code>selMarker &lt;- list(LZFDC = c(&quot;Fcer2a&quot;, &quot;Cr2&quot;, &quot;Cxcl13&quot;, &quot;Madcam1&quot;),
+                  DZFDC = c(&quot;Pdlim3&quot;, &quot;Crym&quot;),
+                  MRC = c(&quot;Tnfsf11&quot;, &quot;Cavin2&quot;, &quot;Hamp2&quot;),
+                  TRC_TBRC = c(&quot;Prelp&quot;, &quot;Fmod&quot;, &quot;Ccl21a&quot;,
+                               &quot;Ccl19&quot;, &quot;Vtn&quot;, &quot;Ifitm1&quot;),
+                  iTBRC = c(&quot;Cd74&quot;, &quot;H2-Ab1&quot;, &quot;H2-Aa&quot;),                  
+                  Cxcl9BRC = c(&quot;Cxcl9&quot;, &quot;Cxcl10&quot;, &quot;Irgm1&quot;, &quot;Irf7&quot;),
+                  medRC = c(&quot;Cxcl1&quot;, &quot;Cxcl2&quot;,&quot;Ccl2&quot;, &quot;Ccl7&quot;, &quot;Nr4a1&quot;),
+                  adventitial = c(&quot;Cd34&quot;, &quot;Ly6c1&quot;, &quot;Igfbp6&quot;))
+
+selGenes &lt;- data.frame(gene=unlist(selMarker)) %&gt;%
+  rownames_to_column(var=&quot;grp&quot;) %&gt;% mutate(Grp=gsub(&quot;.{1}$&quot;, &quot;&quot;, grp))
+grpCnt &lt;- selGenes %&gt;% group_by(Grp) %&gt;% summarise(cnt=n())
+gapR &lt;- data.frame(Grp=unique(selGenes$Grp)) %&gt;% 
+  left_join(.,grpCnt, by=&quot;Grp&quot;) %&gt;% mutate(cumSum=cumsum(cnt)) 
+#ordVec &lt;- levels(seurat)[c(10,7,6,8,2,1,5,4,3,9)]
+
+pOut &lt;- avgHeatmap(seurat = seurat, selGenes = selGenes,
+                  colVecIdent = colPal, 
+#                  ordVec=ordVec,
+                  gapVecR=gapR$cumSum, gapVecC=NULL,cc=T,
+                  cr=F, condCol=F)</code></pre>
+<p><img src="figure/analyseMedLN_balbc.Rmd/sel%20marker-1.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+<div id="overall-de-genes" class="section level2">
+<h2>overall DE genes</h2>
+<pre class="r"><code>Idents(seurat) &lt;- seurat$grp
+
+DEgenes &lt;- FindAllMarkers(object = seurat, assay =&quot;RNA&quot;,
+                                     only.pos = TRUE, min.pct = 0.25,
+                                     logfc.threshold = 0.25,
+                                     test.use = &quot;wilcox&quot;)
+
+### plot DE genes top 15 avg logFC
+# DEGenesAll &lt;- DEgenes %&gt;% group_by(cluster) %&gt;% 
+#   top_n(15, avg_logFC)
+# 
+# Idents(seurat) &lt;- seurat$seurat_clusters
+# avgHeatmap(seurat = seurat, selGenes = DEGenesAll,
+#                   colVecIdent = colPal, 
+#                   ordVec=levels(seurat),
+#                   gapVecR=NULL, gapVecC=NULL,cc=T,
+#                   cr=T, condCol=F)</code></pre>
+<div id="vis-de-genes" class="section level3 tabset">
+<h3 class="tabset">vis DE genes</h3>
+<div id="scatterplot" class="section level4">
+<h4>scatterplot</h4>
+<pre class="r"><code>allID &lt;- seurat
+Idents(allID) &lt;- seurat$grp
+avg.allID &lt;- AverageExpression(allID, show.progress = FALSE)
+avg.allID &lt;- log1p(avg.allID$RNA)
+
+avg.allID$gene &lt;- rownames(avg.allID)
+
+## expression frequency
+GeneFreqSel &lt;- as.data.frame(GetAssayData(allID, assay = &quot;RNA&quot;,
+                                          slot = &quot;data&quot;)) %&gt;%
+  tibble::rownames_to_column(var=&quot;gene&quot;) %&gt;% mutate(count=rowSums(.!=0)-1) %&gt;%
+  mutate(countFreq=count/ncol(allID)) %&gt;% select(gene,count, countFreq) %&gt;%
+  dplyr::filter(countFreq&gt;=0.1)
+
+signGenes2 &lt;- DEgenes %&gt;% 
+  dplyr::filter(p_val_adj&lt;0.01 &amp; (avg_logFC &gt; 0.25 | avg_logFC &lt; -0.25)) 
+
+signGenes3 &lt;- DEgenes %&gt;% group_by(cluster) %&gt;% top_n(avg_logFC, 10) %&gt;% 
+  mutate(labelNam=gsub(&quot;^.*\\.&quot;, &quot;&quot;, gene)) %&gt;% filter(labelNam != &quot;1&quot;)
+
+genes.to.label = c(&quot;Bmp1&quot;, &quot;Bmp2&quot;, &quot;Bmpr1a&quot;, &quot;Bmpr1b&quot;, &quot;Grem1&quot;, &quot;Grem2&quot;,
+                   &quot;Tgfb1&quot;, &quot;Tgfb2&quot;, &quot;Tgfb3&quot;, signGenes3$labelNam)
+
+avg.allID &lt;- avg.allID %&gt;% mutate(labelNam=gsub(&quot;^.*\\.&quot;, &quot;&quot;, gene)) %&gt;%
+  mutate(colourGrp=ifelse(labelNam %in% genes.to.label, &quot;lab&quot;,
+                          ifelse(gene%in%signGenes2$gene, &quot;sig&quot;, &quot;notSig&quot;))) %&gt;%
+  dplyr::filter(gene%in%GeneFreqSel$gene)
+
+
+p_allID &lt;- ggscatter(avg.allID, x=&quot;TCRM&quot;, y=&quot;LM&quot;,
+                    color = &quot;colourGrp&quot;,
+                    #fill = &quot;colourGrp&quot;,
+                    palette = c(&quot;#660000&quot;, &quot;#808080&quot;, &quot;#FF3333&quot;),
+                    label=&quot;labelNam&quot;,
+                    label.select = genes.to.label,
+                    repel = F,
+                    label.rectangle=F,
+                    xlab=&quot;TCRM&quot;,
+                    ylab = &quot;LM&quot;,
+                    title=&quot;&quot;,
+                    legend=&quot;none&quot;,
+                    font.label=10,
+                    alpha=0.9,
+                    xlim = c(0, 5),
+                    ylim = c(0, 5),
+                    size=0.5)
+
+
+p_allID </code></pre>
+<p><img src="figure/analyseMedLN_balbc.Rmd/vis%20DE%20genes-1.png" width="864" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>genes.to.label = c(&quot;Bmp1&quot;, &quot;Bmp2&quot;, &quot;Bmpr1a&quot;, &quot;Bmpr1b&quot;, &quot;Grem1&quot;, &quot;Grem2&quot;,
+                   &quot;Tgfb1&quot;, &quot;Tgfb2&quot;, &quot;Tgfb3&quot;)
+
+avg.allID &lt;- avg.allID %&gt;% mutate(labelNam=gsub(&quot;^.*\\.&quot;, &quot;&quot;, gene)) %&gt;%
+  mutate(colourGrp=ifelse(labelNam %in% genes.to.label, &quot;lab&quot;,
+                          ifelse(gene%in%signGenes2$gene, &quot;sig&quot;, &quot;notSig&quot;))) %&gt;%
+  dplyr::filter(gene%in%GeneFreqSel$gene)
+
+
+p_allID &lt;- ggscatter(avg.allID, x=&quot;TCRM&quot;, y=&quot;LM&quot;,
+                    color = &quot;colourGrp&quot;,
+                    #fill = &quot;colourGrp&quot;,
+                    palette = c(&quot;#660000&quot;, &quot;#808080&quot;, &quot;#FF3333&quot;),
+                    label=&quot;labelNam&quot;,
+                    label.select = genes.to.label,
+                    repel = F,
+                    label.rectangle=F,
+                    xlab=&quot;TCRM&quot;,
+                    ylab = &quot;LM&quot;,
+                    title=&quot;&quot;,
+                    legend=&quot;none&quot;,
+                    font.label=10,
+                    alpha=0.9,
+                    xlim = c(0, 5),
+                    ylim = c(0, 5),
+                    size=0.5)
+
+
+p_allID </code></pre>
+<p><img src="figure/analyseMedLN_balbc.Rmd/vis%20DE%20genes-2.png" width="864" style="display: block; margin: auto;" /></p>
+</div>
+<div id="dotplot" class="section level4">
+<h4>Dotplot</h4>
+<pre class="r"><code>Idents(seurat) &lt;- seurat$grp
+genesSel &lt;- data.frame(gene=rownames(seurat)) %&gt;%
+  mutate(labelNam=gsub(&quot;^.*\\.&quot;, &quot;&quot;, gene)) %&gt;% 
+  filter(labelNam %in% genes.to.label)
+
+DotPlot(seurat, features =  genesSel$gene, group.by= &quot;grp&quot;) +
+  RotatedAxis() +
+  scale_color_viridis(option = &quot;D&quot;)</code></pre>
+<p><img src="figure/analyseMedLN_balbc.Rmd/dotplot-1.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+</div>
+</div>
+<div id="save-objects" class="section level2">
+<h2>save objects</h2>
+<pre class="r"><code>Idents(seurat) &lt;- seurat$seurat_clusters
+saveRDS(seurat, file = paste0(basedir, &quot;/data/BalbcMedLN_seurat.rds&quot;))
+
+write.table(seurat_markers_all,
+            file=paste0(basedir, &quot;/data/BalbcMedLN_markerGenes.txt&quot;),
+            row.names = FALSE, col.names = TRUE, quote = FALSE, sep = &quot;\t&quot;)
+
+write.table(DEgenes,
+            file=paste0(basedir, &quot;/data/BalbcMedLN_DEGenes.txt&quot;),
+            row.names = FALSE, col.names = TRUE, quote = FALSE, sep = &quot;\t&quot;)</code></pre>
+</div>
+<div id="session-info" class="section level2">
+<h2>session info</h2>
+<pre class="r"><code>sessionInfo()</code></pre>
+<pre><code>R version 4.0.0 (2020-04-24)
+Platform: x86_64-apple-darwin17.0 (64-bit)
+Running under: macOS Catalina 10.15.4
+
+Matrix products: default
+BLAS:   /Library/Frameworks/R.framework/Versions/4.0/Resources/lib/libRblas.dylib
+LAPACK: /Library/Frameworks/R.framework/Versions/4.0/Resources/lib/libRlapack.dylib
+
+locale:
+[1] en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8
+
+attached base packages:
+[1] parallel  stats4    stats     graphics  grDevices utils     datasets  methods   base     
+
+other attached packages:
+ [1] viridis_0.5.1               viridisLite_0.3.0           ggpubr_0.4.0               
+ [4] pheatmap_1.0.12             ggsci_2.9                   runSeurat3_0.1.0           
+ [7] here_0.1                    magrittr_1.5                Seurat_3.2.0               
+[10] forcats_0.5.0               stringr_1.4.0               dplyr_1.0.0                
+[13] purrr_0.3.4                 readr_1.3.1                 tidyr_1.1.0                
+[16] tibble_3.0.3                ggplot2_3.3.2               tidyverse_1.3.0            
+[19] SingleCellExperiment_1.10.1 SummarizedExperiment_1.18.2 DelayedArray_0.14.1        
+[22] matrixStats_0.56.0          Biobase_2.48.0              GenomicRanges_1.40.0       
+[25] GenomeInfoDb_1.24.2         IRanges_2.22.2              S4Vectors_0.26.1           
+[28] BiocGenerics_0.34.0        
+
+loaded via a namespace (and not attached):
+  [1] readxl_1.3.1           backports_1.1.8        workflowr_1.6.2        plyr_1.8.6            
+  [5] igraph_1.2.5           lazyeval_0.2.2         splines_4.0.0          listenv_0.8.0         
+  [9] digest_0.6.25          htmltools_0.5.0        fansi_0.4.1            tensor_1.5            
+ [13] cluster_2.1.0          ROCR_1.0-11            limma_3.44.3           openxlsx_4.1.5        
+ [17] globals_0.12.5         modelr_0.1.8           colorspace_1.4-1       blob_1.2.1            
+ [21] rvest_0.3.5            ggrepel_0.8.2          haven_2.3.1            xfun_0.15             
+ [25] crayon_1.3.4           RCurl_1.98-1.2         jsonlite_1.7.0         spatstat_1.64-1       
+ [29] spatstat.data_1.4-3    survival_3.2-3         zoo_1.8-8              ape_5.4               
+ [33] glue_1.4.1             polyclip_1.10-0        gtable_0.3.0           zlibbioc_1.34.0       
+ [37] XVector_0.28.0         leiden_0.3.3           car_3.0-8              future.apply_1.6.0    
+ [41] abind_1.4-5            scales_1.1.1           DBI_1.1.0              rstatix_0.6.0         
+ [45] miniUI_0.1.1.1         Rcpp_1.0.5             xtable_1.8-4           reticulate_1.16       
+ [49] foreign_0.8-80         rsvd_1.0.3             htmlwidgets_1.5.1      httr_1.4.1            
+ [53] RColorBrewer_1.1-2     ellipsis_0.3.1         ica_1.0-2              farver_2.0.3          
+ [57] pkgconfig_2.0.3        uwot_0.1.8             dbplyr_1.4.4           deldir_0.1-28         
+ [61] labeling_0.3           tidyselect_1.1.0       rlang_0.4.7            reshape2_1.4.4        
+ [65] later_1.1.0.1          munsell_0.5.0          cellranger_1.1.0       tools_4.0.0           
+ [69] cli_2.0.2              generics_0.0.2         broom_0.7.0            ggridges_0.5.2        
+ [73] evaluate_0.14          fastmap_1.0.1          yaml_2.2.1             goftest_1.2-2         
+ [77] knitr_1.29             fs_1.4.2               fitdistrplus_1.1-1     zip_2.0.4             
+ [81] RANN_2.6.1             pbapply_1.4-2          future_1.18.0          nlme_3.1-148          
+ [85] mime_0.9               xml2_1.3.2             compiler_4.0.0         rstudioapi_0.11       
+ [89] curl_4.3               plotly_4.9.2.1         png_0.1-7              ggsignif_0.6.0        
+ [93] spatstat.utils_1.17-0  reprex_0.3.0           stringi_1.4.6          highr_0.8             
+ [97] RSpectra_0.16-0        lattice_0.20-41        Matrix_1.2-18          vctrs_0.3.2           
+[101] pillar_1.4.6           lifecycle_0.2.0        lmtest_0.9-37          RcppAnnoy_0.0.16      
+[105] data.table_1.12.8      cowplot_1.0.0          bitops_1.0-6           irlba_2.3.3           
+[109] httpuv_1.5.4           patchwork_1.0.1        R6_2.4.1               promises_1.1.1        
+[113] rio_0.5.16             KernSmooth_2.23-17     gridExtra_2.3          codetools_0.2-16      
+[117] MASS_7.3-51.6          assertthat_0.2.1       rprojroot_1.3-2        withr_2.2.0           
+[121] sctransform_0.2.1      GenomeInfoDbData_1.2.3 mgcv_1.8-31            hms_0.5.3             
+[125] grid_4.0.0             rpart_4.1-15           rmarkdown_2.3          carData_3.0-4         
+[129] Rtsne_0.15             git2r_0.27.1           shiny_1.5.0            lubridate_1.7.9       </code></pre>
+<pre class="r"><code>date()</code></pre>
+<pre><code>[1] &quot;Fri Aug 14 18:54:31 2020&quot;</code></pre>
+<br>
+<p>
+<button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">
+<span class="glyphicon glyphicon-wrench" aria-hidden="true"></span> Session information
+</button>
+</p>
+<div id="workflowr-sessioninfo" class="collapse">
+<pre class="r"><code>sessionInfo()</code></pre>
+<pre><code>R version 4.0.0 (2020-04-24)
+Platform: x86_64-apple-darwin17.0 (64-bit)
+Running under: macOS Catalina 10.15.4
+
+Matrix products: default
+BLAS:   /Library/Frameworks/R.framework/Versions/4.0/Resources/lib/libRblas.dylib
+LAPACK: /Library/Frameworks/R.framework/Versions/4.0/Resources/lib/libRlapack.dylib
+
+locale:
+[1] en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8
+
+attached base packages:
+[1] parallel  stats4    stats     graphics  grDevices utils     datasets  methods   base     
+
+other attached packages:
+ [1] viridis_0.5.1               viridisLite_0.3.0           ggpubr_0.4.0               
+ [4] pheatmap_1.0.12             ggsci_2.9                   runSeurat3_0.1.0           
+ [7] here_0.1                    magrittr_1.5                Seurat_3.2.0               
+[10] forcats_0.5.0               stringr_1.4.0               dplyr_1.0.0                
+[13] purrr_0.3.4                 readr_1.3.1                 tidyr_1.1.0                
+[16] tibble_3.0.3                ggplot2_3.3.2               tidyverse_1.3.0            
+[19] SingleCellExperiment_1.10.1 SummarizedExperiment_1.18.2 DelayedArray_0.14.1        
+[22] matrixStats_0.56.0          Biobase_2.48.0              GenomicRanges_1.40.0       
+[25] GenomeInfoDb_1.24.2         IRanges_2.22.2              S4Vectors_0.26.1           
+[28] BiocGenerics_0.34.0        
+
+loaded via a namespace (and not attached):
+  [1] readxl_1.3.1           backports_1.1.8        workflowr_1.6.2        plyr_1.8.6            
+  [5] igraph_1.2.5           lazyeval_0.2.2         splines_4.0.0          listenv_0.8.0         
+  [9] digest_0.6.25          htmltools_0.5.0        fansi_0.4.1            tensor_1.5            
+ [13] cluster_2.1.0          ROCR_1.0-11            limma_3.44.3           openxlsx_4.1.5        
+ [17] globals_0.12.5         modelr_0.1.8           colorspace_1.4-1       blob_1.2.1            
+ [21] rvest_0.3.5            ggrepel_0.8.2          haven_2.3.1            xfun_0.15             
+ [25] crayon_1.3.4           RCurl_1.98-1.2         jsonlite_1.7.0         spatstat_1.64-1       
+ [29] spatstat.data_1.4-3    survival_3.2-3         zoo_1.8-8              ape_5.4               
+ [33] glue_1.4.1             polyclip_1.10-0        gtable_0.3.0           zlibbioc_1.34.0       
+ [37] XVector_0.28.0         leiden_0.3.3           car_3.0-8              future.apply_1.6.0    
+ [41] abind_1.4-5            scales_1.1.1           DBI_1.1.0              rstatix_0.6.0         
+ [45] miniUI_0.1.1.1         Rcpp_1.0.5             xtable_1.8-4           reticulate_1.16       
+ [49] foreign_0.8-80         rsvd_1.0.3             htmlwidgets_1.5.1      httr_1.4.1            
+ [53] RColorBrewer_1.1-2     ellipsis_0.3.1         ica_1.0-2              farver_2.0.3          
+ [57] pkgconfig_2.0.3        uwot_0.1.8             dbplyr_1.4.4           deldir_0.1-28         
+ [61] labeling_0.3           tidyselect_1.1.0       rlang_0.4.7            reshape2_1.4.4        
+ [65] later_1.1.0.1          munsell_0.5.0          cellranger_1.1.0       tools_4.0.0           
+ [69] cli_2.0.2              generics_0.0.2         broom_0.7.0            ggridges_0.5.2        
+ [73] evaluate_0.14          fastmap_1.0.1          yaml_2.2.1             goftest_1.2-2         
+ [77] knitr_1.29             fs_1.4.2               fitdistrplus_1.1-1     zip_2.0.4             
+ [81] RANN_2.6.1             pbapply_1.4-2          future_1.18.0          nlme_3.1-148          
+ [85] mime_0.9               xml2_1.3.2             compiler_4.0.0         rstudioapi_0.11       
+ [89] curl_4.3               plotly_4.9.2.1         png_0.1-7              ggsignif_0.6.0        
+ [93] spatstat.utils_1.17-0  reprex_0.3.0           stringi_1.4.6          highr_0.8             
+ [97] RSpectra_0.16-0        lattice_0.20-41        Matrix_1.2-18          vctrs_0.3.2           
+[101] pillar_1.4.6           lifecycle_0.2.0        lmtest_0.9-37          RcppAnnoy_0.0.16      
+[105] data.table_1.12.8      cowplot_1.0.0          bitops_1.0-6           irlba_2.3.3           
+[109] httpuv_1.5.4           patchwork_1.0.1        R6_2.4.1               promises_1.1.1        
+[113] rio_0.5.16             KernSmooth_2.23-17     gridExtra_2.3          codetools_0.2-16      
+[117] MASS_7.3-51.6          assertthat_0.2.1       rprojroot_1.3-2        withr_2.2.0           
+[121] sctransform_0.2.1      GenomeInfoDbData_1.2.3 mgcv_1.8-31            hms_0.5.3             
+[125] grid_4.0.0             rpart_4.1-15           rmarkdown_2.3          carData_3.0-4         
+[129] Rtsne_0.15             git2r_0.27.1           shiny_1.5.0            lubridate_1.7.9       </code></pre>
+</div>
+</div>
+
+
+<!-- Adjust MathJax settings so that all math formulae are shown using
+TeX fonts only; see
+http://docs.mathjax.org/en/latest/configuration.html.  This will make
+the presentation more consistent at the cost of the webpage sometimes
+taking slightly longer to load. Note that this only works because the
+footer is added to webpages before the MathJax javascript. -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    "HTML-CSS": { availableFonts: ["TeX"] }
+  });
+</script>
+
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

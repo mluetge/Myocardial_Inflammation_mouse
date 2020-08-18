@@ -22,6 +22,7 @@ org :=mouse
 
 samples := 1_20200317_TCRMxCcl19-EYFP_balbc_PDPN_v3 2_20200317_TCRMxCcl19-EYFP_balbc_PDPN_v3 3_20200317_Ccl19-EYFP_balbc_PDPN_v3 4_20200317_Ccl19-EYFP_balbc_PDPN_v3 6_20200610_TCRM_balbc_4w_PDPN_v3 7_20200610_TCRM_balbc_4w_PDPN_v3 8_20200610_TCRM_balbc_12w_PDPN_v3 9_20200610_TCRM_balbc_8w_PDPN_v3 10_20200610_Littermate_control_balbc_4w_PDPN_v3 11_20200610_Littermate_control_balbc_4w_PDPN_v3
 samples := 12_20200723_Mu_LN_Lin_neg_FSC_Balbc_v3 14_20200729_Mu_balbc_medisLN_TCRM_stromal_cells_v3 15_20200729_Mu_balbc_medisLN_LM_stromal_cells_v3
+samples := 13_20200723_Hu_LN_Lin_neg_FSC_v3
 run := CellRangerV3
 
 .PHONY: all
@@ -113,6 +114,7 @@ endef
 $(eval $(call cellrangerrule,12_20200723_Mu_LN_Lin_neg_FSC_Balbc_v3,S12))
 $(eval $(call cellrangerrule,14_20200729_Mu_balbc_medisLN_TCRM_stromal_cells_v3,S14))
 $(eval $(call cellrangerrule,15_20200729_Mu_balbc_medisLN_LM_stromal_cells_v3,S15))
+$(eval $(call cellrangerrule,13_20200723_Hu_LN_Lin_neg_FSC_v3,S13))
 
 ## ------------------------------------------------------------------------------------ ##
 ## Generate sce object
@@ -139,3 +141,4 @@ $(eval $(call processCRrule,11_20200610_Littermate_control_balbc_4w_PDPN_v3))
 $(eval $(call processCRrule,12_20200723_Mu_LN_Lin_neg_FSC_Balbc_v3))
 $(eval $(call processCRrule,14_20200729_Mu_balbc_medisLN_TCRM_stromal_cells_v3))
 $(eval $(call processCRrule,15_20200729_Mu_balbc_medisLN_LM_stromal_cells_v3))
+$(eval $(call processCRrule,13_20200723_Hu_LN_Lin_neg_FSC_v3))

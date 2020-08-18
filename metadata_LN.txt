@@ -1,0 +1,4 @@
+Sample	location	batch	group
+12_20200723_Mu_LN_Lin_neg_FSC_Balbc_v3	medLN	batch1	TCRM
+13_20200723_Hu_LN_Lin_neg_FSC_v3	medLN	batch1	LM
+15_20200729_Mu_balbc_medisLN_LM_stromal_cells_v3	LN	batch1	LM
