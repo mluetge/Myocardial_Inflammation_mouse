@@ -207,6 +207,14 @@ plotQC3(sce, "pct_counts_in_top_500_features")
 seurat <- subset(seurat, loc == "medLN")
 seurat <- rerunSeurat3(seurat)
 
+## remove cluster with lymphocytes and epithelial cells:
+seurat <- subset(seurat, idents = c("3", "10", "6"), invert=T)
+
+## rerun DR
+seurat <- RunPCA(object = seurat, npcs = 30, verbose = FALSE)
+seurat <- RunTSNE(object = seurat, reduction = "pca", dims = 1:20)
+seurat <- RunUMAP(object = seurat, reduction = "pca", dims = 1:20)
+
 ```
 
 
@@ -274,9 +282,8 @@ seurat_markers_all <- FindAllMarkers(object = seurat, assay ="RNA",
 
 ```
 
-### top 15 marker genes per cluster {.tabset}
 
-```{r avg heatmap function, eval=T, include=FALSE}
+```{r avg heatmap function, eval=T, include=T}
 
 avgHeatmap <- function(seurat, selGenes, colVecIdent, colVecCond=NULL,
                        ordVec=NULL, gapVecR=NULL, gapVecC=NULL,cc=FALSE,
@@ -348,8 +355,14 @@ avgHeatmap <- function(seurat, selGenes, colVecIdent, colVecCond=NULL,
 
 ## cluster cnts
 ```{r cluster cnts}
-dat_cl <- data.frame(table(seurat$seurat_clusters))
-colnames(dat_cl) <- c("cluster", "cnts") 
+seurat$cluster_plus_grp <- paste0(seurat$seurat_clusters, "_", seurat$grp)
+
+dat_grp <- data.frame(table(seurat$grp))
+
+dat_cl <- data.frame(table(seurat$seurat_clusters, seurat$grp))
+dat_cl <- spread(dat_cl, Var2, Freq) %>%
+  mutate(FreqLM=LM/dat_grp$Freq[which(dat_grp$Var1=="LM")]) %>% 
+  mutate(FreqTCRM=TCRM/dat_grp$Freq[which(dat_grp$Var1=="TCRM")])
 
 knitr::kable(dat_cl)
 
@@ -436,7 +449,8 @@ selMarker <- list(LZFDC = c("Fcer2a", "Cr2", "Cxcl13", "Madcam1"),
                   iTBRC = c("Cd74", "H2-Ab1", "H2-Aa"),                  
                   Cxcl9BRC = c("Cxcl9", "Cxcl10", "Irgm1", "Irf7"),
                   medRC = c("Cxcl1", "Cxcl2","Ccl2", "Ccl7", "Nr4a1"),
-                  adventitial = c("Cd34", "Ly6c1", "Igfbp6"))
+                  adventitial = c("Cd34", "Ly6c1", "Igfbp6"),
+                  endothelial=c("Pecam1"))
 
 selGenes <- data.frame(gene=unlist(selMarker)) %>%
   rownames_to_column(var="grp") %>% mutate(Grp=gsub(".{1}$", "", grp))
@@ -454,12 +468,13 @@ pOut <- avgHeatmap(seurat = seurat, selGenes = selGenes,
 ```
 
 
-## overall DE genes
+## DE genes FRCs
 ```{r overall DE, fig.height=10, fig.width=6}
 
-Idents(seurat) <- seurat$grp
+seuratSub <- subset(seurat, idents=c("0", "2", "9"))
+Idents(seuratSub) <- seuratSub$grp
 
-DEgenes <- FindAllMarkers(object = seurat, assay ="RNA",
+DEgenes <- FindAllMarkers(object = seuratSub, assay ="RNA",
                                      only.pos = TRUE, min.pct = 0.25,
                                      logfc.threshold = 0.25,
                                      test.use = "wilcox")
@@ -481,8 +496,8 @@ DEgenes <- FindAllMarkers(object = seurat, assay ="RNA",
 #### scatterplot
 ```{r vis DE genes, fig.height=8, fig.width=9}
 
-allID <- seurat
-Idents(allID) <- seurat$grp
+allID <- seuratSub
+Idents(allID) <- seuratSub$grp
 avg.allID <- AverageExpression(allID, show.progress = FALSE)
 avg.allID <- log1p(avg.allID$RNA)
 
@@ -498,10 +513,10 @@ GeneFreqSel <- as.data.frame(GetAssayData(allID, assay = "RNA",
 signGenes2 <- DEgenes %>% 
   dplyr::filter(p_val_adj<0.01 & (avg_logFC > 0.25 | avg_logFC < -0.25)) 
 
-signGenes3 <- DEgenes %>% group_by(cluster) %>% top_n(avg_logFC, 10) %>% 
+signGenes3 <- DEgenes %>% group_by(cluster) %>% top_n(., 15, avg_logFC) %>% 
   mutate(labelNam=gsub("^.*\\.", "", gene)) %>% filter(labelNam != "1")
 
-genes.to.label = c("Bmp1", "Bmp2", "Bmpr1a", "Bmpr1b", "Grem1", "Grem2",
+genes.to.label = c("Bmp1", "Bmp2", "Bmpr1a", "Grem1", "Grem2",
                    "Tgfb1", "Tgfb2", "Tgfb3", signGenes3$labelNam)
 
 avg.allID <- avg.allID %>% mutate(labelNam=gsub("^.*\\.", "", gene)) %>%
@@ -531,7 +546,7 @@ p_allID <- ggscatter(avg.allID, x="TCRM", y="LM",
 
 p_allID 
 
-genes.to.label = c("Bmp1", "Bmp2", "Bmpr1a", "Bmpr1b", "Grem1", "Grem2",
+genes.to.label = c("Bmp1", "Bmp2", "Bmpr1a", "Grem1", "Grem2",
                    "Tgfb1", "Tgfb2", "Tgfb3")
 
 avg.allID <- avg.allID %>% mutate(labelNam=gsub("^.*\\.", "", gene)) %>%
@@ -563,19 +578,46 @@ p_allID
 
 ```
 
-#### Dotplot
+#### Dotplot cond
 ```{r dotplot}
-Idents(seurat) <- seurat$grp
-genesSel <- data.frame(gene=rownames(seurat)) %>%
+Idents(seuratSub) <- seuratSub$grp
+genesSel <- data.frame(gene=rownames(seuratSub)) %>%
   mutate(labelNam=gsub("^.*\\.", "", gene)) %>% 
   filter(labelNam %in% genes.to.label)
 
-DotPlot(seurat, features =  genesSel$gene, group.by= "grp") +
+DotPlot(seuratSub, features =  genesSel$gene, group.by= "grp") +
   RotatedAxis() +
   scale_color_viridis(option = "D")
 
 ```
 
+#### clusterwise Dotplot cond
+```{r dotplot cw, fig.height=8, fig.width=7}
+Idents(seuratSub) <- seuratSub$seurat_clusters
+genesSel <- data.frame(gene=rownames(seuratSub)) %>%
+  mutate(labelNam=gsub("^.*\\.", "", gene)) %>% 
+  filter(labelNam %in% genes.to.label)
+
+
+DotPlot(seuratSub, features = genesSel$gene, group.by= "cluster_plus_grp") +
+  RotatedAxis() +
+  scale_color_viridis(option = "D") 
+```
+
+#### selected genes heatmap across FRC cluster
+```{r sel genes heatmap}
+### all FRC cluster here!!
+seuratSub <- subset(seurat, idents=c("0", "2", "9", "4"))
+Idents(seuratSub) <- seuratSub$seurat_clusters
+
+colnames(genesSel) <- c("geneID", "gene")
+pOut <- avgHeatmap(seurat = seuratSub, selGenes = genesSel,
+                  colVecIdent = colPal, 
+#                  ordVec=ordVec,
+                  gapVecR=NULL, gapVecC=NULL,cc=T,
+                  cr=T, condCol=F)
+
+```
 
 
 ## save objects
@@ -588,7 +630,7 @@ write.table(seurat_markers_all,
             row.names = FALSE, col.names = TRUE, quote = FALSE, sep = "\t")
 
 write.table(DEgenes,
-            file=paste0(basedir, "/data/BalbcMedLN_DEGenes.txt"),
+            file=paste0(basedir, "/data/BalbcMedLN_FRC_DEGenes.txt"),
             row.names = FALSE, col.names = TRUE, quote = FALSE, sep = "\t")
 
 ```
