@@ -77,6 +77,17 @@ remove(seuratX)
 ```
 
 
+## remove contaminating cells
+```{r remove cont cells}
+
+seurat <- subset(seurat, subset = ENSMUSG00000001506.Col1a1 == 0)
+seurat <- subset(seurat, subset = ENSMUSG00000029231.Pdgfra == 0)
+seurat <- subset(seurat, subset = ENSMUSG00000024620.Pdgfrb == 0)
+seurat <- subset(seurat, subset = ENSMUSG00000020717.Pecam1 == 0)
+
+```
+
+
 ## run clustering and DR and remove contaminating cells
 ```{r clustering and DR}
 
