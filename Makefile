@@ -24,6 +24,7 @@ samples := 1_20200317_TCRMxCcl19-EYFP_balbc_PDPN_v3 2_20200317_TCRMxCcl19-EYFP_b
 samples := 12_20200723_Mu_LN_Lin_neg_FSC_Balbc_v3 14_20200729_Mu_balbc_medisLN_TCRM_stromal_cells_v3 15_20200729_Mu_balbc_medisLN_LM_stromal_cells_v3
 samples := 13_20200723_Hu_LN_Lin_neg_FSC_v3
 samples := 9_20200707_Mu_Heart_LM_FSC_v3 10_20200707_Mu_Heart_TCRM_FSC_v3 11_20200707_Mu_Heart_LM_CD45_cell_v3 12_20200707_Mu_Heart_TCRM_CD45_cell_v3
+samples := 1_20201204_Mu_heart_totalFSC_targetedPCR_Grem1_5_kit 2_20201204_Mu_LN_totalFSC_targetedPCR_Grem1_5_kit
 run := CellRangerV3
 
 .PHONY: all
@@ -139,6 +140,32 @@ $(eval $(call cellrangerrule,10_20200707_Mu_Heart_TCRM_FSC_v3,S9))
 $(eval $(call cellrangerrule,11_20200707_Mu_Heart_LM_CD45_cell_v3,S10))
 $(eval $(call cellrangerrule,12_20200707_Mu_Heart_TCRM_CD45_cell_v3,S11))
 
+## ------------------------------------------------------------------------------------ ##
+
+Project := NextSeq500_20201214_NS451_o23597_DataDelivery
+define cellrangerrule
+data/$(run)/$(1)/outs/web_summary.html: $(basedirref)/$(extendedgenomename)/reference.json \
+$(fastqdir)/$(Project)/$(1)/$(1)_$(2)_L001_I1_001.fastq.gz \
+$(fastqdir)/$(Project)/$(1)/$(1)_$(2)_L001_R1_001.fastq.gz \
+$(fastqdir)/$(Project)/$(1)/$(1)_$(2)_L001_R2_001.fastq.gz \
+$(fastqdir)/$(Project)/$(1)/$(1)_$(2)_L002_I1_001.fastq.gz \
+$(fastqdir)/$(Project)/$(1)/$(1)_$(2)_L002_R1_001.fastq.gz \
+$(fastqdir)/$(Project)/$(1)/$(1)_$(2)_L002_R2_001.fastq.gz \
+$(fastqdir)/$(Project)/$(1)/$(1)_$(2)_L003_I1_001.fastq.gz \
+$(fastqdir)/$(Project)/$(1)/$(1)_$(2)_L003_R1_001.fastq.gz \
+$(fastqdir)/$(Project)/$(1)/$(1)_$(2)_L003_R2_001.fastq.gz \
+$(fastqdir)/$(Project)/$(1)/$(1)_$(2)_L004_I1_001.fastq.gz \
+$(fastqdir)/$(Project)/$(1)/$(1)_$(2)_L004_R1_001.fastq.gz \
+$(fastqdir)/$(Project)/$(1)/$(1)_$(2)_L004_R2_001.fastq.gz
+	mkdir -p data/$(run)
+	cd data/$(run) && \
+	$(cellranger) count --id=$(1) --fastqs=$(fastqdir)/$(Project)/$(1) \
+	--sample=$(1) --nosecondary \
+	--transcriptome=$(basedirref)/Ensembl_GRCm38.100_extended_orig --localcores=8
+endef
+$(eval $(call cellrangerrule,1_20201204_Mu_heart_totalFSC_targetedPCR_Grem1_5_kit,S1))
+$(eval $(call cellrangerrule,2_20201204_Mu_LN_totalFSC_targetedPCR_Grem1_5_kit,S2))
+
 
 ## ------------------------------------------------------------------------------------ ##
 ## Generate sce object
@@ -170,3 +197,5 @@ $(eval $(call processCRrule,9_20200707_Mu_Heart_LM_FSC_v3))
 $(eval $(call processCRrule,10_20200707_Mu_Heart_TCRM_FSC_v3))
 $(eval $(call processCRrule,11_20200707_Mu_Heart_LM_CD45_cell_v3))
 $(eval $(call processCRrule,12_20200707_Mu_Heart_TCRM_CD45_cell_v3))
+$(eval $(call processCRrule,1_20201204_Mu_heart_totalFSC_targetedPCR_Grem1_5_kit))
+$(eval $(call processCRrule,2_20201204_Mu_LN_totalFSC_targetedPCR_Grem1_5_kit))
