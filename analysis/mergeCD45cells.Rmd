@@ -1,7 +1,7 @@
 ---
 title: "Merge CD45+ cells"
 author: "Mechthild Lütge"
-date: "14 May 2020"
+date: "29 April 2021"
 output:
   html_document:
     self_contained: no
@@ -15,13 +15,20 @@ output:
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-set.seed(1000)
+options(width = 100)
+knitr::opts_chunk$set(warning = FALSE, message = FALSE, dev = c("png", "pdf"))
+seed <- 1234
 ```
+
 
 ## load packages
 ```{r libs}
 suppressPackageStartupMessages({
+  library(clusterProfiler)
+  library(org.Mm.eg.db)
+  library(DOSE)
+  library(enrichplot)
+  library(msigdbr)
   library(SingleCellExperiment)
   library(tidyverse)
   library(Seurat)
@@ -93,8 +100,35 @@ seurat <- subset(seurat, subset = ENSMUSG00000020717.Pecam1 == 0)
 
 seurat <- rerunSeurat3(seurat, res=c(0.6, 0.4, 0.25))
 dim(seurat)
+seurat$cluster_plus_cond <- paste0(seurat$seurat_clusters, "_", seurat$grp)
+
+
+## remove contaminating endothelial cells
+seurat <- subset(seurat, idents = "11", invert=T)
+seurat <- RunPCA(object = seurat, npcs = 30, verbose = FALSE)
+seurat <- RunTSNE(object = seurat, reduction = "pca", dims = 1:20)
+seurat <- RunUMAP(object = seurat, reduction = "pca", dims = 1:20)
 
 ```
+
+## assign celltypes
+```{r assign cell types}
+## based on markers 
+seurat$clusterLabel <- "MacrophagesMonocytes"
+seurat$clusterLabel[which(seurat$seurat_clusters == "2")] <- "Bcells"
+seurat$clusterLabel[which(seurat$seurat_clusters == "5")] <- "Tcells"
+seurat$clusterLabel[which(seurat$seurat_clusters == "6")] <- "NKcells"
+seurat$clusterLabel[which(seurat$seurat_clusters == "7")] <- "Neutrophils"
+seurat$clusterLabel[which(seurat$seurat_clusters == "8")] <- "proliferating"
+seurat$clusterLabel[which(seurat$seurat_clusters == "9")] <- "DCs"
+seurat$clusterLabel[which(seurat$seurat_clusters == "10")] <- "ILCs"
+seurat$clusterLabel[which(seurat$seurat_clusters == "12")] <- "pDCs"
+seurat$clusterLabel[which(seurat$seurat_clusters == "13")] <- "Basophils"
+
+seurat$label_plus_cond <- paste0(seurat$clusterLabel, "_", seurat$grp)
+```
+
+
 
 ## color vectors
 ```{r colVec}
@@ -102,11 +136,14 @@ dim(seurat)
 colPal <- pal_igv()(length(levels(seurat)))
 colGrp <- pal_jama()(length(unique(seurat$grp)))
 colSmp <- pal_uchicago()(length(unique(seurat$dataset)))
+colLab <- pal_futurama()(length(unique(seurat$clusterLabel)))
 
 names(colPal) <- levels(seurat)
 names(colGrp) <- unique(seurat$grp)
 names(colSmp) <- unique(seurat$dataset)
+names(colLab) <- unique(seurat$clusterLabel)
 ```
+
 
 ## vis data {.tabset}
 ### clusters
@@ -132,6 +169,20 @@ DimPlot(seurat, reduction = "umap", group.by = "grp", cols=colGrp)+
   ylab("UMAP2")
 
 ```
+
+### label
+```{r vis label}
+
+DimPlot(seurat, reduction = "umap", group.by = "clusterLabel", cols=colLab)+
+  theme_bw() +
+  theme(axis.text = element_blank(), axis.ticks = element_blank(), 
+        panel.grid.minor = element_blank()) +
+  xlab("UMAP1") +
+  ylab("UMAP2")
+
+```
+
+
 
 ## marker genes
 ```{r marker genes}
@@ -219,9 +270,52 @@ avgHeatmap <- function(seurat, selGenes, colVecIdent, colVecCond=NULL,
 
 ```
 
+## vis cluster characterization
+```{r vis cluster characteization, fig.height=10, fig.width=12}
+
+selMarker <- read_tsv(paste0(basedir, "/docs/markerGenesHemato.txt"))
+genes <- data.frame(gene=rownames(seurat)) %>% mutate(geneID=gsub("^.*\\.", "", gene))
+selMarkerAll <- selMarker %>% left_join(., genes, by="geneID")
+
+grpCnt <- selMarker %>% group_by(Cluster) %>% summarise(cnt=n())
+gapR <- data.frame(Cluster=unique(selMarker$Cluster)) %>% 
+  left_join(.,grpCnt, by="Cluster") %>% mutate(cumSum=cumsum(cnt)) 
+
+Idents(seurat) <- seurat$seurat_clusters
+avgHeatmap(seurat = seurat, selGenes = selMarkerAll,
+                  colVecIdent = colPal, 
+                  ordVec=levels(seurat)[order(levels(seurat))],
+                  gapVecR=gapR$cumSum, gapVecC=NULL,cc=T,
+                  cr=F, condCol=F)
+
+Idents(seurat) <- seurat$clusterLabel
+avgHeatmap(seurat = seurat, selGenes = selMarkerAll,
+                  colVecIdent = colLab, 
+                  ordVec=levels(seurat)[order(levels(seurat))],
+                  gapVecR=gapR$cumSum, gapVecC=NULL,cc=T,
+                  cr=F, condCol=F)
+
+
+Idents(seurat) <- seurat$label_plus_cond
+avgHeatmap(seurat = seurat, selGenes = selMarkerAll,
+                  colVecIdent = colLab, colVecCond = colGrp, 
+                  ordVec=levels(seurat)[order(levels(seurat))],
+                  gapVecR=gapR$cumSum, gapVecC=NULL,cc=T,
+                  cr=F, condCol=T)
+
+avgHeatmap(seurat = seurat, selGenes = selMarkerAll,
+                  colVecIdent = colLab, colVecCond = colGrp, 
+                  ordVec=levels(seurat)[order(levels(seurat))],
+                  gapVecR=gapR$cumSum, gapVecC=NULL,cc=F,
+                  cr=F, condCol=T)
+
+
+```
+
+
 
 ## overall DE genes
-```{r overall DE, fig.height=8, fig.width=6}
+```{r overall DE, fig.height=8, fig.width=10}
 
 Idents(seurat) <- seurat$grp
 
@@ -232,14 +326,22 @@ DEgenes <- FindAllMarkers(object = seurat, assay ="RNA",
 
 ### plot DE genes top 15 avg logFC
 DEGenesAll <- DEgenes %>% group_by(cluster) %>% 
-  top_n(15, avg_logFC)
+  top_n(15, avg_log2FC)
 
-Idents(seurat) <- seurat$RNA_snn_res.0.25
+Idents(seurat) <- seurat$cluster_plus_cond
 avgHeatmap(seurat = seurat, selGenes = DEGenesAll,
-                  colVecIdent = colPal, 
-                  ordVec=levels(seurat),
-                  gapVecR=NULL, gapVecC=NULL,cc=T,
-                  cr=T, condCol=F)
+                  colVecIdent = colPal, colVecCond = colGrp, 
+                  ordVec=levels(seurat)[order(levels(seurat))],
+                  gapVecR=NULL, gapVecC=NULL,cc=F,
+                  cr=T, condCol=T)
+
+Idents(seurat) <- seurat$label_plus_cond
+avgHeatmap(seurat = seurat, selGenes = DEGenesAll,
+                  colVecIdent = colLab, colVecCond = colGrp, 
+                  ordVec=levels(seurat)[order(levels(seurat))],
+                  gapVecR=NULL, gapVecC=NULL,cc=F,
+                  cr=T, condCol=T)
+
 ```
 
 
@@ -248,13 +350,13 @@ avgHeatmap(seurat = seurat, selGenes = DEGenesAll,
 
 ```{r clusterwise DE genes}
 
-seurat$clustMerge <- seurat$RNA_snn_res.0.25
 Idents(seurat) <- seurat$grp
-grpVec <- levels(seurat$clustMerge)
+seurat$clusterLabel <- as.factor(seurat$clusterLabel)
+grpVec <- levels(seurat$clusterLabel)
 
 clustDE <- lapply(grpVec, function(grp){
-  grpSub <- levels(seurat$clustMerge)[which(levels(seurat$clustMerge)==grp)]
-  seuratSub <- subset(seurat, clustMerge == grpSub)
+  grpSub <- levels(seurat$clusterLabel)[which(levels(seurat$clusterLabel)==grp)]
+  seuratSub <- subset(seurat, clusterLabel == grpSub)
   DEgenes <-FindAllMarkers(seuratSub, only.pos=T, logfc.threshold = 0.25,
                            min.pct = 0.1)
   DEgenes <- DEgenes %>% filter(p_val_adj<0.01) %>%
@@ -273,22 +375,22 @@ clustDE_Dat <- data.frame(do.call("rbind", clustDE))
 
 ## only cluster with > 1 DE genes
 deCnt <- lapply(clustDE, nrow)
-deCnt <- data.frame(cnt=do.call("rbind", deCnt)) %>% rownames_to_column(var = "cluster") %>% filter(cnt>1)
+deCnt <- data.frame(cnt=do.call("rbind", deCnt)) %>%
+  rownames_to_column(var = "cluster") %>% filter(cnt>1)
 
 grpVec <- as.character(deCnt$cluster)
-seurat$cluster_plus_conds <- as.factor(paste0(seurat$clustMerge,
-                                              "_",seurat$grp))
-Idents(seurat) <- seurat$cluster_plus_conds
+seurat$label_plus_cond <- as.factor(seurat$label_plus_cond)
+Idents(seurat) <- seurat$label_plus_cond
 
 template_ah <- c(
     "#### {{grp}}\n",
     "```{r avgHeat cwDE {{grp}}, echo = FALSE, fig.height=10, fig.width=10}\n",
     "DeSub <- clustDE[[as.character('{{grp}}')]]",
-    "DeSel <- DeSub %>% top_n(., 30, avg_logFC)",
-    "gapVecCol <- seq(2, length(levels(seurat$cluster_plus_conds)), by=2)",
+    "DeSel <- DeSub %>% top_n(., 30, avg_log2FC)",
+    "gapVecCol <- seq(2, length(levels(seurat$label_plus_cond)), by=2)",
     "pOut <- avgHeatmap(seurat = seurat, selGenes = DeSel,
-                     colVecIdent = colPal, colVecCond=colGrp,
-                     ordVec=levels(seurat$cluster_plus_conds),
+                     colVecIdent = colLab, colVecCond=colGrp,
+                     ordVec=levels(seurat$label_plus_cond),
                      gapVecR=NULL, gapVecC=gapVecCol,cc=FALSE,
                      cr=T, condCol=T)\n",
     "```\n",
@@ -325,6 +427,146 @@ write.table(clustDE_Dat,
             row.names = FALSE, col.names = TRUE, quote = FALSE, sep = "\t")
 
 ```
+
+
+
+## GSEA clusterProfiler overall DE genes {.tabset}
+### overall DE genes LM_CD45 enriched
+```{r GSEA clusterprofiler LM_CD45, fig.height=6, fig.width=12}
+
+
+DEgenesCond <- DEgenes %>% filter(cluster == "LM_CD45") %>%
+  mutate(EnsID = gsub("\\..*$", "", gene))
+
+egoLM <- enrichGO(gene         = DEgenesCond$EnsID,
+                OrgDb         = org.Mm.eg.db,
+                keyType       = 'ENSEMBL',
+                ont           = "BP",
+                pAdjustMethod = "BH",
+                pvalueCutoff  = 0.05,
+                qvalueCutoff  = 0.05)
+egoLM <- setReadable(egoLM, OrgDb = org.Mm.eg.db)
+dotplot(egoLM, showCategory=30)
+cnetplot(egoLM, node_label="all") 
+emapplot(egoLM, showCategory = 15)
+
+
+```
+
+### overall DE genes TCRM_CD45 enriched
+```{r GSEA clusterprofiler TCRM_CD45, fig.height=8, fig.width=18}
+
+
+DEgenesCond <- DEgenes %>% filter(cluster == "TCRM_CD45") %>%
+  mutate(EnsID = gsub("\\..*$", "", gene))
+
+egoLM <- enrichGO(gene         = DEgenesCond$EnsID,
+                OrgDb         = org.Mm.eg.db,
+                keyType       = 'ENSEMBL',
+                ont           = "BP",
+                pAdjustMethod = "BH",
+                pvalueCutoff  = 0.05,
+                qvalueCutoff  = 0.05)
+egoLM <- setReadable(egoLM, OrgDb = org.Mm.eg.db)
+dotplot(egoLM, showCategory=30)
+cnetplot(egoLM, node_label="all") 
+emapplot(egoLM, showCategory = 15)
+
+
+```
+
+## GSEA clusterProfiler clusterwise DE genes {.tabset}
+### LM_CD45 enriched  {.tabset}
+```{r GSEA cwDE LM_CD45, fig.height=6, fig.width=12}
+
+clustDE_DatGSEA <- clustDE_Dat %>% 
+  mutate(clusterLabel=gsub("_.*$", "", group)) %>% 
+  filter(cluster == "LM_CD45") %>%
+  mutate(EnsID = gsub("\\..*$", "", gene))
+
+
+grpVec <- as.character(unique(clustDE_DatGSEA$clusterLabel))
+
+template_ep <- c(
+    "#### {{grp}}\n",
+    "```{r GSEA cwDE LM_CD45 {{grp}}, echo=FALSE,fig.height=10,fig.width=10}\n",
+    "DeSub <- clustDE_DatGSEA[which(
+                    clustDE_DatGSEA$clusterLabel == as.character('{{grp}}')),]",
+    "egoLM <- enrichGO(gene   = DeSub$EnsID,
+                OrgDb         = org.Mm.eg.db,
+                keyType       = 'ENSEMBL',
+                ont           = 'BP',
+                pAdjustMethod = 'BH',
+                pvalueCutoff  = 0.05,
+                qvalueCutoff  = 0.05)",
+    "if(!is.null(egoLM)){
+      egoLM <- setReadable(egoLM, OrgDb = org.Mm.eg.db)
+      dotplot(egoLM, showCategory=30)
+    }",
+    "if(!is.null(egoLM)){
+      cnetplot(egoLM, node_label='all')
+    }",
+    "if(!is.null(egoLM)){
+      emapplot(egoLM, showCategory = 15)
+    }\n",
+    "```\n",
+    "\n"
+)
+    
+plots_ep <- lapply(grpVec, 
+  function(grp) knitr::knit_expand(text = template_ep)
+)
+
+```
+
+`r knitr::knit(text = unlist(plots_ep))`
+
+
+### TCRM_CD45 enriched {.tabset}
+```{r GSEA cwDE TCRM_CD45, fig.height=6, fig.width=12}
+
+clustDE_DatGSEA <- clustDE_Dat %>% 
+  mutate(clusterLabel=gsub("_.*$", "", group)) %>% 
+  filter(cluster == "TCRM_CD45") %>%
+  mutate(EnsID = gsub("\\..*$", "", gene))
+
+
+grpVec <- as.character(unique(clustDE_DatGSEA$clusterLabel))
+
+template_ep <- c(
+    "#### {{grp}}\n",
+    "```{r GSEA cwDE TCRM_CD45 {{grp}},echo=FALSE,fig.height=10,fig.width=18}\n",
+    "DeSub <- clustDE_DatGSEA[which(
+                    clustDE_DatGSEA$clusterLabel == as.character('{{grp}}')),]",
+    "egoLM <- enrichGO(gene   = DeSub$EnsID,
+                OrgDb         = org.Mm.eg.db,
+                keyType       = 'ENSEMBL',
+                ont           = 'BP',
+                pAdjustMethod = 'BH',
+                pvalueCutoff  = 0.05,
+                qvalueCutoff  = 0.05)",
+    "if(!is.null(egoLM)){
+      egoLM <- setReadable(egoLM, OrgDb = org.Mm.eg.db)
+      dotplot(egoLM, showCategory=30)
+    }",
+    "if(!is.null(egoLM)){
+      cnetplot(egoLM, node_label='all')
+    }",
+    "if(!is.null(egoLM)){
+      emapplot(egoLM, showCategory = 15)
+    }\n",
+    "```\n",
+    "\n"
+)
+    
+plots_ep <- lapply(grpVec, 
+  function(grp) knitr::knit_expand(text = template_ep)
+)
+
+```
+
+`r knitr::knit(text = unlist(plots_ep))`
+
 
 
 ## session info

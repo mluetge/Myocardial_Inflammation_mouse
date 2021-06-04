@@ -49,12 +49,13 @@ metaDat <- read_tsv(paste0(basedir, "/metadata.txt"), col_names = T)
 ## load and assign samples
 ```{r load plus assign samples}
 
-assignSamples <- function(smpNam, basedirSmp, smpGrp, smpBatch){
+assignSamples <- function(smpNam, basedirSmp, smpGrp, smpBatch, smpTime){
   smpNamFull <- list.files(path = paste0(basedirSmp, "/data/"),
 				 pattern = paste0(smpNam, ".*_seurat.rds"))
   seuratSmp <- readRDS(paste0(basedirSmp, "/data/", smpNamFull))
   seuratSmp$grp <- smpGrp
   seuratSmp$batch <- smpBatch
+  seuratSmp$time <- smpTime
   return(seuratSmp)
 }
 
@@ -64,7 +65,8 @@ for(i in 1:length(metaDat$Sample)){
   seuratX <- assignSamples(smpNam = metaDat$Sample[i],
                            basedirSmp = basedir,
                            smpGrp = metaDat$group[i],
-                           smpBatch = metaDat$batch[i])
+                           smpBatch = metaDat$batch[i],
+                           smpTime = metaDat$timepoint[i])
   if(exists("seurat")){
     seurat <- merge(x = seurat, y = seuratX, project = "TCRMxCcl19")
   }else{
@@ -204,11 +206,14 @@ plotQC3(sce, "pct_counts_in_top_500_features_endogenous")
 
 colPal <- pal_igv()(length(levels(seurat)))
 colGrp <- pal_jama()(length(unique(seurat$grp)))
-colSmp <- pal_uchicago()(length(unique(seurat$dataset)))
+colSmp <- c(pal_uchicago()(8), pal_npg()(8))[1:length(unique(seurat$dataset))]
+colTime <- pal_npg()(length(unique(seurat$time)))
 
 names(colPal) <- levels(seurat)
 names(colGrp) <- unique(seurat$grp)
 names(colSmp) <- unique(seurat$dataset)
+names(colTime) <- unique(seurat$time)
+
 ```
 
 
@@ -255,6 +260,20 @@ DimPlot(seurat, reduction = "umap", group.by = "dataset", cols=colSmp)+
 ```{r vis batch}
 
 DimPlot(seurat, reduction = "umap", group.by = "batch")+
+  theme_bw() +
+  theme(axis.text = element_blank(), axis.ticks = element_blank(), 
+        panel.grid.minor = element_blank()) +
+  xlab("UMAP1") +
+  ylab("UMAP2")
+
+
+```
+
+
+### timepoint
+```{r vis timepoint}
+
+DimPlot(seurat, reduction = "umap", group.by = "time", cols=colTime)+
   theme_bw() +
   theme(axis.text = element_blank(), axis.ticks = element_blank(), 
         panel.grid.minor = element_blank()) +
@@ -362,7 +381,7 @@ DEgenes <- FindAllMarkers(object = seurat, assay ="RNA",
 
 ### plot DE genes top 15 avg logFC
 DEGenesAll <- DEgenes %>% group_by(cluster) %>% 
-  top_n(15, avg_logFC)
+  top_n(15, avg_log2FC)
 
 Idents(seurat) <- seurat$RNA_snn_res.0.4
 avgHeatmap(seurat = seurat, selGenes = DEGenesAll,

@@ -1,0 +1,273 @@
+---
+title: "Merge samples"
+author: "Mechthild Lütge"
+date: "14 May 2020"
+output:
+  html_document:
+    self_contained: no
+    code_folding: show
+    number_sections: no
+    toc: yes
+    toc_depth: 3
+    toc_float: true
+    collapsed: no
+    smooth_scroll: yes
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+set.seed(1000)
+```
+
+## load packages
+```{r libs}
+suppressPackageStartupMessages({
+  library(SingleCellExperiment)
+  library(tidyverse)
+  library(Seurat)
+  library(magrittr)
+  library(dplyr)
+  library(purrr)
+  library(ggplot2)
+  library(here)
+  library(runSeurat3)
+  library(ggsci)
+  library(ggpubr)
+  library(pheatmap)
+})
+
+```
+
+## set dir
+```{r set dir}
+basedir <- here()
+seurat <- readRDS(file = paste0(basedir, 
+                                "/data/TCRM_all10samplesMerged_seurat.rds"))
+
+```
+
+
+
+## color vectors
+```{r colVec}
+
+colPal <- pal_igv()(length(levels(seurat)))
+colGrp <- pal_jama()(length(unique(seurat$grp)))
+colSmp <- c(pal_uchicago()(8), pal_npg()(8))[1:length(unique(seurat$dataset))]
+colTime <- pal_npg()(length(unique(seurat$time)))
+
+names(colPal) <- levels(seurat)
+names(colGrp) <- unique(seurat$grp)
+names(colSmp) <- unique(seurat$dataset)
+names(colTime) <- unique(seurat$time)
+
+```
+
+
+## vis data {.tabset}
+### clusters
+```{r vis cluster}
+DimPlot(seurat, reduction = "umap", cols=colPal)+
+  theme_bw() +
+  theme(axis.text = element_blank(), axis.ticks = element_blank(), 
+        panel.grid.minor = element_blank()) +
+  xlab("UMAP1") +
+  ylab("UMAP2")
+
+
+```
+
+### group
+```{r vis grp}
+
+DimPlot(seurat, reduction = "umap", group.by = "grp", cols=colGrp)+
+  theme_bw() +
+  theme(axis.text = element_blank(), axis.ticks = element_blank(), 
+        panel.grid.minor = element_blank()) +
+  xlab("UMAP1") +
+  ylab("UMAP2")
+
+```
+
+
+### Sample
+```{r vis sample}
+
+DimPlot(seurat, reduction = "umap", group.by = "dataset", cols=colSmp)+
+  theme_bw() +
+  theme(axis.text = element_blank(), axis.ticks = element_blank(), 
+        panel.grid.minor = element_blank()) +
+  xlab("UMAP1") +
+  ylab("UMAP2")
+
+
+```
+
+### batch
+```{r vis batch}
+
+DimPlot(seurat, reduction = "umap", group.by = "batch")+
+  theme_bw() +
+  theme(axis.text = element_blank(), axis.ticks = element_blank(), 
+        panel.grid.minor = element_blank()) +
+  xlab("UMAP1") +
+  ylab("UMAP2")
+
+
+```
+
+### timepoint
+```{r vis timepoint}
+
+DimPlot(seurat, reduction = "umap", group.by = "time", cols=colTime)+
+  theme_bw() +
+  theme(axis.text = element_blank(), axis.ticks = element_blank(), 
+        panel.grid.minor = element_blank()) +
+  xlab("UMAP1") +
+  ylab("UMAP2")
+
+
+```
+
+
+## gene signatures
+```{r define gene signatures}
+
+chemSig <- data.frame(gene=c("Ccl8", "Cxcl9", "Ccl11", "Cxcl10", "Il18bp",
+                              "Cxcl13", "Ccl7", "Cxcl12", "Cxcl16", "Ccl19",
+                              "Il33", "Il15ra", "Cxcl5", "Ccl2", "Cxcl1")) %>%
+  mutate(signature="Chemokines Cytokines")
+
+isgSig <- data.frame(gene=c("Bst2", "Irf7", "Ifitm3", "Isg15", "Iigp1", "Ifit3",
+                            "Ifi203", "Ifi205", "Mndal", "Xaf1", "Ifit1",
+                            "Ifi35", "Ifitm2", "Usp18", "Ifi44", "Gbp3", 
+                            "Ifi207", "Ifi204", "Ifi211", "Stat1",
+                            "Oasl2", "Ifi206", "Tor3a", "Ifnar2", "Irf1",
+                            "Ifitm1")) %>% 
+  mutate(signature="IFN ISGs")
+
+apSig <- data.frame(gene=c("H2-K1", "B2m", "H2-D1", "H2-Q7", "H2-Q6", "Pycard",
+                           "H2-T22", "Psmb8", "Psmb9", "H2-Q4", "Tapbp",
+                           "Psmb10", "H2-T23", "Tap1", "Tap2", "H2-M3",
+                           "Psme2")) %>%
+  mutate(signature="Antigen presentation")
+
+actSig <- data.frame(gene=c("Plac8", "Ly6e", "Igtp", "Grn", "Zbp1", "Gbp2",
+                            "Ly6a", "Ptx3", "Sp100", "Ly6c1", "Il1r2","Vcam1",
+                            "Ifngr1","Icam1")) %>%
+  mutate(signature="Cell activation")
+
+myCAFSig <- data.frame(gene=c("Vim", "Postn", "Wnt2", "Cavin1", "Lrrc15",
+                              "Acta2", "Tagln2", "Cav1", "Mif")) %>%
+  mutate(signature="myCAF")
+
+ComSig <- data.frame(gene=c("C2", "C4b", "C1ra", "C3", "C1s1")) %>%
+  mutate(signature="Complement")
+
+selGenes <- read_tsv(paste0(basedir, "genesHeatmap2.txt"), col_names = F)
+iCAFSig <- data.frame(gene=selGenes$X1) %>%
+  mutate(signature="iCAF")
+
+allGenes <- data.frame(geneID = rownames(seurat)) %>%
+  mutate(gene=gsub("^.*\\.","", geneID))
+allSign <- rbind(myCAFSig, isgSig, apSig, actSig, ComSig, chemSig, iCAFSig) %>%
+  left_join(., allGenes, by="gene")
+
+
+
+
+```
+
+
+
+```{r avg heatmap function, eval=T, include=FALSE}
+
+avgHeatmap <- function(seurat, selGenes, colVecIdent, colVecCond=NULL,
+                       ordVec=NULL, gapVecR=NULL, gapVecC=NULL,cc=FALSE,
+                       cr=FALSE, condCol=FALSE){
+  
+  ## format gene names (depends on how gene list is inputed)
+  selGenes <- selGenes %>% 
+      mutate(labelNam = (str_split(gene, '\\.', simplify = T)[,2]))
+  selGenes <- selGenes$labelNam
+  
+  ## assay data
+  clusterAssigned <- as.data.frame(Idents(seurat)) %>%
+  dplyr::mutate(cell=rownames(.))
+  colnames(clusterAssigned)[1] <- "ident"
+  seuratDat <- GetAssayData(seurat)
+  
+  ## genes of interest
+  genes <- data.frame(gene=rownames(seurat)) %>% 
+    mutate(geneID=gsub("^.*\\.", "", gene)) %>% filter(geneID %in% selGenes)
+
+  ## matrix with averaged cnts per ident
+  logNormExpres <- as.data.frame(t(as.matrix(
+    seuratDat[which(rownames(seuratDat) %in% genes$gene),])))
+  logNormExpres <- logNormExpres %>% dplyr::mutate(cell=rownames(.)) %>%
+    dplyr::left_join(.,clusterAssigned, by=c("cell")) %>%
+    dplyr::select(-cell) %>% dplyr::group_by(ident) %>%
+    dplyr::summarise_all(mean)
+  logNormExpresMa <- logNormExpres %>% dplyr::select(-ident) %>% as.matrix()
+  rownames(logNormExpresMa) <- logNormExpres$ident
+  logNormExpresMa <- t(logNormExpresMa)
+  rownames(logNormExpresMa) <- gsub("^.*?\\.","",rownames(logNormExpresMa))
+  
+  ## remove genes if they are all the same in all groups
+  ind <- apply(logNormExpresMa, 1, sd) == 0
+  logNormExpresMa <- logNormExpresMa[!ind,]
+  genes <- genes[!ind,]
+
+  ## color columns according to cluster
+  annotation_col <- as.data.frame(gsub("(^.*?_)","",
+                                       colnames(logNormExpresMa)))%>%
+    dplyr::mutate(celltype=gsub("(_.*$)","",colnames(logNormExpresMa)))
+  colnames(annotation_col)[1] <- "col1"
+  annotation_col <- annotation_col %>%
+    dplyr::mutate(cond = gsub("(^[0-9]_?)","",col1)) %>%
+    dplyr::select(cond, celltype)
+  rownames(annotation_col) <- colnames(logNormExpresMa) 
+
+  ann_colors = list(
+      cond = colVecCond,
+      celltype=colVecIdent)
+  if(is.null(ann_colors$cond)){
+    annotation_col$cond <- NULL
+  }
+  
+  ## adjust order
+  logNormExpresMa <- logNormExpresMa[selGenes,]
+  if(is.null(ordVec)){
+    ordVec <- levels(seurat)
+  }
+  logNormExpresMa <- logNormExpresMa[,ordVec]
+
+  ## scaled row-wise
+  pheatmap(logNormExpresMa, scale="row" ,treeheight_row = 0, cluster_rows = cr, 
+         cluster_cols = cc,
+         color = colorRampPalette(c("#2166AC", "#F7F7F7", "#B2182B"))(50),
+         annotation_col = annotation_col, cellwidth=15, cellheight=10,
+         annotation_colors = ann_colors, gaps_row = gapVecR, gaps_col = gapVecC)
+}
+
+```
+
+
+## average expression sel marker
+```{r avg expression sel marker}
+
+
+
+
+```
+
+
+## session info
+```{r session info}
+sessionInfo()
+date()
+```
+
+
+
+
