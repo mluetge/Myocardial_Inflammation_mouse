@@ -34,6 +34,8 @@ suppressPackageStartupMessages({
   library(ggsci)
   library(ggpubr)
   library(pheatmap)
+  library(RColorBrewer)
+  library(CellMixS)
 })
 
 ```
@@ -44,6 +46,7 @@ basedir <- here()
 seurat <- readRDS(file = paste0(basedir, 
                                 "/data/TCRM_all10samplesMerged_seurat.rds"))
 
+seurat$time_plus_grp <- paste0(seurat$time, "_", seurat$grp)
 ```
 
 
@@ -130,66 +133,124 @@ DimPlot(seurat, reduction = "umap", group.by = "time", cols=colTime)+
 ```
 
 
-## gene signatures
+## gene signatures {.tabset}
 ```{r define gene signatures}
 
-chemSig <- data.frame(gene=c("Ccl8", "Cxcl9", "Ccl11", "Cxcl10", "Il18bp",
-                              "Cxcl13", "Ccl7", "Cxcl12", "Cxcl16", "Ccl19",
-                              "Il33", "Il15ra", "Cxcl5", "Ccl2", "Cxcl1")) %>%
-  mutate(signature="Chemokines Cytokines")
+c0Sig <- data.frame(gene=c("Ckb","Smoc2","Thbs1","Spon2","Rpl26","Col5a3")) %>%
+  mutate(signature="C0")
 
-isgSig <- data.frame(gene=c("Bst2", "Irf7", "Ifitm3", "Isg15", "Iigp1", "Ifit3",
-                            "Ifi203", "Ifi205", "Mndal", "Xaf1", "Ifit1",
-                            "Ifi35", "Ifitm2", "Usp18", "Ifi44", "Gbp3", 
-                            "Ifi207", "Ifi204", "Ifi211", "Stat1",
-                            "Oasl2", "Ifi206", "Tor3a", "Ifnar2", "Irf1",
-                            "Ifitm1")) %>% 
-  mutate(signature="IFN ISGs")
+c1Sig <- data.frame(gene=c("Rbp4","Eln","Mt1","Mfap4","Nr4a1","Apoe")) %>% 
+  mutate(signature="C1")
 
-apSig <- data.frame(gene=c("H2-K1", "B2m", "H2-D1", "H2-Q7", "H2-Q6", "Pycard",
-                           "H2-T22", "Psmb8", "Psmb9", "H2-Q4", "Tapbp",
-                           "Psmb10", "H2-T23", "Tap1", "Tap2", "H2-M3",
-                           "Psme2")) %>%
-  mutate(signature="Antigen presentation")
+c5Sig <- data.frame(gene=c("Dbp","Col8a1","Cst6","Nr1d1","Kcnk2","Fibin")) %>%
+  mutate(signature="C5")
 
-actSig <- data.frame(gene=c("Plac8", "Ly6e", "Igtp", "Grn", "Zbp1", "Gbp2",
-                            "Ly6a", "Ptx3", "Sp100", "Ly6c1", "Il1r2","Vcam1",
-                            "Ifngr1","Icam1")) %>%
-  mutate(signature="Cell activation")
+c7Sig <- data.frame(gene=c("Ecrg4","Wif1","Prg4","Clu","Dkk3","Pdlim3")) %>%
+  mutate(signature="C7")
 
-myCAFSig <- data.frame(gene=c("Vim", "Postn", "Wnt2", "Cavin1", "Lrrc15",
-                              "Acta2", "Tagln2", "Cav1", "Mif")) %>%
-  mutate(signature="myCAF")
-
-ComSig <- data.frame(gene=c("C2", "C4b", "C1ra", "C3", "C1s1")) %>%
-  mutate(signature="Complement")
-
-selGenes <- read_tsv(paste0(basedir, "genesHeatmap2.txt"), col_names = F)
-iCAFSig <- data.frame(gene=selGenes$X1) %>%
-  mutate(signature="iCAF")
+c10Sig <- data.frame(gene=c("Tnnt2","Myl7","Tnni3","Mb","Myl3","Acta1")) %>%
+  mutate(signature="C10")
 
 allGenes <- data.frame(geneID = rownames(seurat)) %>%
   mutate(gene=gsub("^.*\\.","", geneID))
-allSign <- rbind(myCAFSig, isgSig, apSig, actSig, ComSig, chemSig, iCAFSig) %>%
+allSign <- rbind(c0Sig, c1Sig, c5Sig, c7Sig, c10Sig) %>%
   left_join(., allGenes, by="gene")
-
-
-
 
 ```
 
 
+### map signature on umap {.tabset}
+```{r map sign}
+sce <- as.SingleCellExperiment(seurat)
+sigNam <- unique(allSign$signature)
 
-```{r avg heatmap function, eval=T, include=FALSE}
+template_dp <- c(
+    "#### {{sig}}\n",
+    "```{r map sign {{sig}},fig.height=3.5, fig.width=4.5, echo = FALSE}\n",
+    "sign <- as.character('{{sig}}')",
+    "signGenes <- allSign %>% dplyr::filter(signature == sign)",
+    "sceSub <- sce[which(rownames(sce) %in% signGenes$geneID),]",
+    "cntMat <- rowSums(
+                t(as.matrix(sceSub@assays@data$logcounts)))/nrow(signGenes)",
+    "sceSub$sign <- cntMat",
+    "maxCM <- max(cntMat)",
+    "minCM <- min(cntMat)",
+    "pal = colorRampPalette(rev(brewer.pal(11, 'RdBu')))",
+    "sc <- scale_colour_gradientn(colours = pal(100), limits=c(minCM,maxCM))",
+    "p <- visGroup(sceSub, 'sign', dim_red = 'UMAP') +
+    sc +
+    guides(colour = guide_colourbar(title = '')) +
+    ggtitle(paste0(sign, ' signature')) +
+    theme_classic() + 
+    theme(axis.text = element_blank(),
+          axis.ticks = element_blank()) +
+    labs(x='Dimension 1', y='Dimension 2')",
+    "p\n",
+    "```\n",
+    "\n"
+)
 
+
+plots_dp <- lapply(sigNam, 
+  function(sig) knitr::knit_expand(text = template_dp)
+)
+
+```
+
+`r knitr::knit(text = unlist(plots_dp))`
+
+### map signature on umap each timepoint plus cond {.tabset}
+```{r map sign time}
+
+template_dpt <- c(
+    "#### {{sig}}\n",
+    "```{r map sign time {{sig}},fig.height=3.5, fig.width=4.5, echo = FALSE}\n",
+    "sign <- as.character('{{sig}}')",
+    "signGenes <- allSign %>% dplyr::filter(signature == sign)",
+    "pList <- NULL",
+    "for(i in 1:length(unique(sce$time_plus_grp))){",
+      "tiP <- unique(sce$time_plus_grp)[i]",
+      "sceSub <- sce[which(rownames(sce) %in% signGenes$geneID),]",
+      "sceSub <- sceSub[,sceSub$time_plus_grp == tiP]",
+      "cntMat <- rowSums(
+                t(as.matrix(sceSub@assays@data$logcounts)))/nrow(signGenes)",
+      "sceSub$sign <- cntMat",
+      "maxCM <- max(cntMat)",
+      "minCM <- min(cntMat)",
+      "pal = colorRampPalette(rev(brewer.pal(11, 'RdBu')))",
+      "sc <- scale_colour_gradientn(colours = pal(100), limits=c(minCM,maxCM))",
+      "p <- visGroup(sceSub, 'sign', dim_red = 'UMAP') +
+      sc +
+      guides(colour = guide_colourbar(title = '')) +
+      ggtitle(paste0(sign, ' signature ', tiP)) +
+      theme_classic() + 
+      theme(axis.text = element_blank(),
+          axis.ticks = element_blank()) +
+      labs(x='Dimension 1', y='Dimension 2')",
+      "pList[[i]] <- p}",
+    "pList\n",
+    "```\n",
+    "\n"
+)
+
+
+plots_dpt <- lapply(sigNam, 
+  function(sig) knitr::knit_expand(text = template_dpt)
+)
+
+
+```
+
+`r knitr::knit(text = unlist(plots_dpt))`
+
+
+### avg expression heatmap aross cluster
+```{r avg heatmap funct}
 avgHeatmap <- function(seurat, selGenes, colVecIdent, colVecCond=NULL,
                        ordVec=NULL, gapVecR=NULL, gapVecC=NULL,cc=FALSE,
                        cr=FALSE, condCol=FALSE){
   
-  ## format gene names (depends on how gene list is inputed)
-  selGenes <- selGenes %>% 
-      mutate(labelNam = (str_split(gene, '\\.', simplify = T)[,2]))
-  selGenes <- selGenes$labelNam
+  selGenes <- selGenes$gene
   
   ## assay data
   clusterAssigned <- as.data.frame(Idents(seurat)) %>%
@@ -253,9 +314,39 @@ avgHeatmap <- function(seurat, selGenes, colVecIdent, colVecCond=NULL,
 ```
 
 
-## average expression sel marker
-```{r avg expression sel marker}
+```{r avg expression sign genes, fig.height=9, fig.width=7}
 
+grpCnt <- allSign %>% group_by(signature) %>% summarise(cnt=n())
+gapR <- data.frame(signature=unique(allSign$signature)) %>% 
+  left_join(.,grpCnt, by="signature") %>% mutate(cumSum=cumsum(cnt)) 
+ordVec <- levels(seurat)
+
+pOut <- avgHeatmap(seurat = seurat, selGenes = allSign,
+                  colVecIdent = colPal, 
+                  ordVec=ordVec,
+                  gapVecR=gapR$cumSum, gapVecC=NULL,cc=F,
+                  cr=F, condCol=F)
+
+
+
+```
+
+
+### avg expression heatmap aross timepoints and condition
+
+```{r avg expression sign genes across time plus grp, fig.height=9, fig.width=7}
+
+Idents(seurat) <- seurat$time_plus_grp
+grpCnt <- allSign %>% group_by(signature) %>% summarise(cnt=n())
+gapR <- data.frame(signature=unique(allSign$signature)) %>% 
+  left_join(.,grpCnt, by="signature") %>% mutate(cumSum=cumsum(cnt)) 
+ordVec <- levels(seurat)[order(levels(seurat))]
+
+pOut <- avgHeatmap(seurat = seurat, selGenes = allSign,
+                  colVecIdent = colTime, 
+                  ordVec=ordVec,
+                  gapVecR=gapR$cumSum, gapVecC=NULL,cc=F,
+                  cr=F, condCol=T, colVecCond = colGrp)
 
 
 
