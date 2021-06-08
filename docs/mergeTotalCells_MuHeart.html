@@ -15,13 +15,21 @@
 
 <title>Merge samples total cells</title>
 
-<script src="site_libs/header-attrs-2.3/header-attrs.js"></script>
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
 <script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
 <link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
@@ -37,14 +45,16 @@ div.section {
 }
 </style>
 
-
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
 
 <style type="text/css">code{white-space: pre;}</style>
-<style type="text/css">
-  pre:not([class]) {
-    background-color: white;
-  }
-</style>
 <script type="text/javascript">
 if (window.hljs) {
   hljs.configure({languages: []});
@@ -57,32 +67,7 @@ if (window.hljs) {
 
 
 
-<style type="text/css">
-h1 {
-  font-size: 34px;
-}
-h1.title {
-  font-size: 38px;
-}
-h2 {
-  font-size: 30px;
-}
-h3 {
-  font-size: 24px;
-}
-h4 {
-  font-size: 18px;
-}
-h5 {
-  font-size: 16px;
-}
-h6 {
-  font-size: 12px;
-}
-.table th:not([align]) {
-  text-align: left;
-}
-</style>
+
 
 
 
@@ -92,10 +77,6 @@ h6 {
   max-width: 940px;
   margin-left: auto;
   margin-right: auto;
-}
-code {
-  color: inherit;
-  background-color: rgba(0, 0, 0, 0.04);
 }
 img {
   max-width:100%;
@@ -112,40 +93,13 @@ button.code-folding-btn:focus {
 summary {
   display: list-item;
 }
+pre code {
+  padding: 0;
+}
 </style>
 
 
 <style type="text/css">
-/* padding for bootstrap navbar */
-body {
-  padding-top: 51px;
-  padding-bottom: 40px;
-}
-/* offset scroll position for anchor links (for fixed navbar)  */
-.section h1 {
-  padding-top: 56px;
-  margin-top: -56px;
-}
-.section h2 {
-  padding-top: 56px;
-  margin-top: -56px;
-}
-.section h3 {
-  padding-top: 56px;
-  margin-top: -56px;
-}
-.section h4 {
-  padding-top: 56px;
-  margin-top: -56px;
-}
-.section h5 {
-  padding-top: 56px;
-  margin-top: -56px;
-}
-.section h6 {
-  padding-top: 56px;
-  margin-top: -56px;
-}
 .dropdown-submenu {
   position: relative;
 }
@@ -173,7 +127,7 @@ body {
   margin-right: -10px;
 }
 .dropdown-submenu:hover>a:after {
-  border-left-color: #ffffff;
+  border-left-color: #adb5bd;
 }
 .dropdown-submenu.pull-left {
   float: none;
@@ -185,7 +139,7 @@ body {
 }
 </style>
 
-<script>
+<script type="text/javascript">
 // manage active state of menu based on current page
 $(document).ready(function () {
   // active menu anchor
@@ -196,10 +150,23 @@ $(document).ready(function () {
   var menuAnchor = $('a[href="' + href + '"]');
 
   // mark it active
-  menuAnchor.parent().addClass('active');
+  menuAnchor.tab('show');
 
   // if it's got a parent navbar menu mark it active as well
   menuAnchor.closest('li.dropdown').addClass('active');
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
 });
 </script>
 
@@ -211,7 +178,6 @@ $(document).ready(function () {
   max-height: 500px;
   min-height: 44px;
   overflow-y: auto;
-  background: white;
   border: 1px solid #ddd;
   border-radius: 4px;
 }
@@ -337,13 +303,13 @@ div.tocify {
 
 
 <!-- setup 3col/9col grid for toc_float and main content  -->
-<div class="row-fluid">
-<div class="col-xs-12 col-sm-4 col-md-3">
+<div class="row">
+<div class="col-sm-12 col-md-4 col-lg-3">
 <div id="TOC" class="tocify">
 </div>
 </div>
 
-<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+<div class="toc-content col-sm-12 col-md-8 col-lg-9">
 
 
 
@@ -377,7 +343,7 @@ div.tocify {
   </div><!--/.container -->
 </div><!--/.navbar -->
 
-<div class="fluid-row" id="header">
+<div id="header">
 
 
 
@@ -408,7 +374,7 @@ div.tocify {
 <div class="tab-content">
 <div id="summary" class="tab-pane fade in active">
 <p>
-<strong>Last updated:</strong> 2020-07-24
+<strong>Last updated:</strong> 2021-06-08
 </p>
 <p>
 <strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 6 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 1
@@ -432,7 +398,7 @@ This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis
 </div>
 <div id="strongRMarkdownfilestronguncommittedchanges" class="panel-collapse collapse">
 <div class="panel-body">
-<p>The R Markdown is untracked by Git. To know which version of the R Markdown file created these results, you’ll want to first commit it to the Git repo. If you’re still working on the analysis, you can ignore this warning. When you’re finished, you can run <code>wflow_publish</code> to commit the R Markdown file and build the HTML.</p>
+<p>The R Markdown file has unstaged changes. To know which version of the R Markdown file created these results, you’ll want to first commit it to the Git repo. If you’re still working on the analysis, you can ignore this warning. When you’re finished, you can run <code>wflow_publish</code> to commit the R Markdown file and build the HTML.</p>
 </div>
 </div>
 </div>
@@ -499,16 +465,16 @@ This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcommluetgeTCRMChristinatree0013b2323be41846edafc0035bfb7bcab0d1943ftargetblank0013b23a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/mluetge/TCRM_Christina/tree/0013b2323be41846edafc0035bfb7bcab0d1943f" target="_blank">0013b23</a> </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcommluetgeTCRMChristinatree4ff79ca4a84e3c999619ed05c71f618d15326ba4targetblank4ff79caa"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/mluetge/TCRM_Christina/tree/4ff79ca4a84e3c999619ed05c71f618d15326ba4" target="_blank">4ff79ca</a> </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcommluetgeTCRMChristinatree0013b2323be41846edafc0035bfb7bcab0d1943ftargetblank0013b23a" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcommluetgeTCRMChristinatree4ff79ca4a84e3c999619ed05c71f618d15326ba4targetblank4ff79caa" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility.
 </p>
 <p>
-The results in this page were generated with repository version <a href="https://github.com/mluetge/TCRM_Christina/tree/0013b2323be41846edafc0035bfb7bcab0d1943f" target="_blank">0013b23</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
+The results in this page were generated with repository version <a href="https://github.com/mluetge/TCRM_Christina/tree/4ff79ca4a84e3c999619ed05c71f618d15326ba4" target="_blank">4ff79ca</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
 </p>
 <p>
 Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
@@ -518,17 +484,16 @@ Ignored files:
     Ignored:    .DS_Store
     Ignored:    .Rhistory
     Ignored:    .Rproj.user/
+    Ignored:    analysis/figure/
+    Ignored:    data/data_old/
+    Ignored:    output/.DS_Store
 
 Untracked files:
-    Untracked:  analysis/mergeTotalCells_MuHeart.Rmd
-    Untracked:  analysis/runAlevin.txt
-    Untracked:  figure/
-    Untracked:  metadata_totalCell.txt
-    Untracked:  output/1_20200317_TCRMxCcl19-EYFP_balbc_PDPN_v3_2020_07_16_seurat.rds
-    Untracked:  output/3_20200317_Ccl19-EYFP_balbc_PDPN_v3_2020_07_16_seurat.rds
+    Untracked:  figure/mergeTotalCells_MuHeart.Rmd/
 
 Unstaged changes:
-    Modified:   metadata.txt
+    Modified:   analysis/mergeTotalCells_MuHeart.Rmd
+    Modified:   metadata_totalCell.txt
 
 </code></pre>
 <p>
@@ -541,9 +506,69 @@ Note that any generated files, e.g. HTML, png, CSS, etc., are not included in t
 <hr>
 </div>
 <div id="versions" class="tab-pane fade">
+
 <p>
-There are no past versions. Publish this analysis with <code>wflow_publish()</code> to start tracking its development.
+These are the previous versions of the repository in which changes were made to the R Markdown (<code>analysis/mergeTotalCells_MuHeart.Rmd</code>) and HTML (<code>docs/mergeTotalCells_MuHeart.html</code>) files. If you’ve configured a remote Git repository (see <code>?wflow_git_remote</code>), click on the hyperlinks in the table below to view the files as they were in that past version.
 </p>
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+File
+</th>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+<th>
+Message
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/bfce4304b292728fbb28d7f346082b4321248d1c/analysis/mergeTotalCells_MuHeart.Rmd" target="_blank">bfce430</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2020-08-03
+</td>
+<td>
+update makefile
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/mluetge/TCRM_Christina/bfce4304b292728fbb28d7f346082b4321248d1c/docs/mergeTotalCells_MuHeart.html" target="_blank">bfce430</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2020-08-03
+</td>
+<td>
+update makefile
+</td>
+</tr>
+</tbody>
+</table>
+</div>
 <hr>
 </div>
 </div>
@@ -565,26 +590,38 @@ There are no past versions. Publish this analysis with <code>wflow_publish()</co
   library(ggpubr)
 })</code></pre>
 <pre><code>Warning: package &#39;DelayedArray&#39; was built under R version 4.0.2</code></pre>
+<pre><code>Warning: package &#39;matrixStats&#39; was built under R version 4.0.2</code></pre>
+<pre><code>Warning: package &#39;ggplot2&#39; was built under R version 4.0.2</code></pre>
+<pre><code>Warning: package &#39;tibble&#39; was built under R version 4.0.2</code></pre>
+<pre><code>Warning: package &#39;tidyr&#39; was built under R version 4.0.2</code></pre>
+<pre><code>Warning: package &#39;readr&#39; was built under R version 4.0.2</code></pre>
+<pre><code>Warning: package &#39;dplyr&#39; was built under R version 4.0.2</code></pre>
+<pre><code>Warning: package &#39;forcats&#39; was built under R version 4.0.2</code></pre>
+<pre><code>Warning: package &#39;Seurat&#39; was built under R version 4.0.2</code></pre>
+<pre><code>Warning: package &#39;here&#39; was built under R version 4.0.2</code></pre>
 </div>
 <div id="set-dir" class="section level2">
 <h2>set dir</h2>
 <pre class="r"><code>basedir &lt;- here()
 metaDat &lt;- read_tsv(paste0(basedir, &quot;/metadata_totalCell.txt&quot;), col_names = T)</code></pre>
-<pre><code>Parsed with column specification:
+<pre><code>
+── Column specification ────────────────────────────────────────────────────────
 cols(
   Sample = col_character(),
   group = col_character(),
-  batch = col_character()
+  batch = col_character(),
+  seqType = col_character()
 )</code></pre>
 </div>
 <div id="load-and-assign-samples" class="section level2">
 <h2>load and assign samples</h2>
-<pre class="r"><code>assignSamples &lt;- function(smpNam, basedirSmp, smpGrp, smpBatch){
+<pre class="r"><code>assignSamples &lt;- function(smpNam, basedirSmp, smpGrp, smpBatch, smpType){
   smpNamFull &lt;- list.files(path = paste0(basedirSmp, &quot;/data/&quot;),
                  pattern = paste0(smpNam, &quot;.*_seurat.rds&quot;))
   seuratSmp &lt;- readRDS(paste0(basedirSmp, &quot;/data/&quot;, smpNamFull))
   seuratSmp$grp &lt;- smpGrp
   seuratSmp$batch &lt;- smpBatch
+  seuratSmp$seqType &lt;- smpType
   return(seuratSmp)
 }
 
@@ -594,7 +631,8 @@ for(i in 1:length(metaDat$Sample)){
   seuratX &lt;- assignSamples(smpNam = metaDat$Sample[i],
                            basedirSmp = basedir,
                            smpGrp = metaDat$group[i],
-                           smpBatch = metaDat$batch[i])
+                           smpBatch = metaDat$batch[i],
+                           smpType = metaDat$seqType[i])
   if(exists(&quot;seurat&quot;)){
     seurat &lt;- merge(x = seurat, y = seuratX, project = &quot;TCRMxCcl19&quot;)
   }else{
@@ -607,67 +645,67 @@ remove(seuratX)</code></pre>
 <div id="run-clustering-and-dr-and-remove-contaminating-cells" class="section level2">
 <h2>run clustering and DR and remove contaminating cells</h2>
 <pre class="r"><code>## remove contaminants
-seurat &lt;- subset(seurat, subset = `MGP-BALBcJ-G0016488.Ptprc` &gt;0, invert=T)
-seurat &lt;- subset(seurat, subset = `MGP-BALBcJ-G0031834.Cd79a` &gt;0, invert=T)
-seurat &lt;- subset(seurat, subset = `MGP-BALBcJ-G0019246.Cd79b` &gt;0, invert=T)
-seurat &lt;- subset(seurat, subset = `MGP-BALBcJ-G0002392.Trac` &gt;0, invert=T)
-seurat &lt;- subset(seurat, subset = `MGP-BALBcJ-G0034697.Cd3d` &gt;0, invert=T)
+seurat &lt;- subset(seurat, subset = `ENSMUSG00000026395.Ptprc` &gt;0, invert=T)
+seurat &lt;- subset(seurat, subset = `ENSMUSG00000003379.Cd79a` &gt;0, invert=T)
+seurat &lt;- subset(seurat, subset = `ENSMUSG00000040592.Cd79b` &gt;0, invert=T)
+seurat &lt;- subset(seurat, subset = `ENSMUSG00000076928.Trac` &gt;0, invert=T)
+seurat &lt;- subset(seurat, subset = `ENSMUSG00000032094.Cd3d` &gt;0, invert=T)
 
 seurat &lt;- rerunSeurat3(seurat)</code></pre>
 <pre><code>Warning: The default method for RunUMAP has changed from calling Python UMAP via reticulate to the R-native UWOT using the cosine metric
 To use Python UMAP via reticulate, set umap.method to &#39;umap-learn&#39; and metric to &#39;correlation&#39;
 This message will be shown once per session</code></pre>
-<pre><code>16:08:04 UMAP embedding parameters a = 0.9922 b = 1.112</code></pre>
-<pre><code>16:08:04 Read 5890 rows and found 20 numeric columns</code></pre>
-<pre><code>16:08:04 Using Annoy for neighbor search, n_neighbors = 30</code></pre>
-<pre><code>16:08:04 Building Annoy index with metric = cosine, n_trees = 50</code></pre>
+<pre><code>11:01:39 UMAP embedding parameters a = 0.9922 b = 1.112</code></pre>
+<pre><code>11:01:39 Read 6585 rows and found 20 numeric columns</code></pre>
+<pre><code>11:01:39 Using Annoy for neighbor search, n_neighbors = 30</code></pre>
+<pre><code>11:01:39 Building Annoy index with metric = cosine, n_trees = 50</code></pre>
 <pre><code>0%   10   20   30   40   50   60   70   80   90   100%</code></pre>
 <pre><code>[----|----|----|----|----|----|----|----|----|----|</code></pre>
 <pre><code>**************************************************|
-16:08:04 Writing NN index file to temp file /var/folders/qf/923ylj6x3h56f3d86n07wmgr0000gs/T//RtmprdMDVK/file64fa72f855a3
-16:08:04 Searching Annoy index using 1 thread, search_k = 3000
-16:08:05 Annoy recall = 100%
-16:08:06 Commencing smooth kNN distance calibration using 1 thread
-16:08:07 Initializing from normalized Laplacian + noise
-16:08:07 Commencing optimization for 500 epochs, with 243226 positive edges
-16:08:14 Optimization finished
+11:01:39 Writing NN index file to temp file /var/folders/qf/923ylj6x3h56f3d86n07wmgr0000gs/T//Rtmp8gxw4R/file873531ae04b
+11:01:39 Searching Annoy index using 1 thread, search_k = 3000
+11:01:41 Annoy recall = 100%
+11:01:41 Commencing smooth kNN distance calibration using 1 thread
+11:01:42 Initializing from normalized Laplacian + noise
+11:01:43 Commencing optimization for 500 epochs, with 268902 positive edges
+11:01:51 Optimization finished
 Computing nearest neighbor graph
 Computing SNN</code></pre>
 <pre><code>Modularity Optimizer version 1.3.0 by Ludo Waltman and Nees Jan van Eck
 
-Number of nodes: 5890
-Number of edges: 203395
+Number of nodes: 6585
+Number of edges: 221737
 
 Running Louvain algorithm...
-Maximum modularity in 10 random starts: 0.9121
-Number of communities: 12
+Maximum modularity in 10 random starts: 0.9347
+Number of communities: 16
 Elapsed time: 0 seconds
 Modularity Optimizer version 1.3.0 by Ludo Waltman and Nees Jan van Eck
 
-Number of nodes: 5890
-Number of edges: 203395
+Number of nodes: 6585
+Number of edges: 221737
 
 Running Louvain algorithm...
-Maximum modularity in 10 random starts: 0.8699
+Maximum modularity in 10 random starts: 0.8914
+Number of communities: 20
+Elapsed time: 0 seconds
+Modularity Optimizer version 1.3.0 by Ludo Waltman and Nees Jan van Eck
+
+Number of nodes: 6585
+Number of edges: 221737
+
+Running Louvain algorithm...
+Maximum modularity in 10 random starts: 0.8779
+Number of communities: 24
+Elapsed time: 0 seconds
+Modularity Optimizer version 1.3.0 by Ludo Waltman and Nees Jan van Eck
+
+Number of nodes: 6585
+Number of edges: 221737
+
+Running Louvain algorithm...
+Maximum modularity in 10 random starts: 0.9111
 Number of communities: 17
-Elapsed time: 0 seconds
-Modularity Optimizer version 1.3.0 by Ludo Waltman and Nees Jan van Eck
-
-Number of nodes: 5890
-Number of edges: 203395
-
-Running Louvain algorithm...
-Maximum modularity in 10 random starts: 0.8538
-Number of communities: 19
-Elapsed time: 0 seconds
-Modularity Optimizer version 1.3.0 by Ludo Waltman and Nees Jan van Eck
-
-Number of nodes: 5890
-Number of edges: 203395
-
-Running Louvain algorithm...
-Maximum modularity in 10 random starts: 0.8912
-Number of communities: 15
 Elapsed time: 0 seconds</code></pre>
 <pre class="r"><code>Idents(seurat) &lt;- seurat$RNA_snn_res.0.25
 seurat$seurat_clusters &lt;- seurat$RNA_snn_res.0.25
@@ -680,32 +718,32 @@ colnames(dat) &lt;- c(&quot;dataset&quot;, &quot;all&quot;)
 #colnames(dat2) &lt;- c(&quot;dataset&quot;, &quot;Grem1&quot;)
 #dat &lt;- dat %&gt;% left_join(., dat2, by=c(&quot;dataset&quot;))
 
-seuratSub &lt;- subset(seurat, subset = `MGP-BALBcJ-G0016771.Grem2` &gt;0) ## 2 cells
+seuratSub &lt;- subset(seurat, subset = `ENSMUSG00000050069.Grem2` &gt;0) ## 2 cells
 dat2 &lt;- data.frame(table(seuratSub$dataset))
 colnames(dat2) &lt;- c(&quot;dataset&quot;, &quot;Grem2&quot;)
 dat &lt;- dat %&gt;% left_join(., dat2, by=c(&quot;dataset&quot;))
 
-seuratSub &lt;- subset(seurat, subset = `MGP-BALBcJ-G0026527.Bmp2` &gt;0) ## 418 cells
+seuratSub &lt;- subset(seurat, subset = `ENSMUSG00000027358.Bmp2` &gt;0) ## 418 cells
 dat2 &lt;- data.frame(table(seuratSub$dataset))
 colnames(dat2) &lt;- c(&quot;dataset&quot;, &quot;Bmp2&quot;)
 dat &lt;- dat %&gt;% left_join(., dat2, by=c(&quot;dataset&quot;))
 
-seuratSub &lt;- subset(seurat,subset = `MGP-BALBcJ-G0021163.Bmp4` &gt;0) ## 1341 cells
+seuratSub &lt;- subset(seurat,subset = `ENSMUSG00000021835.Bmp4` &gt;0) ## 1341 cells
 dat2 &lt;- data.frame(table(seuratSub$dataset))
 colnames(dat2) &lt;- c(&quot;dataset&quot;, &quot;Bmp4&quot;)
 dat &lt;- dat %&gt;% left_join(., dat2, by=c(&quot;dataset&quot;))
 
-seuratSub &lt;- subset(seurat,subset=`MGP-BALBcJ-G0021127.Bmpr1a` &gt;0) ## 1092 cells
+seuratSub &lt;- subset(seurat,subset=`ENSMUSG00000021796.Bmpr1a` &gt;0) ## 1092 cells
 dat2 &lt;- data.frame(table(seuratSub$dataset))
 colnames(dat2) &lt;- c(&quot;dataset&quot;, &quot;Bmpr1a&quot;)
 dat &lt;- dat %&gt;% left_join(., dat2, by=c(&quot;dataset&quot;))
 
-seuratSub &lt;- subset(seurat, subset=`MGP-BALBcJ-G0027908.Bmpr1b` &gt;0) ## 2 cells
+seuratSub &lt;- subset(seurat, subset=`ENSMUSG00000052430.Bmpr1b` &gt;0) ## 2 cells
 dat2 &lt;- data.frame(table(seuratSub$dataset))
 colnames(dat2) &lt;- c(&quot;dataset&quot;, &quot;Bmpr1b&quot;)
 dat &lt;- dat %&gt;% left_join(., dat2, by=c(&quot;dataset&quot;))
 
-seuratSub &lt;- subset(seurat,subset=`MGP-BALBcJ-G0016008.Bmpr2` &gt;0) ## 2201 cells
+seuratSub &lt;- subset(seurat,subset=`ENSMUSG00000067336.Bmpr2` &gt;0) ## 2201 cells
 dat2 &lt;- data.frame(table(seuratSub$dataset))
 colnames(dat2) &lt;- c(&quot;dataset&quot;, &quot;Bmpr2&quot;)
 dat &lt;- dat %&gt;% left_join(., dat2, by=c(&quot;dataset&quot;))
@@ -713,7 +751,7 @@ dat[is.na(dat)] &lt;-0
 
 dat_fin &lt;-  dat %&gt;%
   bind_rows(summarise_all(., funs(if(is.numeric(.)) sum(.) else &quot;total&quot;)))</code></pre>
-<pre><code>Warning: `funs()` is deprecated as of dplyr 0.8.0.
+<pre><code>Warning: `funs()` was deprecated in dplyr 0.8.0.
 Please use a list of either functions or lambdas: 
 
   # Simple named list: 
@@ -723,9 +761,7 @@ Please use a list of either functions or lambdas:
   tibble::lst(mean, median)
 
   # Using lambdas
-  list(~ mean(., trim = .2), ~ median(., na.rm = TRUE))
-This warning is displayed once every 8 hours.
-Call `lifecycle::last_warnings()` to see where this warning was generated.</code></pre>
+  list(~ mean(., trim = .2), ~ median(., na.rm = TRUE))</code></pre>
 <pre class="r"><code>knitr::kable(dat_fin)</code></pre>
 <table>
 <thead>
@@ -742,54 +778,94 @@ Call `lifecycle::last_warnings()` to see where this warning was generated.</code
 </thead>
 <tbody>
 <tr class="odd">
-<td align="left">5_20200707_Mu_Heart_LM_total_cell_1_v3</td>
-<td align="right">2351</td>
+<td align="left">10_20210429_Mu_nucleoi_seq_Ccl19CreEYFP_Heart_LM_2_V3</td>
+<td align="right">208</td>
 <td align="right">0</td>
-<td align="right">156</td>
-<td align="right">553</td>
-<td align="right">353</td>
 <td align="right">0</td>
-<td align="right">908</td>
+<td align="right">6</td>
+<td align="right">4</td>
+<td align="right">0</td>
+<td align="right">5</td>
 </tr>
 <tr class="even">
-<td align="left">6_20200707_Mu_Heart_LM_total_cell_2_v3</td>
-<td align="right">1512</td>
+<td align="left">11_20210429_Mu_nucleoi_seq_Ccl19CreEYFP_Heart_TCRM_1_V3</td>
+<td align="right">227</td>
 <td align="right">0</td>
-<td align="right">87</td>
-<td align="right">309</td>
-<td align="right">234</td>
 <td align="right">0</td>
-<td align="right">519</td>
+<td align="right">6</td>
+<td align="right">8</td>
+<td align="right">0</td>
+<td align="right">24</td>
 </tr>
 <tr class="odd">
-<td align="left">7_20200707_Mu_Heart_TCRM_total_cell_1_v3</td>
-<td align="right">921</td>
+<td align="left">12_20210429_Mu_nucleoi_seq_Ccl19CreEYFP_Heart_TCRM_2_V3</td>
+<td align="right">262</td>
+<td align="right">0</td>
 <td align="right">2</td>
-<td align="right">100</td>
-<td align="right">251</td>
-<td align="right">324</td>
-<td align="right">2</td>
-<td align="right">402</td>
+<td align="right">22</td>
+<td align="right">9</td>
+<td align="right">0</td>
+<td align="right">16</td>
 </tr>
 <tr class="even">
-<td align="left">8_20200707_Mu_Heart_TCRM_total_cell_2_v3</td>
-<td align="right">1106</td>
+<td align="left">5_20200707_Mu_Heart_LM_total_cell_1_v3</td>
+<td align="right">2208</td>
 <td align="right">0</td>
-<td align="right">75</td>
-<td align="right">228</td>
-<td align="right">181</td>
+<td align="right">156</td>
+<td align="right">560</td>
+<td align="right">352</td>
+<td align="right">0</td>
+<td align="right">936</td>
+</tr>
+<tr class="odd">
+<td align="left">6_20200707_Mu_Heart_LM_total_cell_2_v3</td>
+<td align="right">1400</td>
+<td align="right">0</td>
+<td align="right">88</td>
+<td align="right">308</td>
+<td align="right">232</td>
+<td align="right">0</td>
+<td align="right">516</td>
+</tr>
+<tr class="even">
+<td align="left">7_20200707_Mu_Heart_TCRM_total_cell_1_v3</td>
+<td align="right">929</td>
+<td align="right">2</td>
+<td align="right">101</td>
+<td align="right">240</td>
+<td align="right">324</td>
+<td align="right">2</td>
+<td align="right">410</td>
+</tr>
+<tr class="odd">
+<td align="left">8_20200707_Mu_Heart_TCRM_total_cell_2_v3</td>
+<td align="right">1112</td>
+<td align="right">0</td>
+<td align="right">74</td>
+<td align="right">222</td>
+<td align="right">178</td>
 <td align="right">0</td>
 <td align="right">372</td>
 </tr>
+<tr class="even">
+<td align="left">9_20210429_Mu_nucleoi_seq_Ccl19CreEYFP_Heart_LM_1_V3</td>
+<td align="right">239</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">6</td>
+<td align="right">5</td>
+<td align="right">0</td>
+<td align="right">7</td>
+</tr>
 <tr class="odd">
 <td align="left">total</td>
-<td align="right">5890</td>
+<td align="right">6585</td>
 <td align="right">2</td>
-<td align="right">418</td>
-<td align="right">1341</td>
-<td align="right">1092</td>
+<td align="right">421</td>
+<td align="right">1370</td>
+<td align="right">1112</td>
 <td align="right">2</td>
-<td align="right">2201</td>
+<td align="right">2286</td>
 </tr>
 </tbody>
 </table>
@@ -825,21 +901,243 @@ plotQC3 &lt;- function(sce, feature){
   return(p)
 }
 
-plotQC2(sce, &quot;total_counts&quot;)</code></pre>
+plotQC2(sce, &quot;total&quot;)</code></pre>
 <p><img src="figure/mergeTotalCells_MuHeart.Rmd/check%20QC-1.png" width="672" style="display: block; margin: auto;" /></p>
-<pre class="r"><code>plotQC3(sce, &quot;total_counts&quot;)</code></pre>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-check-QC-1">
+Past versions of “check QC-1.png”
+</button>
+</p>
+<div id="fig-no-spaces-check-QC-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/bfce4304b292728fbb28d7f346082b4321248d1c/docs/figure/mergeTotalCells_MuHeart.Rmd/check QC-1.png" target="_blank">bfce430</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2020-08-03
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<pre class="r"><code>plotQC3(sce, &quot;total&quot;)</code></pre>
 <p><img src="figure/mergeTotalCells_MuHeart.Rmd/check%20QC-2.png" width="672" style="display: block; margin: auto;" /></p>
-<pre class="r"><code>plotQC2(sce, &quot;total_features_by_counts&quot;)</code></pre>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-check-QC-2">
+Past versions of “check QC-2.png”
+</button>
+</p>
+<div id="fig-no-spaces-check-QC-2" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/bfce4304b292728fbb28d7f346082b4321248d1c/docs/figure/mergeTotalCells_MuHeart.Rmd/check QC-2.png" target="_blank">bfce430</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2020-08-03
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<pre class="r"><code>plotQC2(sce, &quot;detected&quot;)</code></pre>
 <p><img src="figure/mergeTotalCells_MuHeart.Rmd/check%20QC-3.png" width="672" style="display: block; margin: auto;" /></p>
-<pre class="r"><code>plotQC3(sce, &quot;total_features_by_counts&quot;)</code></pre>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-check-QC-3">
+Past versions of “check QC-3.png”
+</button>
+</p>
+<div id="fig-no-spaces-check-QC-3" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/bfce4304b292728fbb28d7f346082b4321248d1c/docs/figure/mergeTotalCells_MuHeart.Rmd/check QC-3.png" target="_blank">bfce430</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2020-08-03
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<pre class="r"><code>plotQC3(sce, &quot;detected&quot;)</code></pre>
 <p><img src="figure/mergeTotalCells_MuHeart.Rmd/check%20QC-4.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-check-QC-4">
+Past versions of “check QC-4.png”
+</button>
+</p>
+<div id="fig-no-spaces-check-QC-4" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/bfce4304b292728fbb28d7f346082b4321248d1c/docs/figure/mergeTotalCells_MuHeart.Rmd/check QC-4.png" target="_blank">bfce430</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2020-08-03
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre class="r"><code>#plotQC2(sce, &quot;pct_counts_Mt&quot;)
 #plotQC3(sce, &quot;pct_counts_Mt&quot;)
 
-plotQC2(sce, &quot;pct_counts_in_top_500_features&quot;)</code></pre>
+plotQC2(sce, &quot;sum&quot;)</code></pre>
 <p><img src="figure/mergeTotalCells_MuHeart.Rmd/check%20QC-5.png" width="672" style="display: block; margin: auto;" /></p>
-<pre class="r"><code>plotQC3(sce, &quot;pct_counts_in_top_500_features&quot;)</code></pre>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-check-QC-5">
+Past versions of “check QC-5.png”
+</button>
+</p>
+<div id="fig-no-spaces-check-QC-5" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/bfce4304b292728fbb28d7f346082b4321248d1c/docs/figure/mergeTotalCells_MuHeart.Rmd/check QC-5.png" target="_blank">bfce430</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2020-08-03
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<pre class="r"><code>plotQC3(sce, &quot;sum&quot;)</code></pre>
 <p><img src="figure/mergeTotalCells_MuHeart.Rmd/check%20QC-6.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-check-QC-6">
+Past versions of “check QC-6.png”
+</button>
+</p>
+<div id="fig-no-spaces-check-QC-6" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/bfce4304b292728fbb28d7f346082b4321248d1c/docs/figure/mergeTotalCells_MuHeart.Rmd/check QC-6.png" target="_blank">bfce430</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2020-08-03
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre class="r"><code>#plotQC2(sce, &quot;pct_counts_endogenous&quot;)
 #plotQC3(sce, &quot;pct_counts_endogenous&quot;)
 
@@ -863,7 +1161,7 @@ names(colGrp) &lt;- unique(seurat$grp)
 names(colSmp) &lt;- unique(seurat$dataset)</code></pre>
 </div>
 <div id="vis-data" class="section level2 tabset">
-<h2 class="tabset">vis data</h2>
+<h2>vis data</h2>
 <div id="clusters" class="section level3">
 <h3>clusters</h3>
 <pre class="r"><code>DimPlot(seurat, reduction = &quot;umap&quot;, cols=colPal)+
@@ -873,6 +1171,43 @@ names(colSmp) &lt;- unique(seurat$dataset)</code></pre>
   xlab(&quot;UMAP1&quot;) +
   ylab(&quot;UMAP2&quot;)</code></pre>
 <p><img src="figure/mergeTotalCells_MuHeart.Rmd/vis%20cluster-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-vis-cluster-1">
+Past versions of “vis cluster-1.png”
+</button>
+</p>
+<div id="fig-no-spaces-vis-cluster-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/bfce4304b292728fbb28d7f346082b4321248d1c/docs/figure/mergeTotalCells_MuHeart.Rmd/vis cluster-1.png" target="_blank">bfce430</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2020-08-03
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 <div id="group" class="section level3">
 <h3>group</h3>
@@ -883,6 +1218,43 @@ names(colSmp) &lt;- unique(seurat$dataset)</code></pre>
   xlab(&quot;UMAP1&quot;) +
   ylab(&quot;UMAP2&quot;)</code></pre>
 <p><img src="figure/mergeTotalCells_MuHeart.Rmd/vis%20grp-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-vis-grp-1">
+Past versions of “vis grp-1.png”
+</button>
+</p>
+<div id="fig-no-spaces-vis-grp-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/bfce4304b292728fbb28d7f346082b4321248d1c/docs/figure/mergeTotalCells_MuHeart.Rmd/vis grp-1.png" target="_blank">bfce430</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2020-08-03
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 <div id="sample" class="section level3">
 <h3>Sample</h3>
@@ -893,6 +1265,43 @@ names(colSmp) &lt;- unique(seurat$dataset)</code></pre>
   xlab(&quot;UMAP1&quot;) +
   ylab(&quot;UMAP2&quot;)</code></pre>
 <p><img src="figure/mergeTotalCells_MuHeart.Rmd/vis%20sample-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-vis-sample-1">
+Past versions of “vis sample-1.png”
+</button>
+</p>
+<div id="fig-no-spaces-vis-sample-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/bfce4304b292728fbb28d7f346082b4321248d1c/docs/figure/mergeTotalCells_MuHeart.Rmd/vis sample-1.png" target="_blank">bfce430</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2020-08-03
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 </div>
 <div id="marker-genes" class="section level2">
@@ -913,12 +1322,17 @@ names(colSmp) &lt;- unique(seurat$dataset)</code></pre>
 <pre><code>Calculating cluster 9</code></pre>
 <pre><code>Calculating cluster 10</code></pre>
 <pre><code>Calculating cluster 11</code></pre>
+<pre><code>Calculating cluster 12</code></pre>
+<pre><code>Calculating cluster 13</code></pre>
+<pre><code>Calculating cluster 14</code></pre>
+<pre><code>Calculating cluster 15</code></pre>
 <div id="top-15-marker-genes-per-cluster" class="section level3 tabset">
-<h3 class="tabset">top 15 marker genes per cluster</h3>
+<h3>top 15 marker genes per cluster</h3>
 <pre class="r"><code>cluster &lt;- levels(seurat)
 selGenesAll &lt;- seurat_markers_all %&gt;% group_by(cluster) %&gt;% 
   top_n(-15, p_val_adj) %&gt;% 
-  top_n(15, avg_logFC)
+  top_n(15, avg_log2FC)
+selGenesAll &lt;- selGenesAll %&gt;% mutate(geneIDval=gsub(&quot;^.*\\.&quot;, &quot;&quot;, gene)) %&gt;% filter(nchar(geneIDval)&gt;1)
 
 template_hm &lt;- c(
     &quot;#### {{cl}}\n&quot;,
@@ -939,50 +1353,642 @@ plots_gp &lt;- lapply(cluster,
 <div id="section" class="section level4">
 <h4>0</h4>
 <p><img src="figure/mergeTotalCells_MuHeart.Rmd/top marker 0-1.png" width="576" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-top-marker-0-1">
+Past versions of “top marker 0-1.png”
+</button>
+</p>
+<div id="fig-no-spaces-top-marker-0-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/d7e2251c34c1da03ecef9119af1283088378926d/figure/mergeTotalCells_MuHeart.Rmd/top marker 0-1.png" target="_blank">d7e2251</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2020-11-04
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/bfce4304b292728fbb28d7f346082b4321248d1c/figure/mergeTotalCells_MuHeart.Rmd/top marker 0-1.png" target="_blank">bfce430</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2020-08-03
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 <div id="section-1" class="section level4">
 <h4>1</h4>
 <p><img src="figure/mergeTotalCells_MuHeart.Rmd/top marker 1-1.png" width="576" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-top-marker-1-1">
+Past versions of “top marker 1-1.png”
+</button>
+</p>
+<div id="fig-no-spaces-top-marker-1-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/d7e2251c34c1da03ecef9119af1283088378926d/figure/mergeTotalCells_MuHeart.Rmd/top marker 1-1.png" target="_blank">d7e2251</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2020-11-04
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/bfce4304b292728fbb28d7f346082b4321248d1c/figure/mergeTotalCells_MuHeart.Rmd/top marker 1-1.png" target="_blank">bfce430</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2020-08-03
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 <div id="section-2" class="section level4">
 <h4>2</h4>
 <p><img src="figure/mergeTotalCells_MuHeart.Rmd/top marker 2-1.png" width="576" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-top-marker-2-1">
+Past versions of “top marker 2-1.png”
+</button>
+</p>
+<div id="fig-no-spaces-top-marker-2-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/d7e2251c34c1da03ecef9119af1283088378926d/figure/mergeTotalCells_MuHeart.Rmd/top marker 2-1.png" target="_blank">d7e2251</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2020-11-04
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/bfce4304b292728fbb28d7f346082b4321248d1c/figure/mergeTotalCells_MuHeart.Rmd/top marker 2-1.png" target="_blank">bfce430</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2020-08-03
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 <div id="section-3" class="section level4">
 <h4>3</h4>
 <p><img src="figure/mergeTotalCells_MuHeart.Rmd/top marker 3-1.png" width="576" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-top-marker-3-1">
+Past versions of “top marker 3-1.png”
+</button>
+</p>
+<div id="fig-no-spaces-top-marker-3-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/d7e2251c34c1da03ecef9119af1283088378926d/figure/mergeTotalCells_MuHeart.Rmd/top marker 3-1.png" target="_blank">d7e2251</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2020-11-04
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/bfce4304b292728fbb28d7f346082b4321248d1c/figure/mergeTotalCells_MuHeart.Rmd/top marker 3-1.png" target="_blank">bfce430</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2020-08-03
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 <div id="section-4" class="section level4">
 <h4>4</h4>
 <p><img src="figure/mergeTotalCells_MuHeart.Rmd/top marker 4-1.png" width="576" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-top-marker-4-1">
+Past versions of “top marker 4-1.png”
+</button>
+</p>
+<div id="fig-no-spaces-top-marker-4-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/d7e2251c34c1da03ecef9119af1283088378926d/figure/mergeTotalCells_MuHeart.Rmd/top marker 4-1.png" target="_blank">d7e2251</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2020-11-04
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/bfce4304b292728fbb28d7f346082b4321248d1c/figure/mergeTotalCells_MuHeart.Rmd/top marker 4-1.png" target="_blank">bfce430</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2020-08-03
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 <div id="section-5" class="section level4">
 <h4>5</h4>
 <p><img src="figure/mergeTotalCells_MuHeart.Rmd/top marker 5-1.png" width="576" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-top-marker-5-1">
+Past versions of “top marker 5-1.png”
+</button>
+</p>
+<div id="fig-no-spaces-top-marker-5-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/d7e2251c34c1da03ecef9119af1283088378926d/figure/mergeTotalCells_MuHeart.Rmd/top marker 5-1.png" target="_blank">d7e2251</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2020-11-04
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/bfce4304b292728fbb28d7f346082b4321248d1c/figure/mergeTotalCells_MuHeart.Rmd/top marker 5-1.png" target="_blank">bfce430</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2020-08-03
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 <div id="section-6" class="section level4">
 <h4>6</h4>
 <p><img src="figure/mergeTotalCells_MuHeart.Rmd/top marker 6-1.png" width="576" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-top-marker-6-1">
+Past versions of “top marker 6-1.png”
+</button>
+</p>
+<div id="fig-no-spaces-top-marker-6-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/d7e2251c34c1da03ecef9119af1283088378926d/figure/mergeTotalCells_MuHeart.Rmd/top marker 6-1.png" target="_blank">d7e2251</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2020-11-04
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/bfce4304b292728fbb28d7f346082b4321248d1c/figure/mergeTotalCells_MuHeart.Rmd/top marker 6-1.png" target="_blank">bfce430</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2020-08-03
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 <div id="section-7" class="section level4">
 <h4>7</h4>
 <p><img src="figure/mergeTotalCells_MuHeart.Rmd/top marker 7-1.png" width="576" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-top-marker-7-1">
+Past versions of “top marker 7-1.png”
+</button>
+</p>
+<div id="fig-no-spaces-top-marker-7-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/d7e2251c34c1da03ecef9119af1283088378926d/figure/mergeTotalCells_MuHeart.Rmd/top marker 7-1.png" target="_blank">d7e2251</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2020-11-04
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/bfce4304b292728fbb28d7f346082b4321248d1c/figure/mergeTotalCells_MuHeart.Rmd/top marker 7-1.png" target="_blank">bfce430</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2020-08-03
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 <div id="section-8" class="section level4">
 <h4>8</h4>
 <p><img src="figure/mergeTotalCells_MuHeart.Rmd/top marker 8-1.png" width="576" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-top-marker-8-1">
+Past versions of “top marker 8-1.png”
+</button>
+</p>
+<div id="fig-no-spaces-top-marker-8-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/d7e2251c34c1da03ecef9119af1283088378926d/figure/mergeTotalCells_MuHeart.Rmd/top marker 8-1.png" target="_blank">d7e2251</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2020-11-04
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/bfce4304b292728fbb28d7f346082b4321248d1c/figure/mergeTotalCells_MuHeart.Rmd/top marker 8-1.png" target="_blank">bfce430</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2020-08-03
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 <div id="section-9" class="section level4">
 <h4>9</h4>
 <p><img src="figure/mergeTotalCells_MuHeart.Rmd/top marker 9-1.png" width="576" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-top-marker-9-1">
+Past versions of “top marker 9-1.png”
+</button>
+</p>
+<div id="fig-no-spaces-top-marker-9-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/d7e2251c34c1da03ecef9119af1283088378926d/figure/mergeTotalCells_MuHeart.Rmd/top marker 9-1.png" target="_blank">d7e2251</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2020-11-04
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/bfce4304b292728fbb28d7f346082b4321248d1c/figure/mergeTotalCells_MuHeart.Rmd/top marker 9-1.png" target="_blank">bfce430</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2020-08-03
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 <div id="section-10" class="section level4">
 <h4>10</h4>
 <p><img src="figure/mergeTotalCells_MuHeart.Rmd/top marker 10-1.png" width="576" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-top-marker-10-1">
+Past versions of “top marker 10-1.png”
+</button>
+</p>
+<div id="fig-no-spaces-top-marker-10-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/d7e2251c34c1da03ecef9119af1283088378926d/figure/mergeTotalCells_MuHeart.Rmd/top marker 10-1.png" target="_blank">d7e2251</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2020-11-04
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/bfce4304b292728fbb28d7f346082b4321248d1c/figure/mergeTotalCells_MuHeart.Rmd/top marker 10-1.png" target="_blank">bfce430</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2020-08-03
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 <div id="section-11" class="section level4">
 <h4>11</h4>
 <p><img src="figure/mergeTotalCells_MuHeart.Rmd/top marker 11-1.png" width="576" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-top-marker-11-1">
+Past versions of “top marker 11-1.png”
+</button>
+</p>
+<div id="fig-no-spaces-top-marker-11-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/d7e2251c34c1da03ecef9119af1283088378926d/figure/mergeTotalCells_MuHeart.Rmd/top marker 11-1.png" target="_blank">d7e2251</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2020-11-04
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/bfce4304b292728fbb28d7f346082b4321248d1c/figure/mergeTotalCells_MuHeart.Rmd/top marker 11-1.png" target="_blank">bfce430</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2020-08-03
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div id="section-12" class="section level4">
+<h4>12</h4>
+<p><img src="figure/mergeTotalCells_MuHeart.Rmd/top marker 12-1.png" width="576" style="display: block; margin: auto;" /></p>
+</div>
+<div id="section-13" class="section level4">
+<h4>13</h4>
+<p><img src="figure/mergeTotalCells_MuHeart.Rmd/top marker 13-1.png" width="576" style="display: block; margin: auto;" /></p>
+</div>
+<div id="section-14" class="section level4">
+<h4>14</h4>
+<p><img src="figure/mergeTotalCells_MuHeart.Rmd/top marker 14-1.png" width="576" style="display: block; margin: auto;" /></p>
+</div>
+<div id="section-15" class="section level4">
+<h4>15</h4>
+<p><img src="figure/mergeTotalCells_MuHeart.Rmd/top marker 15-1.png" width="576" style="display: block; margin: auto;" /></p>
 </div>
 </div>
 </div>
@@ -1002,96 +2008,260 @@ knitr::kable(dat_cl)</code></pre>
 <tbody>
 <tr class="odd">
 <td align="left">0</td>
-<td align="right">2637</td>
+<td align="right">2193</td>
 </tr>
 <tr class="even">
 <td align="left">1</td>
-<td align="right">1804</td>
+<td align="right">1787</td>
 </tr>
 <tr class="odd">
 <td align="left">2</td>
-<td align="right">502</td>
+<td align="right">484</td>
 </tr>
 <tr class="even">
 <td align="left">3</td>
-<td align="right">242</td>
+<td align="right">480</td>
 </tr>
 <tr class="odd">
 <td align="left">4</td>
-<td align="right">173</td>
+<td align="right">298</td>
 </tr>
 <tr class="even">
 <td align="left">5</td>
-<td align="right">159</td>
+<td align="right">278</td>
 </tr>
 <tr class="odd">
 <td align="left">6</td>
-<td align="right">92</td>
+<td align="right">230</td>
 </tr>
 <tr class="even">
 <td align="left">7</td>
-<td align="right">80</td>
+<td align="right">188</td>
 </tr>
 <tr class="odd">
 <td align="left">8</td>
-<td align="right">72</td>
+<td align="right">176</td>
 </tr>
 <tr class="even">
 <td align="left">9</td>
-<td align="right">70</td>
+<td align="right">144</td>
 </tr>
 <tr class="odd">
 <td align="left">10</td>
-<td align="right">36</td>
+<td align="right">82</td>
 </tr>
 <tr class="even">
 <td align="left">11</td>
-<td align="right">23</td>
+<td align="right">75</td>
+</tr>
+<tr class="odd">
+<td align="left">12</td>
+<td align="right">63</td>
+</tr>
+<tr class="even">
+<td align="left">13</td>
+<td align="right">45</td>
+</tr>
+<tr class="odd">
+<td align="left">14</td>
+<td align="right">40</td>
+</tr>
+<tr class="even">
+<td align="left">15</td>
+<td align="right">22</td>
 </tr>
 </tbody>
 </table>
 </div>
 <div id="vis-bmps" class="section level2 tabset">
-<h2 class="tabset">vis BMPs</h2>
+<h2>vis BMPs</h2>
 <div id="bmp2" class="section level3">
 <h3>Bmp2</h3>
 <pre class="r"><code>p &lt;- FeaturePlot(seurat, reduction = &quot;umap&quot;, 
-            features = &quot;MGP-BALBcJ-G0026527.Bmp2&quot;,
+            features = &quot;ENSMUSG00000027358.Bmp2&quot;,
             cols=c(&quot;lightgrey&quot;, &quot;darkred&quot;),
             order = T)+
   theme(legend.position=&quot;right&quot;)
 p</code></pre>
 <p><img src="figure/mergeTotalCells_MuHeart.Rmd/vis%20Bmp2-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-vis-Bmp2-1">
+Past versions of “vis Bmp2-1.png”
+</button>
+</p>
+<div id="fig-no-spaces-vis-Bmp2-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/bfce4304b292728fbb28d7f346082b4321248d1c/docs/figure/mergeTotalCells_MuHeart.Rmd/vis Bmp2-1.png" target="_blank">bfce430</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2020-08-03
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 <div id="bmp4" class="section level3">
 <h3>Bmp4</h3>
 <pre class="r"><code>p &lt;- FeaturePlot(seurat, reduction = &quot;umap&quot;, 
-            features = &quot;MGP-BALBcJ-G0021163.Bmp4&quot;,
+            features = &quot;ENSMUSG00000021835.Bmp4&quot;,
             cols=c(&quot;lightgrey&quot;, &quot;darkred&quot;),
             order = T)+
   theme(legend.position=&quot;right&quot;)
 p</code></pre>
 <p><img src="figure/mergeTotalCells_MuHeart.Rmd/vis%20Bmp4-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-vis-Bmp4-1">
+Past versions of “vis Bmp4-1.png”
+</button>
+</p>
+<div id="fig-no-spaces-vis-Bmp4-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/bfce4304b292728fbb28d7f346082b4321248d1c/docs/figure/mergeTotalCells_MuHeart.Rmd/vis Bmp4-1.png" target="_blank">bfce430</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2020-08-03
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 <div id="bmpr1a" class="section level3">
 <h3>Bmpr1a</h3>
 <pre class="r"><code>p &lt;- FeaturePlot(seurat, reduction = &quot;umap&quot;, 
-            features = &quot;MGP-BALBcJ-G0021127.Bmpr1a&quot;,
+            features = &quot;ENSMUSG00000021796.Bmpr1a&quot;,
             cols=c(&quot;lightgrey&quot;, &quot;darkred&quot;),
             order = T)+
   theme(legend.position=&quot;right&quot;)
 p</code></pre>
 <p><img src="figure/mergeTotalCells_MuHeart.Rmd/vis%20Bmpr1a-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-vis-Bmpr1a-1">
+Past versions of “vis Bmpr1a-1.png”
+</button>
+</p>
+<div id="fig-no-spaces-vis-Bmpr1a-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/bfce4304b292728fbb28d7f346082b4321248d1c/docs/figure/mergeTotalCells_MuHeart.Rmd/vis Bmpr1a-1.png" target="_blank">bfce430</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2020-08-03
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 <div id="bmpr2" class="section level3">
 <h3>Bmpr2</h3>
 <pre class="r"><code>p &lt;- FeaturePlot(seurat, reduction = &quot;umap&quot;, 
-            features = &quot;MGP-BALBcJ-G0016008.Bmpr2&quot;,
+            features = &quot;ENSMUSG00000067336.Bmpr2&quot;,
             cols=c(&quot;lightgrey&quot;, &quot;darkred&quot;),
             order = T)+
   theme(legend.position=&quot;right&quot;)
 p</code></pre>
 <p><img src="figure/mergeTotalCells_MuHeart.Rmd/vis%20Bmpr2-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-vis-Bmpr2-1">
+Past versions of “vis Bmpr2-1.png”
+</button>
+</p>
+<div id="fig-no-spaces-vis-Bmpr2-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/bfce4304b292728fbb28d7f346082b4321248d1c/docs/figure/mergeTotalCells_MuHeart.Rmd/vis Bmpr2-1.png" target="_blank">bfce430</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2020-08-03
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 </div>
 <div id="overall-de-genes" class="section level2">
@@ -1106,7 +2276,7 @@ DEgenes &lt;- FindAllMarkers(object = seurat, assay =&quot;RNA&quot;,
 <pre><code>Calculating cluster Ccl19</code></pre>
 <pre class="r"><code>### plot DE genes top 15 avg logFC
 DEGenesAll &lt;- DEgenes %&gt;% group_by(cluster) %&gt;% 
-  top_n(15, avg_logFC)
+  top_n(15, avg_log2FC)
 
 Idents(seurat) &lt;- seurat$seurat_clusters
 avgHeatmap(seurat = seurat, selGenes = DEGenesAll,
@@ -1115,6 +2285,43 @@ avgHeatmap(seurat = seurat, selGenes = DEGenesAll,
                   gapVecR=NULL, gapVecC=NULL,cc=T,
                   cr=T, condCol=F)</code></pre>
 <p><img src="figure/mergeTotalCells_MuHeart.Rmd/overall%20DE-1.png" width="576" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-overall-DE-1">
+Past versions of “overall DE-1.png”
+</button>
+</p>
+<div id="fig-no-spaces-overall-DE-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/bfce4304b292728fbb28d7f346082b4321248d1c/docs/figure/mergeTotalCells_MuHeart.Rmd/overall DE-1.png" target="_blank">bfce430</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2020-08-03
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 <div id="save-objects" class="section level2">
 <h2>save objects</h2>
@@ -1128,12 +2335,223 @@ write.table(DEgenes,
             file=paste0(basedir, &quot;/data/MuHeart_totalCells_DEGenes.txt&quot;),
             row.names = FALSE, col.names = TRUE, quote = FALSE, sep = &quot;\t&quot;)</code></pre>
 </div>
+<div id="run-integration" class="section level2">
+<h2>run integration</h2>
+<pre class="r"><code>seurat.list &lt;- SplitObject(object = seurat, split.by = &quot;seqType&quot;)
+for (i in 1:length(x = seurat.list)) {
+    seurat.list[[i]] &lt;- NormalizeData(object = seurat.list[[i]],
+                                      verbose = FALSE)
+    seurat.list[[i]] &lt;- FindVariableFeatures(object = seurat.list[[i]], 
+        selection.method = &quot;vst&quot;, nfeatures = 2000, verbose = FALSE)
+}
+
+seurat.anchors &lt;- FindIntegrationAnchors(object.list = seurat.list, dims = 1:15,
+                                         k.filter = 50)</code></pre>
+<pre><code>Computing 2000 integration features</code></pre>
+<pre><code>Scaling features for provided objects</code></pre>
+<pre><code>Finding all pairwise anchors</code></pre>
+<pre><code>Running CCA</code></pre>
+<pre><code>Merging objects</code></pre>
+<pre><code>Finding neighborhoods</code></pre>
+<pre><code>Finding anchors</code></pre>
+<pre><code>    Found 3260 anchors</code></pre>
+<pre><code>Filtering anchors</code></pre>
+<pre><code>    Retained 1060 anchors</code></pre>
+<pre class="r"><code>seurat.int &lt;- IntegrateData(anchorset = seurat.anchors, dims = 1:15)</code></pre>
+<pre><code>Merging dataset 2 into 1</code></pre>
+<pre><code>Extracting anchors for merged samples</code></pre>
+<pre><code>Finding integration vectors</code></pre>
+<pre><code>Finding integration vector weights</code></pre>
+<pre><code>Integrating data</code></pre>
+<pre class="r"><code>DefaultAssay(object = seurat.int) &lt;- &quot;integrated&quot;
+
+# rerun seurat
+seurat.int &lt;- ScaleData(object = seurat.int, verbose = FALSE,
+                        features = rownames(seurat.int))
+seurat.int &lt;- RunPCA(object = seurat.int, npcs = 20, verbose = FALSE)
+seurat.int &lt;- RunTSNE(object = seurat.int, reduction = &quot;pca&quot;, dims = 1:20)
+seurat.int &lt;- RunUMAP(object = seurat.int, reduction = &quot;pca&quot;, dims = 1:20)</code></pre>
+<pre><code>11:06:58 UMAP embedding parameters a = 0.9922 b = 1.112</code></pre>
+<pre><code>11:06:58 Read 6585 rows and found 20 numeric columns</code></pre>
+<pre><code>11:06:58 Using Annoy for neighbor search, n_neighbors = 30</code></pre>
+<pre><code>11:06:58 Building Annoy index with metric = cosine, n_trees = 50</code></pre>
+<pre><code>0%   10   20   30   40   50   60   70   80   90   100%</code></pre>
+<pre><code>[----|----|----|----|----|----|----|----|----|----|</code></pre>
+<pre><code>**************************************************|
+11:06:59 Writing NN index file to temp file /var/folders/qf/923ylj6x3h56f3d86n07wmgr0000gs/T//Rtmp8gxw4R/file873600b21c1
+11:06:59 Searching Annoy index using 1 thread, search_k = 3000
+11:07:01 Annoy recall = 100%
+11:07:01 Commencing smooth kNN distance calibration using 1 thread
+11:07:02 Initializing from normalized Laplacian + noise
+11:07:03 Commencing optimization for 500 epochs, with 270888 positive edges
+11:07:12 Optimization finished</code></pre>
+<pre class="r"><code>seurat.int &lt;- FindNeighbors(object = seurat.int, reduction = &quot;pca&quot;, dims = 1:20)</code></pre>
+<pre><code>Computing nearest neighbor graph
+Computing SNN</code></pre>
+<pre class="r"><code>res &lt;- c(0.6,0.8,0.4,0.25)
+for(i in 1:length(res)){
+  seurat.int &lt;- FindClusters(object = seurat.int, resolution = res[i],
+                             random.seed = 1234)
+}</code></pre>
+<pre><code>Modularity Optimizer version 1.3.0 by Ludo Waltman and Nees Jan van Eck
+
+Number of nodes: 6585
+Number of edges: 224303
+
+Running Louvain algorithm...
+Maximum modularity in 10 random starts: 0.8836
+Number of communities: 19
+Elapsed time: 0 seconds
+Modularity Optimizer version 1.3.0 by Ludo Waltman and Nees Jan van Eck
+
+Number of nodes: 6585
+Number of edges: 224303
+
+Running Louvain algorithm...
+Maximum modularity in 10 random starts: 0.8676
+Number of communities: 23
+Elapsed time: 0 seconds
+Modularity Optimizer version 1.3.0 by Ludo Waltman and Nees Jan van Eck
+
+Number of nodes: 6585
+Number of edges: 224303
+
+Running Louvain algorithm...
+Maximum modularity in 10 random starts: 0.9028
+Number of communities: 17
+Elapsed time: 0 seconds
+Modularity Optimizer version 1.3.0 by Ludo Waltman and Nees Jan van Eck
+
+Number of nodes: 6585
+Number of edges: 224303
+
+Running Louvain algorithm...
+Maximum modularity in 10 random starts: 0.9282
+Number of communities: 13
+Elapsed time: 0 seconds</code></pre>
+<pre class="r"><code>DefaultAssay(object = seurat.int) &lt;- &quot;RNA&quot;</code></pre>
+</div>
+<div id="vis-integrated-data" class="section level2 tabset">
+<h2>vis integrated data</h2>
+<div id="clusters-1" class="section level3">
+<h3>clusters</h3>
+<pre class="r"><code>DimPlot(seurat.int, reduction = &quot;umap&quot;, cols=colPal)+
+  theme_bw() +
+  theme(axis.text = element_blank(), axis.ticks = element_blank(), 
+        panel.grid.minor = element_blank()) +
+  xlab(&quot;UMAP1&quot;) +
+  ylab(&quot;UMAP2&quot;)</code></pre>
+<p><img src="figure/mergeTotalCells_MuHeart.Rmd/vis%20int%20cluster-1.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+<div id="group-1" class="section level3">
+<h3>group</h3>
+<pre class="r"><code>DimPlot(seurat.int, reduction = &quot;umap&quot;, group.by = &quot;grp&quot;, cols=colGrp)+
+  theme_bw() +
+  theme(axis.text = element_blank(), axis.ticks = element_blank(), 
+        panel.grid.minor = element_blank()) +
+  xlab(&quot;UMAP1&quot;) +
+  ylab(&quot;UMAP2&quot;)</code></pre>
+<p><img src="figure/mergeTotalCells_MuHeart.Rmd/vis%20int%20grp-1.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+<div id="sample-1" class="section level3">
+<h3>Sample</h3>
+<pre class="r"><code>DimPlot(seurat.int, reduction = &quot;umap&quot;, group.by = &quot;dataset&quot;, cols=colSmp)+
+  theme_bw() +
+  theme(axis.text = element_blank(), axis.ticks = element_blank(), 
+        panel.grid.minor = element_blank()) +
+  xlab(&quot;UMAP1&quot;) +
+  ylab(&quot;UMAP2&quot;)</code></pre>
+<p><img src="figure/mergeTotalCells_MuHeart.Rmd/vis%20int%20sample-1.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+</div>
+<div id="marker-genes-integration" class="section level2">
+<h2>marker genes integration</h2>
+<pre class="r"><code>## marker genes int res 0.25
+seurat_markers_int &lt;- FindAllMarkers(object = seurat.int, assay =&quot;RNA&quot;,
+                                     only.pos = TRUE, min.pct = 0.25,
+                                     logfc.threshold = 0.25,
+                                     test.use = &quot;wilcox&quot;)</code></pre>
+<pre><code>Calculating cluster 0</code></pre>
+<pre><code>Calculating cluster 1</code></pre>
+<pre><code>Calculating cluster 2</code></pre>
+<pre><code>Calculating cluster 3</code></pre>
+<pre><code>Calculating cluster 4</code></pre>
+<pre><code>Calculating cluster 5</code></pre>
+<pre><code>Calculating cluster 6</code></pre>
+<pre><code>Calculating cluster 7</code></pre>
+<pre><code>Calculating cluster 8</code></pre>
+<pre><code>Calculating cluster 9</code></pre>
+<pre><code>Calculating cluster 10</code></pre>
+<pre><code>Calculating cluster 11</code></pre>
+<pre><code>Calculating cluster 12</code></pre>
+</div>
+<div id="clusterwise-de-genes" class="section level2">
+<h2>clusterwise DE genes</h2>
+<pre class="r"><code>Idents(seurat.int) &lt;- seurat.int$grp
+seurat.int$clusterLabel &lt;- as.factor(seurat.int$integrated_snn_res.0.25)
+grpVec &lt;- levels(seurat.int$clusterLabel)
+
+clustDE &lt;- lapply(grpVec, function(grp){
+  grpSub &lt;- levels(seurat.int$clusterLabel)[which(
+    levels(seurat.int$clusterLabel)==grp)]
+  seuratSub &lt;- subset(seurat.int, clusterLabel == grpSub)
+  DEgenes &lt;-FindAllMarkers(seuratSub, only.pos=T, logfc.threshold = 0.25,
+                           min.pct = 0.1)
+  DEgenes &lt;- DEgenes %&gt;% filter(p_val_adj&lt;0.01) %&gt;%
+    mutate(group=paste0(grp, &quot;_&quot;, cluster))
+})</code></pre>
+<pre><code>Calculating cluster TCRMxCcl19</code></pre>
+<pre><code>Calculating cluster Ccl19</code></pre>
+<pre><code>Calculating cluster TCRMxCcl19</code></pre>
+<pre><code>Calculating cluster Ccl19</code></pre>
+<pre><code>Calculating cluster TCRMxCcl19</code></pre>
+<pre><code>Calculating cluster Ccl19</code></pre>
+<pre><code>Calculating cluster TCRMxCcl19</code></pre>
+<pre><code>Calculating cluster Ccl19</code></pre>
+<pre><code>Calculating cluster TCRMxCcl19</code></pre>
+<pre><code>Calculating cluster Ccl19</code></pre>
+<pre><code>Calculating cluster TCRMxCcl19</code></pre>
+<pre><code>Calculating cluster Ccl19</code></pre>
+<pre><code>Calculating cluster TCRMxCcl19</code></pre>
+<pre><code>Calculating cluster Ccl19</code></pre>
+<pre><code>Calculating cluster TCRMxCcl19</code></pre>
+<pre><code>Calculating cluster Ccl19</code></pre>
+<pre><code>Calculating cluster TCRMxCcl19</code></pre>
+<pre><code>Calculating cluster Ccl19</code></pre>
+<pre><code>Calculating cluster TCRMxCcl19</code></pre>
+<pre><code>Calculating cluster Ccl19</code></pre>
+<pre><code>Calculating cluster TCRMxCcl19</code></pre>
+<pre><code>Calculating cluster Ccl19</code></pre>
+<pre><code>Calculating cluster TCRMxCcl19</code></pre>
+<pre><code>Calculating cluster Ccl19</code></pre>
+<pre><code>Calculating cluster TCRMxCcl19</code></pre>
+<pre><code>Calculating cluster Ccl19</code></pre>
+<pre class="r"><code>names(clustDE) &lt;- grpVec
+
+clustDE_Dat &lt;- data.frame(do.call(&quot;rbind&quot;, clustDE))</code></pre>
+</div>
+<div id="save-integrated-objects" class="section level2">
+<h2>save integrated objects</h2>
+<pre class="r"><code>saveRDS(seurat.int, file = paste0(basedir,
+                              &quot;/data/MuHeart_totalCells_integrated_seurat.rds&quot;))
+
+write.table(seurat_markers_int,
+            file=paste0(basedir,
+                        &quot;/data/MuHeart_totalCells_integrated_markerGenes.txt&quot;),
+            row.names = FALSE, col.names = TRUE, quote = FALSE, sep = &quot;\t&quot;)
+
+
+write.table(clustDE_Dat,
+            file=paste0(basedir,
+                        &quot;/data/MuHeart_totalCells_integrated_cwDEGenes.txt&quot;),
+            row.names = FALSE, col.names = TRUE, quote = FALSE, sep = &quot;\t&quot;)</code></pre>
+</div>
 <div id="session-info" class="section level2">
 <h2>session info</h2>
 <pre class="r"><code>sessionInfo()</code></pre>
 <pre><code>R version 4.0.0 (2020-04-24)
 Platform: x86_64-apple-darwin17.0 (64-bit)
-Running under: macOS Catalina 10.15.4
+Running under: macOS Catalina 10.15.7
 
 Matrix products: default
 BLAS:   /Library/Frameworks/R.framework/Versions/4.0/Resources/lib/libRblas.dylib
@@ -1149,66 +2567,69 @@ attached base packages:
 other attached packages:
  [1] ggpubr_0.4.0                pheatmap_1.0.12            
  [3] ggsci_2.9                   runSeurat3_0.1.0           
- [5] here_0.1                    magrittr_1.5               
- [7] Seurat_3.2.0                forcats_0.5.0              
- [9] stringr_1.4.0               dplyr_1.0.0                
-[11] purrr_0.3.4                 readr_1.3.1                
-[13] tidyr_1.1.0                 tibble_3.0.3               
-[15] ggplot2_3.3.2               tidyverse_1.3.0            
-[17] SingleCellExperiment_1.10.1 SummarizedExperiment_1.18.2
-[19] DelayedArray_0.14.1         matrixStats_0.56.0         
-[21] Biobase_2.48.0              GenomicRanges_1.40.0       
-[23] GenomeInfoDb_1.24.2         IRanges_2.22.2             
-[25] S4Vectors_0.26.1            BiocGenerics_0.34.0        
+ [5] here_1.0.1                  magrittr_2.0.1             
+ [7] SeuratObject_4.0.0          Seurat_4.0.1               
+ [9] forcats_0.5.1               stringr_1.4.0              
+[11] dplyr_1.0.5                 purrr_0.3.4                
+[13] readr_1.4.0                 tidyr_1.1.3                
+[15] tibble_3.1.1                ggplot2_3.3.3              
+[17] tidyverse_1.3.1             SingleCellExperiment_1.10.1
+[19] SummarizedExperiment_1.18.2 DelayedArray_0.14.1        
+[21] matrixStats_0.58.0          Biobase_2.48.0             
+[23] GenomicRanges_1.40.0        GenomeInfoDb_1.24.2        
+[25] IRanges_2.22.2              S4Vectors_0.26.1           
+[27] BiocGenerics_0.34.0        
 
 loaded via a namespace (and not attached):
-  [1] readxl_1.3.1           backports_1.1.8        workflowr_1.6.2       
-  [4] plyr_1.8.6             igraph_1.2.5           lazyeval_0.2.2        
-  [7] splines_4.0.0          listenv_0.8.0          digest_0.6.25         
- [10] htmltools_0.5.0        fansi_0.4.1            tensor_1.5            
- [13] cluster_2.1.0          ROCR_1.0-11            limma_3.44.3          
- [16] openxlsx_4.1.5         globals_0.12.5         modelr_0.1.8          
- [19] colorspace_1.4-1       blob_1.2.1             rvest_0.3.5           
- [22] ggrepel_0.8.2          haven_2.3.1            xfun_0.15             
- [25] crayon_1.3.4           RCurl_1.98-1.2         jsonlite_1.7.0        
- [28] spatstat_1.64-1        spatstat.data_1.4-3    survival_3.2-3        
- [31] zoo_1.8-8              ape_5.4                glue_1.4.1            
- [34] polyclip_1.10-0        gtable_0.3.0           zlibbioc_1.34.0       
- [37] XVector_0.28.0         leiden_0.3.3           car_3.0-8             
- [40] future.apply_1.6.0     abind_1.4-5            scales_1.1.1          
- [43] DBI_1.1.0              rstatix_0.6.0          miniUI_0.1.1.1        
- [46] Rcpp_1.0.5             viridisLite_0.3.0      xtable_1.8-4          
- [49] reticulate_1.16        foreign_0.8-80         rsvd_1.0.3            
- [52] htmlwidgets_1.5.1      httr_1.4.1             RColorBrewer_1.1-2    
- [55] ellipsis_0.3.1         ica_1.0-2              farver_2.0.3          
- [58] pkgconfig_2.0.3        uwot_0.1.8             dbplyr_1.4.4          
- [61] deldir_0.1-28          labeling_0.3           tidyselect_1.1.0      
- [64] rlang_0.4.7            reshape2_1.4.4         later_1.1.0.1         
- [67] munsell_0.5.0          cellranger_1.1.0       tools_4.0.0           
- [70] cli_2.0.2              generics_0.0.2         broom_0.7.0           
- [73] ggridges_0.5.2         evaluate_0.14          fastmap_1.0.1         
- [76] yaml_2.2.1             goftest_1.2-2          knitr_1.29            
- [79] fs_1.4.2               fitdistrplus_1.1-1     zip_2.0.4             
- [82] RANN_2.6.1             pbapply_1.4-2          future_1.18.0         
- [85] nlme_3.1-148           mime_0.9               xml2_1.3.2            
- [88] compiler_4.0.0         rstudioapi_0.11        curl_4.3              
- [91] plotly_4.9.2.1         png_0.1-7              ggsignif_0.6.0        
- [94] spatstat.utils_1.17-0  reprex_0.3.0           stringi_1.4.6         
- [97] highr_0.8              RSpectra_0.16-0        lattice_0.20-41       
-[100] Matrix_1.2-18          vctrs_0.3.2            pillar_1.4.6          
-[103] lifecycle_0.2.0        lmtest_0.9-37          RcppAnnoy_0.0.16      
-[106] data.table_1.12.8      cowplot_1.0.0          bitops_1.0-6          
-[109] irlba_2.3.3            httpuv_1.5.4           patchwork_1.0.1       
-[112] R6_2.4.1               promises_1.1.1         rio_0.5.16            
-[115] KernSmooth_2.23-17     gridExtra_2.3          codetools_0.2-16      
-[118] MASS_7.3-51.6          assertthat_0.2.1       rprojroot_1.3-2       
-[121] withr_2.2.0            sctransform_0.2.1      GenomeInfoDbData_1.2.3
-[124] mgcv_1.8-31            hms_0.5.3              grid_4.0.0            
-[127] rpart_4.1-15           rmarkdown_2.3          carData_3.0-4         
-[130] Rtsne_0.15             git2r_0.27.1           shiny_1.5.0           
-[133] lubridate_1.7.9       </code></pre>
+  [1] utf8_1.2.1             reticulate_1.19        tidyselect_1.1.0      
+  [4] htmlwidgets_1.5.3      grid_4.0.0             Rtsne_0.15            
+  [7] munsell_0.5.0          codetools_0.2-18       ica_1.0-2             
+ [10] future_1.21.0          miniUI_0.1.1.1         withr_2.4.2           
+ [13] colorspace_2.0-0       highr_0.9              knitr_1.33            
+ [16] rstudioapi_0.13        ROCR_1.0-11            ggsignif_0.6.1        
+ [19] tensor_1.5             listenv_0.8.0          labeling_0.4.2        
+ [22] git2r_0.28.0           GenomeInfoDbData_1.2.3 polyclip_1.10-0       
+ [25] farver_2.1.0           rprojroot_2.0.2        parallelly_1.24.0     
+ [28] vctrs_0.3.7            generics_0.1.0         xfun_0.22             
+ [31] R6_2.5.0               bitops_1.0-7           spatstat.utils_2.1-0  
+ [34] assertthat_0.2.1       promises_1.2.0.1       scales_1.1.1          
+ [37] gtable_0.3.0           globals_0.14.0         goftest_1.2-2         
+ [40] workflowr_1.6.2        rlang_0.4.10           splines_4.0.0         
+ [43] rstatix_0.7.0          lazyeval_0.2.2         spatstat.geom_2.1-0   
+ [46] broom_0.7.6            yaml_2.2.1             reshape2_1.4.4        
+ [49] abind_1.4-5            modelr_0.1.8           backports_1.2.1       
+ [52] httpuv_1.6.0           tools_4.0.0            ellipsis_0.3.1        
+ [55] spatstat.core_2.1-2    jquerylib_0.1.4        RColorBrewer_1.1-2    
+ [58] ggridges_0.5.3         Rcpp_1.0.6             plyr_1.8.6            
+ [61] zlibbioc_1.34.0        RCurl_1.98-1.3         rpart_4.1-15          
+ [64] deldir_0.2-10          pbapply_1.4-3          cowplot_1.1.1         
+ [67] zoo_1.8-9              haven_2.4.1            ggrepel_0.9.1         
+ [70] cluster_2.1.2          fs_1.5.0               data.table_1.14.0     
+ [73] RSpectra_0.16-0        scattermore_0.7        openxlsx_4.2.3        
+ [76] lmtest_0.9-38          reprex_2.0.0           RANN_2.6.1            
+ [79] whisker_0.4            fitdistrplus_1.1-3     hms_1.0.0             
+ [82] patchwork_1.1.1        mime_0.10              evaluate_0.14         
+ [85] xtable_1.8-4           rio_0.5.26             readxl_1.3.1          
+ [88] gridExtra_2.3          compiler_4.0.0         KernSmooth_2.23-18    
+ [91] crayon_1.4.1           htmltools_0.5.1.1      mgcv_1.8-35           
+ [94] later_1.2.0            lubridate_1.7.10       DBI_1.1.1             
+ [97] dbplyr_2.1.1           MASS_7.3-53.1          Matrix_1.3-2          
+[100] car_3.0-10             cli_2.5.0              igraph_1.2.6          
+[103] pkgconfig_2.0.3        foreign_0.8-81         plotly_4.9.3          
+[106] spatstat.sparse_2.0-0  xml2_1.3.2             bslib_0.2.4           
+[109] XVector_0.28.0         rvest_1.0.0            digest_0.6.27         
+[112] sctransform_0.3.2      RcppAnnoy_0.0.18       spatstat.data_2.1-0   
+[115] rmarkdown_2.7          cellranger_1.1.0       leiden_0.3.7          
+[118] uwot_0.1.10            curl_4.3               shiny_1.6.0           
+[121] lifecycle_1.0.0        nlme_3.1-152           jsonlite_1.7.2        
+[124] carData_3.0-4          viridisLite_0.4.0      limma_3.44.3          
+[127] fansi_0.4.2            pillar_1.6.0           lattice_0.20-41       
+[130] fastmap_1.1.0          httr_1.4.2             survival_3.2-11       
+[133] glue_1.4.2             zip_2.1.1              png_0.1-7             
+[136] stringi_1.5.3          sass_0.3.1             irlba_2.3.3           
+[139] future.apply_1.7.0    </code></pre>
 <pre class="r"><code>date()</code></pre>
-<pre><code>[1] &quot;Fri Jul 24 16:10:15 2020&quot;</code></pre>
+<pre><code>[1] &quot;Tue Jun  8 11:10:08 2021&quot;</code></pre>
 <br>
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">
@@ -1219,7 +2640,7 @@ loaded via a namespace (and not attached):
 <pre class="r"><code>sessionInfo()</code></pre>
 <pre><code>R version 4.0.0 (2020-04-24)
 Platform: x86_64-apple-darwin17.0 (64-bit)
-Running under: macOS Catalina 10.15.4
+Running under: macOS Catalina 10.15.7
 
 Matrix products: default
 BLAS:   /Library/Frameworks/R.framework/Versions/4.0/Resources/lib/libRblas.dylib
@@ -1235,64 +2656,67 @@ attached base packages:
 other attached packages:
  [1] ggpubr_0.4.0                pheatmap_1.0.12            
  [3] ggsci_2.9                   runSeurat3_0.1.0           
- [5] here_0.1                    magrittr_1.5               
- [7] Seurat_3.2.0                forcats_0.5.0              
- [9] stringr_1.4.0               dplyr_1.0.0                
-[11] purrr_0.3.4                 readr_1.3.1                
-[13] tidyr_1.1.0                 tibble_3.0.3               
-[15] ggplot2_3.3.2               tidyverse_1.3.0            
-[17] SingleCellExperiment_1.10.1 SummarizedExperiment_1.18.2
-[19] DelayedArray_0.14.1         matrixStats_0.56.0         
-[21] Biobase_2.48.0              GenomicRanges_1.40.0       
-[23] GenomeInfoDb_1.24.2         IRanges_2.22.2             
-[25] S4Vectors_0.26.1            BiocGenerics_0.34.0        
+ [5] here_1.0.1                  magrittr_2.0.1             
+ [7] SeuratObject_4.0.0          Seurat_4.0.1               
+ [9] forcats_0.5.1               stringr_1.4.0              
+[11] dplyr_1.0.5                 purrr_0.3.4                
+[13] readr_1.4.0                 tidyr_1.1.3                
+[15] tibble_3.1.1                ggplot2_3.3.3              
+[17] tidyverse_1.3.1             SingleCellExperiment_1.10.1
+[19] SummarizedExperiment_1.18.2 DelayedArray_0.14.1        
+[21] matrixStats_0.58.0          Biobase_2.48.0             
+[23] GenomicRanges_1.40.0        GenomeInfoDb_1.24.2        
+[25] IRanges_2.22.2              S4Vectors_0.26.1           
+[27] BiocGenerics_0.34.0        
 
 loaded via a namespace (and not attached):
-  [1] readxl_1.3.1           backports_1.1.8        workflowr_1.6.2       
-  [4] plyr_1.8.6             igraph_1.2.5           lazyeval_0.2.2        
-  [7] splines_4.0.0          listenv_0.8.0          digest_0.6.25         
- [10] htmltools_0.5.0        fansi_0.4.1            tensor_1.5            
- [13] cluster_2.1.0          ROCR_1.0-11            limma_3.44.3          
- [16] openxlsx_4.1.5         globals_0.12.5         modelr_0.1.8          
- [19] colorspace_1.4-1       blob_1.2.1             rvest_0.3.5           
- [22] ggrepel_0.8.2          haven_2.3.1            xfun_0.15             
- [25] crayon_1.3.4           RCurl_1.98-1.2         jsonlite_1.7.0        
- [28] spatstat_1.64-1        spatstat.data_1.4-3    survival_3.2-3        
- [31] zoo_1.8-8              ape_5.4                glue_1.4.1            
- [34] polyclip_1.10-0        gtable_0.3.0           zlibbioc_1.34.0       
- [37] XVector_0.28.0         leiden_0.3.3           car_3.0-8             
- [40] future.apply_1.6.0     abind_1.4-5            scales_1.1.1          
- [43] DBI_1.1.0              rstatix_0.6.0          miniUI_0.1.1.1        
- [46] Rcpp_1.0.5             viridisLite_0.3.0      xtable_1.8-4          
- [49] reticulate_1.16        foreign_0.8-80         rsvd_1.0.3            
- [52] htmlwidgets_1.5.1      httr_1.4.1             RColorBrewer_1.1-2    
- [55] ellipsis_0.3.1         ica_1.0-2              farver_2.0.3          
- [58] pkgconfig_2.0.3        uwot_0.1.8             dbplyr_1.4.4          
- [61] deldir_0.1-28          labeling_0.3           tidyselect_1.1.0      
- [64] rlang_0.4.7            reshape2_1.4.4         later_1.1.0.1         
- [67] munsell_0.5.0          cellranger_1.1.0       tools_4.0.0           
- [70] cli_2.0.2              generics_0.0.2         broom_0.7.0           
- [73] ggridges_0.5.2         evaluate_0.14          fastmap_1.0.1         
- [76] yaml_2.2.1             goftest_1.2-2          knitr_1.29            
- [79] fs_1.4.2               fitdistrplus_1.1-1     zip_2.0.4             
- [82] RANN_2.6.1             pbapply_1.4-2          future_1.18.0         
- [85] nlme_3.1-148           mime_0.9               xml2_1.3.2            
- [88] compiler_4.0.0         rstudioapi_0.11        curl_4.3              
- [91] plotly_4.9.2.1         png_0.1-7              ggsignif_0.6.0        
- [94] spatstat.utils_1.17-0  reprex_0.3.0           stringi_1.4.6         
- [97] highr_0.8              RSpectra_0.16-0        lattice_0.20-41       
-[100] Matrix_1.2-18          vctrs_0.3.2            pillar_1.4.6          
-[103] lifecycle_0.2.0        lmtest_0.9-37          RcppAnnoy_0.0.16      
-[106] data.table_1.12.8      cowplot_1.0.0          bitops_1.0-6          
-[109] irlba_2.3.3            httpuv_1.5.4           patchwork_1.0.1       
-[112] R6_2.4.1               promises_1.1.1         rio_0.5.16            
-[115] KernSmooth_2.23-17     gridExtra_2.3          codetools_0.2-16      
-[118] MASS_7.3-51.6          assertthat_0.2.1       rprojroot_1.3-2       
-[121] withr_2.2.0            sctransform_0.2.1      GenomeInfoDbData_1.2.3
-[124] mgcv_1.8-31            hms_0.5.3              grid_4.0.0            
-[127] rpart_4.1-15           rmarkdown_2.3          carData_3.0-4         
-[130] Rtsne_0.15             git2r_0.27.1           shiny_1.5.0           
-[133] lubridate_1.7.9       </code></pre>
+  [1] utf8_1.2.1             reticulate_1.19        tidyselect_1.1.0      
+  [4] htmlwidgets_1.5.3      grid_4.0.0             Rtsne_0.15            
+  [7] munsell_0.5.0          codetools_0.2-18       ica_1.0-2             
+ [10] future_1.21.0          miniUI_0.1.1.1         withr_2.4.2           
+ [13] colorspace_2.0-0       highr_0.9              knitr_1.33            
+ [16] rstudioapi_0.13        ROCR_1.0-11            ggsignif_0.6.1        
+ [19] tensor_1.5             listenv_0.8.0          labeling_0.4.2        
+ [22] git2r_0.28.0           GenomeInfoDbData_1.2.3 polyclip_1.10-0       
+ [25] farver_2.1.0           rprojroot_2.0.2        parallelly_1.24.0     
+ [28] vctrs_0.3.7            generics_0.1.0         xfun_0.22             
+ [31] R6_2.5.0               bitops_1.0-7           spatstat.utils_2.1-0  
+ [34] assertthat_0.2.1       promises_1.2.0.1       scales_1.1.1          
+ [37] gtable_0.3.0           globals_0.14.0         goftest_1.2-2         
+ [40] workflowr_1.6.2        rlang_0.4.10           splines_4.0.0         
+ [43] rstatix_0.7.0          lazyeval_0.2.2         spatstat.geom_2.1-0   
+ [46] broom_0.7.6            yaml_2.2.1             reshape2_1.4.4        
+ [49] abind_1.4-5            modelr_0.1.8           backports_1.2.1       
+ [52] httpuv_1.6.0           tools_4.0.0            ellipsis_0.3.1        
+ [55] spatstat.core_2.1-2    jquerylib_0.1.4        RColorBrewer_1.1-2    
+ [58] ggridges_0.5.3         Rcpp_1.0.6             plyr_1.8.6            
+ [61] zlibbioc_1.34.0        RCurl_1.98-1.3         rpart_4.1-15          
+ [64] deldir_0.2-10          pbapply_1.4-3          cowplot_1.1.1         
+ [67] zoo_1.8-9              haven_2.4.1            ggrepel_0.9.1         
+ [70] cluster_2.1.2          fs_1.5.0               data.table_1.14.0     
+ [73] RSpectra_0.16-0        scattermore_0.7        openxlsx_4.2.3        
+ [76] lmtest_0.9-38          reprex_2.0.0           RANN_2.6.1            
+ [79] whisker_0.4            fitdistrplus_1.1-3     hms_1.0.0             
+ [82] patchwork_1.1.1        mime_0.10              evaluate_0.14         
+ [85] xtable_1.8-4           rio_0.5.26             readxl_1.3.1          
+ [88] gridExtra_2.3          compiler_4.0.0         KernSmooth_2.23-18    
+ [91] crayon_1.4.1           htmltools_0.5.1.1      mgcv_1.8-35           
+ [94] later_1.2.0            lubridate_1.7.10       DBI_1.1.1             
+ [97] dbplyr_2.1.1           MASS_7.3-53.1          Matrix_1.3-2          
+[100] car_3.0-10             cli_2.5.0              igraph_1.2.6          
+[103] pkgconfig_2.0.3        foreign_0.8-81         plotly_4.9.3          
+[106] spatstat.sparse_2.0-0  xml2_1.3.2             bslib_0.2.4           
+[109] XVector_0.28.0         rvest_1.0.0            digest_0.6.27         
+[112] sctransform_0.3.2      RcppAnnoy_0.0.18       spatstat.data_2.1-0   
+[115] rmarkdown_2.7          cellranger_1.1.0       leiden_0.3.7          
+[118] uwot_0.1.10            curl_4.3               shiny_1.6.0           
+[121] lifecycle_1.0.0        nlme_3.1-152           jsonlite_1.7.2        
+[124] carData_3.0-4          viridisLite_0.4.0      limma_3.44.3          
+[127] fansi_0.4.2            pillar_1.6.0           lattice_0.20-41       
+[130] fastmap_1.1.0          httr_1.4.2             survival_3.2-11       
+[133] glue_1.4.2             zip_2.1.1              png_0.1-7             
+[136] stringi_1.5.3          sass_0.3.1             irlba_2.3.3           
+[139] future.apply_1.7.0    </code></pre>
 </div>
 </div>
 
@@ -1310,8 +2734,6 @@ footer is added to webpages before the MathJax javascript. -->
 </script>
 
 
-
-
 </div>
 </div>
 
@@ -1321,7 +2743,7 @@ footer is added to webpages before the MathJax javascript. -->
 
 // add bootstrap table styles to pandoc tables
 function bootstrapStylePandocTables() {
-  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
 }
 $(document).ready(function () {
   bootstrapStylePandocTables();
@@ -1339,7 +2761,7 @@ $(document).ready(function () {
 
 $(document).ready(function () {
   $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
+    $(this).parent().toggleClass('nav-tabs-open');
   });
 });
 </script>

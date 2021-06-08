@@ -49,12 +49,13 @@ metaDat <- read_tsv(paste0(basedir, "/metadata_totalCell.txt"), col_names = T)
 ## load and assign samples
 ```{r load plus assign samples}
 
-assignSamples <- function(smpNam, basedirSmp, smpGrp, smpBatch){
+assignSamples <- function(smpNam, basedirSmp, smpGrp, smpBatch, smpType){
   smpNamFull <- list.files(path = paste0(basedirSmp, "/data/"),
 				 pattern = paste0(smpNam, ".*_seurat.rds"))
   seuratSmp <- readRDS(paste0(basedirSmp, "/data/", smpNamFull))
   seuratSmp$grp <- smpGrp
   seuratSmp$batch <- smpBatch
+  seuratSmp$seqType <- smpType
   return(seuratSmp)
 }
 
@@ -64,7 +65,8 @@ for(i in 1:length(metaDat$Sample)){
   seuratX <- assignSamples(smpNam = metaDat$Sample[i],
                            basedirSmp = basedir,
                            smpGrp = metaDat$group[i],
-                           smpBatch = metaDat$batch[i])
+                           smpBatch = metaDat$batch[i],
+                           smpType = metaDat$seqType[i])
   if(exists("seurat")){
     seurat <- merge(x = seurat, y = seuratX, project = "TCRMxCcl19")
   }else{
@@ -81,11 +83,11 @@ remove(seuratX)
 ## run clustering and DR and remove contaminating cells
 ```{r clustering and DR}
 ## remove contaminants
-seurat <- subset(seurat, subset = `MGP-BALBcJ-G0016488.Ptprc` >0, invert=T)
-seurat <- subset(seurat, subset = `MGP-BALBcJ-G0031834.Cd79a` >0, invert=T)
-seurat <- subset(seurat, subset = `MGP-BALBcJ-G0019246.Cd79b` >0, invert=T)
-seurat <- subset(seurat, subset = `MGP-BALBcJ-G0002392.Trac` >0, invert=T)
-seurat <- subset(seurat, subset = `MGP-BALBcJ-G0034697.Cd3d` >0, invert=T)
+seurat <- subset(seurat, subset = `ENSMUSG00000026395.Ptprc` >0, invert=T)
+seurat <- subset(seurat, subset = `ENSMUSG00000003379.Cd79a` >0, invert=T)
+seurat <- subset(seurat, subset = `ENSMUSG00000040592.Cd79b` >0, invert=T)
+seurat <- subset(seurat, subset = `ENSMUSG00000076928.Trac` >0, invert=T)
+seurat <- subset(seurat, subset = `ENSMUSG00000032094.Cd3d` >0, invert=T)
 
 seurat <- rerunSeurat3(seurat)
 Idents(seurat) <- seurat$RNA_snn_res.0.25
@@ -99,32 +101,32 @@ colnames(dat) <- c("dataset", "all")
 #colnames(dat2) <- c("dataset", "Grem1")
 #dat <- dat %>% left_join(., dat2, by=c("dataset"))
 
-seuratSub <- subset(seurat, subset = `MGP-BALBcJ-G0016771.Grem2` >0) ## 2 cells
+seuratSub <- subset(seurat, subset = `ENSMUSG00000050069.Grem2` >0) ## 2 cells
 dat2 <- data.frame(table(seuratSub$dataset))
 colnames(dat2) <- c("dataset", "Grem2")
 dat <- dat %>% left_join(., dat2, by=c("dataset"))
 
-seuratSub <- subset(seurat, subset = `MGP-BALBcJ-G0026527.Bmp2` >0) ## 418 cells
+seuratSub <- subset(seurat, subset = `ENSMUSG00000027358.Bmp2` >0) ## 418 cells
 dat2 <- data.frame(table(seuratSub$dataset))
 colnames(dat2) <- c("dataset", "Bmp2")
 dat <- dat %>% left_join(., dat2, by=c("dataset"))
 
-seuratSub <- subset(seurat,subset = `MGP-BALBcJ-G0021163.Bmp4` >0) ## 1341 cells
+seuratSub <- subset(seurat,subset = `ENSMUSG00000021835.Bmp4` >0) ## 1341 cells
 dat2 <- data.frame(table(seuratSub$dataset))
 colnames(dat2) <- c("dataset", "Bmp4")
 dat <- dat %>% left_join(., dat2, by=c("dataset"))
 
-seuratSub <- subset(seurat,subset=`MGP-BALBcJ-G0021127.Bmpr1a` >0) ## 1092 cells
+seuratSub <- subset(seurat,subset=`ENSMUSG00000021796.Bmpr1a` >0) ## 1092 cells
 dat2 <- data.frame(table(seuratSub$dataset))
 colnames(dat2) <- c("dataset", "Bmpr1a")
 dat <- dat %>% left_join(., dat2, by=c("dataset"))
 
-seuratSub <- subset(seurat, subset=`MGP-BALBcJ-G0027908.Bmpr1b` >0) ## 2 cells
+seuratSub <- subset(seurat, subset=`ENSMUSG00000052430.Bmpr1b` >0) ## 2 cells
 dat2 <- data.frame(table(seuratSub$dataset))
 colnames(dat2) <- c("dataset", "Bmpr1b")
 dat <- dat %>% left_join(., dat2, by=c("dataset"))
 
-seuratSub <- subset(seurat,subset=`MGP-BALBcJ-G0016008.Bmpr2` >0) ## 2201 cells
+seuratSub <- subset(seurat,subset=`ENSMUSG00000067336.Bmpr2` >0) ## 2201 cells
 dat2 <- data.frame(table(seuratSub$dataset))
 colnames(dat2) <- c("dataset", "Bmpr2")
 dat <- dat %>% left_join(., dat2, by=c("dataset"))
@@ -170,17 +172,17 @@ plotQC3 <- function(sce, feature){
   return(p)
 }
 
-plotQC2(sce, "total_counts")
-plotQC3(sce, "total_counts")
+plotQC2(sce, "total")
+plotQC3(sce, "total")
 
-plotQC2(sce, "total_features_by_counts")
-plotQC3(sce, "total_features_by_counts")
+plotQC2(sce, "detected")
+plotQC3(sce, "detected")
 
 #plotQC2(sce, "pct_counts_Mt")
 #plotQC3(sce, "pct_counts_Mt")
 
-plotQC2(sce, "pct_counts_in_top_500_features")
-plotQC3(sce, "pct_counts_in_top_500_features")
+plotQC2(sce, "sum")
+plotQC3(sce, "sum")
 
 #plotQC2(sce, "pct_counts_endogenous")
 #plotQC3(sce, "pct_counts_endogenous")
@@ -342,7 +344,8 @@ avgHeatmap <- function(seurat, selGenes, colVecIdent, colVecCond=NULL,
 cluster <- levels(seurat)
 selGenesAll <- seurat_markers_all %>% group_by(cluster) %>% 
   top_n(-15, p_val_adj) %>% 
-  top_n(15, avg_logFC)
+  top_n(15, avg_log2FC)
+selGenesAll <- selGenesAll %>% mutate(geneIDval=gsub("^.*\\.", "", gene)) %>% filter(nchar(geneIDval)>1)
 
 template_hm <- c(
     "#### {{cl}}\n",
@@ -379,7 +382,7 @@ knitr::kable(dat_cl)
 ### Bmp2
 ```{r vis Bmp2}
 p <- FeaturePlot(seurat, reduction = "umap", 
-            features = "MGP-BALBcJ-G0026527.Bmp2",
+            features = "ENSMUSG00000027358.Bmp2",
             cols=c("lightgrey", "darkred"),
             order = T)+
   theme(legend.position="right")
@@ -390,7 +393,7 @@ p
 ### Bmp4
 ```{r vis Bmp4}
 p <- FeaturePlot(seurat, reduction = "umap", 
-            features = "MGP-BALBcJ-G0021163.Bmp4",
+            features = "ENSMUSG00000021835.Bmp4",
             cols=c("lightgrey", "darkred"),
             order = T)+
   theme(legend.position="right")
@@ -401,7 +404,7 @@ p
 ### Bmpr1a
 ```{r vis Bmpr1a}
 p <- FeaturePlot(seurat, reduction = "umap", 
-            features = "MGP-BALBcJ-G0021127.Bmpr1a",
+            features = "ENSMUSG00000021796.Bmpr1a",
             cols=c("lightgrey", "darkred"),
             order = T)+
   theme(legend.position="right")
@@ -412,15 +415,13 @@ p
 ### Bmpr2
 ```{r vis Bmpr2}
 p <- FeaturePlot(seurat, reduction = "umap", 
-            features = "MGP-BALBcJ-G0016008.Bmpr2",
+            features = "ENSMUSG00000067336.Bmpr2",
             cols=c("lightgrey", "darkred"),
             order = T)+
   theme(legend.position="right")
 p
 
 ```
-
-
 
 ## overall DE genes
 ```{r overall DE, fig.height=10, fig.width=6}
@@ -434,7 +435,7 @@ DEgenes <- FindAllMarkers(object = seurat, assay ="RNA",
 
 ### plot DE genes top 15 avg logFC
 DEGenesAll <- DEgenes %>% group_by(cluster) %>% 
-  top_n(15, avg_logFC)
+  top_n(15, avg_log2FC)
 
 Idents(seurat) <- seurat$seurat_clusters
 avgHeatmap(seurat = seurat, selGenes = DEGenesAll,
@@ -455,6 +456,135 @@ write.table(seurat_markers_all,
 
 write.table(DEgenes,
             file=paste0(basedir, "/data/MuHeart_totalCells_DEGenes.txt"),
+            row.names = FALSE, col.names = TRUE, quote = FALSE, sep = "\t")
+
+```
+
+
+## run integration
+```{r integrated across seq techniques}
+
+seurat.list <- SplitObject(object = seurat, split.by = "seqType")
+for (i in 1:length(x = seurat.list)) {
+    seurat.list[[i]] <- NormalizeData(object = seurat.list[[i]],
+                                      verbose = FALSE)
+    seurat.list[[i]] <- FindVariableFeatures(object = seurat.list[[i]], 
+        selection.method = "vst", nfeatures = 2000, verbose = FALSE)
+}
+
+seurat.anchors <- FindIntegrationAnchors(object.list = seurat.list, dims = 1:15,
+                                         k.filter = 50)
+seurat.int <- IntegrateData(anchorset = seurat.anchors, dims = 1:15)
+DefaultAssay(object = seurat.int) <- "integrated"
+
+# rerun seurat
+seurat.int <- ScaleData(object = seurat.int, verbose = FALSE,
+                        features = rownames(seurat.int))
+seurat.int <- RunPCA(object = seurat.int, npcs = 20, verbose = FALSE)
+seurat.int <- RunTSNE(object = seurat.int, reduction = "pca", dims = 1:20)
+seurat.int <- RunUMAP(object = seurat.int, reduction = "pca", dims = 1:20)
+
+seurat.int <- FindNeighbors(object = seurat.int, reduction = "pca", dims = 1:20)
+res <- c(0.6,0.8,0.4,0.25)
+for(i in 1:length(res)){
+  seurat.int <- FindClusters(object = seurat.int, resolution = res[i],
+                             random.seed = 1234)
+}
+
+DefaultAssay(object = seurat.int) <- "RNA"
+
+
+```
+
+## vis integrated data {.tabset}
+### clusters
+```{r vis int cluster}
+
+DimPlot(seurat.int, reduction = "umap", cols=colPal)+
+  theme_bw() +
+  theme(axis.text = element_blank(), axis.ticks = element_blank(), 
+        panel.grid.minor = element_blank()) +
+  xlab("UMAP1") +
+  ylab("UMAP2")
+
+
+```
+
+### group
+```{r vis int grp}
+
+DimPlot(seurat.int, reduction = "umap", group.by = "grp", cols=colGrp)+
+  theme_bw() +
+  theme(axis.text = element_blank(), axis.ticks = element_blank(), 
+        panel.grid.minor = element_blank()) +
+  xlab("UMAP1") +
+  ylab("UMAP2")
+
+```
+
+
+### Sample
+```{r vis int sample}
+
+DimPlot(seurat.int, reduction = "umap", group.by = "dataset", cols=colSmp)+
+  theme_bw() +
+  theme(axis.text = element_blank(), axis.ticks = element_blank(), 
+        panel.grid.minor = element_blank()) +
+  xlab("UMAP1") +
+  ylab("UMAP2")
+
+
+```
+
+## marker genes integration
+```{r marker genes int data}
+## marker genes int res 0.25
+seurat_markers_int <- FindAllMarkers(object = seurat.int, assay ="RNA",
+                                     only.pos = TRUE, min.pct = 0.25,
+                                     logfc.threshold = 0.25,
+                                     test.use = "wilcox")
+
+```
+
+## clusterwise DE genes
+
+```{r clusterwise DE genes integrated data}
+
+Idents(seurat.int) <- seurat.int$grp
+seurat.int$clusterLabel <- as.factor(seurat.int$integrated_snn_res.0.25)
+grpVec <- levels(seurat.int$clusterLabel)
+
+clustDE <- lapply(grpVec, function(grp){
+  grpSub <- levels(seurat.int$clusterLabel)[which(
+    levels(seurat.int$clusterLabel)==grp)]
+  seuratSub <- subset(seurat.int, clusterLabel == grpSub)
+  DEgenes <-FindAllMarkers(seuratSub, only.pos=T, logfc.threshold = 0.25,
+                           min.pct = 0.1)
+  DEgenes <- DEgenes %>% filter(p_val_adj<0.01) %>%
+    mutate(group=paste0(grp, "_", cluster))
+})
+
+names(clustDE) <- grpVec
+
+clustDE_Dat <- data.frame(do.call("rbind", clustDE))
+```
+
+
+
+## save integrated objects
+```{r save int}
+saveRDS(seurat.int, file = paste0(basedir,
+                              "/data/MuHeart_totalCells_integrated_seurat.rds"))
+
+write.table(seurat_markers_int,
+            file=paste0(basedir,
+                        "/data/MuHeart_totalCells_integrated_markerGenes.txt"),
+            row.names = FALSE, col.names = TRUE, quote = FALSE, sep = "\t")
+
+
+write.table(clustDE_Dat,
+            file=paste0(basedir,
+                        "/data/MuHeart_totalCells_integrated_cwDEGenes.txt"),
             row.names = FALSE, col.names = TRUE, quote = FALSE, sep = "\t")
 
 ```
