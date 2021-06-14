@@ -182,6 +182,33 @@ DimPlot(seurat, reduction = "umap", group.by = "clusterLabel", cols=colLab)+
 
 ```
 
+## cell counts {.tabset}
+
+### overall cell counts
+```{r overall cell counts}
+dim(seurat)[2]
+```
+
+### counts per group
+```{r counts per group}
+knitr::kable(table(seurat$grp))
+
+```
+
+### counts per label and group
+```{r counts per label and group}
+
+knitr::kable(table(seurat$label_plus_cond))
+
+```
+
+
+### counts per cluster and group
+```{r counts per cluster and group}
+
+knitr::kable(table(seurat$cluster_plus_cond))
+
+```
 
 
 ## marker genes
