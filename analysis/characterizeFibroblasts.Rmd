@@ -16,6 +16,7 @@ output:
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(warning = FALSE, message = FALSE, dev = c("png", "pdf"))
 set.seed(1000)
 ```
 
@@ -176,7 +177,8 @@ template_dp <- c(
     "maxCM <- max(cntMat)",
     "minCM <- min(cntMat)",
     "pal = colorRampPalette(rev(brewer.pal(11, 'RdBu')))",
-    "sc <- scale_colour_gradientn(colours = pal(100), limits=c(minCM,maxCM))",
+    "sc <- scale_colour_gradientn(colours = pal(100), limits=c(minCM,maxCM),
+    na.value = pal(100)[100])",
     "p <- visGroup(sceSub, 'sign', dim_red = 'UMAP') +
     sc +
     guides(colour = guide_colourbar(title = '')) +
@@ -218,7 +220,97 @@ template_dpt <- c(
       "maxCM <- max(cntMat)",
       "minCM <- min(cntMat)",
       "pal = colorRampPalette(rev(brewer.pal(11, 'RdBu')))",
-      "sc <- scale_colour_gradientn(colours = pal(100), limits=c(minCM,maxCM))",
+      "sc <- scale_colour_gradientn(colours = pal(100), limits=c(minCM,maxCM),
+      na.value = pal(100)[100])",
+      "p <- visGroup(sceSub, 'sign', dim_red = 'UMAP') +
+      sc +
+      guides(colour = guide_colourbar(title = '')) +
+      ggtitle(paste0(sign, ' signature ', tiP)) +
+      theme_classic() + 
+      theme(axis.text = element_blank(),
+          axis.ticks = element_blank()) +
+      labs(x='Dimension 1', y='Dimension 2')",
+      "pList[[i]] <- p}",
+    "pList\n",
+    "```\n",
+    "\n"
+)
+
+
+plots_dpt <- lapply(sigNam, 
+  function(sig) knitr::knit_expand(text = template_dpt)
+)
+
+
+```
+
+`r knitr::knit(text = unlist(plots_dpt))`
+
+
+### map signature on umap cutoff 2 {.tabset}
+```{r map sign cut 2}
+sce <- as.SingleCellExperiment(seurat)
+sigNam <- unique(allSign$signature)
+
+template_dp <- c(
+    "#### {{sig}}\n",
+    "```{r map sign cut 2 {{sig}},fig.height=3.5, fig.width=4.5, echo = FALSE}\n",
+    "sign <- as.character('{{sig}}')",
+    "signGenes <- allSign %>% dplyr::filter(signature == sign)",
+    "sceSub <- sce[which(rownames(sce) %in% signGenes$geneID),]",
+    "cntMat <- rowSums(
+                t(as.matrix(sceSub@assays@data$logcounts)))/nrow(signGenes)",
+    "sceSub$sign <- cntMat",
+    "maxCM <- max(cntMat)",
+    "minCM <- min(cntMat)",
+    "maxCM <- 2",
+    "pal = colorRampPalette(rev(brewer.pal(11, 'RdBu')))",
+    "sc <- scale_colour_gradientn(colours = pal(100), limits=c(minCM,maxCM),
+    na.value = pal(100)[100])",
+    "p <- visGroup(sceSub, 'sign', dim_red = 'UMAP') +
+    sc +
+    guides(colour = guide_colourbar(title = '')) +
+    ggtitle(paste0(sign, ' signature')) +
+    theme_classic() + 
+    theme(axis.text = element_blank(),
+          axis.ticks = element_blank()) +
+    labs(x='Dimension 1', y='Dimension 2')",
+    "p\n",
+    "```\n",
+    "\n"
+)
+
+
+plots_dp <- lapply(sigNam, 
+  function(sig) knitr::knit_expand(text = template_dp)
+)
+
+```
+
+`r knitr::knit(text = unlist(plots_dp))`
+
+### map signature on umap each timepoint plus cond cut 2 {.tabset}
+```{r map sign time cut 2}
+
+template_dpt <- c(
+    "#### {{sig}}\n",
+    "```{r map sign time cut 2 {{sig}},fig.height=3.5, fig.width=4.5, echo = FALSE}\n",
+    "sign <- as.character('{{sig}}')",
+    "signGenes <- allSign %>% dplyr::filter(signature == sign)",
+    "pList <- NULL",
+    "for(i in 1:length(unique(sce$time_plus_grp))){",
+      "tiP <- unique(sce$time_plus_grp)[i]",
+      "sceSub <- sce[which(rownames(sce) %in% signGenes$geneID),]",
+      "sceSub <- sceSub[,sceSub$time_plus_grp == tiP]",
+      "cntMat <- rowSums(
+                t(as.matrix(sceSub@assays@data$logcounts)))/nrow(signGenes)",
+      "sceSub$sign <- cntMat",
+      "maxCM <- max(cntMat)",
+      "minCM <- min(cntMat)",
+      "maxCM <- 2",
+      "pal = colorRampPalette(rev(brewer.pal(11, 'RdBu')))",
+      "sc <- scale_colour_gradientn(colours = pal(100), limits=c(minCM,maxCM),
+      na.value = pal(100)[100])",
       "p <- visGroup(sceSub, 'sign', dim_red = 'UMAP') +
       sc +
       guides(colour = guide_colourbar(title = '')) +
@@ -351,6 +443,97 @@ pOut <- avgHeatmap(seurat = seurat, selGenes = allSign,
 
 
 ```
+
+## expression of selected genes {.tabset}
+```{r sel genes}
+
+selGenes <- c("Grem1", "Grem2", "Bmp2","Bmp4", "Bmp7", "Bmpr1a", "Bmpr1b",
+              "Bmpr2", "Bst1", "Clu", "Ncam1")
+selGenesLong <- data.frame(gene=rownames(seurat)) %>%
+  mutate(short=gsub("^.*\\.", "", gene)) %>% filter(short %in% selGenes)
+
+```
+
+
+### sel Genes across all {.tabset}
+```{r sel Genes across all}
+
+template_fp <- c(
+    "#### {{sel}}\n",
+    "```{r sel Genes across all {{sel}},fig.height=3, fig.width=4, echo = FALSE}\n",
+    "selGene <- as.character('{{sel}}')",
+    "p <- FeaturePlot(seurat, reduction = 'umap',
+      features = selGene,
+      cols=c('lightgrey', 'darkred'),
+              order = T)+
+    theme(legend.position='right')",
+    "p\n",
+    "```\n",
+    "\n"
+)
+
+
+plots_fp <- lapply(selGenesLong$gene, 
+  function(sel) knitr::knit_expand(text = template_fp)
+)
+
+```
+
+`r knitr::knit(text = unlist(plots_fp))`
+
+### sel Genes split by grp {.tabset}
+```{r el Genes split by grp}
+
+template_fp <- c(
+    "#### {{sel}}\n",
+    "```{r sel Genes split by grp {{sel}},fig.height=3, fig.width=8, echo = FALSE}\n",
+    "selGene <- as.character('{{sel}}')",
+    "p <- FeaturePlot(seurat, reduction = 'umap',
+      features = selGene,
+      cols=c('lightgrey', 'darkred'),
+      order = T,
+      split.by = 'grp')+
+    theme(legend.position='right')",
+    "p\n",
+    "```\n",
+    "\n"
+)
+
+
+plots_fp <- lapply(selGenesLong$gene, 
+  function(sel) knitr::knit_expand(text = template_fp)
+)
+
+```
+
+`r knitr::knit(text = unlist(plots_fp))`
+
+### sel Genes split by time {.tabset}
+```{r sel Genes split by time}
+
+template_fp <- c(
+    "#### {{sel}}\n",
+    "```{r sel Genes split by time {{sel}},fig.height=3, fig.width=12, echo = FALSE}\n",
+    "selGene <- as.character('{{sel}}')",
+    "p <- FeaturePlot(seurat, reduction = 'umap',
+      features = selGene,
+      cols=c('lightgrey', 'darkred'),
+      order = T,
+      split.by = 'time')+
+    theme(legend.position='right')",
+    "p\n",
+    "```\n",
+    "\n"
+)
+
+
+plots_fp <- lapply(selGenesLong$gene, 
+  function(sel) knitr::knit_expand(text = template_fp)
+)
+
+```
+
+`r knitr::knit(text = unlist(plots_fp))`
 
 
 ## session info
