@@ -1,0 +1,237 @@
+---
+title: "vis CD45+ cells"
+author: "Mechthild Lütge"
+date: "29 April 2021"
+output:
+  html_document:
+    self_contained: no
+    code_folding: show
+    number_sections: no
+    toc: yes
+    toc_depth: 3
+    toc_float: true
+    collapsed: no
+    smooth_scroll: yes
+---
+
+```{r setup, include=FALSE}
+options(width = 100)
+knitr::opts_chunk$set(warning = FALSE, message = FALSE, dev = c("png", "pdf"))
+seed <- 1234
+```
+
+
+## load packages
+```{r libs}
+suppressPackageStartupMessages({
+  library(SingleCellExperiment)
+  library(tidyverse)
+  library(Seurat)
+  library(magrittr)
+  library(dplyr)
+  library(purrr)
+  library(ggplot2)
+  library(here)
+  library(runSeurat3)
+  library(ggsci)
+  library(ggpubr)
+  library(pheatmap)
+})
+
+```
+
+
+## load data
+```{r load data}
+
+basedir <- here()
+seurat <- readRDS(file = paste0(basedir,
+                                "/data/Mu_Heart_TCRMplusLM_CD45_seurat.rds"))
+
+
+```
+
+
+## color vectors
+```{r colVec}
+
+colPal <- pal_igv()(length(levels(seurat)))
+colGrp <- pal_jama()(length(unique(seurat$grp)))
+colSmp <- pal_uchicago()(length(unique(seurat$dataset)))
+colLab <- pal_futurama()(length(unique(seurat$clusterLabel)))
+
+names(colPal) <- levels(seurat)
+names(colGrp) <- unique(seurat$grp)
+names(colSmp) <- unique(seurat$dataset)
+names(colLab) <- unique(seurat$clusterLabel)
+```
+
+
+## vis data {.tabset}
+### clusters
+```{r vis cluster}
+DimPlot(seurat, reduction = "umap", cols=colPal)+
+  theme_bw() +
+  theme(axis.text = element_blank(), axis.ticks = element_blank(), 
+        panel.grid.minor = element_blank()) +
+  xlab("UMAP1") +
+  ylab("UMAP2")
+
+
+```
+
+### group
+```{r vis grp}
+
+DimPlot(seurat, reduction = "umap", group.by = "grp", cols=colGrp)+
+  theme_bw() +
+  theme(axis.text = element_blank(), axis.ticks = element_blank(), 
+        panel.grid.minor = element_blank()) +
+  xlab("UMAP1") +
+  ylab("UMAP2")
+
+```
+
+### label
+```{r vis label}
+
+DimPlot(seurat, reduction = "umap", group.by = "clusterLabel", cols=colLab)+
+  theme_bw() +
+  theme(axis.text = element_blank(), axis.ticks = element_blank(), 
+        panel.grid.minor = element_blank()) +
+  xlab("UMAP1") +
+  ylab("UMAP2")
+
+```
+
+## compare TCRM vs LM activation marker {.tabset}
+```{r sel genes}
+
+selGenesDat <- data.frame(gene=c("Tnfrsf1b", "Gzmb", "Ifrd1", "Areg", "Icos",
+                                 "Traf1", "Ctla4", "Maf", "Il17a", "Ifng"))
+
+```
+
+
+### DotPlot {.tabset}
+#### color by grp
+```{r Dotplot color by grp, fig.height=10, fig.width=10}
+
+genes <- data.frame(ensID=rownames(seurat)) %>%
+  mutate(gene=gsub("^.*\\.", "", ensID))
+selGenes <- selGenesDat %>% 
+  left_join(., genes, by="gene")
+
+Idents(seurat) <- seurat$label_plus_cond
+clusterDat <- data.frame(ident=levels(seurat)) %>%
+  mutate(label=gsub("_.*$", "", ident)) %>% 
+  mutate(grp= gsub("^.*_", "", ident))
+
+Idents(seurat) <- seurat$clusterLabel
+DotPlot(seurat, assay="RNA", features = selGenes$ensID, split.by = "grp",
+        cols = colGrp, col.max = 6) +
+  coord_flip() +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
+  scale_x_discrete(breaks=selGenes$ensID, labels=selGenes$gene) +
+  scale_y_discrete(breaks=clusterDat$ident, labels=clusterDat$label) +
+  xlab("") + ylab("")
+
+
+```
+
+
+#### color by expression
+```{r Dotplot color by expression, fig.height=10, fig.width=9}
+
+
+Idents(seurat) <- seurat$label_plus_cond
+DotPlot(seurat, assay="RNA", features = selGenes$ensID, scale =T) +
+  scale_color_viridis_c() +
+  coord_flip() +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
+  scale_x_discrete(breaks=selGenes$ensID, labels=selGenes$gene) +
+  xlab("") + ylab("")
+
+```
+
+### Scatterplot
+#### Function
+```{r function scatterplot}
+
+pScatter <- function(seuratObj, DEgenes, genesLab=NULL, titleNam=NULL){
+  avg.allID <- AverageExpression(seuratObj, show.progress = FALSE)
+  avg.allID <- as.data.frame(log1p(avg.allID$RNA)) %>% 
+    rownames_to_column(var="gene")
+
+  ## expression frequency
+  GeneFreqSel <- as.data.frame(GetAssayData(seuratObj, assay = "RNA",
+                                          slot = "data")) %>%
+  tibble::rownames_to_column(var="gene") %>% mutate(count=rowSums(.!=0)-1) %>%
+  mutate(countFreq=count/ncol(seuratObj)) %>% select(gene,count, countFreq) %>%
+  dplyr::filter(countFreq>=0.1)
+
+  # colour significant genes with logFC>0.25 and adj_pVal < 0.01
+  signGenes <- DEgenes %>% 
+  dplyr::filter(p_val_adj<0.01 & (avg_log2FC > 0.25 | avg_log2FC < -0.25)) 
+  
+  ## label selected genes
+  if(is.null(genesLab)){
+    genesLab <- DEgenes %>% top_n(., 30, avg_log2FC) %>% 
+      mutate(labelNam = gsub("^.*\\.", "", gene))
+  }
+  genes.to.label = genesLab$labelNam
+  avg.allID <- avg.allID %>% mutate(labelNam=gsub("^.*\\.", "", gene)) %>%
+    mutate(colourGrp=ifelse(labelNam %in% genes.to.label, "lab",
+                          ifelse(gene%in%signGenes$gene, "sig", "notSig"))) %>%
+    dplyr::filter(gene%in%GeneFreqSel$gene)
+  cond1 <- levels(seuratObj)[1]
+  cond2 <- levels(seuratObj)[2]
+  p_allID <- ggscatter(avg.allID, x=cond1, y=cond2,
+                    color = "colourGrp",
+                    #fill = "colourGrp",
+                    palette = c("#660000", "#808080", "#FF3333"),
+                    label="labelNam",
+                    label.select = genes.to.label,
+                    repel = F,
+                    label.rectangle=F,
+                    xlab=paste0("Average Expression ", cond1),
+                    ylab = paste0("Average Expression ", cond2),
+                    title=titleNam,
+                    legend="none",
+                    font.label=10,
+                    alpha=0.9,
+                    #xlim = c(0, 5),
+                    #ylim = c(0, 5),
+                    size=0.5)
+
+  p_allID 
+}
+
+
+```
+
+#### plot genes
+
+```{r scatterplot}
+
+Idents(seurat) <- seurat$grp
+colnames(selGenes)[1] <- "labelNam"
+DEgenes <- FindAllMarkers(object = seurat, assay ="RNA",
+                                     only.pos = TRUE, min.pct = 0.25,
+                                     logfc.threshold = 0.25,
+                                     test.use = "wilcox")
+
+pOut <- pScatter(seuratObj = seurat, DEgenes = DEgenes, genesLab=selGenes)
+pOut
+```
+
+
+## session info
+```{r session info}
+sessionInfo()
+date()
+```
+
+
+
+
