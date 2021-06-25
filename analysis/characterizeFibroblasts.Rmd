@@ -449,7 +449,8 @@ pOut <- avgHeatmap(seurat = seurat, selGenes = allSign,
 
 selGenes <- c("Grem1", "Grem2", "Bmp2","Bmp4", "Bmp7", "Bmpr1a", "Bmpr1b",
               "Bmpr2", "Bst1", "Clu", "Ncam1", "Ccl2", "Cxcl9", "Il11", "Timp1",
-              "Plaur", "Hif1a", "Sod2", "Ccl19", "Cxcl13", "Il33")
+              "Plaur", "Hif1a", "Sod2", "Ccl19", "Cxcl13", "Il33", "Il6",
+              "Vcam1", "Icam1", "H2-Aa", "Rosa26eyfp", "Ly6a")
 selGenesLong <- data.frame(gene=rownames(seurat)) %>%
   mutate(short=gsub("^.*\\.", "", gene)) %>% filter(short %in% selGenes)
 

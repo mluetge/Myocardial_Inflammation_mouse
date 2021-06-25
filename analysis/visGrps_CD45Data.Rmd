@@ -154,6 +154,23 @@ DotPlot(seurat, assay="RNA", features = selGenes$ensID, scale =T) +
 
 ```
 
+
+#### color by expression adapt dot size
+```{r Dotplot color by expression dot size, fig.height=8, fig.width=8}
+
+
+Idents(seurat) <- seurat$label_plus_cond
+DotPlot(seurat, assay="RNA", features = selGenes$ensID, scale =T, dot.scale =10,
+        scale.max = 50) +
+  scale_color_viridis_c() +
+  coord_flip() +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
+  scale_x_discrete(breaks=selGenes$ensID, labels=selGenes$gene) +
+  xlab("") + ylab("")
+
+```
+
+
 ### Scatterplot
 #### Function
 ```{r function scatterplot}

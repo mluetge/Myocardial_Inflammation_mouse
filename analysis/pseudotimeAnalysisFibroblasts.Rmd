@@ -104,41 +104,129 @@ DimPlot(seurat, reduction = "umap", group.by = "time", cols=colTime)+
 
 ```
 
+### clustering res 0.25
+```{r vis cluster res 0.25}
 
-### run slingshot
-```{r slinshot mLN}
+DimPlot(seurat, reduction = "umap", group.by = "RNA_snn_res.0.4", cols=colPal)+
+  theme_bw() +
+  theme(axis.text = element_blank(), axis.ticks = element_blank(), 
+        panel.grid.minor = element_blank()) +
+  xlab("UMAP1") +
+  ylab("UMAP2")
 
-## subsample seurat
-seuratSub <- subset(seurat, downsample = 500)
 
-sds <- slingshot(Embeddings(seuratSub, "umap"),
-                clusterLabels = seuratSub$seurat_clusters, 
-                stretch = 0)
+```
+
+
+
+
+## run slingshot {.tabset}
+```{r slinshot}
+
+sce <- as.SingleCellExperiment(seurat)
+sce <- slingshot(sce, clusterLabels = 'RNA_snn_res.0.4', reducedDim = 'UMAP',
+                 approx_points = 100, stretch = 0,
+                 thresh = 0.001, omega = 10, extend = "n")
 
 colPalDat <- data.frame(Color=colPal, cl=names(colPal))
-colDat <- data.frame(cl=seuratSub$seurat_clusters) %>% 
+colDat <- data.frame(cl=sce$seurat_clusters) %>% 
   left_join(., colPalDat, by="cl")
+
 
 ```
 
 
 ### plot lineages
-```{r plot lineages mLN}
+```{r plot lineages}
 
-plot(reducedDim(sds), col = colDat$Color, pch = 16, cex = 0.5)
-lines(sds, lwd = 2, type = 'lineages', col = 'black')
-
-```
-
-
-### plot curve
-```{r slingshot curve mLN}
-
-plot(reducedDim(sds), col = colDat$Color, pch = 16, cex = 0.5)
-lines(sds, lwd = 2, col = 'black')
+plot(reducedDims(sce)$UMAP, col = colDat$Color, pch = 16, cex = 0.5)
+lines(SlingshotDataSet(sce), lwd = 2, type = 'lineages', col = 'black')
 
 ```
 
+
+### plot curve col cluster
+```{r slingshot curve col cluster}
+
+plot(reducedDims(sce)$UMAP, col = colDat$Color, pch = 16, cex = 0.5)
+lines(SlingshotDataSet(sce), lwd = 2, col = 'black')
+
+
+```
+
+### plot curve col pseudotime
+```{r slingshot curve col pseudotime}
+
+colors <- colorRampPalette(brewer.pal(8,'OrRd'))(100)
+plotcol <- colors[cut(sce$slingPseudotime_1, breaks=100)]
+plotcol2 <- colors[cut(sce$slingPseudotime_2, breaks=100)]
+plotcol3 <- colors[cut(sce$slingPseudotime_3, breaks=100)]
+plotcol4 <- colors[cut(sce$slingPseudotime_4, breaks=100)]
+
+plotColAll <- plotcol
+plotColAll[which(is.na(plotColAll))] <- plotcol2[which(is.na(plotColAll))]
+plotColAll[which(is.na(plotColAll))] <- plotcol3[which(is.na(plotColAll))]
+plotColAll[which(is.na(plotColAll))] <- plotcol4[which(is.na(plotColAll))]
+
+plot(reducedDims(sce)$UMAP, col = plotColAll, pch = 16, cex = 0.3)
+lines(SlingshotDataSet(sce), lwd = 2, col = 'black')
+
+
+```
+
+## save sce object with pseudotime ordering
+```{r save sce}
+saveRDS(sce, file= paste0(basedir, "/data/TCRM_all10samplesMerged_sce.rds"))
+#sce <- readRDS(paste0(basedir, "/data/TCRM_all10samplesMerged_sce.rds"))
+```
+
+
+
+```{r eval=FALSE, include=FALSE}
+library(tradeSeq)
+library(gam)
+
+sceSub <- sce[, which(!is.na(sce$slingPseudotime_1))]
+sceSub <- fitGAM(sceSub, parallel=T)
+
+## subset sce to single lineage
+sceSub <- sce[, which(!is.na(sce$slingPseudotime_1))]
+
+# Only look at the 1,000 most variable genes when identifying temporally expressesd genes
+Y <- log2(counts(sceSub) + 1)
+var1K <- names(sort(apply(Y, 1, var),decreasing = TRUE))[1:1000]
+Y <- Y[var1K, ]  # only counts for variable genes
+
+# Fit GAM for each gene using pseudotime as independent variable.
+t <- sceSub$slingPseudotime_1
+gam.pval <- apply(Y, 1, function(z){
+  d <- data.frame(z=z, t=t)
+  tmp <- gam(z ~ lo(t), data=d)
+  p <- summary(tmp)[4][[1]][1,5]
+  p
+})
+
+
+# Identify genes with the most significant time-dependent model fit.
+topgenes <- data.frame(gene=names(gam.pval), 
+                       pVal=gam.pval)  
+
+scater::plotHeatmap(sce, topgenes$gene)
+# Prepare and plot a heatmap of the top genes that vary their expression over pseudotime.
+library(clusterExperiment)
+seurat <- as.Seurat(sceSub)
+sceSel <- sceSub[which(rownames(sceSub) %in% topgenes),]
+heatdata <- as.matrix(counts(sceSel), order(t, na.last = NA))
+heatclus <- sceSel$seurat_clusters[order(t, na.last = NA)]
+png(paste0(basedir, "/data/heatmap_time_genes.png"), width=10, height=10, units = "in", res=200)
+ce <- ClusterExperiment(heatdata, heatclus, transformation = log1p)
+clusterExperiment::plotHeatmap(ce, clusterSamplesData = "orderSamplesValue", visualizeData = 'transformed', cexRow = 1.5, fontsize = 15)
+dev.off()
+
+# l1 <- slingLineages(sce)
+# sce <- fitGAM(sce, parallel=T)
+
+```
 
 
 ## session info
