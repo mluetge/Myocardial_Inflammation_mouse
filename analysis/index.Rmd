@@ -8,11 +8,18 @@ editor_options:
   chunk_output_type: console
 ---
 
-merge and visualize data: [link](mergeAndVisData_TCRM_2.html)  
-merge CD45+ cells: [link](mergeCD45cells.html)  
-visualize activation CD45+ cells:  [link](visGrps_CD45Data.html)  
+### Cardiac Fibroblasts:  
+merge and visualize fibroblast data: [link](mergeAndVisData_TCRM_2.html)  
+characterize fibroblasts: [link](characterizeFibroblasts.html)  
 pseudotime analysis cardiac fibroblasts: [link](pseudotimeAnalysisFibroblasts.html)  
 characterize eyfp only fibroblasts: [link](characterizeEyfpFibroblasts.html)  
-characterize Fibroblasts: [link](characterizeFibroblasts.html)  
-analyse medLN balbc: [link](analyseMedLN_balbc.html)  
+
+### Hematopoietic cells:  
+merge CD45+ cells: [link](mergeCD45cells.html)  
+visualize activation CD45+ cells:  [link](visGrps_CD45Data.html)  
+
+### Total cells:  
 merge total cell murine heart: [link](mergeTotalCells_MuHeart.html)  
+
+### medLN data:  
+analyse medLN balbc: [link](analyseMedLN_balbc.html)  
