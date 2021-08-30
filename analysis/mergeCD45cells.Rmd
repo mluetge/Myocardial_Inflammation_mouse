@@ -104,7 +104,7 @@ seurat$cluster_plus_cond <- paste0(seurat$seurat_clusters, "_", seurat$grp)
 
 
 ## remove contaminating endothelial cells
-seurat <- subset(seurat, idents = "11", invert=T)
+seurat <- subset(seurat, idents = "13", invert=T)
 seurat <- RunPCA(object = seurat, npcs = 30, verbose = FALSE)
 seurat <- RunTSNE(object = seurat, reduction = "pca", dims = 1:20)
 seurat <- RunUMAP(object = seurat, reduction = "pca", dims = 1:20)
@@ -115,15 +115,15 @@ seurat <- RunUMAP(object = seurat, reduction = "pca", dims = 1:20)
 ```{r assign cell types}
 ## based on markers 
 seurat$clusterLabel <- "MacrophagesMonocytes"
-seurat$clusterLabel[which(seurat$seurat_clusters == "2")] <- "Bcells"
-seurat$clusterLabel[which(seurat$seurat_clusters == "5")] <- "Tcells"
-seurat$clusterLabel[which(seurat$seurat_clusters == "6")] <- "NKcells"
-seurat$clusterLabel[which(seurat$seurat_clusters == "7")] <- "Neutrophils"
-seurat$clusterLabel[which(seurat$seurat_clusters == "8")] <- "proliferating"
-seurat$clusterLabel[which(seurat$seurat_clusters == "9")] <- "DCs"
+seurat$clusterLabel[which(seurat$seurat_clusters == "3")] <- "Bcells"
+seurat$clusterLabel[which(seurat$seurat_clusters %in% c("1", "12"))] <- "Tcells"
+seurat$clusterLabel[which(seurat$seurat_clusters %in% c("2", "9"))] <- "NKcells"
+seurat$clusterLabel[which(seurat$seurat_clusters %in% c("5", "6", "16"))] <- "Neutrophils"
+seurat$clusterLabel[which(seurat$seurat_clusters %in% c("11", "15"))] <- "proliferating"
+seurat$clusterLabel[which(seurat$seurat_clusters == "8")] <- "DCs"
 seurat$clusterLabel[which(seurat$seurat_clusters == "10")] <- "ILCs"
-seurat$clusterLabel[which(seurat$seurat_clusters == "12")] <- "pDCs"
-seurat$clusterLabel[which(seurat$seurat_clusters == "13")] <- "Basophils"
+#seurat$clusterLabel[which(seurat$seurat_clusters == "12")] <- "pDCs"
+seurat$clusterLabel[which(seurat$seurat_clusters == "14")] <- "Basophils"
 
 seurat$label_plus_cond <- paste0(seurat$clusterLabel, "_", seurat$grp)
 ```
@@ -475,6 +475,7 @@ egoLM <- enrichGO(gene         = DEgenesCond$EnsID,
 egoLM <- setReadable(egoLM, OrgDb = org.Mm.eg.db)
 dotplot(egoLM, showCategory=30)
 cnetplot(egoLM, node_label="all") 
+egoLM <- pairwise_termsim(egoLM)
 emapplot(egoLM, showCategory = 15)
 
 
@@ -497,6 +498,7 @@ egoLM <- enrichGO(gene         = DEgenesCond$EnsID,
 egoLM <- setReadable(egoLM, OrgDb = org.Mm.eg.db)
 dotplot(egoLM, showCategory=30)
 cnetplot(egoLM, node_label="all") 
+egoLM <- pairwise_termsim(egoLM)
 emapplot(egoLM, showCategory = 15)
 
 
@@ -526,6 +528,9 @@ template_ep <- c(
                 pAdjustMethod = 'BH',
                 pvalueCutoff  = 0.05,
                 qvalueCutoff  = 0.05)",
+    "if(max(egoLM@result$Count) < 2){
+      egoLM <- NULL
+    }",
     "if(!is.null(egoLM)){
       egoLM <- setReadable(egoLM, OrgDb = org.Mm.eg.db)
       dotplot(egoLM, showCategory=30)
@@ -534,6 +539,7 @@ template_ep <- c(
       cnetplot(egoLM, node_label='all')
     }",
     "if(!is.null(egoLM)){
+      egoLM <- pairwise_termsim(egoLM)
       emapplot(egoLM, showCategory = 15)
     }\n",
     "```\n",
@@ -572,6 +578,9 @@ template_ep <- c(
                 pAdjustMethod = 'BH',
                 pvalueCutoff  = 0.05,
                 qvalueCutoff  = 0.05)",
+    "if(max(egoLM@result$Count) < 2){
+      egoLM <- NULL
+    }",
     "if(!is.null(egoLM)){
       egoLM <- setReadable(egoLM, OrgDb = org.Mm.eg.db)
       dotplot(egoLM, showCategory=30)
@@ -580,6 +589,7 @@ template_ep <- c(
       cnetplot(egoLM, node_label='all')
     }",
     "if(!is.null(egoLM)){
+      egoLM <- pairwise_termsim(egoLM)
       emapplot(egoLM, showCategory = 15)
     }\n",
     "```\n",

@@ -9,9 +9,10 @@ editor_options:
 ---
 
 merge and visualize data: [link](mergeAndVisData_TCRM_2.html)  
-characterize Fibroblasts: [link](characterizeFibroblasts.html)  
 merge CD45+ cells: [link](mergeCD45cells.html)  
 visualize activation CD45+ cells:  [link](visGrps_CD45Data.html)  
+pseudotime analysis cardiac fibroblasts: [link](pseudotimeAnalysisFibroblasts.html)  
+characterize eyfp only fibroblasts: [link](characterizeEyfpFibroblasts.html)  
+characterize Fibroblasts: [link](characterizeFibroblasts.html)  
 analyse medLN balbc: [link](analyseMedLN_balbc.html)  
 merge total cell murine heart: [link](mergeTotalCells_MuHeart.html)  
-pseudotime analysis cardiac fibroblasts: [link](pseudotimeAnalysisFibroblasts.html)

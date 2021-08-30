@@ -38,6 +38,8 @@ suppressPackageStartupMessages({
   library(RColorBrewer)
   library(pheatmap)
   library(ggsci)
+  library(scran)
+  library(scater)
 })
 
 ```
@@ -126,7 +128,8 @@ DimPlot(seurat, reduction = "umap", group.by = "RNA_snn_res.0.4", cols=colPal)+
 sce <- as.SingleCellExperiment(seurat)
 sce <- slingshot(sce, clusterLabels = 'RNA_snn_res.0.4', reducedDim = 'UMAP',
                  approx_points = 100, stretch = 0,
-                 thresh = 0.001, omega = 10, extend = "n")
+                 thresh = 0.001, omega = 10, extend = "n",
+                 start.clus = "7")
 
 colPalDat <- data.frame(Color=colPal, cl=names(colPal))
 colDat <- data.frame(cl=sce$seurat_clusters) %>% 
@@ -171,62 +174,82 @@ plotColAll[which(is.na(plotColAll))] <- plotcol4[which(is.na(plotColAll))]
 plot(reducedDims(sce)$UMAP, col = plotColAll, pch = 16, cex = 0.3)
 lines(SlingshotDataSet(sce), lwd = 2, col = 'black')
 
-
 ```
 
 ## save sce object with pseudotime ordering
 ```{r save sce}
 saveRDS(sce, file= paste0(basedir, "/data/TCRM_all10samplesMerged_sce.rds"))
 #sce <- readRDS(paste0(basedir, "/data/TCRM_all10samplesMerged_sce.rds"))
-```
 
+```
 
 
 ```{r eval=FALSE, include=FALSE}
-library(tradeSeq)
-library(gam)
+pseudo <- TSCAN::testPseudotime(sce, pseudotime=sce$slingPseudotime_1)
+pseudoDat <- data.frame(pseudo[which(pseudo$FDR<0.05),]) %>%
+  dplyr::mutate(absLogFC = abs(logFC)) %>% 
+  slice_max(., absLogFC, n=50) %>% 
+  rownames_to_column(var="gene") %>% 
+  arrange(desc(absLogFC))
 
-sceSub <- sce[, which(!is.na(sce$slingPseudotime_1))]
-sceSub <- fitGAM(sceSub, parallel=T)
+sptAll <- unique(names(colData(sce))[grepl("slingPseudotime_*",
+                                           names(colData(sce)))])
 
-## subset sce to single lineage
-sceSub <- sce[, which(!is.na(sce$slingPseudotime_1))]
-
-# Only look at the 1,000 most variable genes when identifying temporally expressesd genes
-Y <- log2(counts(sceSub) + 1)
-var1K <- names(sort(apply(Y, 1, var),decreasing = TRUE))[1:1000]
-Y <- Y[var1K, ]  # only counts for variable genes
-
-# Fit GAM for each gene using pseudotime as independent variable.
-t <- sceSub$slingPseudotime_1
-gam.pval <- apply(Y, 1, function(z){
-  d <- data.frame(z=z, t=t)
-  tmp <- gam(z ~ lo(t), data=d)
-  p <- summary(tmp)[4][[1]][1,5]
-  p
+p <- lapply(sptAll, function(spt){
+  pseudo <- TSCAN::testPseudotime(sce, pseudotime=colData(sce)[,spt])
+  pseudoDat <- data.frame(pseudo[which(pseudo$FDR<0.05),]) %>%
+    dplyr::mutate(absLogFC = abs(logFC)) %>% 
+    slice_max(., absLogFC, n=50) %>% 
+    rownames_to_column(var="gene") %>% 
+    arrange(desc(absLogFC))
+  on.spt.path <- !is.na(colData(sce)[,spt])
+  plotHeatmap(sce[,on.first.path], order_columns_by=spt, 
+    colour_columns_by="seurat_clusters", features=pseudoDat$gene, 
+    color = colorRampPalette(c("#2166AC", "#F7F7F7", "#B2182B"))(50),
+    center=TRUE)
 })
 
 
-# Identify genes with the most significant time-dependent model fit.
-topgenes <- data.frame(gene=names(gam.pval), 
-                       pVal=gam.pval)  
+```
 
-scater::plotHeatmap(sce, topgenes$gene)
-# Prepare and plot a heatmap of the top genes that vary their expression over pseudotime.
-library(clusterExperiment)
-seurat <- as.Seurat(sceSub)
-sceSel <- sceSub[which(rownames(sceSub) %in% topgenes),]
-heatdata <- as.matrix(counts(sceSel), order(t, na.last = NA))
-heatclus <- sceSel$seurat_clusters[order(t, na.last = NA)]
-png(paste0(basedir, "/data/heatmap_time_genes.png"), width=10, height=10, units = "in", res=200)
-ce <- ClusterExperiment(heatdata, heatclus, transformation = log1p)
-clusterExperiment::plotHeatmap(ce, clusterSamplesData = "orderSamplesValue", visualizeData = 'transformed', cexRow = 1.5, fontsize = 15)
-dev.off()
 
-# l1 <- slingLineages(sce)
-# sce <- fitGAM(sce, parallel=T)
+### sel Genes across all {.tabset}
+```{r change along pst}
+
+sptAll <- unique(names(colData(sce))[grepl("slingPseudotime_*",
+                                           names(colData(sce)))])
+
+template_fp <- c(
+    "#### {{spt}}\n",
+    "```{r change along pst {{spt}},fig.height=10, fig.width=7,echo = FALSE}\n",
+    "pseudo <- TSCAN::testPseudotime(sce,
+    pseudotime=colData(sce)[,as.character('{{spt}}')])",
+    "pseudoDat <- data.frame(pseudo[which(pseudo$FDR<0.05),]) %>%
+    dplyr::mutate(absLogFC = abs(logFC)) %>% 
+    slice_max(., absLogFC, n=50) %>% 
+    rownames_to_column(var='gene') %>% 
+    arrange(desc(absLogFC))",
+    "on.spt.path <- !is.na(colData(sce)[,as.character('{{spt}}')])",
+    "plot(reducedDims(sce[,on.spt.path])$UMAP, col = plotColAll, pch = 16, cex = 0.3)",
+    "lines(SlingshotDataSet(sce[,on.spt.path]), lwd = 2, col = 'black')",
+    "p <- plotHeatmap(sce[,on.spt.path],
+     order_columns_by=as.character('{{spt}}'), 
+     colour_columns_by='seurat_clusters', features=pseudoDat$gene, 
+     color = colorRampPalette(c('#2166AC', '#F7F7F7', '#B2182B'))(50),
+     center=TRUE)",
+    "p\n",
+    "```\n",
+    "\n"
+)
+
+
+plots_fp <- lapply(sptAll, 
+  function(spt) knitr::knit_expand(text = template_fp)
+)
 
 ```
+
+`r knitr::knit(text = unlist(plots_fp))`
 
 
 ## session info

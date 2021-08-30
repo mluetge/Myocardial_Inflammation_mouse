@@ -156,7 +156,7 @@ DotPlot(seurat, assay="RNA", features = selGenes$ensID, scale =T) +
 
 
 #### color by expression adapt dot size
-```{r Dotplot color by expression dot size, fig.height=8, fig.width=8}
+```{r Dotplot color by expression dot size, fig.height=9, fig.width=9}
 
 
 Idents(seurat) <- seurat$label_plus_cond

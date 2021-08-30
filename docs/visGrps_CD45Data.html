@@ -15,6 +15,7 @@
 
 <title>vis CD45+ cells</title>
 
+<script src="site_libs/header-attrs-2.10/header-attrs.js"></script>
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
@@ -44,6 +45,8 @@ div.section {
   padding-top: 12px;
 }
 </style>
+
+
 
 <style type="text/css">
   code{white-space: pre-wrap;}
@@ -374,7 +377,7 @@ div.tocify {
 <div class="tab-content">
 <div id="summary" class="tab-pane fade in active">
 <p>
-<strong>Last updated:</strong> 2021-06-25
+<strong>Last updated:</strong> 2021-08-27
 </p>
 <p>
 <strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 6 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 1
@@ -465,16 +468,16 @@ This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcommluetgeTCRMChristinatree4091b70f1df9d77800d6d68f2b2519e90a26bd39targetblank4091b70a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/mluetge/TCRM_Christina/tree/4091b70f1df9d77800d6d68f2b2519e90a26bd39" target="_blank">4091b70</a> </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcommluetgeTCRMChristinatree2691b1d89a643045aebcc6dda37bfcb61d72168ctargetblank2691b1da"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/mluetge/TCRM_Christina/tree/2691b1d89a643045aebcc6dda37bfcb61d72168c" target="_blank">2691b1d</a> </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcommluetgeTCRMChristinatree4091b70f1df9d77800d6d68f2b2519e90a26bd39targetblank4091b70a" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcommluetgeTCRMChristinatree2691b1d89a643045aebcc6dda37bfcb61d72168ctargetblank2691b1da" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility.
 </p>
 <p>
-The results in this page were generated with repository version <a href="https://github.com/mluetge/TCRM_Christina/tree/4091b70f1df9d77800d6d68f2b2519e90a26bd39" target="_blank">4091b70</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
+The results in this page were generated with repository version <a href="https://github.com/mluetge/TCRM_Christina/tree/2691b1d89a643045aebcc6dda37bfcb61d72168c" target="_blank">2691b1d</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
 </p>
 <p>
 Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
@@ -487,9 +490,133 @@ Ignored files:
     Ignored:    data/data_old/
     Ignored:    output/.DS_Store
 
+Untracked files:
+    Untracked:  figure/mergeCD45cells.Rmd/GSEA cwDE LM_CD45 ILCs-1.pdf
+    Untracked:  figure/mergeCD45cells.Rmd/GSEA cwDE LM_CD45 ILCs-1.png
+    Untracked:  figure/mergeCD45cells.Rmd/GSEA cwDE LM_CD45 ILCs-2.pdf
+    Untracked:  figure/mergeCD45cells.Rmd/GSEA cwDE LM_CD45 ILCs-2.png
+    Untracked:  figure/mergeCD45cells.Rmd/GSEA cwDE LM_CD45 ILCs-3.pdf
+    Untracked:  figure/mergeCD45cells.Rmd/GSEA cwDE LM_CD45 ILCs-3.png
+    Untracked:  figure/mergeCD45cells.Rmd/GSEA cwDE TCRM_CD45 Basophils-1.pdf
+    Untracked:  figure/mergeCD45cells.Rmd/GSEA cwDE TCRM_CD45 Basophils-1.png
+    Untracked:  figure/mergeCD45cells.Rmd/GSEA cwDE TCRM_CD45 Basophils-2.pdf
+    Untracked:  figure/mergeCD45cells.Rmd/GSEA cwDE TCRM_CD45 Basophils-2.png
+    Untracked:  figure/mergeCD45cells.Rmd/GSEA cwDE TCRM_CD45 Basophils-3.pdf
+    Untracked:  figure/mergeCD45cells.Rmd/GSEA cwDE TCRM_CD45 Basophils-3.png
+    Untracked:  figure/mergeCD45cells.Rmd/GSEA cwDE TCRM_CD45 ILCs-1.pdf
+    Untracked:  figure/mergeCD45cells.Rmd/GSEA cwDE TCRM_CD45 ILCs-1.png
+    Untracked:  figure/mergeCD45cells.Rmd/GSEA cwDE TCRM_CD45 ILCs-2.pdf
+    Untracked:  figure/mergeCD45cells.Rmd/GSEA cwDE TCRM_CD45 ILCs-2.png
+    Untracked:  figure/mergeCD45cells.Rmd/GSEA cwDE TCRM_CD45 ILCs-3.pdf
+    Untracked:  figure/mergeCD45cells.Rmd/GSEA cwDE TCRM_CD45 ILCs-3.png
+    Untracked:  figure/mergeCD45cells.Rmd/avgHeat cwDE Basophils-1.pdf
+    Untracked:  figure/mergeCD45cells.Rmd/avgHeat cwDE Basophils-1.png
+
 Unstaged changes:
+    Modified:   analysis/mergeCD45cells.Rmd
     Modified:   analysis/pseudotimeAnalysisFibroblasts.Rmd
     Modified:   analysis/visGrps_CD45Data.Rmd
+    Modified:   figure/mergeCD45cells.Rmd/GSEA cwDE LM_CD45 Bcells-1.pdf
+    Modified:   figure/mergeCD45cells.Rmd/GSEA cwDE LM_CD45 Bcells-1.png
+    Modified:   figure/mergeCD45cells.Rmd/GSEA cwDE LM_CD45 Bcells-2.pdf
+    Modified:   figure/mergeCD45cells.Rmd/GSEA cwDE LM_CD45 Bcells-2.png
+    Modified:   figure/mergeCD45cells.Rmd/GSEA cwDE LM_CD45 Bcells-3.pdf
+    Modified:   figure/mergeCD45cells.Rmd/GSEA cwDE LM_CD45 Bcells-3.png
+    Modified:   figure/mergeCD45cells.Rmd/GSEA cwDE LM_CD45 DCs-1.pdf
+    Modified:   figure/mergeCD45cells.Rmd/GSEA cwDE LM_CD45 DCs-1.png
+    Modified:   figure/mergeCD45cells.Rmd/GSEA cwDE LM_CD45 DCs-2.pdf
+    Modified:   figure/mergeCD45cells.Rmd/GSEA cwDE LM_CD45 DCs-2.png
+    Modified:   figure/mergeCD45cells.Rmd/GSEA cwDE LM_CD45 DCs-3.pdf
+    Modified:   figure/mergeCD45cells.Rmd/GSEA cwDE LM_CD45 DCs-3.png
+    Modified:   figure/mergeCD45cells.Rmd/GSEA cwDE LM_CD45 MacrophagesMonocytes-1.pdf
+    Modified:   figure/mergeCD45cells.Rmd/GSEA cwDE LM_CD45 MacrophagesMonocytes-1.png
+    Modified:   figure/mergeCD45cells.Rmd/GSEA cwDE LM_CD45 MacrophagesMonocytes-2.pdf
+    Modified:   figure/mergeCD45cells.Rmd/GSEA cwDE LM_CD45 MacrophagesMonocytes-2.png
+    Modified:   figure/mergeCD45cells.Rmd/GSEA cwDE LM_CD45 MacrophagesMonocytes-3.pdf
+    Modified:   figure/mergeCD45cells.Rmd/GSEA cwDE LM_CD45 MacrophagesMonocytes-3.png
+    Modified:   figure/mergeCD45cells.Rmd/GSEA cwDE LM_CD45 NKcells-1.pdf
+    Modified:   figure/mergeCD45cells.Rmd/GSEA cwDE LM_CD45 NKcells-1.png
+    Modified:   figure/mergeCD45cells.Rmd/GSEA cwDE LM_CD45 NKcells-2.pdf
+    Modified:   figure/mergeCD45cells.Rmd/GSEA cwDE LM_CD45 NKcells-2.png
+    Modified:   figure/mergeCD45cells.Rmd/GSEA cwDE LM_CD45 NKcells-3.pdf
+    Modified:   figure/mergeCD45cells.Rmd/GSEA cwDE LM_CD45 NKcells-3.png
+    Modified:   figure/mergeCD45cells.Rmd/GSEA cwDE LM_CD45 Neutrophils-1.pdf
+    Modified:   figure/mergeCD45cells.Rmd/GSEA cwDE LM_CD45 Neutrophils-1.png
+    Modified:   figure/mergeCD45cells.Rmd/GSEA cwDE LM_CD45 Neutrophils-2.pdf
+    Modified:   figure/mergeCD45cells.Rmd/GSEA cwDE LM_CD45 Neutrophils-2.png
+    Modified:   figure/mergeCD45cells.Rmd/GSEA cwDE LM_CD45 Neutrophils-3.pdf
+    Modified:   figure/mergeCD45cells.Rmd/GSEA cwDE LM_CD45 Neutrophils-3.png
+    Modified:   figure/mergeCD45cells.Rmd/GSEA cwDE LM_CD45 Tcells-1.pdf
+    Modified:   figure/mergeCD45cells.Rmd/GSEA cwDE LM_CD45 Tcells-1.png
+    Modified:   figure/mergeCD45cells.Rmd/GSEA cwDE LM_CD45 Tcells-2.pdf
+    Modified:   figure/mergeCD45cells.Rmd/GSEA cwDE LM_CD45 Tcells-2.png
+    Modified:   figure/mergeCD45cells.Rmd/GSEA cwDE LM_CD45 Tcells-3.pdf
+    Modified:   figure/mergeCD45cells.Rmd/GSEA cwDE LM_CD45 Tcells-3.png
+    Modified:   figure/mergeCD45cells.Rmd/GSEA cwDE LM_CD45 proliferating-1.pdf
+    Modified:   figure/mergeCD45cells.Rmd/GSEA cwDE LM_CD45 proliferating-1.png
+    Modified:   figure/mergeCD45cells.Rmd/GSEA cwDE LM_CD45 proliferating-2.pdf
+    Modified:   figure/mergeCD45cells.Rmd/GSEA cwDE LM_CD45 proliferating-2.png
+    Modified:   figure/mergeCD45cells.Rmd/GSEA cwDE LM_CD45 proliferating-3.pdf
+    Modified:   figure/mergeCD45cells.Rmd/GSEA cwDE LM_CD45 proliferating-3.png
+    Modified:   figure/mergeCD45cells.Rmd/GSEA cwDE TCRM_CD45 Bcells-1.pdf
+    Modified:   figure/mergeCD45cells.Rmd/GSEA cwDE TCRM_CD45 Bcells-1.png
+    Modified:   figure/mergeCD45cells.Rmd/GSEA cwDE TCRM_CD45 Bcells-2.pdf
+    Modified:   figure/mergeCD45cells.Rmd/GSEA cwDE TCRM_CD45 Bcells-2.png
+    Modified:   figure/mergeCD45cells.Rmd/GSEA cwDE TCRM_CD45 Bcells-3.pdf
+    Modified:   figure/mergeCD45cells.Rmd/GSEA cwDE TCRM_CD45 Bcells-3.png
+    Modified:   figure/mergeCD45cells.Rmd/GSEA cwDE TCRM_CD45 DCs-1.pdf
+    Modified:   figure/mergeCD45cells.Rmd/GSEA cwDE TCRM_CD45 DCs-1.png
+    Modified:   figure/mergeCD45cells.Rmd/GSEA cwDE TCRM_CD45 DCs-2.pdf
+    Modified:   figure/mergeCD45cells.Rmd/GSEA cwDE TCRM_CD45 DCs-2.png
+    Modified:   figure/mergeCD45cells.Rmd/GSEA cwDE TCRM_CD45 DCs-3.pdf
+    Modified:   figure/mergeCD45cells.Rmd/GSEA cwDE TCRM_CD45 DCs-3.png
+    Modified:   figure/mergeCD45cells.Rmd/GSEA cwDE TCRM_CD45 MacrophagesMonocytes-1.pdf
+    Modified:   figure/mergeCD45cells.Rmd/GSEA cwDE TCRM_CD45 MacrophagesMonocytes-1.png
+    Modified:   figure/mergeCD45cells.Rmd/GSEA cwDE TCRM_CD45 MacrophagesMonocytes-2.pdf
+    Modified:   figure/mergeCD45cells.Rmd/GSEA cwDE TCRM_CD45 MacrophagesMonocytes-2.png
+    Modified:   figure/mergeCD45cells.Rmd/GSEA cwDE TCRM_CD45 MacrophagesMonocytes-3.pdf
+    Modified:   figure/mergeCD45cells.Rmd/GSEA cwDE TCRM_CD45 MacrophagesMonocytes-3.png
+    Modified:   figure/mergeCD45cells.Rmd/GSEA cwDE TCRM_CD45 NKcells-1.pdf
+    Modified:   figure/mergeCD45cells.Rmd/GSEA cwDE TCRM_CD45 NKcells-1.png
+    Modified:   figure/mergeCD45cells.Rmd/GSEA cwDE TCRM_CD45 NKcells-2.pdf
+    Modified:   figure/mergeCD45cells.Rmd/GSEA cwDE TCRM_CD45 NKcells-2.png
+    Modified:   figure/mergeCD45cells.Rmd/GSEA cwDE TCRM_CD45 NKcells-3.pdf
+    Modified:   figure/mergeCD45cells.Rmd/GSEA cwDE TCRM_CD45 NKcells-3.png
+    Modified:   figure/mergeCD45cells.Rmd/GSEA cwDE TCRM_CD45 Neutrophils-1.pdf
+    Modified:   figure/mergeCD45cells.Rmd/GSEA cwDE TCRM_CD45 Neutrophils-1.png
+    Modified:   figure/mergeCD45cells.Rmd/GSEA cwDE TCRM_CD45 Neutrophils-2.pdf
+    Modified:   figure/mergeCD45cells.Rmd/GSEA cwDE TCRM_CD45 Neutrophils-2.png
+    Modified:   figure/mergeCD45cells.Rmd/GSEA cwDE TCRM_CD45 Neutrophils-3.pdf
+    Modified:   figure/mergeCD45cells.Rmd/GSEA cwDE TCRM_CD45 Neutrophils-3.png
+    Modified:   figure/mergeCD45cells.Rmd/GSEA cwDE TCRM_CD45 Tcells-1.pdf
+    Modified:   figure/mergeCD45cells.Rmd/GSEA cwDE TCRM_CD45 Tcells-1.png
+    Modified:   figure/mergeCD45cells.Rmd/GSEA cwDE TCRM_CD45 Tcells-2.pdf
+    Modified:   figure/mergeCD45cells.Rmd/GSEA cwDE TCRM_CD45 Tcells-2.png
+    Modified:   figure/mergeCD45cells.Rmd/GSEA cwDE TCRM_CD45 Tcells-3.pdf
+    Modified:   figure/mergeCD45cells.Rmd/GSEA cwDE TCRM_CD45 Tcells-3.png
+    Modified:   figure/mergeCD45cells.Rmd/GSEA cwDE TCRM_CD45 proliferating-1.pdf
+    Modified:   figure/mergeCD45cells.Rmd/GSEA cwDE TCRM_CD45 proliferating-1.png
+    Modified:   figure/mergeCD45cells.Rmd/GSEA cwDE TCRM_CD45 proliferating-2.pdf
+    Modified:   figure/mergeCD45cells.Rmd/GSEA cwDE TCRM_CD45 proliferating-2.png
+    Modified:   figure/mergeCD45cells.Rmd/GSEA cwDE TCRM_CD45 proliferating-3.pdf
+    Modified:   figure/mergeCD45cells.Rmd/GSEA cwDE TCRM_CD45 proliferating-3.png
+    Modified:   figure/mergeCD45cells.Rmd/avgHeat cwDE Bcells-1.pdf
+    Modified:   figure/mergeCD45cells.Rmd/avgHeat cwDE Bcells-1.png
+    Modified:   figure/mergeCD45cells.Rmd/avgHeat cwDE DCs-1.pdf
+    Modified:   figure/mergeCD45cells.Rmd/avgHeat cwDE DCs-1.png
+    Modified:   figure/mergeCD45cells.Rmd/avgHeat cwDE ILCs-1.pdf
+    Modified:   figure/mergeCD45cells.Rmd/avgHeat cwDE ILCs-1.png
+    Modified:   figure/mergeCD45cells.Rmd/avgHeat cwDE MacrophagesMonocytes-1.pdf
+    Modified:   figure/mergeCD45cells.Rmd/avgHeat cwDE MacrophagesMonocytes-1.png
+    Modified:   figure/mergeCD45cells.Rmd/avgHeat cwDE NKcells-1.pdf
+    Modified:   figure/mergeCD45cells.Rmd/avgHeat cwDE NKcells-1.png
+    Modified:   figure/mergeCD45cells.Rmd/avgHeat cwDE Neutrophils-1.pdf
+    Modified:   figure/mergeCD45cells.Rmd/avgHeat cwDE Neutrophils-1.png
+    Modified:   figure/mergeCD45cells.Rmd/avgHeat cwDE Tcells-1.pdf
+    Modified:   figure/mergeCD45cells.Rmd/avgHeat cwDE Tcells-1.png
+    Modified:   figure/mergeCD45cells.Rmd/avgHeat cwDE proliferating-1.pdf
+    Modified:   figure/mergeCD45cells.Rmd/avgHeat cwDE proliferating-1.png
+    Modified:   metadata_lymphcytes.txt
 
 </code></pre>
 <p>
@@ -528,6 +655,40 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/2691b1d89a643045aebcc6dda37bfcb61d72168c/analysis/visGrps_CD45Data.Rmd" target="_blank">2691b1d</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2021-06-25
+</td>
+<td>
+add fibroblast pseudotime ordering and vis cd45 cells
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/mluetge/TCRM_Christina/2691b1d89a643045aebcc6dda37bfcb61d72168c/docs/visGrps_CD45Data.html" target="_blank">2691b1d</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2021-06-25
+</td>
+<td>
+add fibroblast pseudotime ordering and vis cd45 cells
+</td>
+</tr>
 <tr>
 <td>
 Rmd
@@ -605,7 +766,7 @@ names(colSmp) &lt;- unique(seurat$dataset)
 names(colLab) &lt;- unique(seurat$clusterLabel)</code></pre>
 </div>
 <div id="vis-data" class="section level2 tabset">
-<h2>vis data</h2>
+<h2 class="tabset">vis data</h2>
 <div id="clusters" class="section level3">
 <h3>clusters</h3>
 <pre class="r"><code>DimPlot(seurat, reduction = &quot;umap&quot;, cols=colPal)+
@@ -749,11 +910,11 @@ mluetge
 </div>
 </div>
 <div id="compare-tcrm-vs-lm-activation-marker" class="section level2 tabset">
-<h2>compare TCRM vs LM activation marker</h2>
+<h2 class="tabset">compare TCRM vs LM activation marker</h2>
 <pre class="r"><code>selGenesDat &lt;- data.frame(gene=c(&quot;Tnfrsf1b&quot;, &quot;Gzmb&quot;, &quot;Ifrd1&quot;, &quot;Areg&quot;, &quot;Icos&quot;,
                                  &quot;Traf1&quot;, &quot;Ctla4&quot;, &quot;Maf&quot;, &quot;Il17a&quot;, &quot;Ifng&quot;))</code></pre>
 <div id="dotplot" class="section level3 tabset">
-<h3>DotPlot</h3>
+<h3 class="tabset">DotPlot</h3>
 <div id="color-by-grp" class="section level4">
 <h4>color by grp</h4>
 <pre class="r"><code>genes &lt;- data.frame(ensID=rownames(seurat)) %&gt;%
@@ -871,7 +1032,44 @@ DotPlot(seurat, assay=&quot;RNA&quot;, features = selGenes$ensID, scale =T, dot.
   theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
   scale_x_discrete(breaks=selGenes$ensID, labels=selGenes$gene) +
   xlab(&quot;&quot;) + ylab(&quot;&quot;)</code></pre>
-<p><img src="figure/visGrps_CD45Data.Rmd/Dotplot%20color%20by%20expression%20dot%20size-1.png" width="768" style="display: block; margin: auto;" /></p>
+<p><img src="figure/visGrps_CD45Data.Rmd/Dotplot%20color%20by%20expression%20dot%20size-1.png" width="864" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-Dotplot-color-by-expression-dot-size-1">
+Past versions of “Dotplot color by expression dot size-1.png”
+</button>
+</p>
+<div id="fig-no-spaces-Dotplot-color-by-expression-dot-size-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/2691b1d89a643045aebcc6dda37bfcb61d72168c/docs/figure/visGrps_CD45Data.Rmd/Dotplot color by expression dot size-1.png" target="_blank">2691b1d</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2021-06-25
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 </div>
 <div id="scatterplot" class="section level3">
@@ -982,13 +1180,13 @@ mluetge
 <div id="session-info" class="section level2">
 <h2>session info</h2>
 <pre class="r"><code>sessionInfo()</code></pre>
-<pre><code>R version 4.0.0 (2020-04-24)
+<pre><code>R version 4.1.0 (2021-05-18)
 Platform: x86_64-apple-darwin17.0 (64-bit)
 Running under: macOS Catalina 10.15.7
 
 Matrix products: default
-BLAS:   /Library/Frameworks/R.framework/Versions/4.0/Resources/lib/libRblas.dylib
-LAPACK: /Library/Frameworks/R.framework/Versions/4.0/Resources/lib/libRlapack.dylib
+BLAS:   /Library/Frameworks/R.framework/Versions/4.1/Resources/lib/libRblas.dylib
+LAPACK: /Library/Frameworks/R.framework/Versions/4.1/Resources/lib/libRlapack.dylib
 
 locale:
 [1] en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8
@@ -1001,50 +1199,50 @@ other attached packages:
  [4] runSeurat3_0.1.0            here_1.0.1                  magrittr_2.0.1             
  [7] SeuratObject_4.0.2          Seurat_4.0.3                forcats_0.5.1              
 [10] stringr_1.4.0               dplyr_1.0.7                 purrr_0.3.4                
-[13] readr_1.4.0                 tidyr_1.1.3                 tibble_3.1.2               
-[16] ggplot2_3.3.4               tidyverse_1.3.1             SingleCellExperiment_1.10.1
-[19] SummarizedExperiment_1.18.2 DelayedArray_0.14.1         matrixStats_0.59.0         
-[22] Biobase_2.48.0              GenomicRanges_1.40.0        GenomeInfoDb_1.24.2        
-[25] IRanges_2.22.2              S4Vectors_0.26.1            BiocGenerics_0.34.0        
+[13] readr_2.0.0                 tidyr_1.1.3                 tibble_3.1.3               
+[16] ggplot2_3.3.5               tidyverse_1.3.1             SingleCellExperiment_1.14.1
+[19] SummarizedExperiment_1.22.0 Biobase_2.52.0              GenomicRanges_1.44.0       
+[22] GenomeInfoDb_1.28.1         IRanges_2.26.0              S4Vectors_0.30.0           
+[25] BiocGenerics_0.38.0         MatrixGenerics_1.4.2        matrixStats_0.60.0         
 
 loaded via a namespace (and not attached):
-  [1] readxl_1.3.1           backports_1.2.1        workflowr_1.6.2        plyr_1.8.6            
-  [5] igraph_1.2.6           lazyeval_0.2.2         splines_4.0.0          listenv_0.8.0         
-  [9] scattermore_0.7        digest_0.6.27          htmltools_0.5.1.1      fansi_0.5.0           
- [13] tensor_1.5             cluster_2.1.2          ROCR_1.0-11            limma_3.44.3          
- [17] openxlsx_4.2.4         globals_0.14.0         modelr_0.1.8           spatstat.sparse_2.0-0 
- [21] colorspace_2.0-2       rvest_1.0.0            ggrepel_0.9.1          haven_2.4.1           
- [25] xfun_0.24              crayon_1.4.1           RCurl_1.98-1.3         jsonlite_1.7.2        
- [29] spatstat.data_2.1-0    survival_3.2-11        zoo_1.8-9              glue_1.4.2            
- [33] polyclip_1.10-0        gtable_0.3.0           zlibbioc_1.34.0        XVector_0.28.0        
- [37] leiden_0.3.8           car_3.0-10             future.apply_1.7.0     abind_1.4-5           
- [41] scales_1.1.1           DBI_1.1.1              rstatix_0.7.0          miniUI_0.1.1.1        
- [45] Rcpp_1.0.6             viridisLite_0.4.0      xtable_1.8-4           reticulate_1.20       
- [49] spatstat.core_2.2-0    foreign_0.8-81         htmlwidgets_1.5.3      httr_1.4.2            
- [53] RColorBrewer_1.1-2     ellipsis_0.3.2         ica_1.0-2              farver_2.1.0          
- [57] pkgconfig_2.0.3        uwot_0.1.10            deldir_0.2-10          sass_0.4.0            
- [61] dbplyr_2.1.1           utf8_1.2.1             labeling_0.4.2         tidyselect_1.1.1      
- [65] rlang_0.4.11           reshape2_1.4.4         later_1.2.0            munsell_0.5.0         
- [69] cellranger_1.1.0       tools_4.0.0            cli_2.5.0              generics_0.1.0        
- [73] broom_0.7.8            ggridges_0.5.3         evaluate_0.14          fastmap_1.1.0         
- [77] goftest_1.2-2          yaml_2.2.1             knitr_1.33             fs_1.5.0              
- [81] fitdistrplus_1.1-5     zip_2.2.0              RANN_2.6.1             nlme_3.1-152          
- [85] pbapply_1.4-3          future_1.21.0          whisker_0.4            mime_0.11             
- [89] xml2_1.3.2             compiler_4.0.0         rstudioapi_0.13        curl_4.3.2            
- [93] plotly_4.9.4.1         png_0.1-7              ggsignif_0.6.2         spatstat.utils_2.2-0  
- [97] reprex_2.0.0           bslib_0.2.5.1          stringi_1.6.2          highr_0.9             
-[101] lattice_0.20-44        Matrix_1.3-4           vctrs_0.3.8            pillar_1.6.1          
-[105] lifecycle_1.0.0        spatstat.geom_2.2-0    lmtest_0.9-38          jquerylib_0.1.4       
-[109] RcppAnnoy_0.0.18       data.table_1.14.0      cowplot_1.1.1          bitops_1.0-7          
-[113] irlba_2.3.3            httpuv_1.6.1           patchwork_1.1.1        R6_2.5.0              
-[117] promises_1.2.0.1       rio_0.5.27             KernSmooth_2.23-20     gridExtra_2.3         
-[121] parallelly_1.26.0      codetools_0.2-18       MASS_7.3-54            assertthat_0.2.1      
-[125] rprojroot_2.0.2        withr_2.4.2            sctransform_0.3.2      GenomeInfoDbData_1.2.3
-[129] mgcv_1.8-36            hms_1.1.0              rpart_4.1-15           grid_4.0.0            
-[133] rmarkdown_2.9          carData_3.0-4          Rtsne_0.15             git2r_0.28.0          
-[137] shiny_1.6.0            lubridate_1.7.10      </code></pre>
+  [1] utf8_1.2.2             reticulate_1.20        tidyselect_1.1.1       htmlwidgets_1.5.3     
+  [5] grid_4.1.0             Rtsne_0.15             munsell_0.5.0          codetools_0.2-18      
+  [9] ica_1.0-2              future_1.21.0          miniUI_0.1.1.1         withr_2.4.2           
+ [13] colorspace_2.0-2       highr_0.9              knitr_1.33             rstudioapi_0.13       
+ [17] ROCR_1.0-11            ggsignif_0.6.2         tensor_1.5             listenv_0.8.0         
+ [21] labeling_0.4.2         git2r_0.28.0           GenomeInfoDbData_1.2.6 polyclip_1.10-0       
+ [25] farver_2.1.0           rprojroot_2.0.2        parallelly_1.27.0      vctrs_0.3.8           
+ [29] generics_0.1.0         xfun_0.25              R6_2.5.0               bitops_1.0-7          
+ [33] spatstat.utils_2.2-0   DelayedArray_0.18.0    assertthat_0.2.1       promises_1.2.0.1      
+ [37] scales_1.1.1           gtable_0.3.0           globals_0.14.0         goftest_1.2-2         
+ [41] workflowr_1.6.2        rlang_0.4.11           splines_4.1.0          rstatix_0.7.0         
+ [45] lazyeval_0.2.2         spatstat.geom_2.2-2    broom_0.7.9            yaml_2.2.1            
+ [49] reshape2_1.4.4         abind_1.4-5            modelr_0.1.8           backports_1.2.1       
+ [53] httpuv_1.6.1           tools_4.1.0            ellipsis_0.3.2         spatstat.core_2.3-0   
+ [57] jquerylib_0.1.4        RColorBrewer_1.1-2     ggridges_0.5.3         Rcpp_1.0.7            
+ [61] plyr_1.8.6             zlibbioc_1.38.0        RCurl_1.98-1.3         rpart_4.1-15          
+ [65] deldir_0.2-10          pbapply_1.4-3          cowplot_1.1.1          zoo_1.8-9             
+ [69] haven_2.4.3            ggrepel_0.9.1          cluster_2.1.2          fs_1.5.0              
+ [73] data.table_1.14.0      scattermore_0.7        openxlsx_4.2.4         lmtest_0.9-38         
+ [77] reprex_2.0.1           RANN_2.6.1             whisker_0.4            fitdistrplus_1.1-5    
+ [81] hms_1.1.0              patchwork_1.1.1        mime_0.11              evaluate_0.14         
+ [85] xtable_1.8-4           rio_0.5.27             readxl_1.3.1           gridExtra_2.3         
+ [89] compiler_4.1.0         KernSmooth_2.23-20     crayon_1.4.1           htmltools_0.5.1.1     
+ [93] mgcv_1.8-36            later_1.2.0            tzdb_0.1.2             lubridate_1.7.10      
+ [97] DBI_1.1.1              dbplyr_2.1.1           MASS_7.3-54            Matrix_1.3-4          
+[101] car_3.0-11             cli_3.0.1              igraph_1.2.6           pkgconfig_2.0.3       
+[105] foreign_0.8-81         plotly_4.9.4.1         spatstat.sparse_2.0-0  xml2_1.3.2            
+[109] bslib_0.2.5.1          XVector_0.32.0         rvest_1.0.1            digest_0.6.27         
+[113] sctransform_0.3.2      RcppAnnoy_0.0.19       spatstat.data_2.1-0    rmarkdown_2.10        
+[117] cellranger_1.1.0       leiden_0.3.9           uwot_0.1.10            curl_4.3.2            
+[121] shiny_1.6.0            lifecycle_1.0.0        nlme_3.1-152           jsonlite_1.7.2        
+[125] carData_3.0-4          limma_3.48.2           viridisLite_0.4.0      fansi_0.5.0           
+[129] pillar_1.6.2           lattice_0.20-44        fastmap_1.1.0          httr_1.4.2            
+[133] survival_3.2-11        glue_1.4.2             zip_2.2.0              png_0.1-7             
+[137] stringi_1.7.3          sass_0.4.0             irlba_2.3.3            future.apply_1.7.0    </code></pre>
 <pre class="r"><code>date()</code></pre>
-<pre><code>[1] &quot;Fri Jun 25 09:55:48 2021&quot;</code></pre>
+<pre><code>[1] &quot;Fri Aug 27 14:38:14 2021&quot;</code></pre>
 <br>
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">
@@ -1053,13 +1251,13 @@ loaded via a namespace (and not attached):
 </p>
 <div id="workflowr-sessioninfo" class="collapse">
 <pre class="r"><code>sessionInfo()</code></pre>
-<pre><code>R version 4.0.0 (2020-04-24)
+<pre><code>R version 4.1.0 (2021-05-18)
 Platform: x86_64-apple-darwin17.0 (64-bit)
 Running under: macOS Catalina 10.15.7
 
 Matrix products: default
-BLAS:   /Library/Frameworks/R.framework/Versions/4.0/Resources/lib/libRblas.dylib
-LAPACK: /Library/Frameworks/R.framework/Versions/4.0/Resources/lib/libRlapack.dylib
+BLAS:   /Library/Frameworks/R.framework/Versions/4.1/Resources/lib/libRblas.dylib
+LAPACK: /Library/Frameworks/R.framework/Versions/4.1/Resources/lib/libRlapack.dylib
 
 locale:
 [1] en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8
@@ -1072,48 +1270,48 @@ other attached packages:
  [4] runSeurat3_0.1.0            here_1.0.1                  magrittr_2.0.1             
  [7] SeuratObject_4.0.2          Seurat_4.0.3                forcats_0.5.1              
 [10] stringr_1.4.0               dplyr_1.0.7                 purrr_0.3.4                
-[13] readr_1.4.0                 tidyr_1.1.3                 tibble_3.1.2               
-[16] ggplot2_3.3.4               tidyverse_1.3.1             SingleCellExperiment_1.10.1
-[19] SummarizedExperiment_1.18.2 DelayedArray_0.14.1         matrixStats_0.59.0         
-[22] Biobase_2.48.0              GenomicRanges_1.40.0        GenomeInfoDb_1.24.2        
-[25] IRanges_2.22.2              S4Vectors_0.26.1            BiocGenerics_0.34.0        
+[13] readr_2.0.0                 tidyr_1.1.3                 tibble_3.1.3               
+[16] ggplot2_3.3.5               tidyverse_1.3.1             SingleCellExperiment_1.14.1
+[19] SummarizedExperiment_1.22.0 Biobase_2.52.0              GenomicRanges_1.44.0       
+[22] GenomeInfoDb_1.28.1         IRanges_2.26.0              S4Vectors_0.30.0           
+[25] BiocGenerics_0.38.0         MatrixGenerics_1.4.2        matrixStats_0.60.0         
 
 loaded via a namespace (and not attached):
-  [1] readxl_1.3.1           backports_1.2.1        workflowr_1.6.2        plyr_1.8.6            
-  [5] igraph_1.2.6           lazyeval_0.2.2         splines_4.0.0          listenv_0.8.0         
-  [9] scattermore_0.7        digest_0.6.27          htmltools_0.5.1.1      fansi_0.5.0           
- [13] tensor_1.5             cluster_2.1.2          ROCR_1.0-11            limma_3.44.3          
- [17] openxlsx_4.2.4         globals_0.14.0         modelr_0.1.8           spatstat.sparse_2.0-0 
- [21] colorspace_2.0-2       rvest_1.0.0            ggrepel_0.9.1          haven_2.4.1           
- [25] xfun_0.24              crayon_1.4.1           RCurl_1.98-1.3         jsonlite_1.7.2        
- [29] spatstat.data_2.1-0    survival_3.2-11        zoo_1.8-9              glue_1.4.2            
- [33] polyclip_1.10-0        gtable_0.3.0           zlibbioc_1.34.0        XVector_0.28.0        
- [37] leiden_0.3.8           car_3.0-10             future.apply_1.7.0     abind_1.4-5           
- [41] scales_1.1.1           DBI_1.1.1              rstatix_0.7.0          miniUI_0.1.1.1        
- [45] Rcpp_1.0.6             viridisLite_0.4.0      xtable_1.8-4           reticulate_1.20       
- [49] spatstat.core_2.2-0    foreign_0.8-81         htmlwidgets_1.5.3      httr_1.4.2            
- [53] RColorBrewer_1.1-2     ellipsis_0.3.2         ica_1.0-2              farver_2.1.0          
- [57] pkgconfig_2.0.3        uwot_0.1.10            deldir_0.2-10          sass_0.4.0            
- [61] dbplyr_2.1.1           utf8_1.2.1             labeling_0.4.2         tidyselect_1.1.1      
- [65] rlang_0.4.11           reshape2_1.4.4         later_1.2.0            munsell_0.5.0         
- [69] cellranger_1.1.0       tools_4.0.0            cli_2.5.0              generics_0.1.0        
- [73] broom_0.7.8            ggridges_0.5.3         evaluate_0.14          fastmap_1.1.0         
- [77] goftest_1.2-2          yaml_2.2.1             knitr_1.33             fs_1.5.0              
- [81] fitdistrplus_1.1-5     zip_2.2.0              RANN_2.6.1             nlme_3.1-152          
- [85] pbapply_1.4-3          future_1.21.0          whisker_0.4            mime_0.11             
- [89] xml2_1.3.2             compiler_4.0.0         rstudioapi_0.13        curl_4.3.2            
- [93] plotly_4.9.4.1         png_0.1-7              ggsignif_0.6.2         spatstat.utils_2.2-0  
- [97] reprex_2.0.0           bslib_0.2.5.1          stringi_1.6.2          highr_0.9             
-[101] lattice_0.20-44        Matrix_1.3-4           vctrs_0.3.8            pillar_1.6.1          
-[105] lifecycle_1.0.0        spatstat.geom_2.2-0    lmtest_0.9-38          jquerylib_0.1.4       
-[109] RcppAnnoy_0.0.18       data.table_1.14.0      cowplot_1.1.1          bitops_1.0-7          
-[113] irlba_2.3.3            httpuv_1.6.1           patchwork_1.1.1        R6_2.5.0              
-[117] promises_1.2.0.1       rio_0.5.27             KernSmooth_2.23-20     gridExtra_2.3         
-[121] parallelly_1.26.0      codetools_0.2-18       MASS_7.3-54            assertthat_0.2.1      
-[125] rprojroot_2.0.2        withr_2.4.2            sctransform_0.3.2      GenomeInfoDbData_1.2.3
-[129] mgcv_1.8-36            hms_1.1.0              rpart_4.1-15           grid_4.0.0            
-[133] rmarkdown_2.9          carData_3.0-4          Rtsne_0.15             git2r_0.28.0          
-[137] shiny_1.6.0            lubridate_1.7.10      </code></pre>
+  [1] utf8_1.2.2             reticulate_1.20        tidyselect_1.1.1       htmlwidgets_1.5.3     
+  [5] grid_4.1.0             Rtsne_0.15             munsell_0.5.0          codetools_0.2-18      
+  [9] ica_1.0-2              future_1.21.0          miniUI_0.1.1.1         withr_2.4.2           
+ [13] colorspace_2.0-2       highr_0.9              knitr_1.33             rstudioapi_0.13       
+ [17] ROCR_1.0-11            ggsignif_0.6.2         tensor_1.5             listenv_0.8.0         
+ [21] labeling_0.4.2         git2r_0.28.0           GenomeInfoDbData_1.2.6 polyclip_1.10-0       
+ [25] farver_2.1.0           rprojroot_2.0.2        parallelly_1.27.0      vctrs_0.3.8           
+ [29] generics_0.1.0         xfun_0.25              R6_2.5.0               bitops_1.0-7          
+ [33] spatstat.utils_2.2-0   DelayedArray_0.18.0    assertthat_0.2.1       promises_1.2.0.1      
+ [37] scales_1.1.1           gtable_0.3.0           globals_0.14.0         goftest_1.2-2         
+ [41] workflowr_1.6.2        rlang_0.4.11           splines_4.1.0          rstatix_0.7.0         
+ [45] lazyeval_0.2.2         spatstat.geom_2.2-2    broom_0.7.9            yaml_2.2.1            
+ [49] reshape2_1.4.4         abind_1.4-5            modelr_0.1.8           backports_1.2.1       
+ [53] httpuv_1.6.1           tools_4.1.0            ellipsis_0.3.2         spatstat.core_2.3-0   
+ [57] jquerylib_0.1.4        RColorBrewer_1.1-2     ggridges_0.5.3         Rcpp_1.0.7            
+ [61] plyr_1.8.6             zlibbioc_1.38.0        RCurl_1.98-1.3         rpart_4.1-15          
+ [65] deldir_0.2-10          pbapply_1.4-3          cowplot_1.1.1          zoo_1.8-9             
+ [69] haven_2.4.3            ggrepel_0.9.1          cluster_2.1.2          fs_1.5.0              
+ [73] data.table_1.14.0      scattermore_0.7        openxlsx_4.2.4         lmtest_0.9-38         
+ [77] reprex_2.0.1           RANN_2.6.1             whisker_0.4            fitdistrplus_1.1-5    
+ [81] hms_1.1.0              patchwork_1.1.1        mime_0.11              evaluate_0.14         
+ [85] xtable_1.8-4           rio_0.5.27             readxl_1.3.1           gridExtra_2.3         
+ [89] compiler_4.1.0         KernSmooth_2.23-20     crayon_1.4.1           htmltools_0.5.1.1     
+ [93] mgcv_1.8-36            later_1.2.0            tzdb_0.1.2             lubridate_1.7.10      
+ [97] DBI_1.1.1              dbplyr_2.1.1           MASS_7.3-54            Matrix_1.3-4          
+[101] car_3.0-11             cli_3.0.1              igraph_1.2.6           pkgconfig_2.0.3       
+[105] foreign_0.8-81         plotly_4.9.4.1         spatstat.sparse_2.0-0  xml2_1.3.2            
+[109] bslib_0.2.5.1          XVector_0.32.0         rvest_1.0.1            digest_0.6.27         
+[113] sctransform_0.3.2      RcppAnnoy_0.0.19       spatstat.data_2.1-0    rmarkdown_2.10        
+[117] cellranger_1.1.0       leiden_0.3.9           uwot_0.1.10            curl_4.3.2            
+[121] shiny_1.6.0            lifecycle_1.0.0        nlme_3.1-152           jsonlite_1.7.2        
+[125] carData_3.0-4          limma_3.48.2           viridisLite_0.4.0      fansi_0.5.0           
+[129] pillar_1.6.2           lattice_0.20-44        fastmap_1.1.0          httr_1.4.2            
+[133] survival_3.2-11        glue_1.4.2             zip_2.2.0              png_0.1-7             
+[137] stringi_1.7.3          sass_0.4.0             irlba_2.3.3            future.apply_1.7.0    </code></pre>
 </div>
 </div>
 
@@ -1129,6 +1327,8 @@ footer is added to webpages before the MathJax javascript. -->
     "HTML-CSS": { availableFonts: ["TeX"] }
   });
 </script>
+
+
 
 
 </div>
