@@ -221,12 +221,12 @@ sptAll <- unique(names(colData(sce))[grepl("slingPseudotime_*",
 
 template_fp <- c(
     "#### {{spt}}\n",
-    "```{r change along pst {{spt}},fig.height=10, fig.width=7,echo = FALSE}\n",
+    "```{r change along pst {{spt}},fig.height=14, fig.width=7,echo = FALSE}\n",
     "pseudo <- TSCAN::testPseudotime(sce,
     pseudotime=colData(sce)[,as.character('{{spt}}')])",
     "pseudoDat <- data.frame(pseudo[which(pseudo$FDR<0.05),]) %>%
     dplyr::mutate(absLogFC = abs(logFC)) %>% 
-    slice_max(., absLogFC, n=50) %>% 
+    slice_max(., absLogFC, n=100) %>% 
     rownames_to_column(var='gene') %>% 
     arrange(desc(absLogFC))",
     "on.spt.path <- !is.na(colData(sce)[,as.character('{{spt}}')])",
