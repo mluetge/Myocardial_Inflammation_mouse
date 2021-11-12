@@ -1,8 +1,8 @@
 Sample	group	batch	seqType	age
-7_20200707_Mu_Heart_TCRM_total_cell_1_v3	TCRM	batch1	sc	notA
-8_20200707_Mu_Heart_TCRM_total_cell_2_v3	TCRM	batch1	sc	notA
-5_20200707_Mu_Heart_LM_total_cell_1_v3	control	batch1	sc	notA
-6_20200707_Mu_Heart_LM_total_cell_2_v3	control	batch1	sc	notA
+7_20200707_Mu_Heart_TCRM_total_cell_1_v3	TCRM	batch1	sc	8wk
+8_20200707_Mu_Heart_TCRM_total_cell_2_v3	TCRM	batch1	sc	8wk
+5_20200707_Mu_Heart_LM_total_cell_1_v3	control	batch1	sc	8wk
+6_20200707_Mu_Heart_LM_total_cell_2_v3	control	batch1	sc	8wk
 11_20210916_Mu_Heart_TCRM1_4wk_GEM	TCRM	batch3	sc	4wk
 12_20210916_Mu_Heart_TCRM2_4wk_GEM	TCRM	batch3	sc	4wk
 13_20210916_Mu_Heart_TCRM1_4wk_nuc_GEM	TCRM	batch3	sn	4wk

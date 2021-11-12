@@ -377,7 +377,7 @@ div.tocify {
 <div class="tab-content">
 <div id="summary" class="tab-pane fade in active">
 <p>
-<strong>Last updated:</strong> 2021-11-10
+<strong>Last updated:</strong> 2021-11-12
 </p>
 <p>
 <strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 6 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 1
@@ -401,7 +401,7 @@ This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis
 </div>
 <div id="strongRMarkdownfilestronguncommittedchanges" class="panel-collapse collapse">
 <div class="panel-body">
-<p>The R Markdown is untracked by Git. To know which version of the R Markdown file created these results, you’ll want to first commit it to the Git repo. If you’re still working on the analysis, you can ignore this warning. When you’re finished, you can run <code>wflow_publish</code> to commit the R Markdown file and build the HTML.</p>
+<p>The R Markdown file has unstaged changes. To know which version of the R Markdown file created these results, you’ll want to first commit it to the Git repo. If you’re still working on the analysis, you can ignore this warning. When you’re finished, you can run <code>wflow_publish</code> to commit the R Markdown file and build the HTML.</p>
 </div>
 </div>
 </div>
@@ -468,16 +468,16 @@ This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcommluetgeTCRMChristinatreeabd7e5725d77803702c273864c30a427adf26b72targetblankabd7e57a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/mluetge/TCRM_Christina/tree/abd7e5725d77803702c273864c30a427adf26b72" target="_blank">abd7e57</a> </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcommluetgeTCRMChristinatreef1373873f92e392ac69a01aa399a68a438c09ec1targetblankf137387a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/mluetge/TCRM_Christina/tree/f1373873f92e392ac69a01aa399a68a438c09ec1" target="_blank">f137387</a> </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcommluetgeTCRMChristinatreeabd7e5725d77803702c273864c30a427adf26b72targetblankabd7e57a" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcommluetgeTCRMChristinatreef1373873f92e392ac69a01aa399a68a438c09ec1targetblankf137387a" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility.
 </p>
 <p>
-The results in this page were generated with repository version <a href="https://github.com/mluetge/TCRM_Christina/tree/abd7e5725d77803702c273864c30a427adf26b72" target="_blank">abd7e57</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
+The results in this page were generated with repository version <a href="https://github.com/mluetge/TCRM_Christina/tree/f1373873f92e392ac69a01aa399a68a438c09ec1" target="_blank">f137387</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
 </p>
 <p>
 Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
@@ -490,12 +490,9 @@ Ignored files:
     Ignored:    data/data_old/
     Ignored:    output/.DS_Store
 
-Untracked files:
-    Untracked:  analysis/characterizeTotalCellsHumanHeart.Rmd
-    Untracked:  metadata_totalCell2.txt
-
 Unstaged changes:
-    Modified:   analysis/mergeTotalCells_MuHeart.Rmd
+    Modified:   analysis/characterizeTotalCellsHumanHeart.Rmd
+    Modified:   metadata_totalCell2.txt
 
 </code></pre>
 <p>
@@ -508,9 +505,69 @@ Note that any generated files, e.g. HTML, png, CSS, etc., are not included in t
 <hr>
 </div>
 <div id="versions" class="tab-pane fade">
+
 <p>
-There are no past versions. Publish this analysis with <code>wflow_publish()</code> to start tracking its development.
+These are the previous versions of the repository in which changes were made to the R Markdown (<code>analysis/characterizeTotalCellsHumanHeart.Rmd</code>) and HTML (<code>docs/characterizeTotalCellsHumanHeart.html</code>) files. If you’ve configured a remote Git repository (see <code>?wflow_git_remote</code>), click on the hyperlinks in the table below to view the files as they were in that past version.
 </p>
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+File
+</th>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+<th>
+Message
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/f1373873f92e392ac69a01aa399a68a438c09ec1/analysis/characterizeTotalCellsHumanHeart.Rmd" target="_blank">f137387</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2021-11-10
+</td>
+<td>
+characterize total cells with additional samples
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/mluetge/TCRM_Christina/f1373873f92e392ac69a01aa399a68a438c09ec1/docs/characterizeTotalCellsHumanHeart.html" target="_blank">f137387</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2021-11-10
+</td>
+<td>
+characterize total cells with additional samples
+</td>
+</tr>
+</tbody>
+</table>
+</div>
 <hr>
 </div>
 </div>
@@ -537,7 +594,19 @@ There are no past versions. Publish this analysis with <code>wflow_publish()</co
 <pre class="r"><code>basedir &lt;- here()
 seurat &lt;- readRDS(file = paste0(basedir,
                               &quot;/data/MuHeart_totalCells_integrated_seurat.rds&quot;))
-Idents(seurat) &lt;- seurat$integrated_snn_res.0.4</code></pre>
+Idents(seurat) &lt;- seurat$integrated_snn_res.0.4
+
+
+## remove two contaminating clusters and rerun dim reductions
+## cluster 8 (dying cells, a lot of ribosomal genes)
+## cluster 17 (erythrocytes (Fech, Bpgm, Snca))
+seurat &lt;- subset(seurat, idents = c(&quot;8&quot;, &quot;17&quot;), invert=T)
+
+DefaultAssay(object = seurat) &lt;- &quot;integrated&quot;
+seurat &lt;- RunPCA(object = seurat, npcs = 20, verbose = FALSE)
+seurat &lt;- RunTSNE(object = seurat, reduction = &quot;pca&quot;, dims = 1:20)
+seurat &lt;- RunUMAP(object = seurat, reduction = &quot;pca&quot;, dims = 1:20)
+DefaultAssay(object = seurat) &lt;- &quot;RNA&quot;</code></pre>
 </div>
 <div id="color-vectors" class="section level2">
 <h2>color vectors</h2>
@@ -566,6 +635,43 @@ names(colDat) &lt;- unique(seurat$dataset)</code></pre>
   xlab(&quot;UMAP1&quot;) +
   ylab(&quot;UMAP2&quot;)</code></pre>
 <p><img src="figure/characterizeTotalCellsHumanHeart.Rmd/vis%20cluster-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-vis-cluster-1">
+Past versions of “vis cluster-1.png”
+</button>
+</p>
+<div id="fig-no-spaces-vis-cluster-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/f1373873f92e392ac69a01aa399a68a438c09ec1/docs/figure/characterizeTotalCellsHumanHeart.Rmd/vis cluster-1.png" target="_blank">f137387</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2021-11-10
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 <div id="group" class="section level3">
 <h3>group</h3>
@@ -576,6 +682,43 @@ names(colDat) &lt;- unique(seurat$dataset)</code></pre>
   xlab(&quot;UMAP1&quot;) +
   ylab(&quot;UMAP2&quot;)</code></pre>
 <p><img src="figure/characterizeTotalCellsHumanHeart.Rmd/vis%20grp-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-vis-grp-1">
+Past versions of “vis grp-1.png”
+</button>
+</p>
+<div id="fig-no-spaces-vis-grp-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/f1373873f92e392ac69a01aa399a68a438c09ec1/docs/figure/characterizeTotalCellsHumanHeart.Rmd/vis grp-1.png" target="_blank">f137387</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2021-11-10
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 <div id="sample" class="section level3">
 <h3>Sample</h3>
@@ -586,6 +729,43 @@ names(colDat) &lt;- unique(seurat$dataset)</code></pre>
   xlab(&quot;UMAP1&quot;) +
   ylab(&quot;UMAP2&quot;)</code></pre>
 <p><img src="figure/characterizeTotalCellsHumanHeart.Rmd/vis%20sample-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-vis-sample-1">
+Past versions of “vis sample-1.png”
+</button>
+</p>
+<div id="fig-no-spaces-vis-sample-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/f1373873f92e392ac69a01aa399a68a438c09ec1/docs/figure/characterizeTotalCellsHumanHeart.Rmd/vis sample-1.png" target="_blank">f137387</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2021-11-10
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 <div id="age" class="section level3">
 <h3>Age</h3>
@@ -596,6 +776,43 @@ names(colDat) &lt;- unique(seurat$dataset)</code></pre>
   xlab(&quot;UMAP1&quot;) +
   ylab(&quot;UMAP2&quot;)</code></pre>
 <p><img src="figure/characterizeTotalCellsHumanHeart.Rmd/vis%20age-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-vis-age-1">
+Past versions of “vis age-1.png”
+</button>
+</p>
+<div id="fig-no-spaces-vis-age-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/f1373873f92e392ac69a01aa399a68a438c09ec1/docs/figure/characterizeTotalCellsHumanHeart.Rmd/vis age-1.png" target="_blank">f137387</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2021-11-10
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 <div id="seqtype" class="section level3">
 <h3>SeqType</h3>
@@ -606,6 +823,43 @@ names(colDat) &lt;- unique(seurat$dataset)</code></pre>
   xlab(&quot;UMAP1&quot;) +
   ylab(&quot;UMAP2&quot;)</code></pre>
 <p><img src="figure/characterizeTotalCellsHumanHeart.Rmd/vis%20seqType-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-vis-seqType-1">
+Past versions of “vis seqType-1.png”
+</button>
+</p>
+<div id="fig-no-spaces-vis-seqType-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/f1373873f92e392ac69a01aa399a68a438c09ec1/docs/figure/characterizeTotalCellsHumanHeart.Rmd/vis seqType-1.png" target="_blank">f137387</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2021-11-10
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 </div>
 <div id="assign-labels" class="section level2 tabset">
@@ -619,13 +873,14 @@ seurat$label[which(seurat$integrated_snn_res.0.4 %in% c(&quot;9&quot;))] &lt;- &
 seurat$label[which(seurat$integrated_snn_res.0.4 %in% c(&quot;14&quot;))] &lt;- &quot;Neutrophils&quot;
 seurat$label[which(seurat$integrated_snn_res.0.4 %in% c(&quot;15&quot;))] &lt;- &quot;DCs&quot;
 seurat$label[which(seurat$integrated_snn_res.0.4 %in% c(&quot;16&quot;))] &lt;- &quot;proliferating&quot;
-#seurat$label[which(seurat$integrated_snn_res.0.4 %in% c(&quot;&quot;))] &lt;- &quot;ILCs&quot;
-#seurat$label[which(seurat$integrated_snn_res.0.4 %in% c(&quot;&quot;))] &lt;- &quot;pDCs&quot;
+seurat$label[which(seurat$integrated_snn_res.0.4 %in% c(&quot;19&quot;))] &lt;- &quot;glialCells&quot;
+seurat$label[which(seurat$integrated_snn_res.0.4 %in% c(&quot;20&quot;))] &lt;- &quot;smc&quot;
 seurat$label[which(seurat$integrated_snn_res.0.4 %in% c(&quot;1&quot;,&quot;3&quot;,&quot;4&quot;,&quot;13&quot;))] &lt;-
   &quot;Fibroblasts&quot;
 seurat$label[which(seurat$integrated_snn_res.0.4 %in% c(&quot;5&quot;, &quot;10&quot;))] &lt;- &quot;Cardiomyocytes&quot;
 seurat$label[which(seurat$integrated_snn_res.0.4 %in% c(&quot;0&quot;, &quot;12&quot;))] &lt;- &quot;Endothelial&quot;
 seurat$label[which(seurat$integrated_snn_res.0.4 %in% c(&quot;6&quot;))] &lt;- &quot;Perivascular&quot;
+seurat$label[which(seurat$integrated_snn_res.0.4 %in% c(&quot;21&quot;))] &lt;- &quot;capEndothelial&quot;
 
 colLab &lt;- pal_igv()(length(unique(seurat$label)))
 names(colLab) &lt;- unique(seurat$label)</code></pre>
@@ -638,6 +893,43 @@ names(colLab) &lt;- unique(seurat$label)</code></pre>
   xlab(&quot;UMAP1&quot;) +
   ylab(&quot;UMAP2&quot;)</code></pre>
 <p><img src="figure/characterizeTotalCellsHumanHeart.Rmd/vis%20label-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-vis-label-1">
+Past versions of “vis label-1.png”
+</button>
+</p>
+<div id="fig-no-spaces-vis-label-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/f1373873f92e392ac69a01aa399a68a438c09ec1/docs/figure/characterizeTotalCellsHumanHeart.Rmd/vis label-1.png" target="_blank">f137387</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2021-11-10
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 <div id="label-split-by-seqtype" class="section level3">
 <h3>label split by seqType</h3>
@@ -649,6 +941,43 @@ names(colLab) &lt;- unique(seurat$label)</code></pre>
   xlab(&quot;UMAP1&quot;) +
   ylab(&quot;UMAP2&quot;)</code></pre>
 <p><img src="figure/characterizeTotalCellsHumanHeart.Rmd/vis%20label%20split%20seq-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-vis-label-split-seq-1">
+Past versions of “vis label split seq-1.png”
+</button>
+</p>
+<div id="fig-no-spaces-vis-label-split-seq-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/f1373873f92e392ac69a01aa399a68a438c09ec1/docs/figure/characterizeTotalCellsHumanHeart.Rmd/vis label split seq-1.png" target="_blank">f137387</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2021-11-10
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 <div id="label-split-by-grp" class="section level3">
 <h3>label split by grp</h3>
@@ -660,6 +989,43 @@ names(colLab) &lt;- unique(seurat$label)</code></pre>
   xlab(&quot;UMAP1&quot;) +
   ylab(&quot;UMAP2&quot;)</code></pre>
 <p><img src="figure/characterizeTotalCellsHumanHeart.Rmd/vis%20label%20split%20grp-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-vis-label-split-grp-1">
+Past versions of “vis label split grp-1.png”
+</button>
+</p>
+<div id="fig-no-spaces-vis-label-split-grp-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/f1373873f92e392ac69a01aa399a68a438c09ec1/docs/figure/characterizeTotalCellsHumanHeart.Rmd/vis label split grp-1.png" target="_blank">f137387</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2021-11-10
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 <div id="cnt-tab" class="section level3">
 <h3>cnt Tab</h3>
@@ -667,17 +1033,19 @@ names(colLab) &lt;- unique(seurat$label)</code></pre>
 <pre><code>                      
                          sc   sn
   Bcells                256   38
+  capEndothelial         65    1
   Cardiomyocytes          0 2088
   DCs                   355   56
   Endothelial          4613 1635
   Fibroblasts          6466 3490
+  glialCells            152   27
   Macrophages           408  208
   MacrophagesMonocytes 2237 1313
   Neutrophils           412    0
   NKcells               648  256
-  other                 615 1080
   Perivascular          499  854
   proliferating         311   63
+  smc                    78    0
   Tcells               1273   33</code></pre>
 </div>
 </div>
@@ -707,7 +1075,7 @@ clustDE_Dat4 &lt;- data.frame(do.call(&quot;rbind&quot;, clustDE))</code></pre>
 </div>
 <div id="weeks-1" class="section level3">
 <h3>8 weeks</h3>
-<pre class="r"><code>seuratSub &lt;- subset(seurat, age == &quot;4wks&quot;, invert=T)
+<pre class="r"><code>seuratSub &lt;- subset(seurat, age == &quot;8wk&quot;)
 Idents(seuratSub) &lt;- seuratSub$grp
 grpVec &lt;- unique(seuratSub$label)
 
@@ -740,6 +1108,43 @@ clustDE_Dat8 &lt;- data.frame(do.call(&quot;rbind&quot;, clustDE))</code></pre>
   theme(legend.position=&quot;right&quot;)
 p</code></pre>
 <p><img src="figure/characterizeTotalCellsHumanHeart.Rmd/vis%20Bmp2-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-vis-Bmp2-1">
+Past versions of “vis Bmp2-1.png”
+</button>
+</p>
+<div id="fig-no-spaces-vis-Bmp2-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/f1373873f92e392ac69a01aa399a68a438c09ec1/docs/figure/characterizeTotalCellsHumanHeart.Rmd/vis Bmp2-1.png" target="_blank">f137387</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2021-11-10
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 <div id="bmp4" class="section level3">
 <h3>Bmp4</h3>
@@ -750,6 +1155,43 @@ p</code></pre>
   theme(legend.position=&quot;right&quot;)
 p</code></pre>
 <p><img src="figure/characterizeTotalCellsHumanHeart.Rmd/vis%20Bmp4-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-vis-Bmp4-1">
+Past versions of “vis Bmp4-1.png”
+</button>
+</p>
+<div id="fig-no-spaces-vis-Bmp4-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/f1373873f92e392ac69a01aa399a68a438c09ec1/docs/figure/characterizeTotalCellsHumanHeart.Rmd/vis Bmp4-1.png" target="_blank">f137387</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2021-11-10
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 <div id="bmpr1a" class="section level3">
 <h3>Bmpr1a</h3>
@@ -760,6 +1202,43 @@ p</code></pre>
   theme(legend.position=&quot;right&quot;)
 p</code></pre>
 <p><img src="figure/characterizeTotalCellsHumanHeart.Rmd/vis%20Bmpr1a-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-vis-Bmpr1a-1">
+Past versions of “vis Bmpr1a-1.png”
+</button>
+</p>
+<div id="fig-no-spaces-vis-Bmpr1a-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/f1373873f92e392ac69a01aa399a68a438c09ec1/docs/figure/characterizeTotalCellsHumanHeart.Rmd/vis Bmpr1a-1.png" target="_blank">f137387</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2021-11-10
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 <div id="bmpr2" class="section level3">
 <h3>Bmpr2</h3>
@@ -770,6 +1249,43 @@ p</code></pre>
   theme(legend.position=&quot;right&quot;)
 p</code></pre>
 <p><img src="figure/characterizeTotalCellsHumanHeart.Rmd/vis%20Bmpr2-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-vis-Bmpr2-1">
+Past versions of “vis Bmpr2-1.png”
+</button>
+</p>
+<div id="fig-no-spaces-vis-Bmpr2-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/f1373873f92e392ac69a01aa399a68a438c09ec1/docs/figure/characterizeTotalCellsHumanHeart.Rmd/vis Bmpr2-1.png" target="_blank">f137387</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2021-11-10
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 </div>
 <div id="save-integrated-objects" class="section level2">
@@ -850,25 +1366,26 @@ loaded via a namespace (and not attached):
  [76] fastmap_1.1.0          goftest_1.2-3          yaml_2.2.1            
  [79] knitr_1.36             fs_1.5.0               fitdistrplus_1.1-6    
  [82] RANN_2.6.1             nlme_3.1-153           pbapply_1.5-0         
- [85] future_1.23.0          mime_0.12              xml2_1.3.2            
- [88] compiler_4.1.0         rstudioapi_0.13        plotly_4.10.0         
- [91] png_0.1-7              ggsignif_0.6.3         spatstat.utils_2.2-0  
- [94] reprex_2.0.1           bslib_0.3.1            stringi_1.7.5         
- [97] highr_0.9              lattice_0.20-45        Matrix_1.3-4          
-[100] vctrs_0.3.8            pillar_1.6.4           lifecycle_1.0.1       
-[103] spatstat.geom_2.3-0    lmtest_0.9-39          jquerylib_0.1.4       
-[106] RcppAnnoy_0.0.19       data.table_1.14.2      cowplot_1.1.1         
-[109] bitops_1.0-7           irlba_2.3.3            httpuv_1.6.3          
-[112] patchwork_1.1.1        R6_2.5.1               promises_1.2.0.1      
-[115] KernSmooth_2.23-20     gridExtra_2.3          parallelly_1.28.1     
-[118] codetools_0.2-18       MASS_7.3-54            assertthat_0.2.1      
-[121] rprojroot_2.0.2        withr_2.4.2            sctransform_0.3.2     
-[124] GenomeInfoDbData_1.2.6 mgcv_1.8-38            hms_1.1.1             
-[127] rpart_4.1-15           grid_4.1.0             rmarkdown_2.11        
-[130] carData_3.0-4          Rtsne_0.15             git2r_0.28.0          
-[133] shiny_1.7.1            lubridate_1.8.0       </code></pre>
+ [85] future_1.23.0          whisker_0.4            mime_0.12             
+ [88] xml2_1.3.2             compiler_4.1.0         rstudioapi_0.13       
+ [91] plotly_4.10.0          png_0.1-7              ggsignif_0.6.3        
+ [94] spatstat.utils_2.2-0   reprex_2.0.1           bslib_0.3.1           
+ [97] stringi_1.7.5          highr_0.9              RSpectra_0.16-0       
+[100] lattice_0.20-45        Matrix_1.3-4           vctrs_0.3.8           
+[103] pillar_1.6.4           lifecycle_1.0.1        spatstat.geom_2.3-0   
+[106] lmtest_0.9-39          jquerylib_0.1.4        RcppAnnoy_0.0.19      
+[109] data.table_1.14.2      cowplot_1.1.1          bitops_1.0-7          
+[112] irlba_2.3.3            httpuv_1.6.3           patchwork_1.1.1       
+[115] R6_2.5.1               promises_1.2.0.1       KernSmooth_2.23-20    
+[118] gridExtra_2.3          parallelly_1.28.1      codetools_0.2-18      
+[121] MASS_7.3-54            assertthat_0.2.1       rprojroot_2.0.2       
+[124] withr_2.4.2            sctransform_0.3.2      GenomeInfoDbData_1.2.6
+[127] mgcv_1.8-38            hms_1.1.1              rpart_4.1-15          
+[130] grid_4.1.0             rmarkdown_2.11         carData_3.0-4         
+[133] Rtsne_0.15             git2r_0.28.0           shiny_1.7.1           
+[136] lubridate_1.8.0       </code></pre>
 <pre class="r"><code>date()</code></pre>
-<pre><code>[1] &quot;Wed Nov 10 19:45:11 2021&quot;</code></pre>
+<pre><code>[1] &quot;Fri Nov 12 11:32:06 2021&quot;</code></pre>
 <br>
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">
@@ -937,23 +1454,24 @@ loaded via a namespace (and not attached):
  [76] fastmap_1.1.0          goftest_1.2-3          yaml_2.2.1            
  [79] knitr_1.36             fs_1.5.0               fitdistrplus_1.1-6    
  [82] RANN_2.6.1             nlme_3.1-153           pbapply_1.5-0         
- [85] future_1.23.0          mime_0.12              xml2_1.3.2            
- [88] compiler_4.1.0         rstudioapi_0.13        plotly_4.10.0         
- [91] png_0.1-7              ggsignif_0.6.3         spatstat.utils_2.2-0  
- [94] reprex_2.0.1           bslib_0.3.1            stringi_1.7.5         
- [97] highr_0.9              lattice_0.20-45        Matrix_1.3-4          
-[100] vctrs_0.3.8            pillar_1.6.4           lifecycle_1.0.1       
-[103] spatstat.geom_2.3-0    lmtest_0.9-39          jquerylib_0.1.4       
-[106] RcppAnnoy_0.0.19       data.table_1.14.2      cowplot_1.1.1         
-[109] bitops_1.0-7           irlba_2.3.3            httpuv_1.6.3          
-[112] patchwork_1.1.1        R6_2.5.1               promises_1.2.0.1      
-[115] KernSmooth_2.23-20     gridExtra_2.3          parallelly_1.28.1     
-[118] codetools_0.2-18       MASS_7.3-54            assertthat_0.2.1      
-[121] rprojroot_2.0.2        withr_2.4.2            sctransform_0.3.2     
-[124] GenomeInfoDbData_1.2.6 mgcv_1.8-38            hms_1.1.1             
-[127] rpart_4.1-15           grid_4.1.0             rmarkdown_2.11        
-[130] carData_3.0-4          Rtsne_0.15             git2r_0.28.0          
-[133] shiny_1.7.1            lubridate_1.8.0       </code></pre>
+ [85] future_1.23.0          whisker_0.4            mime_0.12             
+ [88] xml2_1.3.2             compiler_4.1.0         rstudioapi_0.13       
+ [91] plotly_4.10.0          png_0.1-7              ggsignif_0.6.3        
+ [94] spatstat.utils_2.2-0   reprex_2.0.1           bslib_0.3.1           
+ [97] stringi_1.7.5          highr_0.9              RSpectra_0.16-0       
+[100] lattice_0.20-45        Matrix_1.3-4           vctrs_0.3.8           
+[103] pillar_1.6.4           lifecycle_1.0.1        spatstat.geom_2.3-0   
+[106] lmtest_0.9-39          jquerylib_0.1.4        RcppAnnoy_0.0.19      
+[109] data.table_1.14.2      cowplot_1.1.1          bitops_1.0-7          
+[112] irlba_2.3.3            httpuv_1.6.3           patchwork_1.1.1       
+[115] R6_2.5.1               promises_1.2.0.1       KernSmooth_2.23-20    
+[118] gridExtra_2.3          parallelly_1.28.1      codetools_0.2-18      
+[121] MASS_7.3-54            assertthat_0.2.1       rprojroot_2.0.2       
+[124] withr_2.4.2            sctransform_0.3.2      GenomeInfoDbData_1.2.6
+[127] mgcv_1.8-38            hms_1.1.1              rpart_4.1-15          
+[130] grid_4.1.0             rmarkdown_2.11         carData_3.0-4         
+[133] Rtsne_0.15             git2r_0.28.0           shiny_1.7.1           
+[136] lubridate_1.8.0       </code></pre>
 </div>
 </div>
 

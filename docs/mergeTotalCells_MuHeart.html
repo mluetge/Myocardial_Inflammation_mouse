@@ -359,7 +359,7 @@ div.tocify {
 
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-report" data-toggle="collapse" data-target="#workflowr-report">
-<span class="glyphicon glyphicon-list" aria-hidden="true"></span> workflowr <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span>
+<span class="glyphicon glyphicon-list" aria-hidden="true"></span> workflowr <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
 </button>
 </p>
 <div id="workflowr-report" class="collapse">
@@ -368,7 +368,7 @@ div.tocify {
 <a data-toggle="tab" href="#summary">Summary</a>
 </li>
 <li>
-<a data-toggle="tab" href="#checks"> Checks <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> </a>
+<a data-toggle="tab" href="#checks"> Checks <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> </a>
 </li>
 <li>
 <a data-toggle="tab" href="#versions">Past versions</a>
@@ -377,10 +377,10 @@ div.tocify {
 <div class="tab-content">
 <div id="summary" class="tab-pane fade in active">
 <p>
-<strong>Last updated:</strong> 2021-11-10
+<strong>Last updated:</strong> 2021-11-12
 </p>
 <p>
-<strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 6 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 1
+<strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 7 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 0
 </p>
 <p>
 <strong>Knit directory:</strong> <code>TCRM_Christina/</code> <span class="glyphicon glyphicon-question-sign" aria-hidden="true" title="This is the local directory in which the code in this file was executed."> </span>
@@ -396,12 +396,12 @@ This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguncommittedchanges"> <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> <strong>R Markdown file:</strong> uncommitted changes </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguptodate"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>R Markdown file:</strong> up-to-date </a>
 </p>
 </div>
-<div id="strongRMarkdownfilestronguncommittedchanges" class="panel-collapse collapse">
+<div id="strongRMarkdownfilestronguptodate" class="panel-collapse collapse">
 <div class="panel-body">
-<p>The R Markdown file has unstaged changes. To know which version of the R Markdown file created these results, you’ll want to first commit it to the Git repo. If you’re still working on the analysis, you can ignore this warning. When you’re finished, you can run <code>wflow_publish</code> to commit the R Markdown file and build the HTML.</p>
+<p>Great! Since the R Markdown file has been committed to the Git repository, you know the exact version of the code that produced these results.</p>
 </div>
 </div>
 </div>
@@ -468,16 +468,16 @@ This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcommluetgeTCRMChristinatreeabd7e5725d77803702c273864c30a427adf26b72targetblankabd7e57a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/mluetge/TCRM_Christina/tree/abd7e5725d77803702c273864c30a427adf26b72" target="_blank">abd7e57</a> </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcommluetgeTCRMChristinatreef1373873f92e392ac69a01aa399a68a438c09ec1targetblankf137387a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/mluetge/TCRM_Christina/tree/f1373873f92e392ac69a01aa399a68a438c09ec1" target="_blank">f137387</a> </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcommluetgeTCRMChristinatreeabd7e5725d77803702c273864c30a427adf26b72targetblankabd7e57a" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcommluetgeTCRMChristinatreef1373873f92e392ac69a01aa399a68a438c09ec1targetblankf137387a" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility.
 </p>
 <p>
-The results in this page were generated with repository version <a href="https://github.com/mluetge/TCRM_Christina/tree/abd7e5725d77803702c273864c30a427adf26b72" target="_blank">abd7e57</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
+The results in this page were generated with repository version <a href="https://github.com/mluetge/TCRM_Christina/tree/f1373873f92e392ac69a01aa399a68a438c09ec1" target="_blank">f137387</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
 </p>
 <p>
 Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
@@ -490,11 +490,8 @@ Ignored files:
     Ignored:    data/data_old/
     Ignored:    output/.DS_Store
 
-Untracked files:
-    Untracked:  metadata_totalCell2.txt
-
 Unstaged changes:
-    Modified:   analysis/mergeTotalCells_MuHeart.Rmd
+    Modified:   metadata_totalCell2.txt
 
 </code></pre>
 <p>
@@ -533,6 +530,40 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/f1373873f92e392ac69a01aa399a68a438c09ec1/analysis/mergeTotalCells_MuHeart.Rmd" target="_blank">f137387</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2021-11-10
+</td>
+<td>
+characterize total cells with additional samples
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/mluetge/TCRM_Christina/f1373873f92e392ac69a01aa399a68a438c09ec1/docs/mergeTotalCells_MuHeart.html" target="_blank">f137387</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2021-11-10
+</td>
+<td>
+characterize total cells with additional samples
+</td>
+</tr>
 <tr>
 <td>
 Rmd
@@ -690,7 +721,7 @@ Number of edges: 1032808
 Running Louvain algorithm...
 Maximum modularity in 10 random starts: 0.9616
 Number of communities: 16
-Elapsed time: 4 seconds
+Elapsed time: 5 seconds
 Modularity Optimizer version 1.3.0 by Ludo Waltman and Nees Jan van Eck
 
 Number of nodes: 29207
@@ -999,6 +1030,17 @@ Date
 <tbody>
 <tr>
 <td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/f1373873f92e392ac69a01aa399a68a438c09ec1/docs/figure/mergeTotalCells_MuHeart.Rmd/check QC-1.png" target="_blank">f137387</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2021-11-10
+</td>
+</tr>
+<tr>
+<td>
 <a href="https://github.com/mluetge/TCRM_Christina/blob/8eb0b02645b47d8e87ae2a02177fe7d4919436b8/docs/figure/mergeTotalCells_MuHeart.Rmd/check QC-1.png" target="_blank">8eb0b02</a>
 </td>
 <td>
@@ -1047,6 +1089,17 @@ Date
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/f1373873f92e392ac69a01aa399a68a438c09ec1/docs/figure/mergeTotalCells_MuHeart.Rmd/check QC-2.png" target="_blank">f137387</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2021-11-10
+</td>
+</tr>
 <tr>
 <td>
 <a href="https://github.com/mluetge/TCRM_Christina/blob/8eb0b02645b47d8e87ae2a02177fe7d4919436b8/docs/figure/mergeTotalCells_MuHeart.Rmd/check QC-2.png" target="_blank">8eb0b02</a>
@@ -1099,6 +1152,17 @@ Date
 <tbody>
 <tr>
 <td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/f1373873f92e392ac69a01aa399a68a438c09ec1/docs/figure/mergeTotalCells_MuHeart.Rmd/check QC-3.png" target="_blank">f137387</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2021-11-10
+</td>
+</tr>
+<tr>
+<td>
 <a href="https://github.com/mluetge/TCRM_Christina/blob/8eb0b02645b47d8e87ae2a02177fe7d4919436b8/docs/figure/mergeTotalCells_MuHeart.Rmd/check QC-3.png" target="_blank">8eb0b02</a>
 </td>
 <td>
@@ -1147,6 +1211,17 @@ Date
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/f1373873f92e392ac69a01aa399a68a438c09ec1/docs/figure/mergeTotalCells_MuHeart.Rmd/check QC-4.png" target="_blank">f137387</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2021-11-10
+</td>
+</tr>
 <tr>
 <td>
 <a href="https://github.com/mluetge/TCRM_Christina/blob/8eb0b02645b47d8e87ae2a02177fe7d4919436b8/docs/figure/mergeTotalCells_MuHeart.Rmd/check QC-4.png" target="_blank">8eb0b02</a>
@@ -1199,6 +1274,17 @@ Date
 <tbody>
 <tr>
 <td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/f1373873f92e392ac69a01aa399a68a438c09ec1/docs/figure/mergeTotalCells_MuHeart.Rmd/check QC-5.png" target="_blank">f137387</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2021-11-10
+</td>
+</tr>
+<tr>
+<td>
 <a href="https://github.com/mluetge/TCRM_Christina/blob/8eb0b02645b47d8e87ae2a02177fe7d4919436b8/docs/figure/mergeTotalCells_MuHeart.Rmd/check QC-5.png" target="_blank">8eb0b02</a>
 </td>
 <td>
@@ -1247,6 +1333,17 @@ Date
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/f1373873f92e392ac69a01aa399a68a438c09ec1/docs/figure/mergeTotalCells_MuHeart.Rmd/check QC-6.png" target="_blank">f137387</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2021-11-10
+</td>
+</tr>
 <tr>
 <td>
 <a href="https://github.com/mluetge/TCRM_Christina/blob/8eb0b02645b47d8e87ae2a02177fe7d4919436b8/docs/figure/mergeTotalCells_MuHeart.Rmd/check QC-6.png" target="_blank">8eb0b02</a>
@@ -1321,6 +1418,17 @@ Date
 <tbody>
 <tr>
 <td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/f1373873f92e392ac69a01aa399a68a438c09ec1/docs/figure/mergeTotalCells_MuHeart.Rmd/vis cluster-1.png" target="_blank">f137387</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2021-11-10
+</td>
+</tr>
+<tr>
+<td>
 <a href="https://github.com/mluetge/TCRM_Christina/blob/8eb0b02645b47d8e87ae2a02177fe7d4919436b8/docs/figure/mergeTotalCells_MuHeart.Rmd/vis cluster-1.png" target="_blank">8eb0b02</a>
 </td>
 <td>
@@ -1377,6 +1485,17 @@ Date
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/f1373873f92e392ac69a01aa399a68a438c09ec1/docs/figure/mergeTotalCells_MuHeart.Rmd/vis grp-1.png" target="_blank">f137387</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2021-11-10
+</td>
+</tr>
 <tr>
 <td>
 <a href="https://github.com/mluetge/TCRM_Christina/blob/8eb0b02645b47d8e87ae2a02177fe7d4919436b8/docs/figure/mergeTotalCells_MuHeart.Rmd/vis grp-1.png" target="_blank">8eb0b02</a>
@@ -1437,6 +1556,17 @@ Date
 <tbody>
 <tr>
 <td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/f1373873f92e392ac69a01aa399a68a438c09ec1/docs/figure/mergeTotalCells_MuHeart.Rmd/vis sample-1.png" target="_blank">f137387</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2021-11-10
+</td>
+</tr>
+<tr>
+<td>
 <a href="https://github.com/mluetge/TCRM_Christina/blob/8eb0b02645b47d8e87ae2a02177fe7d4919436b8/docs/figure/mergeTotalCells_MuHeart.Rmd/vis sample-1.png" target="_blank">8eb0b02</a>
 </td>
 <td>
@@ -1471,6 +1601,43 @@ mluetge
   xlab(&quot;UMAP1&quot;) +
   ylab(&quot;UMAP2&quot;)</code></pre>
 <p><img src="figure/mergeTotalCells_MuHeart.Rmd/vis%20age-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-vis-age-1">
+Past versions of “vis age-1.png”
+</button>
+</p>
+<div id="fig-no-spaces-vis-age-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/f1373873f92e392ac69a01aa399a68a438c09ec1/docs/figure/mergeTotalCells_MuHeart.Rmd/vis age-1.png" target="_blank">f137387</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2021-11-10
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 <div id="seqtype" class="section level3">
 <h3>SeqType</h3>
@@ -1481,6 +1648,43 @@ mluetge
   xlab(&quot;UMAP1&quot;) +
   ylab(&quot;UMAP2&quot;)</code></pre>
 <p><img src="figure/mergeTotalCells_MuHeart.Rmd/vis%20seqType-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-vis-seqType-1">
+Past versions of “vis seqType-1.png”
+</button>
+</p>
+<div id="fig-no-spaces-vis-seqType-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/f1373873f92e392ac69a01aa399a68a438c09ec1/docs/figure/mergeTotalCells_MuHeart.Rmd/vis seqType-1.png" target="_blank">f137387</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2021-11-10
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 </div>
 <div id="marker-genes" class="section level2">
@@ -1605,6 +1809,17 @@ Date
 <tbody>
 <tr>
 <td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/f1373873f92e392ac69a01aa399a68a438c09ec1/docs/figure/mergeTotalCells_MuHeart.Rmd/vis Bmp2-1.png" target="_blank">f137387</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2021-11-10
+</td>
+</tr>
+<tr>
+<td>
 <a href="https://github.com/mluetge/TCRM_Christina/blob/8eb0b02645b47d8e87ae2a02177fe7d4919436b8/docs/figure/mergeTotalCells_MuHeart.Rmd/vis Bmp2-1.png" target="_blank">8eb0b02</a>
 </td>
 <td>
@@ -1661,6 +1876,17 @@ Date
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/f1373873f92e392ac69a01aa399a68a438c09ec1/docs/figure/mergeTotalCells_MuHeart.Rmd/vis Bmp4-1.png" target="_blank">f137387</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2021-11-10
+</td>
+</tr>
 <tr>
 <td>
 <a href="https://github.com/mluetge/TCRM_Christina/blob/8eb0b02645b47d8e87ae2a02177fe7d4919436b8/docs/figure/mergeTotalCells_MuHeart.Rmd/vis Bmp4-1.png" target="_blank">8eb0b02</a>
@@ -1721,6 +1947,17 @@ Date
 <tbody>
 <tr>
 <td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/f1373873f92e392ac69a01aa399a68a438c09ec1/docs/figure/mergeTotalCells_MuHeart.Rmd/vis Bmpr1a-1.png" target="_blank">f137387</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2021-11-10
+</td>
+</tr>
+<tr>
+<td>
 <a href="https://github.com/mluetge/TCRM_Christina/blob/8eb0b02645b47d8e87ae2a02177fe7d4919436b8/docs/figure/mergeTotalCells_MuHeart.Rmd/vis Bmpr1a-1.png" target="_blank">8eb0b02</a>
 </td>
 <td>
@@ -1777,6 +2014,17 @@ Date
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/f1373873f92e392ac69a01aa399a68a438c09ec1/docs/figure/mergeTotalCells_MuHeart.Rmd/vis Bmpr2-1.png" target="_blank">f137387</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2021-11-10
+</td>
+</tr>
 <tr>
 <td>
 <a href="https://github.com/mluetge/TCRM_Christina/blob/8eb0b02645b47d8e87ae2a02177fe7d4919436b8/docs/figure/mergeTotalCells_MuHeart.Rmd/vis Bmpr2-1.png" target="_blank">8eb0b02</a>
@@ -1848,6 +2096,17 @@ Date
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/f1373873f92e392ac69a01aa399a68a438c09ec1/docs/figure/mergeTotalCells_MuHeart.Rmd/overall DE-1.png" target="_blank">f137387</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2021-11-10
+</td>
+</tr>
 <tr>
 <td>
 <a href="https://github.com/mluetge/TCRM_Christina/blob/8eb0b02645b47d8e87ae2a02177fe7d4919436b8/docs/figure/mergeTotalCells_MuHeart.Rmd/overall DE-1.png" target="_blank">8eb0b02</a>
@@ -1932,7 +2191,7 @@ Number of edges: 1015990
 Running Louvain algorithm...
 Maximum modularity in 10 random starts: 0.9078
 Number of communities: 33
-Elapsed time: 5 seconds
+Elapsed time: 4 seconds
 Modularity Optimizer version 1.3.0 by Ludo Waltman and Nees Jan van Eck
 
 Number of nodes: 29207
@@ -1941,7 +2200,7 @@ Number of edges: 1015990
 Running Louvain algorithm...
 Maximum modularity in 10 random starts: 0.9504
 Number of communities: 15
-Elapsed time: 6 seconds
+Elapsed time: 5 seconds
 Modularity Optimizer version 1.3.0 by Ludo Waltman and Nees Jan van Eck
 
 Number of nodes: 29207
@@ -1950,7 +2209,7 @@ Number of edges: 1015990
 Running Louvain algorithm...
 Maximum modularity in 10 random starts: 0.9335
 Number of communities: 22
-Elapsed time: 6 seconds</code></pre>
+Elapsed time: 5 seconds</code></pre>
 <pre class="r"><code>DefaultAssay(object = seurat.int) &lt;- &quot;RNA&quot;</code></pre>
 </div>
 <div id="vis-integrated-data" class="section level2 tabset">
@@ -1986,6 +2245,17 @@ Date
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/f1373873f92e392ac69a01aa399a68a438c09ec1/docs/figure/mergeTotalCells_MuHeart.Rmd/vis int cluster-1.png" target="_blank">f137387</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2021-11-10
+</td>
+</tr>
 <tr>
 <td>
 <a href="https://github.com/mluetge/TCRM_Christina/blob/8eb0b02645b47d8e87ae2a02177fe7d4919436b8/docs/figure/mergeTotalCells_MuHeart.Rmd/vis int cluster-1.png" target="_blank">8eb0b02</a>
@@ -2035,6 +2305,17 @@ Date
 <tbody>
 <tr>
 <td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/f1373873f92e392ac69a01aa399a68a438c09ec1/docs/figure/mergeTotalCells_MuHeart.Rmd/vis int grp-1.png" target="_blank">f137387</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2021-11-10
+</td>
+</tr>
+<tr>
+<td>
 <a href="https://github.com/mluetge/TCRM_Christina/blob/8eb0b02645b47d8e87ae2a02177fe7d4919436b8/docs/figure/mergeTotalCells_MuHeart.Rmd/vis int grp-1.png" target="_blank">8eb0b02</a>
 </td>
 <td>
@@ -2082,6 +2363,17 @@ Date
 <tbody>
 <tr>
 <td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/f1373873f92e392ac69a01aa399a68a438c09ec1/docs/figure/mergeTotalCells_MuHeart.Rmd/vis int sample-1.png" target="_blank">f137387</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2021-11-10
+</td>
+</tr>
+<tr>
+<td>
 <a href="https://github.com/mluetge/TCRM_Christina/blob/8eb0b02645b47d8e87ae2a02177fe7d4919436b8/docs/figure/mergeTotalCells_MuHeart.Rmd/vis int sample-1.png" target="_blank">8eb0b02</a>
 </td>
 <td>
@@ -2105,6 +2397,43 @@ mluetge
   xlab(&quot;UMAP1&quot;) +
   ylab(&quot;UMAP2&quot;)</code></pre>
 <p><img src="figure/mergeTotalCells_MuHeart.Rmd/vis%20seqType%20int-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-vis-seqType-int-1">
+Past versions of “vis seqType int-1.png”
+</button>
+</p>
+<div id="fig-no-spaces-vis-seqType-int-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/f1373873f92e392ac69a01aa399a68a438c09ec1/docs/figure/mergeTotalCells_MuHeart.Rmd/vis seqType int-1.png" target="_blank">f137387</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2021-11-10
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 <div id="age-1" class="section level3">
 <h3>Age</h3>
@@ -2115,6 +2444,43 @@ mluetge
   xlab(&quot;UMAP1&quot;) +
   ylab(&quot;UMAP2&quot;)</code></pre>
 <p><img src="figure/mergeTotalCells_MuHeart.Rmd/vis%20age%20int-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-vis-age-int-1">
+Past versions of “vis age int-1.png”
+</button>
+</p>
+<div id="fig-no-spaces-vis-age-int-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/f1373873f92e392ac69a01aa399a68a438c09ec1/docs/figure/mergeTotalCells_MuHeart.Rmd/vis age int-1.png" target="_blank">f137387</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2021-11-10
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 </div>
 <div id="marker-genes-integration" class="section level2">
@@ -2218,7 +2584,7 @@ loaded via a namespace (and not attached):
 [136] stringi_1.7.5          sass_0.4.0             irlba_2.3.3           
 [139] future.apply_1.8.1    </code></pre>
 <pre class="r"><code>date()</code></pre>
-<pre><code>[1] &quot;Wed Nov 10 19:38:41 2021&quot;</code></pre>
+<pre><code>[1] &quot;Fri Nov 12 11:17:51 2021&quot;</code></pre>
 <br>
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">
