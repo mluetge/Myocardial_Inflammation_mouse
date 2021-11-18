@@ -224,7 +224,7 @@ DimPlot(seurat, reduction = "umap", group.by = "label", cols=colLab,
 ```{r cnts par lab per seqType}
 
 table(seurat$label, seurat$seqType)
-
+table(seurat$label, seurat$grp)
 ```
 
 

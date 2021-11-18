@@ -1,0 +1,344 @@
+---
+title: "Merge samples total cells"
+author: "Mechthild Lütge"
+date: "24 July 2020"
+output:
+  html_document:
+    self_contained: no
+    code_folding: show
+    number_sections: no
+    toc: yes
+    toc_depth: 3
+    toc_float: true
+    collapsed: no
+    smooth_scroll: yes
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(warning = FALSE, message = FALSE, dev = c("png", "pdf"))
+set.seed(1000)
+```
+
+## load packages
+```{r libs}
+suppressPackageStartupMessages({
+  library(SingleCellExperiment)
+  library(tidyverse)
+  library(Seurat)
+  library(magrittr)
+  library(dplyr)
+  library(purrr)
+  library(ggplot2)
+  library(here)
+  library(runSeurat3)
+  library(ggsci)
+  library(pheatmap)
+  library(ggpubr)
+  library(clusterProfiler)
+  library(org.Mm.eg.db)
+  library(DOSE)
+  library(enrichplot)
+})
+
+```
+
+## set dir
+```{r set dir}
+basedir <- here()
+seurat <- readRDS(file = paste0(basedir,
+                      "/data/MuHeart_totalCells_integratedLabeled_seurat.rds"))
+Idents(seurat) <- seurat$label
+
+```
+
+
+
+## color vectors
+```{r colVec}
+
+colPal <- pal_igv()(length(levels(seurat)))
+colGrp <- pal_jama()(length(unique(seurat$grp)))
+colAge <- pal_uchicago()(length(unique(seurat$age)))
+colStype <- pal_aaas()(length(unique(seurat$seqType)))
+colDat <- c(pal_npg()(10),
+            pal_futurama()(10))[1:(length(unique(seurat$dataset)))]
+colLab <- pal_igv()(length(unique(seurat$label)))
+  
+names(colPal) <- levels(seurat)
+names(colGrp) <- unique(seurat$grp)
+names(colAge) <- unique(seurat$age)
+names(colStype) <- unique(seurat$seqType)
+names(colDat) <- unique(seurat$dataset)
+names(colLab) <- unique(seurat$label)
+
+```
+
+
+## vis data {.tabset}
+### clusters
+```{r vis cluster}
+
+DimPlot(seurat, reduction = "umap", group.by = "label", cols=colLab)+
+  theme_bw() +
+  theme(axis.text = element_blank(), axis.ticks = element_blank(), 
+        panel.grid.minor = element_blank()) +
+  xlab("UMAP1") +
+  ylab("UMAP2")
+
+
+```
+
+### group
+```{r vis grp}
+
+DimPlot(seurat, reduction = "umap", group.by = "grp", cols=colGrp)+
+  theme_bw() +
+  theme(axis.text = element_blank(), axis.ticks = element_blank(), 
+        panel.grid.minor = element_blank()) +
+  xlab("UMAP1") +
+  ylab("UMAP2")
+
+```
+
+
+### Sample
+```{r vis sample}
+
+DimPlot(seurat, reduction = "umap", group.by = "dataset", cols=colDat)+
+  theme_bw() +
+  theme(axis.text = element_blank(), axis.ticks = element_blank(), 
+        panel.grid.minor = element_blank()) +
+  xlab("UMAP1") +
+  ylab("UMAP2")
+
+
+```
+
+
+### Age
+```{r vis age}
+
+DimPlot(seurat, reduction = "umap", group.by = "age", cols=colAge)+
+  theme_bw() +
+  theme(axis.text = element_blank(), axis.ticks = element_blank(), 
+        panel.grid.minor = element_blank()) +
+  xlab("UMAP1") +
+  ylab("UMAP2")
+
+
+```
+
+
+### SeqType
+```{r vis seqType}
+
+DimPlot(seurat, reduction = "umap", group.by = "seqType", cols=colStype)+
+  theme_bw() +
+  theme(axis.text = element_blank(), axis.ticks = element_blank(), 
+        panel.grid.minor = element_blank()) +
+  xlab("UMAP1") +
+  ylab("UMAP2")
+
+
+```
+
+
+## overall DE genes {.tabset} 
+
+```{r overall DE genes}
+
+Idents(seurat) <- seurat$grp
+DEgenes <-FindAllMarkers(seurat, only.pos=T, logfc.threshold = 0.25,
+                           min.pct = 0.1)
+
+```
+
+### GSEA clusterProfiler 
+
+```{r GSEA clusterprofiler, fig.height=6, fig.width=12}
+
+grpVec <- unique(seurat$grp)
+GOcons <- lapply(grpVec, function(cl){
+  DEgenesSub <- DEgenes %>% 
+    filter(cluster == cl) %>% mutate(ENS=gsub("\\..*$", "", gene)) %>% 
+    slice_min(., p_val_adj, n=250)
+  egoSS <- enrichGO(gene      = unique(DEgenesSub$ENS),
+                OrgDb         = org.Mm.eg.db,
+                keyType       = 'ENSEMBL',
+                ont           = "BP",
+                pAdjustMethod = "BH",
+                pvalueCutoff  = 0.05,
+                qvalueCutoff  = 0.05)
+  egoSS <- setReadable(egoSS, OrgDb = org.Mm.eg.db)
+  egoSSres <- egoSS@result %>% filter(p.adjust < 0.05) %>% 
+    mutate(subset=cl)
+})
+
+names(GOcons) <- grpVec
+
+```
+
+
+
+```{r vis summary, fig.height=5, fig.width=10}
+
+## table to select pathways
+GOconsDat <- do.call("rbind", GOcons)
+write.table(GOconsDat, quote=F, row.names = T, col.names = T, sep= "\t",
+            file = paste0(basedir, "/data/GSEA/MuHeart_totalCells_OverallDE",
+            "_GO.txt"))
+	
+
+selGO <- c(rownames(GOconsDat)[1:5], "control.GO:0030510", "control.GO:0030509",
+           "control.GO:0071772")
+
+
+GOconsDat <- do.call("rbind", GOcons) %>% rownames_to_column(., var="IDlab") %>% 
+  filter(IDlab %in% selGO)
+GOconsDat$subset <- factor(GOconsDat$subset, levels=c("TCRM", "control"))
+GOconsDat <- GOconsDat %>% 
+  arrange(., Count) %>% arrange(., subset) %>%
+  mutate(nom=as.numeric(gsub("\\/.*", "", GeneRatio))) %>% 
+  mutate(denom=as.numeric(gsub(".*\\/", "", GeneRatio))) %>% 
+  mutate(geneRatio=nom/denom) %>% 
+  mutate(one_minPadjust=(1-qvalue))
+
+
+GOconsDat <- GOconsDat %>% mutate(qscore=-log(p.adjust, base=10)) %>% 
+  mutate(DescriptionLab = paste0(subset, ": ", Description))
+p <- ggbarplot(GOconsDat, x = "DescriptionLab", y = "qscore",
+          fill = "subset",               
+          color = "subset",            
+          palette = colGrp,            
+          sort.val = "asc",           
+          sort.by.groups = TRUE      
+          #x.text.angle = 90           
+          ) + 
+  rotate()
+p
+
+
+GOconsDatmod <- GOconsDat %>% 
+  mutate(pAdj = ifelse(p.adjust<0.00001, 0.00001, p.adjust)) %>% 
+  mutate(Qscore=-log(pAdj, base=10)) %>% 
+  mutate(qValGrp = ifelse(subset=="control", -Qscore, Qscore))
+
+p <- ggbarplot(GOconsDatmod, x = "DescriptionLab", y = "qValGrp",
+          fill = "subset",               
+          color = "subset",            
+          palette = colGrp,            
+          sort.val = "asc",           
+          sort.by.groups = TRUE      
+          #x.text.angle = 90           
+          ) + 
+  rotate()
+p
+
+
+```
+
+## DE genes Cardiomyocytes {.tabset} 
+
+```{r DE genes CM}
+seuratSub <- subset(seurat, label == "Cardiomyocytes")
+Idents(seuratSub) <- seuratSub$grp
+DEgenes <-FindAllMarkers(seuratSub, only.pos=T, logfc.threshold = 0.25,
+                           min.pct = 0.1)
+
+```
+
+### GSEA clusterProfiler
+
+```{r GSEA clusterprofiler CM, fig.height=6, fig.width=12}
+
+grpVec <- unique(seuratSub$grp)
+GOcons <- lapply(grpVec, function(cl){
+  DEgenesSub <- DEgenes %>% 
+    filter(cluster == cl) %>% mutate(ENS=gsub("\\..*$", "", gene)) %>% 
+    slice_min(., p_val_adj, n=250)
+  egoSS <- enrichGO(gene      = unique(DEgenesSub$ENS),
+                OrgDb         = org.Mm.eg.db,
+                keyType       = 'ENSEMBL',
+                ont           = "BP",
+                pAdjustMethod = "BH",
+                pvalueCutoff  = 0.05,
+                qvalueCutoff  = 0.05)
+  egoSS <- setReadable(egoSS, OrgDb = org.Mm.eg.db)
+  egoSSres <- egoSS@result %>% filter(p.adjust < 0.05) %>% 
+    mutate(subset=cl)
+})
+
+names(GOcons) <- grpVec
+
+```
+
+
+```{r vis summary CM, fig.height=5, fig.width=10}
+
+## table to select pathways
+GOconsDat <- do.call("rbind", GOcons)
+write.table(GOconsDat, quote=F, row.names = T, col.names = T, sep= "\t",
+            file = paste0(basedir, "/data/GSEA/MuHeart_Cardiomyocytes_DE",
+            "_GO.txt"))
+	
+
+selGO <- c(rownames(GOconsDat)[1:5], "control.GO:0060047", "control.GO:0003015",
+           "control.GO:0006631")
+
+
+GOconsDat <- do.call("rbind", GOcons) %>% rownames_to_column(., var="IDlab") %>% 
+  filter(IDlab %in% selGO)
+GOconsDat$subset <- factor(GOconsDat$subset, levels=c("TCRM", "control"))
+GOconsDat <- GOconsDat %>% 
+  arrange(., Count) %>% arrange(., subset) %>%
+  mutate(nom=as.numeric(gsub("\\/.*", "", GeneRatio))) %>% 
+  mutate(denom=as.numeric(gsub(".*\\/", "", GeneRatio))) %>% 
+  mutate(geneRatio=nom/denom) %>% 
+  mutate(one_minPadjust=(1-qvalue))
+
+
+GOconsDat <- GOconsDat %>% mutate(qscore=-log(p.adjust, base=10)) %>% 
+  mutate(DescriptionLab = paste0(subset, ": ", Description))
+p <- ggbarplot(GOconsDat, x = "DescriptionLab", y = "qscore",
+          fill = "subset",               
+          color = "subset",            
+          palette = colGrp,            
+          sort.val = "asc",           
+          sort.by.groups = TRUE      
+          #x.text.angle = 90           
+          ) + 
+  rotate()
+p
+
+
+GOconsDatmod <- GOconsDat %>% 
+  mutate(pAdj = ifelse(p.adjust<0.00001, 0.00001, p.adjust)) %>% 
+  mutate(Qscore=-log(pAdj, base=10)) %>% 
+  mutate(qValGrp = ifelse(subset=="control", -Qscore, Qscore))
+
+p <- ggbarplot(GOconsDatmod, x = "DescriptionLab", y = "qValGrp",
+          fill = "subset",               
+          color = "subset",            
+          palette = colGrp,            
+          sort.val = "asc",           
+          sort.by.groups = TRUE      
+          #x.text.angle = 90           
+          ) + 
+  rotate()
+p
+
+
+```
+
+
+
+## session info
+```{r session info}
+sessionInfo()
+date()
+```
+
+
+
+
