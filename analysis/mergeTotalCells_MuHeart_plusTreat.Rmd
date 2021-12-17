@@ -1,0 +1,589 @@
+---
+title: "Merge samples total cells"
+author: "Mechthild Lütge"
+date: "24 July 2020"
+output:
+  html_document:
+    self_contained: no
+    code_folding: show
+    number_sections: no
+    toc: yes
+    toc_depth: 3
+    toc_float: true
+    collapsed: no
+    smooth_scroll: yes
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(warning = FALSE, message = FALSE, dev = c("png", "pdf"))
+set.seed(1000)
+```
+
+## load packages
+```{r libs}
+suppressPackageStartupMessages({
+  library(SingleCellExperiment)
+  library(tidyverse)
+  library(Seurat)
+  library(magrittr)
+  library(dplyr)
+  library(purrr)
+  library(ggplot2)
+  library(here)
+  library(runSeurat3)
+  library(ggsci)
+  library(pheatmap)
+  library(ggpubr)
+})
+
+```
+
+## set dir
+```{r set dir}
+basedir <- here()
+metaDat <- read_tsv(paste0(basedir, "/metadata_totalCell2.txt"), col_names = T)
+
+```
+
+
+## load and assign samples
+```{r load plus assign samples}
+
+assignSamples <- function(smpNam, basedirSmp, smpGrp, smpBatch, smpType,
+                          smpAge, smpTreat){
+  smpNamFull <- list.files(path = paste0(basedirSmp, "/data/"),
+				 pattern = paste0(smpNam, ".*_seurat.rds"))
+  seuratSmp <- readRDS(paste0(basedirSmp, "/data/", smpNamFull))
+  seuratSmp$grp <- smpGrp
+  seuratSmp$batch <- smpBatch
+  seuratSmp$seqType <- smpType
+  seuratSmp$age <- smpAge
+  seuratSmp$treatment <- smpTreat
+  return(seuratSmp)
+}
+
+####################################################################
+
+for(i in 1:length(metaDat$Sample)){
+  seuratX <- assignSamples(smpNam = metaDat$Sample[i],
+                           basedirSmp = basedir,
+                           smpGrp = metaDat$group[i],
+                           smpBatch = metaDat$batch[i],
+                           smpType = metaDat$seqType[i],
+                           smpAge = metaDat$age[i],
+                           smpTreat = metaDat$treatment[i])
+  if(exists("seurat")){
+    seurat <- merge(x = seurat, y = seuratX, project = "TCRMtotal")
+  }else{
+    seurat <- seuratX
+  }
+}
+
+remove(seuratX)
+
+```
+
+
+
+## run clustering and DR and remove contaminating cells
+```{r clustering and DR}
+
+seurat <- rerunSeurat3(seurat)
+Idents(seurat) <- seurat$RNA_snn_res.0.25
+seurat$seurat_clusters <- seurat$RNA_snn_res.0.25
+
+dat <- data.frame(table(seurat$dataset))
+colnames(dat) <- c("dataset", "all")
+
+#seuratSub <- subset(seurat, subset = `MGP-BALBcJ-G0026271.Grem1` >0) ## 0 cells
+#dat2 <- data.frame(table(seuratSub$dataset))
+#colnames(dat2) <- c("dataset", "Grem1")
+#dat <- dat %>% left_join(., dat2, by=c("dataset"))
+
+seuratSub <- subset(seurat, subset = `ENSMUSG00000050069.Grem2` >0) ## 2 cells
+dat2 <- data.frame(table(seuratSub$dataset))
+colnames(dat2) <- c("dataset", "Grem2")
+dat <- dat %>% left_join(., dat2, by=c("dataset"))
+
+seuratSub <- subset(seurat, subset = `ENSMUSG00000027358.Bmp2` >0) ## 418 cells
+dat2 <- data.frame(table(seuratSub$dataset))
+colnames(dat2) <- c("dataset", "Bmp2")
+dat <- dat %>% left_join(., dat2, by=c("dataset"))
+
+seuratSub <- subset(seurat,subset = `ENSMUSG00000021835.Bmp4` >0) ## 1341 cells
+dat2 <- data.frame(table(seuratSub$dataset))
+colnames(dat2) <- c("dataset", "Bmp4")
+dat <- dat %>% left_join(., dat2, by=c("dataset"))
+
+seuratSub <- subset(seurat,subset=`ENSMUSG00000021796.Bmpr1a` >0) ## 1092 cells
+dat2 <- data.frame(table(seuratSub$dataset))
+colnames(dat2) <- c("dataset", "Bmpr1a")
+dat <- dat %>% left_join(., dat2, by=c("dataset"))
+
+seuratSub <- subset(seurat, subset=`ENSMUSG00000052430.Bmpr1b` >0) ## 2 cells
+dat2 <- data.frame(table(seuratSub$dataset))
+colnames(dat2) <- c("dataset", "Bmpr1b")
+dat <- dat %>% left_join(., dat2, by=c("dataset"))
+
+seuratSub <- subset(seurat,subset=`ENSMUSG00000067336.Bmpr2` >0) ## 2201 cells
+dat2 <- data.frame(table(seuratSub$dataset))
+colnames(dat2) <- c("dataset", "Bmpr2")
+dat <- dat %>% left_join(., dat2, by=c("dataset"))
+dat[is.na(dat)] <-0
+
+dat_fin <-  dat %>%
+  bind_rows(summarise_all(., funs(if(is.numeric(.)) sum(.) else "total")))
+
+knitr::kable(dat_fin)
+
+## total 71484 cells
+remove(seuratSub)
+```
+
+## check QC
+```{r check QC}
+
+colDat <- c(pal_npg()(10),
+            pal_futurama()(10),
+            pal_aaas()(10))[1:(length(unique(seurat$dataset)))]
+names(colDat) <- unique(seurat$dataset)
+
+sce <- as.SingleCellExperiment(seurat)
+
+plotQC2 <- function(sce, feature){
+  p <- gghistogram(data = as.data.frame(sce@colData),
+              x=feature,
+              bins=70,
+              #title=unique(sce$dataset),
+              fill = "dataset",
+              palette = colDat,
+              legend = "right")
+  return(p)
+}
+
+plotQC3 <- function(sce, feature){
+  p <- gghistogram(data = as.data.frame(sce@colData),
+              x=feature,
+              y = "..density..",
+              bins=70,
+              fill = "dataset",
+              palette = colDat,
+              add_density = TRUE,
+              legend = "right")
+  return(p)
+}
+
+plotQC2(sce, "total")
+plotQC3(sce, "total")
+
+plotQC2(sce, "detected")
+plotQC3(sce, "detected")
+
+plotQC2(sce, "sum")
+plotQC3(sce, "sum")
+
+
+```
+
+
+## color vectors
+```{r colVec}
+
+colPal <- pal_igv()(length(levels(seurat)))
+colGrp <- pal_jama()(length(unique(seurat$grp)))
+colAge <- pal_uchicago()(length(unique(seurat$age)))
+colStype <- pal_aaas()(length(unique(seurat$seqType)))
+colTreat <- pal_jama()(length(unique(seurat$treatment)))
+
+names(colPal) <- levels(seurat)
+names(colGrp) <- unique(seurat$grp)
+names(colAge) <- unique(seurat$age)
+names(colStype) <- unique(seurat$seqType)
+names(colTreat) <- unique(seurat$treatment)
+
+```
+
+
+## vis data {.tabset}
+### clusters
+```{r vis cluster}
+
+DimPlot(seurat, reduction = "umap", cols=colPal)+
+  theme_bw() +
+  theme(axis.text = element_blank(), axis.ticks = element_blank(), 
+        panel.grid.minor = element_blank()) +
+  xlab("UMAP1") +
+  ylab("UMAP2")
+
+
+```
+
+### group
+```{r vis grp}
+
+DimPlot(seurat, reduction = "umap", group.by = "grp", cols=colGrp)+
+  theme_bw() +
+  theme(axis.text = element_blank(), axis.ticks = element_blank(), 
+        panel.grid.minor = element_blank()) +
+  xlab("UMAP1") +
+  ylab("UMAP2")
+
+```
+
+
+### Sample
+```{r vis sample, fig.height=4, fig.width=8}
+
+DimPlot(seurat, reduction = "umap", group.by = "dataset", cols=colDat)+
+  theme_bw() +
+  theme(axis.text = element_blank(), axis.ticks = element_blank(), 
+        panel.grid.minor = element_blank()) +
+  xlab("UMAP1") +
+  ylab("UMAP2")
+
+
+```
+
+
+### Age
+```{r vis age}
+
+DimPlot(seurat, reduction = "umap", group.by = "age", cols=colAge)+
+  theme_bw() +
+  theme(axis.text = element_blank(), axis.ticks = element_blank(), 
+        panel.grid.minor = element_blank()) +
+  xlab("UMAP1") +
+  ylab("UMAP2")
+
+
+```
+
+### SeqType
+```{r vis seqType}
+
+DimPlot(seurat, reduction = "umap", group.by = "seqType", cols=colStype)+
+  theme_bw() +
+  theme(axis.text = element_blank(), axis.ticks = element_blank(), 
+        panel.grid.minor = element_blank()) +
+  xlab("UMAP1") +
+  ylab("UMAP2")
+
+
+```
+
+### Treatment
+```{r vis treat}
+
+DimPlot(seurat, reduction = "umap", group.by = "treatment", cols=colTreat)+
+  theme_bw() +
+  theme(axis.text = element_blank(), axis.ticks = element_blank(), 
+        panel.grid.minor = element_blank()) +
+  xlab("UMAP1") +
+  ylab("UMAP2")
+
+
+```
+
+
+## vis BMPs {.tabset}
+### Bmp2
+```{r vis Bmp2}
+p <- FeaturePlot(seurat, reduction = "umap", 
+            features = "ENSMUSG00000027358.Bmp2",
+            cols=c("lightgrey", "darkred"),
+            order = T)+
+  theme(legend.position="right")
+p
+
+```
+
+### Bmp4
+```{r vis Bmp4}
+p <- FeaturePlot(seurat, reduction = "umap", 
+            features = "ENSMUSG00000021835.Bmp4",
+            cols=c("lightgrey", "darkred"),
+            order = T)+
+  theme(legend.position="right")
+p
+
+```
+
+### Bmpr1a
+```{r vis Bmpr1a}
+p <- FeaturePlot(seurat, reduction = "umap", 
+            features = "ENSMUSG00000021796.Bmpr1a",
+            cols=c("lightgrey", "darkred"),
+            order = T)+
+  theme(legend.position="right")
+p
+
+```
+
+### Bmpr2
+```{r vis Bmpr2}
+p <- FeaturePlot(seurat, reduction = "umap", 
+            features = "ENSMUSG00000067336.Bmpr2",
+            cols=c("lightgrey", "darkred"),
+            order = T)+
+  theme(legend.position="right")
+p
+
+```
+
+## overall DE genes untreated
+
+
+```{r avg heatmap function, eval=T, include=FALSE}
+
+avgHeatmap <- function(seurat, selGenes, colVecIdent, colVecCond=NULL,
+                       ordVec=NULL, gapVecR=NULL, gapVecC=NULL,cc=FALSE,
+                       cr=FALSE, condCol=FALSE){
+  
+  ## format gene names (depends on how gene list is inputed)
+  selGenes <- selGenes %>% 
+      mutate(labelNam = (str_split(gene, '\\.', simplify = T)[,2]))
+  selGenes <- selGenes$labelNam
+  
+  ## assay data
+  clusterAssigned <- as.data.frame(Idents(seurat)) %>%
+  dplyr::mutate(cell=rownames(.))
+  colnames(clusterAssigned)[1] <- "ident"
+  seuratDat <- GetAssayData(seurat)
+  
+  ## genes of interest
+  genes <- data.frame(gene=rownames(seurat)) %>% 
+    mutate(geneID=gsub("^.*\\.", "", gene)) %>% filter(geneID %in% selGenes)
+
+  ## matrix with averaged cnts per ident
+  logNormExpres <- as.data.frame(t(as.matrix(
+    seuratDat[which(rownames(seuratDat) %in% genes$gene),])))
+  logNormExpres <- logNormExpres %>% dplyr::mutate(cell=rownames(.)) %>%
+    dplyr::left_join(.,clusterAssigned, by=c("cell")) %>%
+    dplyr::select(-cell) %>% dplyr::group_by(ident) %>%
+    dplyr::summarise_all(mean)
+  logNormExpresMa <- logNormExpres %>% dplyr::select(-ident) %>% as.matrix()
+  rownames(logNormExpresMa) <- logNormExpres$ident
+  logNormExpresMa <- t(logNormExpresMa)
+  rownames(logNormExpresMa) <- gsub("^.*?\\.","",rownames(logNormExpresMa))
+  
+  ## remove genes if they are all the same in all groups
+  ind <- apply(logNormExpresMa, 1, sd) == 0
+  logNormExpresMa <- logNormExpresMa[!ind,]
+  genes <- genes[!ind,]
+
+  ## color columns according to cluster
+  annotation_col <- as.data.frame(gsub("(^.*?_)","",
+                                       colnames(logNormExpresMa)))%>%
+    dplyr::mutate(celltype=gsub("(_.*$)","",colnames(logNormExpresMa)))
+  colnames(annotation_col)[1] <- "col1"
+  annotation_col <- annotation_col %>%
+    dplyr::mutate(cond = gsub("(^[0-9]_?)","",col1)) %>%
+    dplyr::select(cond, celltype)
+  rownames(annotation_col) <- colnames(logNormExpresMa) 
+
+  ann_colors = list(
+      cond = colVecCond,
+      celltype=colVecIdent)
+  if(is.null(ann_colors$cond)){
+    annotation_col$cond <- NULL
+  }
+  
+  ## adjust order
+  logNormExpresMa <- logNormExpresMa[selGenes,]
+  if(is.null(ordVec)){
+    ordVec <- levels(seurat)
+  }
+  logNormExpresMa <- logNormExpresMa[,ordVec]
+
+  ## scaled row-wise
+  pheatmap(logNormExpresMa, scale="row" ,treeheight_row = 0, cluster_rows = cr, 
+         cluster_cols = cc,
+         color = colorRampPalette(c("#2166AC", "#F7F7F7", "#B2182B"))(50),
+         annotation_col = annotation_col, cellwidth=15, cellheight=10,
+         annotation_colors = ann_colors, gaps_row = gapVecR, gaps_col = gapVecC)
+}
+
+```
+
+
+
+```{r overall DE, fig.height=10, fig.width=6}
+seuratSub <- subset(seurat, treatment=="no")
+Idents(seuratSub) <- seuratSub$grp
+
+DEgenes <- FindAllMarkers(object = seuratSub, assay ="RNA",
+                                     only.pos = TRUE, min.pct = 0.25,
+                                     logfc.threshold = 0.25,
+                                     test.use = "wilcox")
+
+### plot DE genes top 15 avg logFC
+DEGenesAll <- DEgenes %>% group_by(cluster) %>% 
+  top_n(15, avg_log2FC) %>% mutate(label=gsub(".*\\.", "",  gene)) %>% 
+  filter(nchar(label)>1)
+
+Idents(seuratSub) <- seuratSub$seurat_clusters
+avgHeatmap(seurat = seuratSub, selGenes = DEGenesAll,
+                  colVecIdent = colPal, 
+                  ordVec=levels(seuratSub),
+                  gapVecR=NULL, gapVecC=NULL,cc=T,
+                  cr=T, condCol=F)
+```
+
+
+## save objects
+```{r save}
+saveRDS(seuratSub, file = paste0(basedir,
+                                 "/data/MuHeart_totalCells_seurat.rds"))
+
+saveRDS(seurat, file = paste0(basedir,
+                            "/data/MuHeart_totalCells_plusTreated_seurat.rds"))
+
+# write.table(seurat_markers_all,
+#             file=paste0(basedir, "/data/MuHeart_totalCells_markerGenes.txt"),
+#             row.names = FALSE, col.names = TRUE, quote = FALSE, sep = "\t")
+
+write.table(DEgenes,
+            file=paste0(basedir, "/data/MuHeart_totalCells_DEGenes.txt"),
+            row.names = FALSE, col.names = TRUE, quote = FALSE, sep = "\t")
+
+remove(seuratSub)
+```
+
+
+## run integration
+```{r integrated across seq techniques}
+
+seurat.list <- SplitObject(object = seurat, split.by = "seqType")
+for (i in 1:length(x = seurat.list)) {
+    seurat.list[[i]] <- NormalizeData(object = seurat.list[[i]],
+                                      verbose = FALSE)
+    seurat.list[[i]] <- FindVariableFeatures(object = seurat.list[[i]], 
+        selection.method = "vst", nfeatures = 2000, verbose = FALSE)
+}
+
+seurat.anchors <- FindIntegrationAnchors(object.list = seurat.list, dims = 1:15,
+                                         k.filter = 50)
+seurat.int <- IntegrateData(anchorset = seurat.anchors, dims = 1:15)
+DefaultAssay(object = seurat.int) <- "integrated"
+
+# rerun seurat
+seurat.int <- ScaleData(object = seurat.int, verbose = FALSE,
+                        features = rownames(seurat.int))
+seurat.int <- RunPCA(object = seurat.int, npcs = 20, verbose = FALSE)
+seurat.int <- RunTSNE(object = seurat.int, reduction = "pca", dims = 1:20)
+seurat.int <- RunUMAP(object = seurat.int, reduction = "pca", dims = 1:20)
+
+seurat.int <- FindNeighbors(object = seurat.int, reduction = "pca", dims = 1:20)
+res <- c(0.6,0.8,0.25,0.4)
+for(i in 1:length(res)){
+  seurat.int <- FindClusters(object = seurat.int, resolution = res[i],
+                             random.seed = 1234)
+}
+
+DefaultAssay(object = seurat.int) <- "RNA"
+
+
+```
+
+## vis integrated data {.tabset}
+### clusters
+```{r vis int cluster}
+
+DimPlot(seurat.int, reduction = "umap", cols=colPal)+
+  theme_bw() +
+  theme(axis.text = element_blank(), axis.ticks = element_blank(), 
+        panel.grid.minor = element_blank()) +
+  xlab("UMAP1") +
+  ylab("UMAP2")
+
+
+```
+
+### group
+```{r vis int grp}
+
+DimPlot(seurat.int, reduction = "umap", group.by = "grp", cols=colGrp)+
+  theme_bw() +
+  theme(axis.text = element_blank(), axis.ticks = element_blank(), 
+        panel.grid.minor = element_blank()) +
+  xlab("UMAP1") +
+  ylab("UMAP2")
+
+```
+
+
+### Sample
+```{r vis int sample}
+
+DimPlot(seurat.int, reduction = "umap", group.by = "dataset", cols=colDat)+
+  theme_bw() +
+  theme(axis.text = element_blank(), axis.ticks = element_blank(), 
+        panel.grid.minor = element_blank()) +
+  xlab("UMAP1") +
+  ylab("UMAP2")
+
+
+```
+### SeqType
+```{r vis seqType int}
+
+DimPlot(seurat.int, reduction = "umap", group.by = "seqType", cols=colStype)+
+  theme_bw() +
+  theme(axis.text = element_blank(), axis.ticks = element_blank(), 
+        panel.grid.minor = element_blank()) +
+  xlab("UMAP1") +
+  ylab("UMAP2")
+
+
+```
+
+### Age
+```{r vis age int}
+
+DimPlot(seurat.int, reduction = "umap", group.by = "age", cols=colAge)+
+  theme_bw() +
+  theme(axis.text = element_blank(), axis.ticks = element_blank(), 
+        panel.grid.minor = element_blank()) +
+  xlab("UMAP1") +
+  ylab("UMAP2")
+
+
+```
+
+
+## marker genes integration
+```{r marker genes int data}
+## marker genes int res 0.4
+seurat_markers_int <- FindAllMarkers(object = seurat.int, assay ="RNA",
+                                     only.pos = TRUE, min.pct = 0.25,
+                                     logfc.threshold = 0.25,
+                                     test.use = "wilcox")
+
+```
+
+
+
+## save integrated objects
+```{r save int}
+saveRDS(seurat.int, file = paste0(basedir,
+                  "/data/MuHeart_totalCells_plusTreated_integrated_seurat.rds"))
+
+write.table(seurat_markers_int,
+            file=paste0(basedir,
+            "/data/MuHeart_totalCells_plusTreated_integrated_markerGenes.txt"),
+            row.names = FALSE, col.names = TRUE, quote = FALSE, sep = "\t")
+
+
+```
+
+
+## session info
+```{r session info}
+sessionInfo()
+date()
+```
+
+
+
+

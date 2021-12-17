@@ -190,24 +190,15 @@ write.table(GOconsDat, quote=F, row.names = T, col.names = T, sep= "\t",
             "_GO.txt"))
 	
 
-selGO <- c(rownames(GOconsDat)[1:5], "control.GO:0030510", "control.GO:0030509",
-           "control.GO:0071772")
+selGO <- read_tsv(paste0(basedir,"/data/GSEA/selGO_overall.txt"))
+GOconsDat <- GOconsDat %>% filter(ID %in% selGO$GOterm) %>% 
+  mutate(Grp=ifelse(subset=="control", "Ctrl", "TCRM"))
 
-
-GOconsDat <- do.call("rbind", GOcons) %>% rownames_to_column(., var="IDlab") %>% 
-  filter(IDlab %in% selGO)
-GOconsDat$subset <- factor(GOconsDat$subset, levels=c("TCRM", "control"))
-GOconsDat <- GOconsDat %>% 
-  arrange(., Count) %>% arrange(., subset) %>%
-  mutate(nom=as.numeric(gsub("\\/.*", "", GeneRatio))) %>% 
-  mutate(denom=as.numeric(gsub(".*\\/", "", GeneRatio))) %>% 
-  mutate(geneRatio=nom/denom) %>% 
-  mutate(one_minPadjust=(1-qvalue))
-
-
-GOconsDat <- GOconsDat %>% mutate(qscore=-log(p.adjust, base=10)) %>% 
-  mutate(DescriptionLab = paste0(subset, ": ", Description))
-p <- ggbarplot(GOconsDat, x = "DescriptionLab", y = "qscore",
+grpVec <- unique(selGO$Grp)
+lapply(grpVec, function(grp){
+  selGODat <- GOconsDat %>% filter(Grp == grp)
+  selGODat <- selGODat %>% mutate(qscore=-log(p.adjust, base=10)) 
+  p <- ggbarplot(selGODat, x = "Description", y = "qscore",
           fill = "subset",               
           color = "subset",            
           palette = colGrp,            
@@ -217,23 +208,7 @@ p <- ggbarplot(GOconsDat, x = "DescriptionLab", y = "qscore",
           ) + 
   rotate()
 p
-
-
-GOconsDatmod <- GOconsDat %>% 
-  mutate(pAdj = ifelse(p.adjust<0.00001, 0.00001, p.adjust)) %>% 
-  mutate(Qscore=-log(pAdj, base=10)) %>% 
-  mutate(qValGrp = ifelse(subset=="control", -Qscore, Qscore))
-
-p <- ggbarplot(GOconsDatmod, x = "DescriptionLab", y = "qValGrp",
-          fill = "subset",               
-          color = "subset",            
-          palette = colGrp,            
-          sort.val = "asc",           
-          sort.by.groups = TRUE      
-          #x.text.angle = 90           
-          ) + 
-  rotate()
-p
+})
 
 
 ```
@@ -283,24 +258,15 @@ write.table(GOconsDat, quote=F, row.names = T, col.names = T, sep= "\t",
             "_GO.txt"))
 	
 
-selGO <- c(rownames(GOconsDat)[1:5], "control.GO:0060047", "control.GO:0003015",
-           "control.GO:0006631")
+selGO <- read_tsv(paste0(basedir,"/data/GSEA/selGO_Cardiomyocytes.txt"))
+GOconsDat <- GOconsDat %>% filter(ID %in% selGO$GOterm) %>% 
+  mutate(Grp=ifelse(subset=="control", "Ctrl", "TCRM"))
 
-
-GOconsDat <- do.call("rbind", GOcons) %>% rownames_to_column(., var="IDlab") %>% 
-  filter(IDlab %in% selGO)
-GOconsDat$subset <- factor(GOconsDat$subset, levels=c("TCRM", "control"))
-GOconsDat <- GOconsDat %>% 
-  arrange(., Count) %>% arrange(., subset) %>%
-  mutate(nom=as.numeric(gsub("\\/.*", "", GeneRatio))) %>% 
-  mutate(denom=as.numeric(gsub(".*\\/", "", GeneRatio))) %>% 
-  mutate(geneRatio=nom/denom) %>% 
-  mutate(one_minPadjust=(1-qvalue))
-
-
-GOconsDat <- GOconsDat %>% mutate(qscore=-log(p.adjust, base=10)) %>% 
-  mutate(DescriptionLab = paste0(subset, ": ", Description))
-p <- ggbarplot(GOconsDat, x = "DescriptionLab", y = "qscore",
+grpVec <- unique(selGO$Grp)
+lapply(grpVec, function(grp){
+  selGODat <- GOconsDat %>% filter(Grp == grp)
+  selGODat <- selGODat %>% mutate(qscore=-log(p.adjust, base=10)) 
+  p <- ggbarplot(selGODat, x = "Description", y = "qscore",
           fill = "subset",               
           color = "subset",            
           palette = colGrp,            
@@ -310,24 +276,7 @@ p <- ggbarplot(GOconsDat, x = "DescriptionLab", y = "qscore",
           ) + 
   rotate()
 p
-
-
-GOconsDatmod <- GOconsDat %>% 
-  mutate(pAdj = ifelse(p.adjust<0.00001, 0.00001, p.adjust)) %>% 
-  mutate(Qscore=-log(pAdj, base=10)) %>% 
-  mutate(qValGrp = ifelse(subset=="control", -Qscore, Qscore))
-
-p <- ggbarplot(GOconsDatmod, x = "DescriptionLab", y = "qValGrp",
-          fill = "subset",               
-          color = "subset",            
-          palette = colGrp,            
-          sort.val = "asc",           
-          sort.by.groups = TRUE      
-          #x.text.angle = 90           
-          ) + 
-  rotate()
-p
-
+})
 
 ```
 

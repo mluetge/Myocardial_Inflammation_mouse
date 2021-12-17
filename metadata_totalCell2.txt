@@ -1,16 +1,24 @@
-Sample	group	batch	seqType	age
-7_20200707_Mu_Heart_TCRM_total_cell_1_v3	TCRM	batch1	sc	8wk
-8_20200707_Mu_Heart_TCRM_total_cell_2_v3	TCRM	batch1	sc	8wk
-5_20200707_Mu_Heart_LM_total_cell_1_v3	control	batch1	sc	8wk
-6_20200707_Mu_Heart_LM_total_cell_2_v3	control	batch1	sc	8wk
-11_20210916_Mu_Heart_TCRM1_4wk_GEM	TCRM	batch3	sc	4wk
-12_20210916_Mu_Heart_TCRM2_4wk_GEM	TCRM	batch3	sc	4wk
-13_20210916_Mu_Heart_TCRM1_4wk_nuc_GEM	TCRM	batch3	sn	4wk
-14_20210916_Mu_Heart_TCRM2_4wk_nuc_GEM	TCRM	batch3	sn	4wk
-1_20210902_Mu_Heart_control1_8wk_GEM	control	batch3	sc	8wk
-2_20210902_Mu_Heart_control2_8wk_GEM	control	batch3	sc	8wk
-3_20210902_Mu_Heart_TCRM1_8wk_GEM	TCRM	batch3	sc	8wk
-4_20210902_Mu_Heart_TCRM2_8wk_GEM	TCRM	batch3	sc	8wk
-5_20210902_Mu_Heart_control1_8wk_nuc_GEM	control	batch3	sn	8wk
-6_20210902_Mu_Heart_control2_8wk_nuc_GEM	control	batch3	sn	8wk
-7_20210902_Mu_Heart_TCRM1_8wk_nuc_GEM	TCRM	batch3	sn	8wk
+Sample	group	batch	seqType	age	treatment
+7_20200707_Mu_Heart_TCRM_total_cell_1_v3	TCRM	batch1	sc	8wk	no
+8_20200707_Mu_Heart_TCRM_total_cell_2_v3	TCRM	batch1	sc	8wk	no
+5_20200707_Mu_Heart_LM_total_cell_1_v3	control	batch1	sc	8wk	no
+6_20200707_Mu_Heart_LM_total_cell_2_v3	control	batch1	sc	8wk	no
+11_20210916_Mu_Heart_TCRM1_4wk_GEM	TCRM	batch3	sc	4wk	no
+12_20210916_Mu_Heart_TCRM2_4wk_GEM	TCRM	batch3	sc	4wk	no
+13_20210916_Mu_Heart_TCRM1_4wk_nuc_GEM	TCRM	batch3	sn	4wk	no
+14_20210916_Mu_Heart_TCRM2_4wk_nuc_GEM	TCRM	batch3	sn	4wk	no
+1_20210902_Mu_Heart_control1_8wk_GEM	control	batch3	sc	8wk	no
+2_20210902_Mu_Heart_control2_8wk_GEM	control	batch3	sc	8wk	no
+3_20210902_Mu_Heart_TCRM1_8wk_GEM	TCRM	batch3	sc	8wk	no
+4_20210902_Mu_Heart_TCRM2_8wk_GEM	TCRM	batch3	sc	8wk	no
+5_20210902_Mu_Heart_control1_8wk_nuc_GEM	control	batch3	sn	8wk	no
+6_20210902_Mu_Heart_control2_8wk_nuc_GEM	control	batch3	sn	8wk	no
+7_20210902_Mu_Heart_TCRM1_8wk_nuc_GEM	TCRM	batch3	sn	8wk	no
+6_20211013_Mu_Heart_TCRM1_Iso_GEM	TCRM	batch4	sc	8wk	isotype
+7_20211013_Mu_Heart_TCRM2_Iso_GEM	TCRM	batch4	sc	8wk	isotype
+8_20211013_Mu_Heart_TCRM1_14D102_GEM	TCRM	batch4	sc	8wk	14D102
+9_20211013_Mu_Heart_TCRM2_14D102_GEM	TCRM	batch4	sc	8wk	14D102
+10_20211013_Mu_Heart_TCRM1_Iso_nuc_GEM	TCRM	batch4	sn	8wk	isotype
+11_20211013_Mu_Heart_TCRM2_Iso_nuc_GEM	TCRM	batch4	sn	8wk	isotype
+12_20211013_Mu_Heart_TCRM1_14D102_nuc_GEM	TCRM	batch4	sn	8wk	14D102
+13_20211013_Mu_Heart_TCRM2_14D102_nuc_GEM	TCRM	batch4	sn	8wk	14D102

@@ -1,0 +1,749 @@
+---
+title: "process cellPhone ouput"
+author: ""
+date: ""
+output: 
+  html_document:
+    keep_md: true
+    toc: true
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r setup, echo = FALSE}
+options(width = 100)
+knitr::opts_chunk$set(warning = FALSE, message = FALSE, dev = c("png", "pdf"))
+seed <- 1234
+```
+
+## Load packages
+
+```{r load-packages, warning = FALSE}
+suppressPackageStartupMessages({
+  library(tidyverse)
+  library(corrplot)
+  library(SummarizedExperiment)
+  library(RColorBrewer)
+  library(here)
+  library(ggsci)
+  library(pheatmap)
+  library(ggplot2)
+  library(reshape2)
+  library(viridis)
+  library(circlize)
+  library(ggpubr)
+})
+```
+
+## set dir
+```{r set dir}
+basedir <- here()
+seurat <- readRDS(file = paste0(basedir,
+                      "/data/MuHeart_totalCells_integratedLabeled_seurat.rds"))
+Idents(seurat) <- seurat$label
+
+```
+
+
+
+## color vectors
+```{r colVec}
+
+colPal <- pal_igv()(length(levels(seurat)))
+colGrp <- pal_jama()(length(unique(seurat$grp)))
+colAge <- pal_uchicago()(length(unique(seurat$age)))
+colStype <- pal_aaas()(length(unique(seurat$seqType)))
+colDat <- c(pal_npg()(10),
+            pal_futurama()(10))[1:(length(unique(seurat$dataset)))]
+colLab <- pal_igv()(length(unique(seurat$label)))
+  
+names(colPal) <- levels(seurat)
+names(colGrp) <- unique(seurat$grp)
+names(colAge) <- unique(seurat$age)
+names(colStype) <- unique(seurat$seqType)
+names(colDat) <- unique(seurat$dataset)
+names(colLab) <- unique(seurat$label)
+
+```
+
+
+## count significant interactions CellPhoneDB {.tabset}
+
+### format data
+```{r format data wt}
+
+sloVec <- c("TCRM", "control")
+
+intList <- lapply(sloVec, function(slo){
+  means <- read_tsv(paste0(basedir, "/data/cellphonedb/out", slo, "/means.txt"))
+  pVal <- read_tsv(paste0(basedir, "/data/cellphonedb/out", slo, "/pvalues.txt"))
+
+  ### create intPairs
+  #### means
+  meansCut  <- means %>%
+    dplyr::select(-c(id_cp_interaction, partner_a, partner_b, gene_a, gene_b,
+              receptor_a, receptor_b, annotation_strategy, secreted, is_integrin,
+              interacting_pair))
+  rownames(meansCut) <- means$interacting_pair
+
+  #### pVal
+  pValCut  <- pVal %>%
+    dplyr::select(-c(id_cp_interaction, partner_a, partner_b, gene_a, gene_b,
+              receptor_a, receptor_b, annotation_strategy, secreted, is_integrin,
+              interacting_pair))
+  rownames(pValCut) <- pVal$interacting_pair
+  
+  #### cellA/cellB
+  CellNames <- data.frame(CellsInt = as.character(colnames(meansCut))) %>%
+    mutate(cellA=gsub("\\|.*","" ,CellsInt)) %>%
+    mutate(cellB=gsub("^.*\\|","" ,CellsInt))
+
+
+  ### summarize mean
+  meansCut_long <- meansCut %>% rownames_to_column(var="intPair") %>%
+    melt(., id.vars=c("intPair"), measure.vars=colnames(meansCut),
+         variable.name="CellsInt", value.name="mean") %>% 
+    left_join(., CellNames, by="CellsInt") %>% 
+    filter(!cellA == cellB)
+
+  ### summarize pVal
+  pValCut_long <- pValCut %>% rownames_to_column(var="intPair") %>%
+    melt(., id.vars=c("intPair"), measure.vars=colnames(meansCut),
+         variable.name="CellsInt", value.name="pVal") %>% 
+    left_join(., CellNames, by="CellsInt")  %>% 
+    filter(!cellA == cellB)
+
+  allSum <- meansCut_long %>% mutate(pVal=pValCut_long$pVal) %>%
+    mutate(Grp = slo) %>% 
+    mutate(sign=ifelse(pVal<0.05, "p < 0.05", "p > 0.05"))
+
+})
+names(intList) <- sloVec
+
+
+```
+
+
+### all sign int {.tabset}
+#### heatmap
+```{r all sig int heatmap, fig.height=6, fig.width=6}
+
+## filter for sign int
+signInt <- lapply(intList, function(all){
+  allSig <- all %>% filter(pVal<0.05) 
+})
+names(signInt) <- sloVec
+
+signIntDat <- data.frame(do.call("rbind", signInt))
+
+table(signIntDat$CellsInt, signIntDat$Grp)
+
+## reorder int 
+reordInt <- signIntDat %>% filter(cellA=="Tcells") %>% 
+  mutate(intA=gsub("_.*", "", intPair)) %>% 
+  mutate(intB=gsub(".*_", "", intPair))
+reordIntFin <- data.frame(intPair=paste0(reordInt$intB, "_", reordInt$intA),
+                          CellsInt=paste0(reordInt$cellB, "|", reordInt$cellA),
+                          mean=reordInt$mean,
+                          cellA=reordInt$cellB,
+                          cellB=reordInt$cellA,
+                          pVal=reordInt$pVal,
+                          Grp=reordInt$Grp,
+                          sign=reordInt$sign)
+
+reordInt2 <- signIntDat %>%
+  filter(cellA=="MacrophagesMonocytes" & cellB=="Fibroblasts") %>% 
+  mutate(intA=gsub("_.*", "", intPair)) %>% 
+  mutate(intB=gsub(".*_", "", intPair))
+reordIntFin2 <- data.frame(intPair=paste0(reordInt2$intB, "_", reordInt2$intA),
+                          CellsInt=paste0(reordInt2$cellB, "|", reordInt2$cellA),
+                          mean=reordInt2$mean,
+                          cellA=reordInt2$cellB,
+                          cellB=reordInt2$cellA,
+                          pVal=reordInt2$pVal,
+                          Grp=reordInt2$Grp,
+                          sign=reordInt2$sign)
+
+signIntDatKeep <- signIntDat %>% 
+  filter(cellA %in% c("Fibroblasts", "MacrophagesMonocytes")) %>% 
+  filter(!cellB %in% c("Fibroblasts")) 
+
+
+signIntDatOrd <- rbind(signIntDatKeep, reordIntFin, reordIntFin2) 
+
+## save all detected sign int
+write.table(signIntDatOrd, 
+            file = paste0(basedir,"/data/cellphonedb/allSignInt.txt"),
+            sep="\t", quote=F, row.names=F,col.names = T)
+
+
+## int only in one grp
+signIntDatOrdCtrl <- signIntDatOrd %>%filter(Grp=="control")
+signIntDatOrdTCRM <- signIntDatOrd %>%filter(Grp=="TCRM")
+signIntDatOrdUnique <- rbind(signIntDatOrdCtrl[which(!signIntDatOrdCtrl$intPair
+                                              %in% signIntDatOrdTCRM$intPair),],
+                             signIntDatOrdTCRM[which(!signIntDatOrdTCRM$intPair
+                                              %in% signIntDatOrdCtrl$intPair),])
+
+write.table(signIntDatOrdUnique, 
+            file = paste0(basedir,"/data/cellphonedb/UniqueSignInt.txt"),
+            sep="\t", quote=F, row.names=F,col.names = T)
+
+```
+
+
+################################################################################
+NOT YET ADJUSTED!
+################################################################################
+
+#### circle plots for each SLO
+```{r circle plot all sign for each SLO}
+
+### relative cnts
+adjListConsInt <- cntPairSLO  %>% ungroup() %>% 
+  mutate(BRCsub=factor(gsub("BRC_", "", cellA), levels = ordBRC)) %>% 
+  mutate(IMMsub=factor(gsub("LYMPHO_", "", cellB), levels = ordLymphShort)) %>% 
+  dplyr::select(BRCsub, IMMsub, SLO, relCnt) %>% 
+  arrange(IMMsub) %>% 
+  arrange(BRCsub)
+
+lapply(sloVec, function(slo){
+  adjSub <- adjListConsInt %>% filter(SLO==slo) %>% 
+    dplyr::select(-SLO)
+  
+  chordDiagram(adjSub, big.gap = 15, grid.col = c(colBRC, colLab),
+               transparency = 0.1, annotationTrack = c("name", "grid"))
+  circos.clear()
+  
+})
+
+
+### absolute cnts
+adjListConsInt <- cntPairSLO  %>% ungroup() %>% 
+  mutate(BRCsub=factor(gsub("BRC_", "", cellA), levels = ordBRC)) %>% 
+  mutate(IMMsub=factor(gsub("LYMPHO_", "", cellB), levels = ordLymphShort)) %>% 
+  dplyr::select(BRCsub, IMMsub, SLO, cntPair) %>% 
+  arrange(IMMsub) %>% 
+  arrange(BRCsub)
+
+lapply(sloVec, function(slo){
+  adjSub <- adjListConsInt %>% filter(SLO==slo) %>% 
+    dplyr::select(-SLO)
+  
+  chordDiagram(adjSub, big.gap = 15, grid.col = c(colBRC, colLab),
+               transparency = 0.1, annotationTrack = c("name", "grid"))
+  circos.clear()
+  
+})
+
+
+```
+
+
+
+
+### conserved sign int {.tabset}
+#### heatmap cons all
+```{r cons sign int all}
+
+### ------------------ conserved sign INT ---------------------------------- ###
+
+## interactions conserved across all 3 SLOs
+signIntCons <- signIntDatOrd %>% 
+  dplyr::select(intPair, cellA, cellB, groupA, groupB) %>% 
+  group_by(intPair, cellA, cellB, groupA, groupB) %>%
+  summarise(cnt=n()) %>% 
+  filter(cnt >2)
+
+# ## write file
+# signIntConsOut <- signIntCons %>% ungroup(.) %>% 
+#   dplyr::select(intPair, cellA, cellB)
+# write.table(signIntConsOut, file=paste0(basedir,
+#                                         "cellphonedb/signIntImm", 
+#                                         "_conservedSLO.txt"),
+#             quote = F, col.names = T, row.names = F, sep = "\t")
+
+## cnt conserved sign interactions for each intPair + rel cnt
+lymphCntTot <- signIntCons %>% group_by(cellB) %>% 
+  summarize(cntTotL=n())
+cntPairCons <- signIntCons %>% group_by(cellA, cellB) %>% 
+  summarize(cntPair=n()) %>% left_join(., lymphCntTot, by = "cellB") %>% 
+  mutate(relCnt=cntPair/cntTotL)
+meanBRC <- cntPairCons %>% group_by(cellA) %>% 
+  summarise(meanRel=mean(relCnt), sdRel=sd(relCnt), relLyTot = sum(relCnt))
+cntPairCons <- cntPairCons %>% left_join(., meanBRC, by= "cellA") %>% 
+  mutate(zScore=(relCnt-meanRel)/sdRel) %>% 
+  mutate(relRelCnt=relCnt/relLyTot)
+  
+### heatmap with cons int
+cntPairConsform <- cntPairCons %>%
+  mutate(BRC=gsub(".*_", "", cellA)) %>% 
+  mutate(LYMPHO=gsub(".*_", "", cellB)) %>% ungroup(.) %>% 
+  dplyr::select(BRC, LYMPHO, cntPair) %>% 
+  spread(., BRC, cntPair)
+cntPairConsmat <- cntPairConsform %>% dplyr::select(-LYMPHO) %>% 
+  as.matrix(.)
+rownames(cntPairConsmat) <- cntPairConsform$LYMPHO
+
+annotation_col <-data.frame(lymph=rownames(cntPairConsmat)) 
+rownames(annotation_col) <- rownames(cntPairConsmat)  
+ann_colors <- list(lymph=colLab)
+
+ordLymph2 <- gsub(".*_", "", ordLymph)
+cntPairConsmat <- cntPairConsmat[,ordBRC]
+cntPairConsmat <- cntPairConsmat[ordLymph2,]
+pheatmap(t(cntPairConsmat), scale="row" ,treeheight_row = 0, cluster_rows = F, 
+         cluster_cols = F,
+         color = colorRampPalette(c("#11161d", "#4e5780", "#9cafff"))(50),
+         annotation_col = annotation_col, cellwidth=15, cellheight=10,
+         annotation_colors = ann_colors, gaps_row = NULL, gaps_col = NULL)
+
+## per BRC
+annotation_col <-data.frame(clu=colnames(cntPairConsmat)) 
+rownames(annotation_col) <- colnames(cntPairConsmat)  
+ann_colors <- list(clu = colBRC)
+pheatmap(cntPairConsmat, scale="row" ,treeheight_row = 0, cluster_rows = F, 
+         cluster_cols = F,
+         color = colorRampPalette(c("#11161d", "#4e5780", "#9cafff"))(50),
+         annotation_col = annotation_col, cellwidth=15, cellheight=10,
+         annotation_colors = ann_colors, gaps_row = NULL, gaps_col = NULL)
+
+### heatmap with cons int rel cnts..
+cntPairConsform <- cntPairCons %>%
+  mutate(BRC=gsub(".*_", "", cellA)) %>% 
+  mutate(LYMPHO=gsub(".*_", "", cellB)) %>% ungroup(.) %>% 
+  dplyr::select(BRC, LYMPHO, relCnt) %>% 
+  spread(., BRC, relCnt)
+cntPairConsmat <- cntPairConsform %>% dplyr::select(-LYMPHO) %>% 
+  as.matrix(.)
+rownames(cntPairConsmat) <- cntPairConsform$LYMPHO
+
+annotation_col <-data.frame(lymph=rownames(cntPairConsmat)) 
+rownames(annotation_col) <- rownames(cntPairConsmat)  
+ann_colors <- list(lymph=colLab)
+
+cntPairConsmat <- cntPairConsmat[,ordBRC]
+cntPairConsmat <- cntPairConsmat[ordLymph2,]
+
+pheatmap(t(cntPairConsmat), scale="row" ,treeheight_row = 0, cluster_rows = F, 
+         cluster_cols = F,
+         color = colorRampPalette(c("#11161d", "#7583bf", "#9cafff"))(20),
+         annotation_col = annotation_col, cellwidth=15, cellheight=10,
+         annotation_colors = ann_colors, gaps_row = NULL, gaps_col = NULL)
+
+
+### barplot
+cntPairConsBar <- cntPairCons %>%
+  mutate(ImmuneCell=gsub("LYMPHO_", "", cellB)) %>% 
+  mutate(BRC=gsub("BRC_", "", cellA)) 
+  
+p <- ggbarplot(cntPairConsBar, x = "BRC", y = "relRelCnt",
+               color = "ImmuneCell", fill= "ImmuneCell",
+               palette = colLab)
+p
+
+### Dotplot
+p <- ggplot(cntPairConsBar, aes(x=BRC,y=ImmuneCell)) +
+  geom_point(aes(size=relRelCnt,color=ImmuneCell)) +
+  scale_color_manual(values=colLab) +
+  scale_radius(range = c(0, 8)) +
+  scale_y_discrete(limits=ordLymphShort) +
+  scale_x_discrete(limits=ordBRC) +
+  theme_bw() +
+  theme(panel.grid.minor = element_blank(),
+        panel.grid.major = element_blank(),
+        axis.text=element_text(size=10, colour = "black"),
+        axis.text.x = element_text(angle = 90, hjust = 1),
+        axis.title=element_blank(),
+        panel.border = element_rect(size = 0.7, linetype = "solid",
+                                    colour = "black"))
+p
+
+```
+
+
+#### heatmap cons min 2
+```{r cons sign int min 2}
+
+### ------------------ conserved sign INT ---------------------------------- ###
+
+## interactions conserved in min 2 SLOs
+signIntCons <- signIntDatOrd %>% 
+  dplyr::select(intPair, cellA, cellB, groupA, groupB) %>% 
+  group_by(intPair, cellA, cellB, groupA, groupB) %>%
+  summarise(cnt=n()) %>% 
+  filter(cnt >1)
+
+
+## cnt conserved sign interactions for each intPair + rel cnt
+lymphCntTot <- signIntCons %>% group_by(cellB) %>% 
+  summarize(cntTotL=n())
+cntPairCons <- signIntCons %>% group_by(cellA, cellB) %>% 
+  summarize(cntPair=n()) %>% left_join(., lymphCntTot, by = "cellB") %>% 
+  mutate(relCnt=cntPair/cntTotL)
+meanBRC <- cntPairCons %>% group_by(cellA) %>% 
+  summarise(meanRel=mean(relCnt), sdRel=sd(relCnt), relLyTot = sum(relCnt))
+cntPairCons <- cntPairCons %>% left_join(., meanBRC, by= "cellA") %>% 
+  mutate(zScore=(relCnt-meanRel)/sdRel) %>% 
+  mutate(relRelCnt=relCnt/relLyTot)
+  
+### heatmap with cons int
+cntPairConsform <- cntPairCons %>%
+  mutate(BRC=gsub(".*_", "", cellA)) %>% 
+  mutate(LYMPHO=gsub(".*_", "", cellB)) %>% ungroup(.) %>% 
+  dplyr::select(BRC, LYMPHO, cntPair) %>% 
+  spread(., BRC, cntPair)
+cntPairConsmat <- cntPairConsform %>% dplyr::select(-LYMPHO) %>% 
+  as.matrix(.)
+rownames(cntPairConsmat) <- cntPairConsform$LYMPHO
+
+annotation_col <-data.frame(lymph=rownames(cntPairConsmat)) 
+rownames(annotation_col) <- rownames(cntPairConsmat)  
+ann_colors <- list(lymph=colLab)
+
+ordLymph2 <- gsub(".*_", "", ordLymph)
+cntPairConsmat <- cntPairConsmat[,ordBRC]
+cntPairConsmat <- cntPairConsmat[ordLymph2,]
+pheatmap(t(cntPairConsmat), scale="row" ,treeheight_row = 0, cluster_rows = F, 
+         cluster_cols = F,
+         color = colorRampPalette(c("#11161d", "#4e5780", "#9cafff"))(50),
+         annotation_col = annotation_col, cellwidth=15, cellheight=10,
+         annotation_colors = ann_colors, gaps_row = NULL, gaps_col = NULL)
+
+## per BRC
+annotation_col <-data.frame(clu=colnames(cntPairConsmat)) 
+rownames(annotation_col) <- colnames(cntPairConsmat)  
+ann_colors <- list(clu = colBRC)
+pheatmap(cntPairConsmat, scale="row" ,treeheight_row = 0, cluster_rows = F, 
+         cluster_cols = F,
+         color = colorRampPalette(c("#11161d", "#4e5780", "#9cafff"))(50),
+         annotation_col = annotation_col, cellwidth=15, cellheight=10,
+         annotation_colors = ann_colors, gaps_row = NULL, gaps_col = NULL)
+
+### heatmap with cons int rel cnts..
+cntPairConsform <- cntPairCons %>%
+  mutate(BRC=gsub(".*_", "", cellA)) %>% 
+  mutate(LYMPHO=gsub(".*_", "", cellB)) %>% ungroup(.) %>% 
+  dplyr::select(BRC, LYMPHO, relCnt) %>% 
+  spread(., BRC, relCnt)
+cntPairConsmat <- cntPairConsform %>% dplyr::select(-LYMPHO) %>% 
+  as.matrix(.)
+rownames(cntPairConsmat) <- cntPairConsform$LYMPHO
+
+annotation_col <-data.frame(lymph=rownames(cntPairConsmat)) 
+rownames(annotation_col) <- rownames(cntPairConsmat)  
+ann_colors <- list(lymph=colLab)
+
+cntPairConsmat <- cntPairConsmat[,ordBRC]
+cntPairConsmat <- cntPairConsmat[ordLymph2,]
+
+pheatmap(t(cntPairConsmat), scale="row" ,treeheight_row = 0, cluster_rows = F, 
+         cluster_cols = F,
+         color = colorRampPalette(c("#11161d", "#7583bf", "#9cafff"))(20),
+         annotation_col = annotation_col, cellwidth=15, cellheight=10,
+         annotation_colors = ann_colors, gaps_row = NULL, gaps_col = NULL)
+
+
+### barplot
+cntPairConsBar <- cntPairCons %>%
+  mutate(ImmuneCell=gsub("LYMPHO_", "", cellB)) %>% 
+  mutate(BRC=gsub("BRC_", "", cellA)) 
+  
+p <- ggbarplot(cntPairConsBar, x = "BRC", y = "relRelCnt",
+               color = "ImmuneCell", fill= "ImmuneCell",
+               palette = colLab)
+p
+
+### Dotplot
+p <- ggplot(cntPairConsBar, aes(x=BRC,y=ImmuneCell)) +
+  geom_point(aes(size=relRelCnt,color=ImmuneCell)) +
+  scale_color_manual(values=colLab) +
+  scale_radius(range = c(0, 8)) +
+  scale_y_discrete(limits=ordLymphShort) +
+  scale_x_discrete(limits=ordBRC) +
+  theme_bw() +
+  theme(panel.grid.minor = element_blank(),
+        panel.grid.major = element_blank(),
+        axis.text=element_text(size=10, colour = "black"),
+        axis.text.x = element_text(angle = 90, hjust = 1),
+        axis.title=element_blank(),
+        panel.border = element_rect(size = 0.7, linetype = "solid",
+                                    colour = "black"))
+p
+
+```
+
+
+#### circle plots for each subset
+```{r circle pplot for each subset}
+
+### relative cnts
+adjListConsInt <- cntPairCons  %>% ungroup() %>% 
+  mutate(BRCsub=factor(gsub("BRC_", "", cellA), levels = ordBRC)) %>% 
+  mutate(IMMsub=factor(gsub("LYMPHO_", "", cellB), levels = ordLymphShort)) %>% 
+  dplyr::select(IMMsub, BRCsub, relCnt, relRelCnt) %>% 
+  arrange(BRCsub) %>% 
+  arrange(IMMsub)
+
+lapply(ordBRC, function(BRC){
+  adjSub <- adjListConsInt %>% filter(BRCsub==BRC)
+  
+  chordDiagram(adjSub, big.gap = 15, grid.col = c(colBRC, colLab),
+               transparency = 0.1, annotationTrack = c("name", "grid"))
+  circos.clear()
+  
+})
+
+
+### absolute cnts
+adjListConsInt <- cntPairCons  %>% ungroup() %>% 
+  mutate(BRCsub=factor(gsub("BRC_", "", cellA), levels = ordBRC)) %>% 
+  mutate(IMMsub=factor(gsub("LYMPHO_", "", cellB), levels = ordLymphShort)) %>% 
+  dplyr::select(IMMsub, BRCsub, cntPair) %>% 
+  arrange(BRCsub) %>% 
+  arrange(IMMsub)
+  
+
+lapply(ordBRC, function(BRC){
+  adjSub <- adjListConsInt %>% filter(BRCsub==BRC)
+  
+  chordDiagram(adjSub, big.gap = 15, grid.col = c(colBRC, colLab),
+               transparency = 0.1, annotationTrack = c("name", "grid"))
+  circos.clear()
+  
+})
+
+
+```
+
+
+#### circle plots across all subsets
+```{r circle plot across all subsets}
+
+### relative cnts
+adjListConsInt <- cntPairCons  %>% ungroup() %>% 
+  mutate(BRCsub=factor(gsub("BRC_", "", cellA), levels = ordBRC)) %>% 
+  mutate(IMMsub=factor(gsub("LYMPHO_", "", cellB), levels = ordLymphShort)) %>% 
+  dplyr::select(BRCsub, IMMsub, relRelCnt, relCnt) %>% 
+  arrange(IMMsub) %>% 
+  arrange(BRCsub)
+  
+chordDiagram(adjListConsInt, big.gap = 15, grid.col = c(colBRC, colLab),
+               transparency = 0.1, annotationTrack = c("name", "grid"))
+circos.clear()
+
+
+
+### absolute cnts
+adjListConsInt <- cntPairCons  %>% ungroup() %>% 
+  mutate(BRCsub=factor(gsub("BRC_", "", cellA), levels = ordBRC)) %>% 
+  mutate(IMMsub=factor(gsub("LYMPHO_", "", cellB), levels = ordLymphShort)) %>% 
+  dplyr::select(BRCsub, IMMsub, cntPair) %>% 
+  arrange(IMMsub) %>% 
+  arrange(BRCsub)
+  
+
+chordDiagram(adjListConsInt, big.gap = 15, grid.col = c(colBRC, colLab),
+               transparency = 0.1, annotationTrack = c("name", "grid"))
+circos.clear()
+
+
+```
+
+
+### fraction of all sign int that are conserved {.tabset}
+```{r cons fract of all sign}
+
+signIntSum <- signIntDatOrd %>% dplyr::select(intPair, cellA, cellB) %>% 
+  distinct() %>%
+  left_join(., signIntCons, by=c("intPair", "cellA", "cellB")) %>% 
+  mutate(cons=ifelse(is.na(cnt), "noCons", "Cons"))
+consIntSum <- signIntSum %>% group_by(cellA, cellB, cons) %>% 
+  summarize(cntPair=n()) %>% ungroup() %>% 
+  spread(., cons, cntPair) %>% 
+  mutate(sumPair=noCons + Cons) %>% 
+  mutate(fracCons=Cons/sumPair)
+
+adjListConsInt <- consIntSum  %>% ungroup() %>% 
+  mutate(BRCsub=factor(gsub("BRC_", "", cellA), levels = ordBRC)) %>% 
+  mutate(IMMsub=factor(gsub("LYMPHO_", "", cellB), levels = ordLymphShort)) %>% 
+  dplyr::select(IMMsub, BRCsub, fracCons) %>% 
+  arrange(BRCsub) %>% 
+  arrange(IMMsub)
+  
+## for each subset
+lapply(ordBRC, function(BRC){
+  adjSub <- adjListConsInt %>% filter(BRCsub==BRC)
+  
+  chordDiagram(adjSub, big.gap = 15, grid.col = c(colBRC, colLab),
+               transparency = 0.1, annotationTrack = c("name", "grid"))
+  circos.clear()
+  
+})
+
+## across all
+adjListConsInt <- consIntSum  %>% ungroup() %>% 
+  mutate(BRCsub=factor(gsub("BRC_", "", cellA), levels = ordBRC)) %>% 
+  mutate(IMMsub=factor(gsub("LYMPHO_", "", cellB), levels = ordLymphShort)) %>% 
+  dplyr::select(BRCsub, IMMsub, fracCons) %>% 
+  arrange(IMMsub) %>% 
+  arrange(BRCsub)
+  
+chordDiagram(adjListConsInt, big.gap = 15, grid.col = c(colBRC, colLab),
+               transparency = 0.1, annotationTrack = c("name", "grid"))
+circos.clear()
+
+
+```
+
+
+## vis conserved int {.tabset}
+### dotplot with cons subset specific int
+```{r dotplot cons subSpec int, fig.height=9, fig.width=6}
+
+## treat MRC and DZFDC as same for sel
+signIntDatOrd_mod <- signIntDatOrd %>% 
+  mutate(cellA=ifelse(cellA=="BRC_MRC", "BRC_DZFDC", cellA)) %>% 
+  mutate(CellsInt=paste0(cellA, "|", cellB))
+
+
+## subset specific interactions that conserved across SLOs
+ConsIntSubSpec <- signIntDatOrd_mod %>% group_by(intPair, cellB, SLO) %>% 
+  summarise(cntIntP=n()) %>% filter(cntIntP == 1) %>% 
+  mutate(sel=paste0(intPair, "_", cellB))
+ConsIntSubSpecFil <- signIntCons %>%
+  mutate(sel=paste0(intPair, "_", cellB)) %>% 
+  mutate(sel2=paste0(intPair, "_", cellA)) %>% 
+  filter(sel %in% ConsIntSubSpec$sel) 
+
+## filter for sign int
+selIntDat <- data.frame(do.call("rbind", intList))
+
+## reorder int to always BRC to LYMPHO and remove selPop 
+reordInt <- selIntDat %>% filter(groupA=="LYMPHO") %>% 
+  mutate(intA=gsub("_.*", "", intPair)) %>% 
+  mutate(intB=gsub(".*_", "", intPair))
+reordIntFin <- data.frame(intPair=paste0(reordInt$intB, "_", reordInt$intA),
+                          CellsInt=paste0(reordInt$cellB, "|", reordInt$cellA),
+                          mean=reordInt$mean,
+                          cellA=reordInt$cellB,
+                          cellB=reordInt$cellA,
+                          groupA=reordInt$groupB,
+                          groupB=reordInt$groupA,
+                          pVal=reordInt$pVal,
+                          SLO=reordInt$SLO,
+                          sign=reordInt$sign)
+
+selIntDatOrd <- rbind(selIntDat[which(selIntDat$groupA=="BRC"),],
+                       reordIntFin) %>% 
+  filter(!cellB %in% selPop)
+
+selIntDatOrd_mean <- selIntDatOrd %>%
+  filter(intPair %in% ConsIntSubSpecFil$intPair) %>% 
+  group_by(intPair, CellsInt, cellA, cellB) %>% 
+  summarise(meanSLO=mean(mean), maxPval=max(pVal)) %>% 
+  mutate(logPval=-log(maxPval)) %>% 
+  mutate(sel2=paste0(intPair, "_", cellA)) %>% 
+  filter(sel2 %in% ConsIntSubSpecFil$sel2) %>% 
+  mutate(col=factor(gsub(".*_", "", cellA), levels = ordBRC)) %>% 
+  arrange(., col)
+
+selIntDatOrd_mean$logPval[which(selIntDatOrd_mean$logPval > 4)] <- 4
+
+                             
+p <- ggplot(selIntDatOrd_mean, aes(x=cellB,y=intPair)) +
+  geom_point(aes(size=logPval,color=col)) +
+  scale_color_manual(values=colBRC) +
+  scale_radius(range = c(0, 4)) +
+  scale_y_discrete(limits=unique(selIntDatOrd_mean$intPair)) +
+  scale_x_discrete(limits=ordLymph) +
+  theme_bw() +
+  theme(panel.grid.minor = element_blank(),
+        panel.grid.major = element_blank(),
+        axis.text=element_text(size=10, colour = "black"),
+        axis.text.x = element_text(angle = 90, hjust = 1),
+        axis.title=element_blank(),
+        panel.border = element_rect(size = 0.7, linetype = "solid",
+                                    colour = "black"))
+p
+
+
+```
+
+
+### dotplot with subset specific int conserved in min 2 SLO
+
+```{r dotplot min 2 SLO subSpec int, fig.height=12, fig.width=6}
+
+# ## interactions conserved across all 3 SLOs
+# ## for MRC + DZFDC less stringend as we've fewer cells in PP (cut >=2)
+# signIntCons <- signIntDatOrd %>% 
+#   dplyr::select(intPair, cellA, cellB, groupA, groupB) %>% 
+#   group_by(intPair, cellA, cellB, groupA, groupB) %>%
+#   summarise(cnt=n()) %>% 
+#   filter(ifelse(cellA %in% c("BRC_DZFDC", "BRC_MRC"), cnt>1, cnt == 3))
+
+
+## interactions conserved across at least 2 SLOs
+signIntCons <- signIntDatOrd %>% 
+  dplyr::select(intPair, cellA, cellB, groupA, groupB) %>% 
+  group_by(intPair, cellA, cellB, groupA, groupB) %>%
+  summarise(cnt=n()) %>% 
+  filter(cnt > 1)
+
+signIntConsSel <- signIntCons %>% ungroup() %>% 
+  group_by(intPair, cellB) %>%
+  summarise(cnt=n()) %>% 
+  filter(cnt == 1)
+
+signIntConsSpec <- signIntCons %>% ungroup() %>% 
+  left_join(., signIntConsSel, by=c("intPair", "cellB")) %>% 
+  filter(!is.na(cnt.y)) %>% 
+  mutate(sel2=paste0(intPair, "_", cellA))
+
+
+selIntDatOrd_mean <- selIntDatOrd %>%
+  filter(intPair %in% signIntConsSpec$intPair) %>% 
+  group_by(intPair, CellsInt, cellA, cellB) %>% 
+  summarise(meanSLO=mean(mean), meanPval=mean(pVal)) %>% 
+  mutate(logPval=-log(meanPval)) %>% 
+  mutate(sel2=paste0(intPair, "_", cellA)) %>% 
+  filter(sel2 %in% signIntConsSpec$sel2) %>% 
+  mutate(col=factor(gsub(".*_", "", cellA), levels = ordBRC)) %>% 
+  arrange(., col)
+
+selIntDatOrd_mean$logPval[which(selIntDatOrd_mean$logPval > 4)] <- 4
+
+## remove dupl intPairs
+dupPairSum <- selIntDatOrd_mean %>% group_by(intPair, cellA) %>% 
+  summarise(cnt=n())
+dupPair <- dupPairSum$intPair[duplicated(dupPairSum$intPair)]
+selIntDatOrd_mean <-  selIntDatOrd_mean %>% filter(!intPair %in% dupPair)
+                             
+p <- ggplot(selIntDatOrd_mean, aes(x=cellB,y=intPair)) +
+  geom_point(aes(size=logPval,color=col)) +
+  scale_color_manual(values=colBRC) +
+  scale_radius(range = c(0, 4)) +
+  scale_y_discrete(limits=unique(selIntDatOrd_mean$intPair)) +
+  scale_x_discrete(limits=ordLymph) +
+  theme_bw() +
+  theme(panel.grid.minor = element_blank(),
+        panel.grid.major = element_blank(),
+        axis.text=element_text(size=10, colour = "black"),
+        axis.text.x = element_text(angle = 90, hjust = 1),
+        axis.title=element_blank(),
+        panel.border = element_rect(size = 0.7, linetype = "solid",
+                                    colour = "black"))
+p
+
+
+```
+
+
+## session info
+```{r session info}
+sessionInfo()
+date()
+```
+
+

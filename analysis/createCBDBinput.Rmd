@@ -1,0 +1,248 @@
+---
+title: "GSEA endothelial cells"
+author: "Mechthild Lütge"
+date: "10 Dec 2021"
+output:
+  html_document:
+    self_contained: no
+    code_folding: show
+    number_sections: no
+    toc: yes
+    toc_depth: 3
+    toc_float: true
+    collapsed: no
+    smooth_scroll: yes
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(warning = FALSE, message = FALSE, dev = c("png", "pdf"))
+set.seed(1000)
+```
+
+## load packages
+```{r libs}
+suppressPackageStartupMessages({
+  library(SingleCellExperiment)
+  library(tidyverse)
+  library(Seurat)
+  library(magrittr)
+  library(dplyr)
+  library(purrr)
+  library(ggplot2)
+  library(here)
+  library(runSeurat3)
+  library(ggsci)
+  library(pheatmap)
+  library(ggpubr)
+  library(biomaRt)
+  library(org.Mm.eg.db)
+})
+
+```
+
+## set dir
+```{r set dir}
+basedir <- here()
+seurat <- readRDS(file = paste0(basedir,
+                      "/data/MuHeart_totalCells_integratedLabeled_seurat.rds"))
+Idents(seurat) <- seurat$label
+
+```
+
+
+
+## color vectors
+```{r colVec}
+
+colPal <- pal_igv()(length(levels(seurat)))
+colGrp <- pal_jama()(length(unique(seurat$grp)))
+colAge <- pal_uchicago()(length(unique(seurat$age)))
+colStype <- pal_aaas()(length(unique(seurat$seqType)))
+colDat <- c(pal_npg()(10),
+            pal_futurama()(10))[1:(length(unique(seurat$dataset)))]
+colLab <- pal_igv()(length(unique(seurat$label)))
+  
+names(colPal) <- levels(seurat)
+names(colGrp) <- unique(seurat$grp)
+names(colAge) <- unique(seurat$age)
+names(colStype) <- unique(seurat$seqType)
+names(colDat) <- unique(seurat$dataset)
+names(colLab) <- unique(seurat$label)
+
+```
+
+
+## vis data {.tabset}
+### clusters
+```{r vis cluster}
+
+DimPlot(seurat, reduction = "umap", group.by = "label", cols=colLab)+
+  theme_bw() +
+  theme(axis.text = element_blank(), axis.ticks = element_blank(), 
+        panel.grid.minor = element_blank()) +
+  xlab("UMAP1") +
+  ylab("UMAP2")
+
+
+```
+
+### group
+```{r vis grp}
+
+DimPlot(seurat, reduction = "umap", group.by = "grp", cols=colGrp)+
+  theme_bw() +
+  theme(axis.text = element_blank(), axis.ticks = element_blank(), 
+        panel.grid.minor = element_blank()) +
+  xlab("UMAP1") +
+  ylab("UMAP2")
+
+```
+
+
+### Sample
+```{r vis sample}
+
+DimPlot(seurat, reduction = "umap", group.by = "dataset", cols=colDat)+
+  theme_bw() +
+  theme(axis.text = element_blank(), axis.ticks = element_blank(), 
+        panel.grid.minor = element_blank()) +
+  xlab("UMAP1") +
+  ylab("UMAP2")
+
+
+```
+
+
+### Age
+```{r vis age}
+
+DimPlot(seurat, reduction = "umap", group.by = "age", cols=colAge)+
+  theme_bw() +
+  theme(axis.text = element_blank(), axis.ticks = element_blank(), 
+        panel.grid.minor = element_blank()) +
+  xlab("UMAP1") +
+  ylab("UMAP2")
+
+
+```
+
+
+### SeqType
+```{r vis seqType}
+
+DimPlot(seurat, reduction = "umap", group.by = "seqType", cols=colStype)+
+  theme_bw() +
+  theme(axis.text = element_blank(), axis.ticks = element_blank(), 
+        panel.grid.minor = element_blank()) +
+  xlab("UMAP1") +
+  ylab("UMAP2")
+
+
+```
+
+
+## subset and create sce object
+
+```{r sce object}
+seuratSub <- subset(seurat, label %in% c("Tcells", "MacrophagesMonocytes",
+                                         "Fibroblasts"))
+
+seuratSub$label_plus_grp <- paste0(seuratSub$label, "_", seuratSub$grp)
+table(seuratSub$label_plus_grp)
+downSam <- min(table(seuratSub$label_plus_grp))
+print(downSam)
+
+Idents(seuratSub) <- seuratSub$label_plus_grp
+seuratSub <- subset(seuratSub, downsample = downSam)
+
+sceMerge <- as.SingleCellExperiment(seuratSub)
+(table(sceMerge@colData$label_plus_grp))
+
+```
+
+
+# create count matrix for cellphonedb
+```{r create cnt mat}
+
+## set human ensIDs as rownames
+ensIDs <- gsub("\\..*","",rownames(sceMerge))
+
+## map to human orthologs
+mart2 <- useMart("ensembl", dataset="hsapiens_gene_ensembl")
+mart1 = useMart("ensembl", dataset="mmusculus_gene_ensembl") 
+
+# human / mouse
+geneIDS_hum <- getLDS(attributes=c("ensembl_gene_id"),
+           filters="ensembl_gene_id", values=ensIDs, mart=mart1,
+           attributesL=c("ensembl_gene_id"), martL=mart2)
+
+geneIDsMatch <- as.data.frame(ensIDs) %>% 
+  left_join(., geneIDS_hum, by=c("ensIDs"="Gene.stable.ID")) 
+geneIDsMatch$Gene.stable.ID.1[
+  which(is.na(geneIDsMatch$Gene.stable.ID.1))] <- "unknown"
+geneIDsMatch <- geneIDsMatch[!duplicated(geneIDsMatch$ensIDs),]
+rowData(sceMerge)$humGene <- geneIDsMatch$Gene.stable.ID.1
+dim(sceMerge)
+sceMerge <- sceMerge[which(rowData(sceMerge)$humGene != "unknown"),] 
+dim(sceMerge)
+
+## filter for grp and write cnt mat plus metadat
+lapply(unique(sceMerge$grp), function(grp){
+  sceGrp <- sceMerge[,which(sceMerge@colData$grp == grp)]
+  cellPhoneGrp <- cbind(rowData(sceGrp)$humGene, as.matrix(logcounts(sceGrp)))
+  colnames(cellPhoneGrp)[1] <- "gene"
+  write.table(cellPhoneGrp, 
+              file = paste0(basedir,
+                            "/data/cellphonedb/totalCellsSubsampled_",grp,
+                            "_countMatrix.txt"),
+              row.names = FALSE, col.names = TRUE, quote = FALSE, sep = "\t")
+
+  metaDatGrp <- as.data.frame(cbind(colnames(sceGrp),
+                                    colData(sceGrp)$label))
+  colnames(metaDatGrp) <- c("Cell", "cell_type")
+  write.table(metaDatGrp, 
+              file = paste0(basedir,
+                            "/data/cellphonedb/totalCellsSubsampled_",grp,
+                            "_metaData.txt"),
+              row.names = FALSE, col.names = TRUE, quote = FALSE, sep = "\t")
+
+
+})
+
+
+
+```
+
+
+## session info
+```{r session info}
+sessionInfo()
+date()
+```
+
+
+cd /Users/mechthildluetge/Projects/scRNAseq/ILC_Hungwei/data/cellphonedb
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
+
+## run cellphonedb
+### build database
+cellphonedb database generate --user-interactions custom_interaction_file.csv
+
+##run statistical analysis
+## subsampling in R script.. 
+cellphonedb method statistical_analysis /Users/mechthildluetge/Projects/scRNAseq/TCRM_Christina/data/cellphonedb/totalCellsSubsampled_TCRM_metaData.txt /Users/mechthildluetge/Projects/scRNAseq/TCRM_Christina/data/cellphonedb/totalCellsSubsampled_TCRM_countMatrix.txt --output-path /Users/mechthildluetge/Projects/scRNAseq/TCRM_Christina/data/cellphonedb/outTCRM/ --database /Users/mechthildluetge/Projects/scRNAseq/ILC_Hungwei/data/cellphonedb/out/cellphonedb_user_2021-10-05-09_17.db --debug-seed 3 --iterations 100
+
+cellphonedb method statistical_analysis /Users/mechthildluetge/Projects/scRNAseq/TCRM_Christina/data/cellphonedb/totalCellsSubsampled_control_metaData.txt /Users/mechthildluetge/Projects/scRNAseq/TCRM_Christina/data/cellphonedb/totalCellsSubsampled_control_countMatrix.txt --output-path /Users/mechthildluetge/Projects/scRNAseq/TCRM_Christina/data/cellphonedb/outControl/ --database /Users/mechthildluetge/Projects/scRNAseq/ILC_Hungwei/data/cellphonedb/out/cellphonedb_user_2021-10-05-09_17.db --debug-seed 3 --iterations 100
+
+
+Count network interactions:
+cellphonedb plot heatmap_plot /Users/mechthildluetge/Projects/scRNAseq/TCRM_Christina/data/cellphonedb/totalCellsSubsampled_TCRM_metaData.txt --pvalues-path /Users/mechthildluetge/Projects/scRNAseq/TCRM_Christina/data/cellphonedb/outTCRM/pvalues.txt --output-path /Users/mechthildluetge/Projects/scRNAseq/TCRM_Christina/data/cellphonedb/outTCRM
+cellphonedb plot heatmap_plot /Users/mechthildluetge/Projects/scRNAseq/TCRM_Christina/data/cellphonedb/totalCellsSubsampled_control_metaData.txt --pvalues-path /Users/mechthildluetge/Projects/scRNAseq/TCRM_Christina/data/cellphonedb/outControl/pvalues.txt --output-path /Users/mechthildluetge/Projects/scRNAseq/TCRM_Christina/data/cellphonedb/outControl
+
+We use CellPhoneDB as tool to predict cellular communication between SILT FRCs and ILC populations in our dataset. In brief, pairs of known interacting ligands and receptors are derived from public databases and cell types are analysed for enriched receptor–ligand interactions based on expression of a receptor by one cell type and a ligand by another cell type. 
+
+deactivate  
+
+

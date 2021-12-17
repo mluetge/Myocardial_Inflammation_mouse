@@ -43,14 +43,15 @@ suppressPackageStartupMessages({
 ```{r set dir}
 basedir <- here()
 seurat <- readRDS(file = paste0(basedir,
-                              "/data/MuHeart_totalCells_integrated_seurat.rds"))
+                              "/data/MuHeart_totalCells_plusTreated_integrated",
+                              "_seurat.rds"))
 Idents(seurat) <- seurat$integrated_snn_res.0.4
 
 
 ## remove two contaminating clusters and rerun dim reductions
-## cluster 8 (dying cells, a lot of ribosomal genes)
+## cluster 1 (dying cells, a lot of ribosomal genes)
 ## cluster 17 (erythrocytes (Fech, Bpgm, Snca))
-seurat <- subset(seurat, idents = c("8", "17"), invert=T)
+seurat <- subset(seurat, idents = c("1", "17"), invert=T)
 
 DefaultAssay(object = seurat) <- "integrated"
 seurat <- RunPCA(object = seurat, npcs = 20, verbose = FALSE)
@@ -72,6 +73,7 @@ colAge <- pal_uchicago()(length(unique(seurat$age)))
 colStype <- pal_aaas()(length(unique(seurat$seqType)))
 colDat <- c(pal_npg()(10),
             pal_futurama()(10))[1:(length(unique(seurat$dataset)))]
+colTreat <- pal_jama()(length(unique(seurat$treatment)))
 
   
 names(colPal) <- levels(seurat)
@@ -79,6 +81,8 @@ names(colGrp) <- unique(seurat$grp)
 names(colAge) <- unique(seurat$age)
 names(colStype) <- unique(seurat$seqType)
 names(colDat) <- unique(seurat$dataset)
+names(colTreat) <- unique(seurat$treatment)
+
 ```
 
 
@@ -150,26 +154,64 @@ DimPlot(seurat, reduction = "umap", group.by = "seqType", cols=colStype)+
 
 ```
 
+### Treatment
+```{r vis treat}
+
+DimPlot(seurat, reduction = "umap", group.by = "treatment", cols=colTreat)+
+  theme_bw() +
+  theme(axis.text = element_blank(), axis.ticks = element_blank(), 
+        panel.grid.minor = element_blank()) +
+  xlab("UMAP1") +
+  ylab("UMAP2")
+
+
+```
+
+
+
 ## assign labels {.tabset}
 ```{r assign labels}
 
+## -------------------------------------------------------------------------- ##
+## cluster 9 re-embedding (Tcells + NKcells mixed)
+seuratSub <- subset(seurat, integrated_snn_res.0.4 == "9")
+DefaultAssay(object = seuratSub) <- "integrated"
+seuratSub <- ScaleData(object = seuratSub, verbose = FALSE,
+                        features = rownames(seuratSub))
+seuratSub <- RunPCA(object = seuratSub, npcs = 20, verbose = FALSE)
+seuratSub <- RunTSNE(object = seuratSub, reduction = "pca", dims = 1:20)
+seuratSub <- RunUMAP(object = seuratSub, reduction = "pca", dims = 1:20)
+
+seuratSub <- FindNeighbors(object = seuratSub, reduction = "pca", dims = 1:20)
+res <- c(0.1,0.25,0.4)
+for(i in 1:length(res)){
+  seuratSub <- FindClusters(object = seuratSub, resolution = res[i],
+                             seuratSub = 1234)
+}
+
+Tcells <- colnames(seuratSub)[seuratSub$integrated_snn_res.0.1 %in% c("2", "4")]
+NKcells <- colnames(seuratSub)[seuratSub$integrated_snn_res.0.1 %in% c("0", "1", "3")]
+
+
+## -------------------------------------------------------------------------- ##
+
+
 seurat$label <- "other"
-seurat$label[which(seurat$integrated_snn_res.0.4 %in% c("11"))] <- "Macrophages"
-seurat$label[which(seurat$integrated_snn_res.0.4 %in% c("18"))] <- "Bcells"
-seurat$label[which(seurat$integrated_snn_res.0.4 %in% c("2"))] <- "MacrophagesMonocytes"
-seurat$label[which(seurat$integrated_snn_res.0.4 %in% c("7"))] <- "Tcells"
-seurat$label[which(seurat$integrated_snn_res.0.4 %in% c("9"))] <- "NKcells"
+seurat$label[which(seurat$integrated_snn_res.0.4 %in% c("4"))] <- "Macrophages"
+seurat$label[which(seurat$integrated_snn_res.0.4 %in% c("12"))] <- "Bcells"
+seurat$label[which(seurat$integrated_snn_res.0.4 %in% c("6"))] <- "Tcells"
 seurat$label[which(seurat$integrated_snn_res.0.4 %in% c("14"))] <- "Neutrophils"
-seurat$label[which(seurat$integrated_snn_res.0.4 %in% c("15"))] <- "DCs"
-seurat$label[which(seurat$integrated_snn_res.0.4 %in% c("16"))] <- "proliferating"
-seurat$label[which(seurat$integrated_snn_res.0.4 %in% c("19"))] <- "glialCells"
-seurat$label[which(seurat$integrated_snn_res.0.4 %in% c("20"))] <- "smc"
-seurat$label[which(seurat$integrated_snn_res.0.4 %in% c("1","3","4","13"))] <-
-  "Fibroblasts"
-seurat$label[which(seurat$integrated_snn_res.0.4 %in% c("5", "10"))] <- "Cardiomyocytes"
-seurat$label[which(seurat$integrated_snn_res.0.4 %in% c("0", "12"))] <- "Endothelial"
-seurat$label[which(seurat$integrated_snn_res.0.4 %in% c("6"))] <- "Perivascular"
-seurat$label[which(seurat$integrated_snn_res.0.4 %in% c("21"))] <- "capEndothelial"
+seurat$label[which(seurat$integrated_snn_res.0.4 %in% c("11"))] <- "pDCsDCs"
+seurat$label[which(seurat$integrated_snn_res.0.4 %in% c("15"))] <- "proliferating"
+seurat$label[which(seurat$integrated_snn_res.0.4 %in% c("0", "13"))] <-"Fibroblasts"
+seurat$label[which(seurat$integrated_snn_res.0.4 %in% c("2", "19"))] <- "Cardiomyocytes"
+seurat$label[which(seurat$integrated_snn_res.0.4 %in% c("3", "5"))] <- "Endothelial"
+seurat$label[which(seurat$integrated_snn_res.0.4 %in% c("7", "16", "18"))] <- "Perivascular"
+seurat$label[which(seurat$integrated_snn_res.0.4 %in% c("10"))] <- "endocardialEndothelial"
+seurat$label[which(seurat$integrated_snn_res.0.4 %in% c("20"))] <- "capEndothelial"
+seurat$label[which(seurat$integrated_snn_res.0.4 %in% c("8"))] <- "InfMonos"
+seurat$label[which(colnames(seurat) %in% NKcells)] <- "NKcells"
+seurat$label[which(colnames(seurat) %in% Tcells)] <- "Tcells"
 
 colLab <- pal_igv()(length(unique(seurat$label)))
 names(colLab) <- unique(seurat$label)
@@ -218,6 +260,20 @@ DimPlot(seurat, reduction = "umap", group.by = "label", cols=colLab,
 
 ```
 
+### label split by treat
+```{r vis label split treat, fig.height=3.5, fig.width=7}
+
+DimPlot(seurat, reduction = "umap", group.by = "label", cols=colLab,
+        split.by = "treatment")+
+  theme_bw() +
+  theme(axis.text = element_blank(), axis.ticks = element_blank(), 
+        panel.grid.minor = element_blank()) +
+  xlab("UMAP1") +
+  ylab("UMAP2")
+
+
+```
+
 
 
 ### cnt Tab
@@ -225,6 +281,111 @@ DimPlot(seurat, reduction = "umap", group.by = "label", cols=colLab,
 
 table(seurat$label, seurat$seqType)
 table(seurat$label, seurat$grp)
+table(seurat$label, seurat$treatment)
+```
+## vis BMPs all incl treated {.tabset}
+### Bmp2
+```{r vis Bmp2 all}
+p <- FeaturePlot(seurat, reduction = "umap", 
+            features = "ENSMUSG00000027358.Bmp2",
+            cols=c("lightgrey", "darkred"),
+            order = T)+
+  theme(legend.position="right")
+p
+
+```
+
+### Bmp4
+```{r vis Bmp4 all}
+p <- FeaturePlot(seurat, reduction = "umap", 
+            features = "ENSMUSG00000021835.Bmp4",
+            cols=c("lightgrey", "darkred"),
+            order = T)+
+  theme(legend.position="right")
+p
+
+```
+
+### Bmpr1a
+```{r vis Bmpr1a all}
+p <- FeaturePlot(seurat, reduction = "umap", 
+            features = "ENSMUSG00000021796.Bmpr1a",
+            cols=c("lightgrey", "darkred"),
+            order = T)+
+  theme(legend.position="right")
+p
+
+```
+
+### Bmpr2
+```{r vis Bmpr2 all}
+p <- FeaturePlot(seurat, reduction = "umap", 
+            features = "ENSMUSG00000067336.Bmpr2",
+            cols=c("lightgrey", "darkred"),
+            order = T)+
+  theme(legend.position="right")
+p
+
+```
+
+## save integrated objects all
+```{r save int all}
+saveRDS(seurat, file = paste0(basedir,
+                      "/data/MuHeart_totalCellsPlusTreated_integratedLabeled", 
+                      "_seurat.rds"))
+
+
+```
+
+
+## only untreated
+```{r only untreated}
+
+seurat <- subset(seurat, treatment == "no")
+
+```
+
+## vis data {.tabset}
+### label
+```{r vis label wo treat}
+
+DimPlot(seurat, reduction = "umap", group.by = "label", cols=colLab)+
+  theme_bw() +
+  theme(axis.text = element_blank(), axis.ticks = element_blank(), 
+        panel.grid.minor = element_blank()) +
+  xlab("UMAP1") +
+  ylab("UMAP2")
+
+
+```
+
+
+### label split by seqType
+```{r vis label split seq wo treat, fig.height=3.5, fig.width=7}
+
+DimPlot(seurat, reduction = "umap", group.by = "label", cols=colLab,
+        split.by = "seqType")+
+  theme_bw() +
+  theme(axis.text = element_blank(), axis.ticks = element_blank(), 
+        panel.grid.minor = element_blank()) +
+  xlab("UMAP1") +
+  ylab("UMAP2")
+
+
+```
+
+### label split by grp
+```{r vis label split grp wo treat, fig.height=3.5, fig.width=7}
+
+DimPlot(seurat, reduction = "umap", group.by = "label", cols=colLab,
+        split.by = "grp")+
+  theme_bw() +
+  theme(axis.text = element_blank(), axis.ticks = element_blank(), 
+        panel.grid.minor = element_blank()) +
+  xlab("UMAP1") +
+  ylab("UMAP2")
+
+
 ```
 
 
@@ -285,7 +446,7 @@ clustDE_Dat8 <- data.frame(do.call("rbind", clustDE))
 
 ## vis BMPs {.tabset}
 ### Bmp2
-```{r vis Bmp2}
+```{r vis Bmp2 wo treat}
 p <- FeaturePlot(seurat, reduction = "umap", 
             features = "ENSMUSG00000027358.Bmp2",
             cols=c("lightgrey", "darkred"),
@@ -296,7 +457,7 @@ p
 ```
 
 ### Bmp4
-```{r vis Bmp4}
+```{r vis Bmp4 wo treat}
 p <- FeaturePlot(seurat, reduction = "umap", 
             features = "ENSMUSG00000021835.Bmp4",
             cols=c("lightgrey", "darkred"),
@@ -307,7 +468,7 @@ p
 ```
 
 ### Bmpr1a
-```{r vis Bmpr1a}
+```{r vis Bmpr1a wo treat}
 p <- FeaturePlot(seurat, reduction = "umap", 
             features = "ENSMUSG00000021796.Bmpr1a",
             cols=c("lightgrey", "darkred"),
@@ -318,7 +479,7 @@ p
 ```
 
 ### Bmpr2
-```{r vis Bmpr2}
+```{r vis Bmpr2 wo treat}
 p <- FeaturePlot(seurat, reduction = "umap", 
             features = "ENSMUSG00000067336.Bmpr2",
             cols=c("lightgrey", "darkred"),
@@ -330,7 +491,7 @@ p
 
 
 ## save integrated objects
-```{r save int}
+```{r save int wo treat}
 saveRDS(seurat, file = paste0(basedir,
                       "/data/MuHeart_totalCells_integratedLabeled_seurat.rds"))
 
