@@ -45,7 +45,8 @@ suppressPackageStartupMessages({
 ```{r set dir}
 basedir <- here()
 seurat <- readRDS(file = paste0(basedir,
-                      "/data/MuHeart_totalCells_integratedLabeled_seurat.rds"))
+                      "/data/MuHeart_totalCellsPlusTreated_integratedLabeled", 
+                      "_seurat.rds"))
 Idents(seurat) <- seurat$label
 
 ```
@@ -62,6 +63,8 @@ colStype <- pal_aaas()(length(unique(seurat$seqType)))
 colDat <- c(pal_npg()(10),
             pal_futurama()(10))[1:(length(unique(seurat$dataset)))]
 colLab <- pal_igv()(length(unique(seurat$label)))
+colTreat <- pal_jama()(length(unique(seurat$treatment)))
+
   
 names(colPal) <- levels(seurat)
 names(colGrp) <- unique(seurat$grp)
@@ -69,7 +72,7 @@ names(colAge) <- unique(seurat$age)
 names(colStype) <- unique(seurat$seqType)
 names(colDat) <- unique(seurat$dataset)
 names(colLab) <- unique(seurat$label)
-
+names(colTreat) <- unique(seurat$treatment)
 ```
 
 
@@ -141,23 +144,42 @@ DimPlot(seurat, reduction = "umap", group.by = "seqType", cols=colStype)+
 
 ```
 
+### Treatment
+```{r vis treat}
+
+DimPlot(seurat, reduction = "umap", group.by = "treatment", cols=colTreat)+
+  theme_bw() +
+  theme(axis.text = element_blank(), axis.ticks = element_blank(), 
+        panel.grid.minor = element_blank()) +
+  xlab("UMAP1") +
+  ylab("UMAP2")
+
+
+```
+
 
 ## subset and create sce object
 
 ```{r sce object}
-seuratSub <- subset(seurat, label %in% c("Tcells", "MacrophagesMonocytes",
+seuratSub <- subset(seurat, label %in% c("Tcells", "Macrophages", "InfMonos",
                                          "Fibroblasts"))
 
-seuratSub$label_plus_grp <- paste0(seuratSub$label, "_", seuratSub$grp)
-table(seuratSub$label_plus_grp)
-downSam <- min(table(seuratSub$label_plus_grp))
+
+seuratSub$label_plus_grp_plus_treat <- paste0(seuratSub$label, "_",
+                                              seuratSub$grp, "_",
+                                              seuratSub$treatment)
+seuratSub$grp_plus_treat <- paste0(seuratSub$grp, "_", seuratSub$treatment)
+
+table(seuratSub$label_plus_grp_plus_treat)
+downSam <- min(table(seuratSub$label_plus_grp_plus_treat))
+downSam <- 500
 print(downSam)
 
-Idents(seuratSub) <- seuratSub$label_plus_grp
+Idents(seuratSub) <- seuratSub$label_plus_grp_plus_treat
 seuratSub <- subset(seuratSub, downsample = downSam)
 
 sceMerge <- as.SingleCellExperiment(seuratSub)
-(table(sceMerge@colData$label_plus_grp))
+(table(sceMerge@colData$label_plus_grp_plus_treat))
 
 ```
 
@@ -188,8 +210,8 @@ sceMerge <- sceMerge[which(rowData(sceMerge)$humGene != "unknown"),]
 dim(sceMerge)
 
 ## filter for grp and write cnt mat plus metadat
-lapply(unique(sceMerge$grp), function(grp){
-  sceGrp <- sceMerge[,which(sceMerge@colData$grp == grp)]
+lapply(unique(sceMerge$grp_plus_treat), function(grp){
+  sceGrp <- sceMerge[,which(sceMerge@colData$grp_plus_treat == grp)]
   cellPhoneGrp <- cbind(rowData(sceGrp)$humGene, as.matrix(logcounts(sceGrp)))
   colnames(cellPhoneGrp)[1] <- "gene"
   write.table(cellPhoneGrp, 
@@ -232,16 +254,25 @@ cellphonedb database generate --user-interactions custom_interaction_file.csv
 
 ##run statistical analysis
 ## subsampling in R script.. 
-cellphonedb method statistical_analysis /Users/mechthildluetge/Projects/scRNAseq/TCRM_Christina/data/cellphonedb/totalCellsSubsampled_TCRM_metaData.txt /Users/mechthildluetge/Projects/scRNAseq/TCRM_Christina/data/cellphonedb/totalCellsSubsampled_TCRM_countMatrix.txt --output-path /Users/mechthildluetge/Projects/scRNAseq/TCRM_Christina/data/cellphonedb/outTCRM/ --database /Users/mechthildluetge/Projects/scRNAseq/ILC_Hungwei/data/cellphonedb/out/cellphonedb_user_2021-10-05-09_17.db --debug-seed 3 --iterations 100
+cellphonedb method statistical_analysis /Users/mechthildluetge/Projects/scRNAseq/TCRM_Christina/data/cellphonedb/totalCellsSubsampled_TCRM_no_metaData.txt /Users/mechthildluetge/Projects/scRNAseq/TCRM_Christina/data/cellphonedb/totalCellsSubsampled_TCRM_no_countMatrix.txt --output-path /Users/mechthildluetge/Projects/scRNAseq/TCRM_Christina/data/cellphonedb/outTCRM_no/ --database /Users/mechthildluetge/Projects/scRNAseq/ILC_Hungwei/data/cellphonedb/out/cellphonedb_user_2021-10-05-09_17.db --debug-seed 3 --iterations 100
 
-cellphonedb method statistical_analysis /Users/mechthildluetge/Projects/scRNAseq/TCRM_Christina/data/cellphonedb/totalCellsSubsampled_control_metaData.txt /Users/mechthildluetge/Projects/scRNAseq/TCRM_Christina/data/cellphonedb/totalCellsSubsampled_control_countMatrix.txt --output-path /Users/mechthildluetge/Projects/scRNAseq/TCRM_Christina/data/cellphonedb/outControl/ --database /Users/mechthildluetge/Projects/scRNAseq/ILC_Hungwei/data/cellphonedb/out/cellphonedb_user_2021-10-05-09_17.db --debug-seed 3 --iterations 100
+cellphonedb method statistical_analysis /Users/mechthildluetge/Projects/scRNAseq/TCRM_Christina/data/cellphonedb/totalCellsSubsampled_control_no_metaData.txt /Users/mechthildluetge/Projects/scRNAseq/TCRM_Christina/data/cellphonedb/totalCellsSubsampled_control_no_countMatrix.txt --output-path /Users/mechthildluetge/Projects/scRNAseq/TCRM_Christina/data/cellphonedb/outControl_no/ --database /Users/mechthildluetge/Projects/scRNAseq/ILC_Hungwei/data/cellphonedb/out/cellphonedb_user_2021-10-05-09_17.db --debug-seed 3 --iterations 100
+
+cellphonedb method statistical_analysis /Users/mechthildluetge/Projects/scRNAseq/TCRM_Christina/data/cellphonedb/totalCellsSubsampled_TCRM_isotype_metaData.txt /Users/mechthildluetge/Projects/scRNAseq/TCRM_Christina/data/cellphonedb/totalCellsSubsampled_TCRM_isotype_countMatrix.txt --output-path /Users/mechthildluetge/Projects/scRNAseq/TCRM_Christina/data/cellphonedb/outTCRM_isotype/ --database /Users/mechthildluetge/Projects/scRNAseq/ILC_Hungwei/data/cellphonedb/out/cellphonedb_user_2021-10-05-09_17.db --debug-seed 3 --iterations 100
+
+cellphonedb method statistical_analysis /Users/mechthildluetge/Projects/scRNAseq/TCRM_Christina/data/cellphonedb/totalCellsSubsampled_TCRM_14D102_metaData.txt /Users/mechthildluetge/Projects/scRNAseq/TCRM_Christina/data/cellphonedb/totalCellsSubsampled_TCRM_14D102_countMatrix.txt --output-path /Users/mechthildluetge/Projects/scRNAseq/TCRM_Christina/data/cellphonedb/outTCRM_14D102/ --database /Users/mechthildluetge/Projects/scRNAseq/ILC_Hungwei/data/cellphonedb/out/cellphonedb_user_2021-10-05-09_17.db --debug-seed 3 --iterations 100
 
 
 Count network interactions:
-cellphonedb plot heatmap_plot /Users/mechthildluetge/Projects/scRNAseq/TCRM_Christina/data/cellphonedb/totalCellsSubsampled_TCRM_metaData.txt --pvalues-path /Users/mechthildluetge/Projects/scRNAseq/TCRM_Christina/data/cellphonedb/outTCRM/pvalues.txt --output-path /Users/mechthildluetge/Projects/scRNAseq/TCRM_Christina/data/cellphonedb/outTCRM
-cellphonedb plot heatmap_plot /Users/mechthildluetge/Projects/scRNAseq/TCRM_Christina/data/cellphonedb/totalCellsSubsampled_control_metaData.txt --pvalues-path /Users/mechthildluetge/Projects/scRNAseq/TCRM_Christina/data/cellphonedb/outControl/pvalues.txt --output-path /Users/mechthildluetge/Projects/scRNAseq/TCRM_Christina/data/cellphonedb/outControl
+cellphonedb plot heatmap_plot /Users/mechthildluetge/Projects/scRNAseq/TCRM_Christina/data/cellphonedb/totalCellsSubsampled_TCRM_no_metaData.txt --pvalues-path /Users/mechthildluetge/Projects/scRNAseq/TCRM_Christina/data/cellphonedb/outTCRM_no/pvalues.txt --output-path /Users/mechthildluetge/Projects/scRNAseq/TCRM_Christina/data/cellphonedb/outTCRM_no
 
-We use CellPhoneDB as tool to predict cellular communication between SILT FRCs and ILC populations in our dataset. In brief, pairs of known interacting ligands and receptors are derived from public databases and cell types are analysed for enriched receptor–ligand interactions based on expression of a receptor by one cell type and a ligand by another cell type. 
+cellphonedb plot heatmap_plot /Users/mechthildluetge/Projects/scRNAseq/TCRM_Christina/data/cellphonedb/totalCellsSubsampled_control_no_metaData.txt --pvalues-path /Users/mechthildluetge/Projects/scRNAseq/TCRM_Christina/data/cellphonedb/outControl_no/pvalues.txt --output-path /Users/mechthildluetge/Projects/scRNAseq/TCRM_Christina/data/cellphonedb/outControl_no
+
+cellphonedb plot heatmap_plot /Users/mechthildluetge/Projects/scRNAseq/TCRM_Christina/data/cellphonedb/totalCellsSubsampled_TCRM_isotype_metaData.txt --pvalues-path /Users/mechthildluetge/Projects/scRNAseq/TCRM_Christina/data/cellphonedb/outTCRM_isotype/pvalues.txt --output-path /Users/mechthildluetge/Projects/scRNAseq/TCRM_Christina/data/cellphonedb/outTCRM_isotype
+
+cellphonedb plot heatmap_plot /Users/mechthildluetge/Projects/scRNAseq/TCRM_Christina/data/cellphonedb/totalCellsSubsampled_TCRM_14D102_metaData.txt --pvalues-path /Users/mechthildluetge/Projects/scRNAseq/TCRM_Christina/data/cellphonedb/outTCRM_14D102/pvalues.txt --output-path /Users/mechthildluetge/Projects/scRNAseq/TCRM_Christina/data/cellphonedb/outTCRM_14D102
+
+We use CellPhoneDB as tool to predict cellular communication in our dataset. In brief, pairs of known interacting ligands and receptors are derived from public databases and cell types are analysed for enriched receptor–ligand interactions based on expression of a receptor by one cell type and a ligand by another cell type. 
 
 deactivate  
 

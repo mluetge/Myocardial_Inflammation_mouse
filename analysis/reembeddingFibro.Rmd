@@ -1,0 +1,467 @@
+---
+title: "reembedding Fibroblasts"
+author: "Mechthild Lütge"
+date: "24 July 2020"
+output:
+  html_document:
+    self_contained: no
+    code_folding: show
+    number_sections: no
+    toc: yes
+    toc_depth: 3
+    toc_float: true
+    collapsed: no
+    smooth_scroll: yes
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(warning = FALSE, message = FALSE, dev = c("png", "pdf"))
+set.seed(1000)
+```
+
+## load packages
+```{r libs}
+suppressPackageStartupMessages({
+  library(SingleCellExperiment)
+  library(tidyverse)
+  library(Seurat)
+  library(magrittr)
+  library(dplyr)
+  library(purrr)
+  library(ggplot2)
+  library(here)
+  library(runSeurat3)
+  library(ggsci)
+  library(pheatmap)
+  library(ggpubr)
+})
+
+```
+
+## set dir
+```{r set dir}
+basedir <- here()
+seurat <- readRDS(file = paste0(basedir,
+                      "/data/MuHeart_totalCellsPlusTreated_integratedLabeled", 
+                      "_seurat.rds"))
+Idents(seurat) <- seurat$label
+seurat$age[which(seurat$treatment != "no")] <- "12wk"
+
+```
+
+
+
+## color vectors
+```{r colVec}
+
+colPal <- pal_igv()(length(seurat$integrated_snn_res.0.4))
+colGrp <- pal_jama()(length(unique(seurat$grp)))
+colAge <- pal_uchicago()(length(unique(seurat$age)))
+colStype <- pal_aaas()(length(unique(seurat$seqType)))
+colDat <- c(pal_npg()(10),
+            pal_futurama()(10))[1:(length(unique(seurat$dataset)))]
+colTreat <- pal_jama()(length(unique(seurat$treatment)))
+
+names(colPal) <- unique(seurat$integrated_snn_res.0.4)
+names(colGrp) <- unique(seurat$grp)
+names(colAge) <- unique(seurat$age)
+names(colStype) <- unique(seurat$seqType)
+names(colDat) <- unique(seurat$dataset)
+names(colTreat) <- unique(seurat$treatment)
+
+colLab <- c("#f4c37e", "#e73213", "#209ab9", "#df7f13",
+            "#609eca", "#caa160", "#dbb6ca", "#98bfe8",
+            "#7c0606", "#c2a17d", "#db27ab", "#dadada",
+            "#32b4a5", "#4c8376")
+
+names(colLab) <- c("InfMonos", "Tcells", "Endothelial", "Macrophages",
+                   "Fibroblasts", "pDCsDCs", "NKcells", "Perivascular",
+                   "Neutrophils", "Bcells", "Cardiomyocytes", "proliferating",
+                   "endocardialEndothelial", "capEndothelial")
+
+
+```
+
+## reembedding Fibroblasts
+```{r reembedding fbroblasts}
+seurat <- subset(seurat, label == "Fibroblasts")
+seurat <- subset(seurat, seqType == "sc")
+
+DefaultAssay(object = seurat) <- "RNA"
+seurat <- FindVariableFeatures(seurat)
+seurat <- ScaleData(seurat, features = rownames(seurat))
+seurat <- RunPCA(object = seurat, npcs = 20, verbose = FALSE)
+seurat <- RunTSNE(object = seurat, reduction = "pca", dims = 1:20)
+seurat <- RunUMAP(object = seurat, reduction = "pca", dims = 1:20)
+
+```
+
+
+
+## vis data all {.tabset}
+### clusters
+```{r vis cluster all}
+
+DimPlot(seurat, group.by ="integrated_snn_res.0.4", reduction = "umap",
+        cols=colPal)+
+  theme_bw() +
+  theme(axis.text = element_blank(), axis.ticks = element_blank(), 
+        panel.grid.minor = element_blank()) +
+  xlab("UMAP1") +
+  ylab("UMAP2")
+
+DimPlot(seurat, group.by ="integrated_snn_res.0.4", reduction = "umap",
+        cols=colPal)+
+  theme_void()
+```
+
+### Label
+```{r vis label all}
+
+DimPlot(seurat, reduction = "umap", group.by = "label", cols=colLab)+
+  theme_bw() +
+  theme(axis.text = element_blank(), axis.ticks = element_blank(), 
+        panel.grid.minor = element_blank()) +
+  xlab("UMAP1") +
+  ylab("UMAP2")
+
+DimPlot(seurat, reduction = "umap", group.by = "label", cols=colLab,
+        shuffle = T)+
+  theme_void() 
+
+```
+
+### group
+```{r vis grp all}
+
+DimPlot(seurat, reduction = "umap", group.by = "grp", cols=colGrp)+
+  theme_bw() +
+  theme(axis.text = element_blank(), axis.ticks = element_blank(), 
+        panel.grid.minor = element_blank()) +
+  xlab("UMAP1") +
+  ylab("UMAP2")
+
+DimPlot(seurat, reduction = "umap", group.by = "grp", cols=colGrp, shuffle = T)+
+  theme_void() 
+
+```
+
+
+### Sample
+```{r vis sample all, fig.height=4, fig.width=7}
+
+DimPlot(seurat, reduction = "umap", group.by = "dataset", cols=colDat)+
+  theme_bw() +
+  theme(axis.text = element_blank(), axis.ticks = element_blank(), 
+        panel.grid.minor = element_blank()) +
+  xlab("UMAP1") +
+  ylab("UMAP2")
+
+DimPlot(seurat, reduction = "umap", group.by = "dataset", cols=colDat)+
+  theme_void()
+
+```
+
+
+### Age
+```{r vis age all}
+
+DimPlot(seurat, reduction = "umap", group.by = "age", cols=colAge)+
+  theme_bw() +
+  theme(axis.text = element_blank(), axis.ticks = element_blank(), 
+        panel.grid.minor = element_blank()) +
+  xlab("UMAP1") +
+  ylab("UMAP2")
+
+DimPlot(seurat, reduction = "umap", group.by = "age", cols=colAge, shuffle = T)+
+  theme_void() 
+
+```
+
+
+### SeqType
+```{r vis seqType all}
+
+DimPlot(seurat, reduction = "umap", group.by = "seqType", cols=colStype)+
+  theme_bw() +
+  theme(axis.text = element_blank(), axis.ticks = element_blank(), 
+        panel.grid.minor = element_blank()) +
+  xlab("UMAP1") +
+  ylab("UMAP2")
+
+DimPlot(seurat, reduction = "umap", group.by = "seqType", cols=colStype)+
+  theme_void() 
+```
+
+### Treatment
+```{r vis treat all}
+
+DimPlot(seurat, reduction = "umap", group.by = "treatment", cols=colTreat)+
+  theme_bw() +
+  theme(axis.text = element_blank(), axis.ticks = element_blank(), 
+        panel.grid.minor = element_blank()) +
+  xlab("UMAP1") +
+  ylab("UMAP2")
+
+DimPlot(seurat, reduction = "umap", group.by = "treatment", cols=colTreat,
+        shuffle = T)+
+  theme_void() 
+
+```
+
+### cnt Tab all
+```{r cnts par lab per seqType}
+
+table(seurat$label, seurat$seqType)
+table(seurat$label, seurat$grp)
+table(seurat$label, seurat$treatment)
+```
+
+## save object all Fibro
+```{r save int all}
+saveRDS(seurat, file = paste0(basedir,
+                      "/data/MuHeart_totalCellsPlusTreated_FibroReembedded",
+                      "_seurat.rds"))
+
+```
+
+
+
+## vis only untreated {.tabset}
+```{r subset to only untreated}
+
+seurat <- subset(seurat, treatment=="no")
+
+```
+
+
+### clusters
+```{r vis cluster untreated}
+
+DimPlot(seurat, group.by ="integrated_snn_res.0.4", reduction = "umap",
+        cols=colPal)+
+  theme_bw() +
+  theme(axis.text = element_blank(), axis.ticks = element_blank(), 
+        panel.grid.minor = element_blank()) +
+  xlab("UMAP1") +
+  ylab("UMAP2")
+
+DimPlot(seurat, group.by ="integrated_snn_res.0.4", reduction = "umap",
+        cols=colPal)+
+  theme_void()
+```
+
+### Label
+```{r vis label untreated}
+
+DimPlot(seurat, reduction = "umap", group.by = "label", cols=colLab)+
+  theme_bw() +
+  theme(axis.text = element_blank(), axis.ticks = element_blank(), 
+        panel.grid.minor = element_blank()) +
+  xlab("UMAP1") +
+  ylab("UMAP2")
+
+DimPlot(seurat, reduction = "umap", group.by = "label", cols=colLab,
+        shuffle = T)+
+  theme_void() 
+
+```
+
+
+### group
+```{r vis grp untreated}
+
+DimPlot(seurat, reduction = "umap", group.by = "grp", cols=colGrp)+
+  theme_bw() +
+  theme(axis.text = element_blank(), axis.ticks = element_blank(), 
+        panel.grid.minor = element_blank()) +
+  xlab("UMAP1") +
+  ylab("UMAP2")
+
+DimPlot(seurat, reduction = "umap", group.by = "grp", cols=colGrp, shuffle = T)+
+  theme_void() 
+
+```
+
+
+### Sample
+```{r vis sample untreated, fig.height=4, fig.width=7}
+
+DimPlot(seurat, reduction = "umap", group.by = "dataset", cols=colDat)+
+  theme_bw() +
+  theme(axis.text = element_blank(), axis.ticks = element_blank(), 
+        panel.grid.minor = element_blank()) +
+  xlab("UMAP1") +
+  ylab("UMAP2")
+
+DimPlot(seurat, reduction = "umap", group.by = "dataset", cols=colDat)+
+  theme_void()
+
+```
+
+
+### Age
+```{r vis age untreated}
+
+DimPlot(seurat, reduction = "umap", group.by = "age", cols=colAge)+
+  theme_bw() +
+  theme(axis.text = element_blank(), axis.ticks = element_blank(), 
+        panel.grid.minor = element_blank()) +
+  xlab("UMAP1") +
+  ylab("UMAP2")
+
+DimPlot(seurat, reduction = "umap", group.by = "age", cols=colAge, shuffle = T)+
+  theme_void() 
+
+```
+
+
+### SeqType
+```{r vis seqType untreated}
+
+DimPlot(seurat, reduction = "umap", group.by = "seqType", cols=colStype)+
+  theme_bw() +
+  theme(axis.text = element_blank(), axis.ticks = element_blank(), 
+        panel.grid.minor = element_blank()) +
+  xlab("UMAP1") +
+  ylab("UMAP2")
+
+DimPlot(seurat, reduction = "umap", group.by = "seqType", cols=colStype)+
+  theme_void() 
+```
+
+### Treatment
+```{r vis treat untreated}
+
+DimPlot(seurat, reduction = "umap", group.by = "treatment", cols=colTreat)+
+  theme_bw() +
+  theme(axis.text = element_blank(), axis.ticks = element_blank(), 
+        panel.grid.minor = element_blank()) +
+  xlab("UMAP1") +
+  ylab("UMAP2")
+
+DimPlot(seurat, reduction = "umap", group.by = "treatment", cols=colTreat,
+        shuffle = T)+
+  theme_void() 
+
+```
+
+### cnt Tab untreated
+```{r cnts par lab untreat}
+
+table(seurat$label, seurat$seqType)
+table(seurat$label, seurat$grp)
+```
+
+## expression of selected genes {.tabset}
+```{r sel genes}
+
+selGenes <- c("Grem1", "Grem2", "Bmp2","Bmp4", "Bmp7", "Bmpr1a", "Bmpr1b",
+              "Bmpr2", "Bst1", "Clu", "Ncam1", "Ccl2", "Cxcl9", "Il11", "Timp1",
+              "Plaur", "Hif1a", "Sod2", "Ccl19", "Cxcl13", "Il33", "Il6",
+              "Vcam1", "Icam1", "H2-Aa", "Rosa26eyfp", "Ly6a")
+selGenesLong <- data.frame(gene=rownames(seurat)) %>%
+  mutate(short=gsub("^.*\\.", "", gene)) %>% filter(short %in% selGenes)
+
+```
+
+
+### sel Genes across all {.tabset}
+```{r sel Genes across all}
+
+template_fp <- c(
+    "#### {{sel}}\n",
+    "```{r sel Genes across all {{sel}},fig.height=3, fig.width=4, echo = FALSE}\n",
+    "selGene <- as.character('{{sel}}')",
+    "p <- FeaturePlot(seurat, reduction = 'umap',
+      features = selGene,
+      cols=c('lightgrey', 'darkred'),
+              order = T)+
+    theme(legend.position='right')",
+    "p\n",
+    "```\n",
+    "\n"
+)
+
+
+plots_fp <- lapply(selGenesLong$gene, 
+  function(sel) knitr::knit_expand(text = template_fp)
+)
+
+```
+
+`r knitr::knit(text = unlist(plots_fp))`
+
+### sel Genes split by grp {.tabset}
+```{r el Genes split by grp}
+
+template_fp <- c(
+    "#### {{sel}}\n",
+    "```{r sel Genes split by grp {{sel}},fig.height=3, fig.width=8, echo = FALSE}\n",
+    "selGene <- as.character('{{sel}}')",
+    "p <- FeaturePlot(seurat, reduction = 'umap',
+      features = selGene,
+      cols=c('lightgrey', 'darkred'),
+      order = T,
+      split.by = 'grp')+
+    theme(legend.position='right')",
+    "p\n",
+    "```\n",
+    "\n"
+)
+
+
+plots_fp <- lapply(selGenesLong$gene, 
+  function(sel) knitr::knit_expand(text = template_fp)
+)
+
+```
+
+`r knitr::knit(text = unlist(plots_fp))`
+
+### sel Genes split by age {.tabset}
+```{r sel Genes split by age}
+
+template_fp <- c(
+    "#### {{sel}}\n",
+    "```{r sel Genes split by age {{sel}},fig.height=3, fig.width=12, echo = FALSE}\n",
+    "selGene <- as.character('{{sel}}')",
+    "p <- FeaturePlot(seurat, reduction = 'umap',
+      features = selGene,
+      cols=c('lightgrey', 'darkred'),
+      order = T,
+      split.by = 'age')+
+    theme(legend.position='right')",
+    "p\n",
+    "```\n",
+    "\n"
+)
+
+
+plots_fp <- lapply(selGenesLong$gene, 
+  function(sel) knitr::knit_expand(text = template_fp)
+)
+
+```
+
+`r knitr::knit(text = unlist(plots_fp))`
+
+
+## save object untreated with label
+```{r save int untreated}
+saveRDS(seurat, file = paste0(basedir,
+                      "/data/MuHeart_totalCells_FibroReembedded_seurat.rds"))
+
+```
+
+
+## session info
+```{r session info}
+sessionInfo()
+date()
+```
+
+
+
+

@@ -39,7 +39,8 @@ suppressPackageStartupMessages({
 ```{r set dir}
 basedir <- here()
 seurat <- readRDS(file = paste0(basedir,
-                      "/data/MuHeart_totalCells_integratedLabeled_seurat.rds"))
+                      "/data/MuHeart_totalCellsPlusTreated_integratedLabeled", 
+                      "_seurat.rds"))
 Idents(seurat) <- seurat$label
 
 ```
@@ -56,6 +57,7 @@ colStype <- pal_aaas()(length(unique(seurat$seqType)))
 colDat <- c(pal_npg()(10),
             pal_futurama()(10))[1:(length(unique(seurat$dataset)))]
 colLab <- pal_igv()(length(unique(seurat$label)))
+colTreat <- pal_jama()(length(unique(seurat$treatment)))
   
 names(colPal) <- levels(seurat)
 names(colGrp) <- unique(seurat$grp)
@@ -63,6 +65,7 @@ names(colAge) <- unique(seurat$age)
 names(colStype) <- unique(seurat$seqType)
 names(colDat) <- unique(seurat$dataset)
 names(colLab) <- unique(seurat$label)
+names(colTreat) <- unique(seurat$treatment)
 
 ```
 
@@ -72,7 +75,7 @@ names(colLab) <- unique(seurat$label)
 ### format data
 ```{r format data wt}
 
-sloVec <- c("TCRM", "control")
+sloVec <- c("TCRM_no", "Control_no", "TCRM_14D102", "TCRM_isotype")
 
 intList <- lapply(sloVec, function(slo){
   means <- read_tsv(paste0(basedir, "/data/cellphonedb/out", slo, "/means.txt"))
@@ -84,14 +87,14 @@ intList <- lapply(sloVec, function(slo){
     dplyr::select(-c(id_cp_interaction, partner_a, partner_b, gene_a, gene_b,
               receptor_a, receptor_b, annotation_strategy, secreted, is_integrin,
               interacting_pair))
-  rownames(meansCut) <- means$interacting_pair
+  rownames(meansCut) <- means$id_cp_interaction
 
   #### pVal
   pValCut  <- pVal %>%
     dplyr::select(-c(id_cp_interaction, partner_a, partner_b, gene_a, gene_b,
               receptor_a, receptor_b, annotation_strategy, secreted, is_integrin,
               interacting_pair))
-  rownames(pValCut) <- pVal$interacting_pair
+  rownames(pValCut) <- pVal$id_cp_interaction
   
   #### cellA/cellB
   CellNames <- data.frame(CellsInt = as.character(colnames(meansCut))) %>%
@@ -100,22 +103,25 @@ intList <- lapply(sloVec, function(slo){
 
 
   ### summarize mean
-  meansCut_long <- meansCut %>% rownames_to_column(var="intPair") %>%
-    melt(., id.vars=c("intPair"), measure.vars=colnames(meansCut),
+  meansCut_long <- meansCut %>% rownames_to_column(var="intPairID") %>%
+    melt(., id.vars=c("intPairID"), measure.vars=colnames(meansCut),
          variable.name="CellsInt", value.name="mean") %>% 
     left_join(., CellNames, by="CellsInt") %>% 
     filter(!cellA == cellB)
 
   ### summarize pVal
-  pValCut_long <- pValCut %>% rownames_to_column(var="intPair") %>%
-    melt(., id.vars=c("intPair"), measure.vars=colnames(meansCut),
+  pValCut_long <- pValCut %>% rownames_to_column(var="intPairID") %>%
+    melt(., id.vars=c("intPairID"), measure.vars=colnames(meansCut),
          variable.name="CellsInt", value.name="pVal") %>% 
     left_join(., CellNames, by="CellsInt")  %>% 
     filter(!cellA == cellB)
-
+  
+  intMap <- data.frame(intPairID=means$id_cp_interaction,
+                       intPair=means$interacting_pair)
   allSum <- meansCut_long %>% mutate(pVal=pValCut_long$pVal) %>%
     mutate(Grp = slo) %>% 
-    mutate(sign=ifelse(pVal<0.05, "p < 0.05", "p > 0.05"))
+    mutate(sign=ifelse(pVal<0.05, "p < 0.05", "p > 0.05")) %>% 
+    left_join(., intMap, by="intPairID")
 
 })
 names(intList) <- sloVec
@@ -137,39 +143,30 @@ names(signInt) <- sloVec
 signIntDat <- data.frame(do.call("rbind", signInt))
 
 table(signIntDat$CellsInt, signIntDat$Grp)
-
+reordGrp <- c("InfMonos|Fibroblasts", "Macrophages|Fibroblasts",
+              "Macrophages|InfMonos", "Tcells|Fibroblasts", "Tcells|InfMonos",
+              "Tcells|Macrophages")
+  
 ## reorder int 
-reordInt <- signIntDat %>% filter(cellA=="Tcells") %>% 
+reordInt <- signIntDat %>% filter(CellsInt %in% reordGrp) %>% 
   mutate(intA=gsub("_.*", "", intPair)) %>% 
   mutate(intB=gsub(".*_", "", intPair))
-reordIntFin <- data.frame(intPair=paste0(reordInt$intB, "_", reordInt$intA),
+reordIntFin <- data.frame(intPairID=paste0(reordInt$intPairID),
                           CellsInt=paste0(reordInt$cellB, "|", reordInt$cellA),
                           mean=reordInt$mean,
                           cellA=reordInt$cellB,
                           cellB=reordInt$cellA,
                           pVal=reordInt$pVal,
                           Grp=reordInt$Grp,
-                          sign=reordInt$sign)
+                          sign=reordInt$sign,
+                          intPair=paste0(reordInt$intB, "_", reordInt$intA))
 
-reordInt2 <- signIntDat %>%
-  filter(cellA=="MacrophagesMonocytes" & cellB=="Fibroblasts") %>% 
-  mutate(intA=gsub("_.*", "", intPair)) %>% 
-  mutate(intB=gsub(".*_", "", intPair))
-reordIntFin2 <- data.frame(intPair=paste0(reordInt2$intB, "_", reordInt2$intA),
-                          CellsInt=paste0(reordInt2$cellB, "|", reordInt2$cellA),
-                          mean=reordInt2$mean,
-                          cellA=reordInt2$cellB,
-                          cellB=reordInt2$cellA,
-                          pVal=reordInt2$pVal,
-                          Grp=reordInt2$Grp,
-                          sign=reordInt2$sign)
 
 signIntDatKeep <- signIntDat %>% 
-  filter(cellA %in% c("Fibroblasts", "MacrophagesMonocytes")) %>% 
-  filter(!cellB %in% c("Fibroblasts")) 
+  filter(!CellsInt %in% reordGrp) 
 
-
-signIntDatOrd <- rbind(signIntDatKeep, reordIntFin, reordIntFin2) 
+signIntDatOrd <- rbind(signIntDatKeep, reordIntFin) 
+table(signIntDatOrd$CellsInt, signIntDatOrd$Grp)
 
 ## save all detected sign int
 write.table(signIntDatOrd, 
@@ -178,8 +175,8 @@ write.table(signIntDatOrd,
 
 
 ## int only in one grp
-signIntDatOrdCtrl <- signIntDatOrd %>%filter(Grp=="control")
-signIntDatOrdTCRM <- signIntDatOrd %>%filter(Grp=="TCRM")
+signIntDatOrdCtrl <- signIntDatOrd %>%filter(Grp=="Control_no")
+signIntDatOrdTCRM <- signIntDatOrd %>%filter(Grp=="TCRM_no")
 signIntDatOrdUnique <- rbind(signIntDatOrdCtrl[which(!signIntDatOrdCtrl$intPair
                                               %in% signIntDatOrdTCRM$intPair),],
                              signIntDatOrdTCRM[which(!signIntDatOrdTCRM$intPair

@@ -1,0 +1,1459 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+<meta name="author" content="Mechthild Lütge" />
+
+<meta name="date" content="2020-07-24" />
+
+<title>reembedding Fibroblasts</title>
+
+<script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+
+<link rel="icon" href="https://github.com/workflowr/workflowr-assets/raw/main/img/reproducible.png">
+<!-- Add a small amount of space between sections. -->
+<style type="text/css">
+div.section {
+  padding-top: 12px;
+}
+</style>
+
+
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.tab('show');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">TCRM_Christina</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+<li>
+  <a href="about.html">About</a>
+</li>
+<li>
+  <a href="license.html">License</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore">reembedding Fibroblasts</h1>
+<h4 class="author">Mechthild Lütge</h4>
+<h4 class="date">24 July 2020</h4>
+
+</div>
+
+
+<p>
+<button type="button" class="btn btn-default btn-workflowr btn-workflowr-report" data-toggle="collapse" data-target="#workflowr-report">
+<span class="glyphicon glyphicon-list" aria-hidden="true"></span> workflowr <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span>
+</button>
+</p>
+<div id="workflowr-report" class="collapse">
+<ul class="nav nav-tabs">
+<li class="active">
+<a data-toggle="tab" href="#summary">Summary</a>
+</li>
+<li>
+<a data-toggle="tab" href="#checks"> Checks <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> </a>
+</li>
+<li>
+<a data-toggle="tab" href="#versions">Past versions</a>
+</li>
+</ul>
+<div class="tab-content">
+<div id="summary" class="tab-pane fade in active">
+<p>
+<strong>Last updated:</strong> 2022-03-22
+</p>
+<p>
+<strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 6 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 1
+</p>
+<p>
+<strong>Knit directory:</strong> <code>TCRM_Christina/</code> <span class="glyphicon glyphicon-question-sign" aria-hidden="true" title="This is the local directory in which the code in this file was executed."> </span>
+</p>
+<p>
+This reproducible <a href="https://rmarkdown.rstudio.com">R Markdown</a> analysis was created with <a
+  href="https://github.com/workflowr/workflowr">workflowr</a> (version 1.7.0). The <em>Checks</em> tab describes the reproducibility checks that were applied when the results were created. The <em>Past versions</em> tab lists the development history.
+</p>
+<hr>
+</div>
+<div id="checks" class="tab-pane fade">
+<div id="workflowr-checks" class="panel-group">
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguncommittedchanges"> <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> <strong>R Markdown file:</strong> uncommitted changes </a>
+</p>
+</div>
+<div id="strongRMarkdownfilestronguncommittedchanges" class="panel-collapse collapse">
+<div class="panel-body">
+<p>The R Markdown is untracked by Git. To know which version of the R Markdown file created these results, you’ll want to first commit it to the Git repo. If you’re still working on the analysis, you can ignore this warning. When you’re finished, you can run <code>wflow_publish</code> to commit the R Markdown file and build the HTML.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongEnvironmentstrongempty"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Environment:</strong> empty </a>
+</p>
+</div>
+<div id="strongEnvironmentstrongempty" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Great job! The global environment was empty. Objects defined in the global environment can affect the analysis in your R Markdown file in unknown ways. For reproduciblity it’s best to always run the code in an empty environment.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongSeedstrongcodesetseed20200518code"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Seed:</strong> <code>set.seed(20200518)</code> </a>
+</p>
+</div>
+<div id="strongSeedstrongcodesetseed20200518code" class="panel-collapse collapse">
+<div class="panel-body">
+<p>The command <code>set.seed(20200518)</code> was run prior to running the code in the R Markdown file. Setting a seed ensures that any results that rely on randomness, e.g. subsampling or permutations, are reproducible.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongSessioninformationstrongrecorded"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Session information:</strong> recorded </a>
+</p>
+</div>
+<div id="strongSessioninformationstrongrecorded" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Great job! Recording the operating system, R version, and package versions is critical for reproducibility.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongCachestrongnone"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Cache:</strong> none </a>
+</p>
+</div>
+<div id="strongCachestrongnone" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Nice! There were no cached chunks for this analysis, so you can be confident that you successfully produced the results during this run.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongFilepathsstrongrelative"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>File paths:</strong> relative </a>
+</p>
+</div>
+<div id="strongFilepathsstrongrelative" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Great job! Using relative paths to the files within your workflowr project makes it easier to run your code on other machines.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcommluetgeTCRMChristinatreec68cbededb27b7edc8ab4dac8b3cfce17471fd0dtargetblankc68cbeda"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/mluetge/TCRM_Christina/tree/c68cbededb27b7edc8ab4dac8b3cfce17471fd0d" target="_blank">c68cbed</a> </a>
+</p>
+</div>
+<div id="strongRepositoryversionstrongahrefhttpsgithubcommluetgeTCRMChristinatreec68cbededb27b7edc8ab4dac8b3cfce17471fd0dtargetblankc68cbeda" class="panel-collapse collapse">
+<div class="panel-body">
+<p>
+Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility.
+</p>
+<p>
+The results in this page were generated with repository version <a href="https://github.com/mluetge/TCRM_Christina/tree/c68cbededb27b7edc8ab4dac8b3cfce17471fd0d" target="_blank">c68cbed</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
+</p>
+<p>
+Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
+</p>
+<pre><code>
+Ignored files:
+    Ignored:    .DS_Store
+    Ignored:    .Rhistory
+    Ignored:    .Rproj.user/
+    Ignored:    analysis/figure/
+    Ignored:    data/GSEA/
+    Ignored:    data/cellphonedb/
+    Ignored:    data/data_old/
+    Ignored:    output/.DS_Store
+
+Untracked files:
+    Untracked:  analysis/DEgenesTreatment.Rmd
+    Untracked:  analysis/reembeddingFibro.Rmd
+    Untracked:  analysis/visualizeTotalCellsUntreated.Rmd
+    Untracked:  figure/DEgenesTreatment.Rmd/
+    Untracked:  figure/reembeddingFibro.Rmd/
+
+Unstaged changes:
+    Modified:   analysis/analyseCPDBout.Rmd
+    Modified:   analysis/createCBDBinput.Rmd
+
+</code></pre>
+<p>
+Note that any generated files, e.g. HTML, png, CSS, etc., are not included in this status report because it is ok for generated content to have uncommitted changes.
+</p>
+</div>
+</div>
+</div>
+</div>
+<hr>
+</div>
+<div id="versions" class="tab-pane fade">
+<p>
+There are no past versions. Publish this analysis with <code>wflow_publish()</code> to start tracking its development.
+</p>
+<hr>
+</div>
+</div>
+</div>
+<div id="load-packages" class="section level2">
+<h2>load packages</h2>
+<pre class="r"><code>suppressPackageStartupMessages({
+  library(SingleCellExperiment)
+  library(tidyverse)
+  library(Seurat)
+  library(magrittr)
+  library(dplyr)
+  library(purrr)
+  library(ggplot2)
+  library(here)
+  library(runSeurat3)
+  library(ggsci)
+  library(pheatmap)
+  library(ggpubr)
+})</code></pre>
+</div>
+<div id="set-dir" class="section level2">
+<h2>set dir</h2>
+<pre class="r"><code>basedir &lt;- here()
+seurat &lt;- readRDS(file = paste0(basedir,
+                      &quot;/data/MuHeart_totalCellsPlusTreated_integratedLabeled&quot;, 
+                      &quot;_seurat.rds&quot;))
+Idents(seurat) &lt;- seurat$label
+seurat$age[which(seurat$treatment != &quot;no&quot;)] &lt;- &quot;12wk&quot;</code></pre>
+</div>
+<div id="color-vectors" class="section level2">
+<h2>color vectors</h2>
+<pre class="r"><code>colPal &lt;- pal_igv()(length(seurat$integrated_snn_res.0.4))
+colGrp &lt;- pal_jama()(length(unique(seurat$grp)))
+colAge &lt;- pal_uchicago()(length(unique(seurat$age)))
+colStype &lt;- pal_aaas()(length(unique(seurat$seqType)))
+colDat &lt;- c(pal_npg()(10),
+            pal_futurama()(10))[1:(length(unique(seurat$dataset)))]
+colTreat &lt;- pal_jama()(length(unique(seurat$treatment)))
+
+names(colPal) &lt;- unique(seurat$integrated_snn_res.0.4)
+names(colGrp) &lt;- unique(seurat$grp)
+names(colAge) &lt;- unique(seurat$age)
+names(colStype) &lt;- unique(seurat$seqType)
+names(colDat) &lt;- unique(seurat$dataset)
+names(colTreat) &lt;- unique(seurat$treatment)
+
+colLab &lt;- c(&quot;#f4c37e&quot;, &quot;#e73213&quot;, &quot;#209ab9&quot;, &quot;#df7f13&quot;,
+            &quot;#609eca&quot;, &quot;#caa160&quot;, &quot;#dbb6ca&quot;, &quot;#98bfe8&quot;,
+            &quot;#7c0606&quot;, &quot;#c2a17d&quot;, &quot;#db27ab&quot;, &quot;#dadada&quot;,
+            &quot;#32b4a5&quot;, &quot;#4c8376&quot;)
+
+names(colLab) &lt;- c(&quot;InfMonos&quot;, &quot;Tcells&quot;, &quot;Endothelial&quot;, &quot;Macrophages&quot;,
+                   &quot;Fibroblasts&quot;, &quot;pDCsDCs&quot;, &quot;NKcells&quot;, &quot;Perivascular&quot;,
+                   &quot;Neutrophils&quot;, &quot;Bcells&quot;, &quot;Cardiomyocytes&quot;, &quot;proliferating&quot;,
+                   &quot;endocardialEndothelial&quot;, &quot;capEndothelial&quot;)</code></pre>
+</div>
+<div id="reembedding-fibroblasts" class="section level2">
+<h2>reembedding Fibroblasts</h2>
+<pre class="r"><code>seurat &lt;- subset(seurat, label == &quot;Fibroblasts&quot;)
+seurat &lt;- subset(seurat, seqType == &quot;sc&quot;)
+
+DefaultAssay(object = seurat) &lt;- &quot;RNA&quot;
+seurat &lt;- FindVariableFeatures(seurat)
+seurat &lt;- ScaleData(seurat, features = rownames(seurat))
+seurat &lt;- RunPCA(object = seurat, npcs = 20, verbose = FALSE)
+seurat &lt;- RunTSNE(object = seurat, reduction = &quot;pca&quot;, dims = 1:20)
+seurat &lt;- RunUMAP(object = seurat, reduction = &quot;pca&quot;, dims = 1:20)</code></pre>
+</div>
+<div id="vis-data-all" class="section level2 tabset">
+<h2 class="tabset">vis data all</h2>
+<div id="clusters" class="section level3">
+<h3>clusters</h3>
+<pre class="r"><code>DimPlot(seurat, group.by =&quot;integrated_snn_res.0.4&quot;, reduction = &quot;umap&quot;,
+        cols=colPal)+
+  theme_bw() +
+  theme(axis.text = element_blank(), axis.ticks = element_blank(), 
+        panel.grid.minor = element_blank()) +
+  xlab(&quot;UMAP1&quot;) +
+  ylab(&quot;UMAP2&quot;)</code></pre>
+<p><img src="figure/reembeddingFibro.Rmd/vis%20cluster%20all-1.png" width="672" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>DimPlot(seurat, group.by =&quot;integrated_snn_res.0.4&quot;, reduction = &quot;umap&quot;,
+        cols=colPal)+
+  theme_void()</code></pre>
+<p><img src="figure/reembeddingFibro.Rmd/vis%20cluster%20all-2.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+<div id="label" class="section level3">
+<h3>Label</h3>
+<pre class="r"><code>DimPlot(seurat, reduction = &quot;umap&quot;, group.by = &quot;label&quot;, cols=colLab)+
+  theme_bw() +
+  theme(axis.text = element_blank(), axis.ticks = element_blank(), 
+        panel.grid.minor = element_blank()) +
+  xlab(&quot;UMAP1&quot;) +
+  ylab(&quot;UMAP2&quot;)</code></pre>
+<p><img src="figure/reembeddingFibro.Rmd/vis%20label%20all-1.png" width="672" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>DimPlot(seurat, reduction = &quot;umap&quot;, group.by = &quot;label&quot;, cols=colLab,
+        shuffle = T)+
+  theme_void() </code></pre>
+<p><img src="figure/reembeddingFibro.Rmd/vis%20label%20all-2.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+<div id="group" class="section level3">
+<h3>group</h3>
+<pre class="r"><code>DimPlot(seurat, reduction = &quot;umap&quot;, group.by = &quot;grp&quot;, cols=colGrp)+
+  theme_bw() +
+  theme(axis.text = element_blank(), axis.ticks = element_blank(), 
+        panel.grid.minor = element_blank()) +
+  xlab(&quot;UMAP1&quot;) +
+  ylab(&quot;UMAP2&quot;)</code></pre>
+<p><img src="figure/reembeddingFibro.Rmd/vis%20grp%20all-1.png" width="672" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>DimPlot(seurat, reduction = &quot;umap&quot;, group.by = &quot;grp&quot;, cols=colGrp, shuffle = T)+
+  theme_void() </code></pre>
+<p><img src="figure/reembeddingFibro.Rmd/vis%20grp%20all-2.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+<div id="sample" class="section level3">
+<h3>Sample</h3>
+<pre class="r"><code>DimPlot(seurat, reduction = &quot;umap&quot;, group.by = &quot;dataset&quot;, cols=colDat)+
+  theme_bw() +
+  theme(axis.text = element_blank(), axis.ticks = element_blank(), 
+        panel.grid.minor = element_blank()) +
+  xlab(&quot;UMAP1&quot;) +
+  ylab(&quot;UMAP2&quot;)</code></pre>
+<p><img src="figure/reembeddingFibro.Rmd/vis%20sample%20all-1.png" width="672" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>DimPlot(seurat, reduction = &quot;umap&quot;, group.by = &quot;dataset&quot;, cols=colDat)+
+  theme_void()</code></pre>
+<p><img src="figure/reembeddingFibro.Rmd/vis%20sample%20all-2.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+<div id="age" class="section level3">
+<h3>Age</h3>
+<pre class="r"><code>DimPlot(seurat, reduction = &quot;umap&quot;, group.by = &quot;age&quot;, cols=colAge)+
+  theme_bw() +
+  theme(axis.text = element_blank(), axis.ticks = element_blank(), 
+        panel.grid.minor = element_blank()) +
+  xlab(&quot;UMAP1&quot;) +
+  ylab(&quot;UMAP2&quot;)</code></pre>
+<p><img src="figure/reembeddingFibro.Rmd/vis%20age%20all-1.png" width="672" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>DimPlot(seurat, reduction = &quot;umap&quot;, group.by = &quot;age&quot;, cols=colAge, shuffle = T)+
+  theme_void() </code></pre>
+<p><img src="figure/reembeddingFibro.Rmd/vis%20age%20all-2.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+<div id="seqtype" class="section level3">
+<h3>SeqType</h3>
+<pre class="r"><code>DimPlot(seurat, reduction = &quot;umap&quot;, group.by = &quot;seqType&quot;, cols=colStype)+
+  theme_bw() +
+  theme(axis.text = element_blank(), axis.ticks = element_blank(), 
+        panel.grid.minor = element_blank()) +
+  xlab(&quot;UMAP1&quot;) +
+  ylab(&quot;UMAP2&quot;)</code></pre>
+<p><img src="figure/reembeddingFibro.Rmd/vis%20seqType%20all-1.png" width="672" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>DimPlot(seurat, reduction = &quot;umap&quot;, group.by = &quot;seqType&quot;, cols=colStype)+
+  theme_void() </code></pre>
+<p><img src="figure/reembeddingFibro.Rmd/vis%20seqType%20all-2.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+<div id="treatment" class="section level3">
+<h3>Treatment</h3>
+<pre class="r"><code>DimPlot(seurat, reduction = &quot;umap&quot;, group.by = &quot;treatment&quot;, cols=colTreat)+
+  theme_bw() +
+  theme(axis.text = element_blank(), axis.ticks = element_blank(), 
+        panel.grid.minor = element_blank()) +
+  xlab(&quot;UMAP1&quot;) +
+  ylab(&quot;UMAP2&quot;)</code></pre>
+<p><img src="figure/reembeddingFibro.Rmd/vis%20treat%20all-1.png" width="672" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>DimPlot(seurat, reduction = &quot;umap&quot;, group.by = &quot;treatment&quot;, cols=colTreat,
+        shuffle = T)+
+  theme_void() </code></pre>
+<p><img src="figure/reembeddingFibro.Rmd/vis%20treat%20all-2.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+<div id="cnt-tab-all" class="section level3">
+<h3>cnt Tab all</h3>
+<pre class="r"><code>table(seurat$label, seurat$seqType)</code></pre>
+<pre><code>             
+                 sc
+  Fibroblasts 12573</code></pre>
+<pre class="r"><code>table(seurat$label, seurat$grp)</code></pre>
+<pre><code>             
+              control TCRM
+  Fibroblasts    2874 9699</code></pre>
+<pre class="r"><code>table(seurat$label, seurat$treatment)</code></pre>
+<pre><code>             
+              14D102 isotype   no
+  Fibroblasts   3776    2423 6374</code></pre>
+</div>
+</div>
+<div id="save-object-all-fibro" class="section level2">
+<h2>save object all Fibro</h2>
+<pre class="r"><code>saveRDS(seurat, file = paste0(basedir,
+                      &quot;/data/MuHeart_totalCellsPlusTreated_FibroReembedded&quot;,
+                      &quot;_seurat.rds&quot;))</code></pre>
+</div>
+<div id="vis-only-untreated" class="section level2 tabset">
+<h2 class="tabset">vis only untreated</h2>
+<pre class="r"><code>seurat &lt;- subset(seurat, treatment==&quot;no&quot;)</code></pre>
+<div id="clusters-1" class="section level3">
+<h3>clusters</h3>
+<pre class="r"><code>DimPlot(seurat, group.by =&quot;integrated_snn_res.0.4&quot;, reduction = &quot;umap&quot;,
+        cols=colPal)+
+  theme_bw() +
+  theme(axis.text = element_blank(), axis.ticks = element_blank(), 
+        panel.grid.minor = element_blank()) +
+  xlab(&quot;UMAP1&quot;) +
+  ylab(&quot;UMAP2&quot;)</code></pre>
+<p><img src="figure/reembeddingFibro.Rmd/vis%20cluster%20untreated-1.png" width="672" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>DimPlot(seurat, group.by =&quot;integrated_snn_res.0.4&quot;, reduction = &quot;umap&quot;,
+        cols=colPal)+
+  theme_void()</code></pre>
+<p><img src="figure/reembeddingFibro.Rmd/vis%20cluster%20untreated-2.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+<div id="label-1" class="section level3">
+<h3>Label</h3>
+<pre class="r"><code>DimPlot(seurat, reduction = &quot;umap&quot;, group.by = &quot;label&quot;, cols=colLab)+
+  theme_bw() +
+  theme(axis.text = element_blank(), axis.ticks = element_blank(), 
+        panel.grid.minor = element_blank()) +
+  xlab(&quot;UMAP1&quot;) +
+  ylab(&quot;UMAP2&quot;)</code></pre>
+<p><img src="figure/reembeddingFibro.Rmd/vis%20label%20untreated-1.png" width="672" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>DimPlot(seurat, reduction = &quot;umap&quot;, group.by = &quot;label&quot;, cols=colLab,
+        shuffle = T)+
+  theme_void() </code></pre>
+<p><img src="figure/reembeddingFibro.Rmd/vis%20label%20untreated-2.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+<div id="group-1" class="section level3">
+<h3>group</h3>
+<pre class="r"><code>DimPlot(seurat, reduction = &quot;umap&quot;, group.by = &quot;grp&quot;, cols=colGrp)+
+  theme_bw() +
+  theme(axis.text = element_blank(), axis.ticks = element_blank(), 
+        panel.grid.minor = element_blank()) +
+  xlab(&quot;UMAP1&quot;) +
+  ylab(&quot;UMAP2&quot;)</code></pre>
+<p><img src="figure/reembeddingFibro.Rmd/vis%20grp%20untreated-1.png" width="672" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>DimPlot(seurat, reduction = &quot;umap&quot;, group.by = &quot;grp&quot;, cols=colGrp, shuffle = T)+
+  theme_void() </code></pre>
+<p><img src="figure/reembeddingFibro.Rmd/vis%20grp%20untreated-2.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+<div id="sample-1" class="section level3">
+<h3>Sample</h3>
+<pre class="r"><code>DimPlot(seurat, reduction = &quot;umap&quot;, group.by = &quot;dataset&quot;, cols=colDat)+
+  theme_bw() +
+  theme(axis.text = element_blank(), axis.ticks = element_blank(), 
+        panel.grid.minor = element_blank()) +
+  xlab(&quot;UMAP1&quot;) +
+  ylab(&quot;UMAP2&quot;)</code></pre>
+<p><img src="figure/reembeddingFibro.Rmd/vis%20sample%20untreated-1.png" width="672" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>DimPlot(seurat, reduction = &quot;umap&quot;, group.by = &quot;dataset&quot;, cols=colDat)+
+  theme_void()</code></pre>
+<p><img src="figure/reembeddingFibro.Rmd/vis%20sample%20untreated-2.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+<div id="age-1" class="section level3">
+<h3>Age</h3>
+<pre class="r"><code>DimPlot(seurat, reduction = &quot;umap&quot;, group.by = &quot;age&quot;, cols=colAge)+
+  theme_bw() +
+  theme(axis.text = element_blank(), axis.ticks = element_blank(), 
+        panel.grid.minor = element_blank()) +
+  xlab(&quot;UMAP1&quot;) +
+  ylab(&quot;UMAP2&quot;)</code></pre>
+<p><img src="figure/reembeddingFibro.Rmd/vis%20age%20untreated-1.png" width="672" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>DimPlot(seurat, reduction = &quot;umap&quot;, group.by = &quot;age&quot;, cols=colAge, shuffle = T)+
+  theme_void() </code></pre>
+<p><img src="figure/reembeddingFibro.Rmd/vis%20age%20untreated-2.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+<div id="seqtype-1" class="section level3">
+<h3>SeqType</h3>
+<pre class="r"><code>DimPlot(seurat, reduction = &quot;umap&quot;, group.by = &quot;seqType&quot;, cols=colStype)+
+  theme_bw() +
+  theme(axis.text = element_blank(), axis.ticks = element_blank(), 
+        panel.grid.minor = element_blank()) +
+  xlab(&quot;UMAP1&quot;) +
+  ylab(&quot;UMAP2&quot;)</code></pre>
+<p><img src="figure/reembeddingFibro.Rmd/vis%20seqType%20untreated-1.png" width="672" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>DimPlot(seurat, reduction = &quot;umap&quot;, group.by = &quot;seqType&quot;, cols=colStype)+
+  theme_void() </code></pre>
+<p><img src="figure/reembeddingFibro.Rmd/vis%20seqType%20untreated-2.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+<div id="treatment-1" class="section level3">
+<h3>Treatment</h3>
+<pre class="r"><code>DimPlot(seurat, reduction = &quot;umap&quot;, group.by = &quot;treatment&quot;, cols=colTreat)+
+  theme_bw() +
+  theme(axis.text = element_blank(), axis.ticks = element_blank(), 
+        panel.grid.minor = element_blank()) +
+  xlab(&quot;UMAP1&quot;) +
+  ylab(&quot;UMAP2&quot;)</code></pre>
+<p><img src="figure/reembeddingFibro.Rmd/vis%20treat%20untreated-1.png" width="672" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>DimPlot(seurat, reduction = &quot;umap&quot;, group.by = &quot;treatment&quot;, cols=colTreat,
+        shuffle = T)+
+  theme_void() </code></pre>
+<p><img src="figure/reembeddingFibro.Rmd/vis%20treat%20untreated-2.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+<div id="cnt-tab-untreated" class="section level3">
+<h3>cnt Tab untreated</h3>
+<pre class="r"><code>table(seurat$label, seurat$seqType)</code></pre>
+<pre><code>             
+                sc
+  Fibroblasts 6374</code></pre>
+<pre class="r"><code>table(seurat$label, seurat$grp)</code></pre>
+<pre><code>             
+              control TCRM
+  Fibroblasts    2874 3500</code></pre>
+</div>
+</div>
+<div id="expression-of-selected-genes" class="section level2 tabset">
+<h2 class="tabset">expression of selected genes</h2>
+<pre class="r"><code>selGenes &lt;- c(&quot;Grem1&quot;, &quot;Grem2&quot;, &quot;Bmp2&quot;,&quot;Bmp4&quot;, &quot;Bmp7&quot;, &quot;Bmpr1a&quot;, &quot;Bmpr1b&quot;,
+              &quot;Bmpr2&quot;, &quot;Bst1&quot;, &quot;Clu&quot;, &quot;Ncam1&quot;, &quot;Ccl2&quot;, &quot;Cxcl9&quot;, &quot;Il11&quot;, &quot;Timp1&quot;,
+              &quot;Plaur&quot;, &quot;Hif1a&quot;, &quot;Sod2&quot;, &quot;Ccl19&quot;, &quot;Cxcl13&quot;, &quot;Il33&quot;, &quot;Il6&quot;,
+              &quot;Vcam1&quot;, &quot;Icam1&quot;, &quot;H2-Aa&quot;, &quot;Rosa26eyfp&quot;, &quot;Ly6a&quot;)
+selGenesLong &lt;- data.frame(gene=rownames(seurat)) %&gt;%
+  mutate(short=gsub(&quot;^.*\\.&quot;, &quot;&quot;, gene)) %&gt;% filter(short %in% selGenes)</code></pre>
+<div id="sel-genes-across-all" class="section level3 tabset">
+<h3 class="tabset">sel Genes across all</h3>
+<pre class="r"><code>template_fp &lt;- c(
+    &quot;#### {{sel}}\n&quot;,
+    &quot;```{r sel Genes across all {{sel}},fig.height=3, fig.width=4, echo = FALSE}\n&quot;,
+    &quot;selGene &lt;- as.character(&#39;{{sel}}&#39;)&quot;,
+    &quot;p &lt;- FeaturePlot(seurat, reduction = &#39;umap&#39;,
+      features = selGene,
+      cols=c(&#39;lightgrey&#39;, &#39;darkred&#39;),
+              order = T)+
+    theme(legend.position=&#39;right&#39;)&quot;,
+    &quot;p\n&quot;,
+    &quot;```\n&quot;,
+    &quot;\n&quot;
+)
+
+
+plots_fp &lt;- lapply(selGenesLong$gene, 
+  function(sel) knitr::knit_expand(text = template_fp)
+)</code></pre>
+<div id="ensmusg00000067336.bmpr2" class="section level4">
+<h4>ENSMUSG00000067336.Bmpr2</h4>
+<p><img src="figure/reembeddingFibro.Rmd/sel Genes across all ENSMUSG00000067336.Bmpr2-1.png" width="384" style="display: block; margin: auto;" /></p>
+</div>
+<div id="ensmusg00000050069.grem2" class="section level4">
+<h4>ENSMUSG00000050069.Grem2</h4>
+<p><img src="figure/reembeddingFibro.Rmd/sel Genes across all ENSMUSG00000050069.Grem2-1.png" width="384" style="display: block; margin: auto;" /></p>
+</div>
+<div id="ensmusg00000027358.bmp2" class="section level4">
+<h4>ENSMUSG00000027358.Bmp2</h4>
+<p><img src="figure/reembeddingFibro.Rmd/sel Genes across all ENSMUSG00000027358.Bmp2-1.png" width="384" style="display: block; margin: auto;" /></p>
+</div>
+<div id="ensmusg00000008999.bmp7" class="section level4">
+<h4>ENSMUSG00000008999.Bmp7</h4>
+<p><img src="figure/reembeddingFibro.Rmd/sel Genes across all ENSMUSG00000008999.Bmp7-1.png" width="384" style="display: block; margin: auto;" /></p>
+</div>
+<div id="ensmusg00000001131.timp1" class="section level4">
+<h4>ENSMUSG00000001131.Timp1</h4>
+<p><img src="figure/reembeddingFibro.Rmd/sel Genes across all ENSMUSG00000001131.Timp1-1.png" width="384" style="display: block; margin: auto;" /></p>
+</div>
+<div id="ensmusg00000027962.vcam1" class="section level4">
+<h4>ENSMUSG00000027962.Vcam1</h4>
+<p><img src="figure/reembeddingFibro.Rmd/sel Genes across all ENSMUSG00000027962.Vcam1-1.png" width="384" style="display: block; margin: auto;" /></p>
+</div>
+<div id="ensmusg00000052430.bmpr1b" class="section level4">
+<h4>ENSMUSG00000052430.Bmpr1b</h4>
+<p><img src="figure/reembeddingFibro.Rmd/sel Genes across all ENSMUSG00000052430.Bmpr1b-1.png" width="384" style="display: block; margin: auto;" /></p>
+</div>
+<div id="ensmusg00000071005.ccl19" class="section level4">
+<h4>ENSMUSG00000071005.Ccl19</h4>
+<p><img src="figure/reembeddingFibro.Rmd/sel Genes across all ENSMUSG00000071005.Ccl19-1.png" width="384" style="display: block; margin: auto;" /></p>
+</div>
+<div id="ensmusg00000025746.il6" class="section level4">
+<h4>ENSMUSG00000025746.Il6</h4>
+<p><img src="figure/reembeddingFibro.Rmd/sel Genes across all ENSMUSG00000025746.Il6-1.png" width="384" style="display: block; margin: auto;" /></p>
+</div>
+<div id="ensmusg00000029082.bst1" class="section level4">
+<h4>ENSMUSG00000029082.Bst1</h4>
+<p><img src="figure/reembeddingFibro.Rmd/sel Genes across all ENSMUSG00000029082.Bst1-1.png" width="384" style="display: block; margin: auto;" /></p>
+</div>
+<div id="ensmusg00000029417.cxcl9" class="section level4">
+<h4>ENSMUSG00000029417.Cxcl9</h4>
+<p><img src="figure/reembeddingFibro.Rmd/sel Genes across all ENSMUSG00000029417.Cxcl9-1.png" width="384" style="display: block; margin: auto;" /></p>
+</div>
+<div id="ensmusg00000023078.cxcl13" class="section level4">
+<h4>ENSMUSG00000023078.Cxcl13</h4>
+<p><img src="figure/reembeddingFibro.Rmd/sel Genes across all ENSMUSG00000023078.Cxcl13-1.png" width="384" style="display: block; margin: auto;" /></p>
+</div>
+<div id="ensmusg00000004371.il11" class="section level4">
+<h4>ENSMUSG00000004371.Il11</h4>
+<p><img src="figure/reembeddingFibro.Rmd/sel Genes across all ENSMUSG00000004371.Il11-1.png" width="384" style="display: block; margin: auto;" /></p>
+</div>
+<div id="ensmusg00000046223.plaur" class="section level4">
+<h4>ENSMUSG00000046223.Plaur</h4>
+<p><img src="figure/reembeddingFibro.Rmd/sel Genes across all ENSMUSG00000046223.Plaur-1.png" width="384" style="display: block; margin: auto;" /></p>
+</div>
+<div id="ensmusg00000021796.bmpr1a" class="section level4">
+<h4>ENSMUSG00000021796.Bmpr1a</h4>
+<p><img src="figure/reembeddingFibro.Rmd/sel Genes across all ENSMUSG00000021796.Bmpr1a-1.png" width="384" style="display: block; margin: auto;" /></p>
+</div>
+<div id="ensmusg00000021835.bmp4" class="section level4">
+<h4>ENSMUSG00000021835.Bmp4</h4>
+<p><img src="figure/reembeddingFibro.Rmd/sel Genes across all ENSMUSG00000021835.Bmp4-1.png" width="384" style="display: block; margin: auto;" /></p>
+</div>
+<div id="ensmusg00000022037.clu" class="section level4">
+<h4>ENSMUSG00000022037.Clu</h4>
+<p><img src="figure/reembeddingFibro.Rmd/sel Genes across all ENSMUSG00000022037.Clu-1.png" width="384" style="display: block; margin: auto;" /></p>
+</div>
+<div id="ensmusg00000037405.icam1" class="section level4">
+<h4>ENSMUSG00000037405.Icam1</h4>
+<p><img src="figure/reembeddingFibro.Rmd/sel Genes across all ENSMUSG00000037405.Icam1-1.png" width="384" style="display: block; margin: auto;" /></p>
+</div>
+<div id="ensmusg00000039542.ncam1" class="section level4">
+<h4>ENSMUSG00000039542.Ncam1</h4>
+<p><img src="figure/reembeddingFibro.Rmd/sel Genes across all ENSMUSG00000039542.Ncam1-1.png" width="384" style="display: block; margin: auto;" /></p>
+</div>
+<div id="ensmusg00000035385.ccl2" class="section level4">
+<h4>ENSMUSG00000035385.Ccl2</h4>
+<p><img src="figure/reembeddingFibro.Rmd/sel Genes across all ENSMUSG00000035385.Ccl2-1.png" width="384" style="display: block; margin: auto;" /></p>
+</div>
+<div id="ensmusg00000021109.hif1a" class="section level4">
+<h4>ENSMUSG00000021109.Hif1a</h4>
+<p><img src="figure/reembeddingFibro.Rmd/sel Genes across all ENSMUSG00000021109.Hif1a-1.png" width="384" style="display: block; margin: auto;" /></p>
+</div>
+<div id="ensmusg00000075602.ly6a" class="section level4">
+<h4>ENSMUSG00000075602.Ly6a</h4>
+<p><img src="figure/reembeddingFibro.Rmd/sel Genes across all ENSMUSG00000075602.Ly6a-1.png" width="384" style="display: block; margin: auto;" /></p>
+</div>
+<div id="ensmusg00000006818.sod2" class="section level4">
+<h4>ENSMUSG00000006818.Sod2</h4>
+<p><img src="figure/reembeddingFibro.Rmd/sel Genes across all ENSMUSG00000006818.Sod2-1.png" width="384" style="display: block; margin: auto;" /></p>
+</div>
+<div id="ensmusg00000036594.h2-aa" class="section level4">
+<h4>ENSMUSG00000036594.H2-Aa</h4>
+<p><img src="figure/reembeddingFibro.Rmd/sel Genes across all ENSMUSG00000036594.H2-Aa-1.png" width="384" style="display: block; margin: auto;" /></p>
+</div>
+<div id="ensmusg00000024810.il33" class="section level4">
+<h4>ENSMUSG00000024810.Il33</h4>
+<p><img src="figure/reembeddingFibro.Rmd/sel Genes across all ENSMUSG00000024810.Il33-1.png" width="384" style="display: block; margin: auto;" /></p>
+</div>
+</div>
+<div id="sel-genes-split-by-grp" class="section level3 tabset">
+<h3 class="tabset">sel Genes split by grp</h3>
+<pre class="r"><code>template_fp &lt;- c(
+    &quot;#### {{sel}}\n&quot;,
+    &quot;```{r sel Genes split by grp {{sel}},fig.height=3, fig.width=8, echo = FALSE}\n&quot;,
+    &quot;selGene &lt;- as.character(&#39;{{sel}}&#39;)&quot;,
+    &quot;p &lt;- FeaturePlot(seurat, reduction = &#39;umap&#39;,
+      features = selGene,
+      cols=c(&#39;lightgrey&#39;, &#39;darkred&#39;),
+      order = T,
+      split.by = &#39;grp&#39;)+
+    theme(legend.position=&#39;right&#39;)&quot;,
+    &quot;p\n&quot;,
+    &quot;```\n&quot;,
+    &quot;\n&quot;
+)
+
+
+plots_fp &lt;- lapply(selGenesLong$gene, 
+  function(sel) knitr::knit_expand(text = template_fp)
+)</code></pre>
+<div id="ensmusg00000067336.bmpr2-1" class="section level4">
+<h4>ENSMUSG00000067336.Bmpr2</h4>
+<p><img src="figure/reembeddingFibro.Rmd/sel Genes split by grp ENSMUSG00000067336.Bmpr2-1.png" width="768" style="display: block; margin: auto;" /></p>
+</div>
+<div id="ensmusg00000050069.grem2-1" class="section level4">
+<h4>ENSMUSG00000050069.Grem2</h4>
+<p><img src="figure/reembeddingFibro.Rmd/sel Genes split by grp ENSMUSG00000050069.Grem2-1.png" width="768" style="display: block; margin: auto;" /></p>
+</div>
+<div id="ensmusg00000027358.bmp2-1" class="section level4">
+<h4>ENSMUSG00000027358.Bmp2</h4>
+<p><img src="figure/reembeddingFibro.Rmd/sel Genes split by grp ENSMUSG00000027358.Bmp2-1.png" width="768" style="display: block; margin: auto;" /></p>
+</div>
+<div id="ensmusg00000008999.bmp7-1" class="section level4">
+<h4>ENSMUSG00000008999.Bmp7</h4>
+<p><img src="figure/reembeddingFibro.Rmd/sel Genes split by grp ENSMUSG00000008999.Bmp7-1.png" width="768" style="display: block; margin: auto;" /></p>
+</div>
+<div id="ensmusg00000001131.timp1-1" class="section level4">
+<h4>ENSMUSG00000001131.Timp1</h4>
+<p><img src="figure/reembeddingFibro.Rmd/sel Genes split by grp ENSMUSG00000001131.Timp1-1.png" width="768" style="display: block; margin: auto;" /></p>
+</div>
+<div id="ensmusg00000027962.vcam1-1" class="section level4">
+<h4>ENSMUSG00000027962.Vcam1</h4>
+<p><img src="figure/reembeddingFibro.Rmd/sel Genes split by grp ENSMUSG00000027962.Vcam1-1.png" width="768" style="display: block; margin: auto;" /></p>
+</div>
+<div id="ensmusg00000052430.bmpr1b-1" class="section level4">
+<h4>ENSMUSG00000052430.Bmpr1b</h4>
+<p><img src="figure/reembeddingFibro.Rmd/sel Genes split by grp ENSMUSG00000052430.Bmpr1b-1.png" width="768" style="display: block; margin: auto;" /></p>
+</div>
+<div id="ensmusg00000071005.ccl19-1" class="section level4">
+<h4>ENSMUSG00000071005.Ccl19</h4>
+<p><img src="figure/reembeddingFibro.Rmd/sel Genes split by grp ENSMUSG00000071005.Ccl19-1.png" width="768" style="display: block; margin: auto;" /></p>
+</div>
+<div id="ensmusg00000025746.il6-1" class="section level4">
+<h4>ENSMUSG00000025746.Il6</h4>
+<p><img src="figure/reembeddingFibro.Rmd/sel Genes split by grp ENSMUSG00000025746.Il6-1.png" width="768" style="display: block; margin: auto;" /></p>
+</div>
+<div id="ensmusg00000029082.bst1-1" class="section level4">
+<h4>ENSMUSG00000029082.Bst1</h4>
+<p><img src="figure/reembeddingFibro.Rmd/sel Genes split by grp ENSMUSG00000029082.Bst1-1.png" width="768" style="display: block; margin: auto;" /></p>
+</div>
+<div id="ensmusg00000029417.cxcl9-1" class="section level4">
+<h4>ENSMUSG00000029417.Cxcl9</h4>
+<p><img src="figure/reembeddingFibro.Rmd/sel Genes split by grp ENSMUSG00000029417.Cxcl9-1.png" width="768" style="display: block; margin: auto;" /></p>
+</div>
+<div id="ensmusg00000023078.cxcl13-1" class="section level4">
+<h4>ENSMUSG00000023078.Cxcl13</h4>
+<p><img src="figure/reembeddingFibro.Rmd/sel Genes split by grp ENSMUSG00000023078.Cxcl13-1.png" width="768" style="display: block; margin: auto;" /></p>
+</div>
+<div id="ensmusg00000004371.il11-1" class="section level4">
+<h4>ENSMUSG00000004371.Il11</h4>
+<p><img src="figure/reembeddingFibro.Rmd/sel Genes split by grp ENSMUSG00000004371.Il11-1.png" width="768" style="display: block; margin: auto;" /></p>
+</div>
+<div id="ensmusg00000046223.plaur-1" class="section level4">
+<h4>ENSMUSG00000046223.Plaur</h4>
+<p><img src="figure/reembeddingFibro.Rmd/sel Genes split by grp ENSMUSG00000046223.Plaur-1.png" width="768" style="display: block; margin: auto;" /></p>
+</div>
+<div id="ensmusg00000021796.bmpr1a-1" class="section level4">
+<h4>ENSMUSG00000021796.Bmpr1a</h4>
+<p><img src="figure/reembeddingFibro.Rmd/sel Genes split by grp ENSMUSG00000021796.Bmpr1a-1.png" width="768" style="display: block; margin: auto;" /></p>
+</div>
+<div id="ensmusg00000021835.bmp4-1" class="section level4">
+<h4>ENSMUSG00000021835.Bmp4</h4>
+<p><img src="figure/reembeddingFibro.Rmd/sel Genes split by grp ENSMUSG00000021835.Bmp4-1.png" width="768" style="display: block; margin: auto;" /></p>
+</div>
+<div id="ensmusg00000022037.clu-1" class="section level4">
+<h4>ENSMUSG00000022037.Clu</h4>
+<p><img src="figure/reembeddingFibro.Rmd/sel Genes split by grp ENSMUSG00000022037.Clu-1.png" width="768" style="display: block; margin: auto;" /></p>
+</div>
+<div id="ensmusg00000037405.icam1-1" class="section level4">
+<h4>ENSMUSG00000037405.Icam1</h4>
+<p><img src="figure/reembeddingFibro.Rmd/sel Genes split by grp ENSMUSG00000037405.Icam1-1.png" width="768" style="display: block; margin: auto;" /></p>
+</div>
+<div id="ensmusg00000039542.ncam1-1" class="section level4">
+<h4>ENSMUSG00000039542.Ncam1</h4>
+<p><img src="figure/reembeddingFibro.Rmd/sel Genes split by grp ENSMUSG00000039542.Ncam1-1.png" width="768" style="display: block; margin: auto;" /></p>
+</div>
+<div id="ensmusg00000035385.ccl2-1" class="section level4">
+<h4>ENSMUSG00000035385.Ccl2</h4>
+<p><img src="figure/reembeddingFibro.Rmd/sel Genes split by grp ENSMUSG00000035385.Ccl2-1.png" width="768" style="display: block; margin: auto;" /></p>
+</div>
+<div id="ensmusg00000021109.hif1a-1" class="section level4">
+<h4>ENSMUSG00000021109.Hif1a</h4>
+<p><img src="figure/reembeddingFibro.Rmd/sel Genes split by grp ENSMUSG00000021109.Hif1a-1.png" width="768" style="display: block; margin: auto;" /></p>
+</div>
+<div id="ensmusg00000075602.ly6a-1" class="section level4">
+<h4>ENSMUSG00000075602.Ly6a</h4>
+<p><img src="figure/reembeddingFibro.Rmd/sel Genes split by grp ENSMUSG00000075602.Ly6a-1.png" width="768" style="display: block; margin: auto;" /></p>
+</div>
+<div id="ensmusg00000006818.sod2-1" class="section level4">
+<h4>ENSMUSG00000006818.Sod2</h4>
+<p><img src="figure/reembeddingFibro.Rmd/sel Genes split by grp ENSMUSG00000006818.Sod2-1.png" width="768" style="display: block; margin: auto;" /></p>
+</div>
+<div id="ensmusg00000036594.h2-aa-1" class="section level4">
+<h4>ENSMUSG00000036594.H2-Aa</h4>
+<p><img src="figure/reembeddingFibro.Rmd/sel Genes split by grp ENSMUSG00000036594.H2-Aa-1.png" width="768" style="display: block; margin: auto;" /></p>
+</div>
+<div id="ensmusg00000024810.il33-1" class="section level4">
+<h4>ENSMUSG00000024810.Il33</h4>
+<p><img src="figure/reembeddingFibro.Rmd/sel Genes split by grp ENSMUSG00000024810.Il33-1.png" width="768" style="display: block; margin: auto;" /></p>
+</div>
+</div>
+<div id="sel-genes-split-by-age" class="section level3 tabset">
+<h3 class="tabset">sel Genes split by age</h3>
+<pre class="r"><code>template_fp &lt;- c(
+    &quot;#### {{sel}}\n&quot;,
+    &quot;```{r sel Genes split by age {{sel}},fig.height=3, fig.width=12, echo = FALSE}\n&quot;,
+    &quot;selGene &lt;- as.character(&#39;{{sel}}&#39;)&quot;,
+    &quot;p &lt;- FeaturePlot(seurat, reduction = &#39;umap&#39;,
+      features = selGene,
+      cols=c(&#39;lightgrey&#39;, &#39;darkred&#39;),
+      order = T,
+      split.by = &#39;age&#39;)+
+    theme(legend.position=&#39;right&#39;)&quot;,
+    &quot;p\n&quot;,
+    &quot;```\n&quot;,
+    &quot;\n&quot;
+)
+
+
+plots_fp &lt;- lapply(selGenesLong$gene, 
+  function(sel) knitr::knit_expand(text = template_fp)
+)</code></pre>
+<div id="ensmusg00000067336.bmpr2-2" class="section level4">
+<h4>ENSMUSG00000067336.Bmpr2</h4>
+<p><img src="figure/reembeddingFibro.Rmd/sel Genes split by age ENSMUSG00000067336.Bmpr2-1.png" width="1152" style="display: block; margin: auto;" /></p>
+</div>
+<div id="ensmusg00000050069.grem2-2" class="section level4">
+<h4>ENSMUSG00000050069.Grem2</h4>
+<p><img src="figure/reembeddingFibro.Rmd/sel Genes split by age ENSMUSG00000050069.Grem2-1.png" width="1152" style="display: block; margin: auto;" /></p>
+</div>
+<div id="ensmusg00000027358.bmp2-2" class="section level4">
+<h4>ENSMUSG00000027358.Bmp2</h4>
+<p><img src="figure/reembeddingFibro.Rmd/sel Genes split by age ENSMUSG00000027358.Bmp2-1.png" width="1152" style="display: block; margin: auto;" /></p>
+</div>
+<div id="ensmusg00000008999.bmp7-2" class="section level4">
+<h4>ENSMUSG00000008999.Bmp7</h4>
+<p><img src="figure/reembeddingFibro.Rmd/sel Genes split by age ENSMUSG00000008999.Bmp7-1.png" width="1152" style="display: block; margin: auto;" /></p>
+</div>
+<div id="ensmusg00000001131.timp1-2" class="section level4">
+<h4>ENSMUSG00000001131.Timp1</h4>
+<p><img src="figure/reembeddingFibro.Rmd/sel Genes split by age ENSMUSG00000001131.Timp1-1.png" width="1152" style="display: block; margin: auto;" /></p>
+</div>
+<div id="ensmusg00000027962.vcam1-2" class="section level4">
+<h4>ENSMUSG00000027962.Vcam1</h4>
+<p><img src="figure/reembeddingFibro.Rmd/sel Genes split by age ENSMUSG00000027962.Vcam1-1.png" width="1152" style="display: block; margin: auto;" /></p>
+</div>
+<div id="ensmusg00000052430.bmpr1b-2" class="section level4">
+<h4>ENSMUSG00000052430.Bmpr1b</h4>
+<p><img src="figure/reembeddingFibro.Rmd/sel Genes split by age ENSMUSG00000052430.Bmpr1b-1.png" width="1152" style="display: block; margin: auto;" /></p>
+</div>
+<div id="ensmusg00000071005.ccl19-2" class="section level4">
+<h4>ENSMUSG00000071005.Ccl19</h4>
+<p><img src="figure/reembeddingFibro.Rmd/sel Genes split by age ENSMUSG00000071005.Ccl19-1.png" width="1152" style="display: block; margin: auto;" /></p>
+</div>
+<div id="ensmusg00000025746.il6-2" class="section level4">
+<h4>ENSMUSG00000025746.Il6</h4>
+<p><img src="figure/reembeddingFibro.Rmd/sel Genes split by age ENSMUSG00000025746.Il6-1.png" width="1152" style="display: block; margin: auto;" /></p>
+</div>
+<div id="ensmusg00000029082.bst1-2" class="section level4">
+<h4>ENSMUSG00000029082.Bst1</h4>
+<p><img src="figure/reembeddingFibro.Rmd/sel Genes split by age ENSMUSG00000029082.Bst1-1.png" width="1152" style="display: block; margin: auto;" /></p>
+</div>
+<div id="ensmusg00000029417.cxcl9-2" class="section level4">
+<h4>ENSMUSG00000029417.Cxcl9</h4>
+<p><img src="figure/reembeddingFibro.Rmd/sel Genes split by age ENSMUSG00000029417.Cxcl9-1.png" width="1152" style="display: block; margin: auto;" /></p>
+</div>
+<div id="ensmusg00000023078.cxcl13-2" class="section level4">
+<h4>ENSMUSG00000023078.Cxcl13</h4>
+<p><img src="figure/reembeddingFibro.Rmd/sel Genes split by age ENSMUSG00000023078.Cxcl13-1.png" width="1152" style="display: block; margin: auto;" /></p>
+</div>
+<div id="ensmusg00000004371.il11-2" class="section level4">
+<h4>ENSMUSG00000004371.Il11</h4>
+<p><img src="figure/reembeddingFibro.Rmd/sel Genes split by age ENSMUSG00000004371.Il11-1.png" width="1152" style="display: block; margin: auto;" /></p>
+</div>
+<div id="ensmusg00000046223.plaur-2" class="section level4">
+<h4>ENSMUSG00000046223.Plaur</h4>
+<p><img src="figure/reembeddingFibro.Rmd/sel Genes split by age ENSMUSG00000046223.Plaur-1.png" width="1152" style="display: block; margin: auto;" /></p>
+</div>
+<div id="ensmusg00000021796.bmpr1a-2" class="section level4">
+<h4>ENSMUSG00000021796.Bmpr1a</h4>
+<p><img src="figure/reembeddingFibro.Rmd/sel Genes split by age ENSMUSG00000021796.Bmpr1a-1.png" width="1152" style="display: block; margin: auto;" /></p>
+</div>
+<div id="ensmusg00000021835.bmp4-2" class="section level4">
+<h4>ENSMUSG00000021835.Bmp4</h4>
+<p><img src="figure/reembeddingFibro.Rmd/sel Genes split by age ENSMUSG00000021835.Bmp4-1.png" width="1152" style="display: block; margin: auto;" /></p>
+</div>
+<div id="ensmusg00000022037.clu-2" class="section level4">
+<h4>ENSMUSG00000022037.Clu</h4>
+<p><img src="figure/reembeddingFibro.Rmd/sel Genes split by age ENSMUSG00000022037.Clu-1.png" width="1152" style="display: block; margin: auto;" /></p>
+</div>
+<div id="ensmusg00000037405.icam1-2" class="section level4">
+<h4>ENSMUSG00000037405.Icam1</h4>
+<p><img src="figure/reembeddingFibro.Rmd/sel Genes split by age ENSMUSG00000037405.Icam1-1.png" width="1152" style="display: block; margin: auto;" /></p>
+</div>
+<div id="ensmusg00000039542.ncam1-2" class="section level4">
+<h4>ENSMUSG00000039542.Ncam1</h4>
+<p><img src="figure/reembeddingFibro.Rmd/sel Genes split by age ENSMUSG00000039542.Ncam1-1.png" width="1152" style="display: block; margin: auto;" /></p>
+</div>
+<div id="ensmusg00000035385.ccl2-2" class="section level4">
+<h4>ENSMUSG00000035385.Ccl2</h4>
+<p><img src="figure/reembeddingFibro.Rmd/sel Genes split by age ENSMUSG00000035385.Ccl2-1.png" width="1152" style="display: block; margin: auto;" /></p>
+</div>
+<div id="ensmusg00000021109.hif1a-2" class="section level4">
+<h4>ENSMUSG00000021109.Hif1a</h4>
+<p><img src="figure/reembeddingFibro.Rmd/sel Genes split by age ENSMUSG00000021109.Hif1a-1.png" width="1152" style="display: block; margin: auto;" /></p>
+</div>
+<div id="ensmusg00000075602.ly6a-2" class="section level4">
+<h4>ENSMUSG00000075602.Ly6a</h4>
+<p><img src="figure/reembeddingFibro.Rmd/sel Genes split by age ENSMUSG00000075602.Ly6a-1.png" width="1152" style="display: block; margin: auto;" /></p>
+</div>
+<div id="ensmusg00000006818.sod2-2" class="section level4">
+<h4>ENSMUSG00000006818.Sod2</h4>
+<p><img src="figure/reembeddingFibro.Rmd/sel Genes split by age ENSMUSG00000006818.Sod2-1.png" width="1152" style="display: block; margin: auto;" /></p>
+</div>
+<div id="ensmusg00000036594.h2-aa-2" class="section level4">
+<h4>ENSMUSG00000036594.H2-Aa</h4>
+<p><img src="figure/reembeddingFibro.Rmd/sel Genes split by age ENSMUSG00000036594.H2-Aa-1.png" width="1152" style="display: block; margin: auto;" /></p>
+</div>
+<div id="ensmusg00000024810.il33-2" class="section level4">
+<h4>ENSMUSG00000024810.Il33</h4>
+<p><img src="figure/reembeddingFibro.Rmd/sel Genes split by age ENSMUSG00000024810.Il33-1.png" width="1152" style="display: block; margin: auto;" /></p>
+</div>
+</div>
+</div>
+<div id="save-object-untreated-with-label" class="section level2">
+<h2>save object untreated with label</h2>
+<pre class="r"><code>saveRDS(seurat, file = paste0(basedir,
+                      &quot;/data/MuHeart_totalCells_FibroReembedded_seurat.rds&quot;))</code></pre>
+</div>
+<div id="session-info" class="section level2">
+<h2>session info</h2>
+<pre class="r"><code>sessionInfo()</code></pre>
+<pre><code>R version 4.1.0 (2021-05-18)
+Platform: x86_64-apple-darwin17.0 (64-bit)
+Running under: macOS Catalina 10.15.7
+
+Matrix products: default
+BLAS:   /Library/Frameworks/R.framework/Versions/4.1/Resources/lib/libRblas.dylib
+LAPACK: /Library/Frameworks/R.framework/Versions/4.1/Resources/lib/libRlapack.dylib
+
+locale:
+[1] en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8
+
+attached base packages:
+[1] parallel  stats4    stats     graphics  grDevices utils     datasets 
+[8] methods   base     
+
+other attached packages:
+ [1] ggpubr_0.4.0                pheatmap_1.0.12            
+ [3] ggsci_2.9                   runSeurat3_0.1.0           
+ [5] here_1.0.1                  magrittr_2.0.1             
+ [7] SeuratObject_4.0.4          Seurat_4.0.6               
+ [9] forcats_0.5.1               stringr_1.4.0              
+[11] dplyr_1.0.7                 purrr_0.3.4                
+[13] readr_2.1.1                 tidyr_1.1.4                
+[15] tibble_3.1.6                ggplot2_3.3.5              
+[17] tidyverse_1.3.1             SingleCellExperiment_1.14.1
+[19] SummarizedExperiment_1.22.0 Biobase_2.52.0             
+[21] GenomicRanges_1.44.0        GenomeInfoDb_1.28.4        
+[23] IRanges_2.26.0              S4Vectors_0.30.2           
+[25] BiocGenerics_0.38.0         MatrixGenerics_1.4.3       
+[27] matrixStats_0.61.0         
+
+loaded via a namespace (and not attached):
+  [1] readxl_1.3.1           backports_1.4.1        workflowr_1.7.0       
+  [4] plyr_1.8.6             igraph_1.2.11          lazyeval_0.2.2        
+  [7] splines_4.1.0          listenv_0.8.0          scattermore_0.7       
+ [10] digest_0.6.29          htmltools_0.5.2        fansi_1.0.0           
+ [13] tensor_1.5             cluster_2.1.2          ROCR_1.0-11           
+ [16] tzdb_0.2.0             globals_0.14.0         modelr_0.1.8          
+ [19] spatstat.sparse_2.1-0  colorspace_2.0-2       rvest_1.0.2           
+ [22] ggrepel_0.9.1          haven_2.4.3            xfun_0.29             
+ [25] crayon_1.4.2           RCurl_1.98-1.5         jsonlite_1.7.2        
+ [28] spatstat.data_2.1-2    survival_3.2-13        zoo_1.8-9             
+ [31] glue_1.6.0             polyclip_1.10-0        gtable_0.3.0          
+ [34] zlibbioc_1.38.0        XVector_0.32.0         leiden_0.3.9          
+ [37] DelayedArray_0.18.0    car_3.0-12             future.apply_1.8.1    
+ [40] abind_1.4-5            scales_1.1.1           DBI_1.1.2             
+ [43] rstatix_0.7.0          miniUI_0.1.1.1         Rcpp_1.0.7            
+ [46] viridisLite_0.4.0      xtable_1.8-4           reticulate_1.22       
+ [49] spatstat.core_2.3-2    htmlwidgets_1.5.4      httr_1.4.2            
+ [52] RColorBrewer_1.1-2     ellipsis_0.3.2         ica_1.0-2             
+ [55] farver_2.1.0           pkgconfig_2.0.3        uwot_0.1.11           
+ [58] deldir_1.0-6           sass_0.4.0             dbplyr_2.1.1          
+ [61] utf8_1.2.2             labeling_0.4.2         tidyselect_1.1.1      
+ [64] rlang_0.4.12           reshape2_1.4.4         later_1.3.0           
+ [67] munsell_0.5.0          cellranger_1.1.0       tools_4.1.0           
+ [70] cli_3.1.0              generics_0.1.1         broom_0.7.11          
+ [73] ggridges_0.5.3         evaluate_0.14          fastmap_1.1.0         
+ [76] goftest_1.2-3          yaml_2.2.1             knitr_1.37            
+ [79] fs_1.5.2               fitdistrplus_1.1-6     RANN_2.6.1            
+ [82] nlme_3.1-153           pbapply_1.5-0          future_1.23.0         
+ [85] mime_0.12              xml2_1.3.3             compiler_4.1.0        
+ [88] rstudioapi_0.13        plotly_4.10.0          png_0.1-7             
+ [91] ggsignif_0.6.3         spatstat.utils_2.3-0   reprex_2.0.1          
+ [94] bslib_0.3.1            stringi_1.7.6          highr_0.9             
+ [97] RSpectra_0.16-0        lattice_0.20-45        Matrix_1.4-0          
+[100] vctrs_0.3.8            pillar_1.6.4           lifecycle_1.0.1       
+[103] spatstat.geom_2.3-1    lmtest_0.9-39          jquerylib_0.1.4       
+[106] RcppAnnoy_0.0.19       data.table_1.14.2      cowplot_1.1.1         
+[109] bitops_1.0-7           irlba_2.3.5            httpuv_1.6.5          
+[112] patchwork_1.1.1        R6_2.5.1               promises_1.2.0.1      
+[115] KernSmooth_2.23-20     gridExtra_2.3          parallelly_1.30.0     
+[118] codetools_0.2-18       MASS_7.3-54            assertthat_0.2.1      
+[121] rprojroot_2.0.2        withr_2.4.3            sctransform_0.3.2     
+[124] GenomeInfoDbData_1.2.6 mgcv_1.8-38            hms_1.1.1             
+[127] rpart_4.1-15           grid_4.1.0             rmarkdown_2.11        
+[130] carData_3.0-5          Rtsne_0.15             git2r_0.29.0          
+[133] shiny_1.7.1            lubridate_1.8.0       </code></pre>
+<pre class="r"><code>date()</code></pre>
+<pre><code>[1] &quot;Tue Mar 22 11:40:00 2022&quot;</code></pre>
+<br>
+<p>
+<button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">
+<span class="glyphicon glyphicon-wrench" aria-hidden="true"></span> Session information
+</button>
+</p>
+<div id="workflowr-sessioninfo" class="collapse">
+<pre class="r"><code>sessionInfo()</code></pre>
+<pre><code>R version 4.1.0 (2021-05-18)
+Platform: x86_64-apple-darwin17.0 (64-bit)
+Running under: macOS Catalina 10.15.7
+
+Matrix products: default
+BLAS:   /Library/Frameworks/R.framework/Versions/4.1/Resources/lib/libRblas.dylib
+LAPACK: /Library/Frameworks/R.framework/Versions/4.1/Resources/lib/libRlapack.dylib
+
+locale:
+[1] en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8
+
+attached base packages:
+[1] parallel  stats4    stats     graphics  grDevices utils     datasets 
+[8] methods   base     
+
+other attached packages:
+ [1] ggpubr_0.4.0                pheatmap_1.0.12            
+ [3] ggsci_2.9                   runSeurat3_0.1.0           
+ [5] here_1.0.1                  magrittr_2.0.1             
+ [7] SeuratObject_4.0.4          Seurat_4.0.6               
+ [9] forcats_0.5.1               stringr_1.4.0              
+[11] dplyr_1.0.7                 purrr_0.3.4                
+[13] readr_2.1.1                 tidyr_1.1.4                
+[15] tibble_3.1.6                ggplot2_3.3.5              
+[17] tidyverse_1.3.1             SingleCellExperiment_1.14.1
+[19] SummarizedExperiment_1.22.0 Biobase_2.52.0             
+[21] GenomicRanges_1.44.0        GenomeInfoDb_1.28.4        
+[23] IRanges_2.26.0              S4Vectors_0.30.2           
+[25] BiocGenerics_0.38.0         MatrixGenerics_1.4.3       
+[27] matrixStats_0.61.0         
+
+loaded via a namespace (and not attached):
+  [1] readxl_1.3.1           backports_1.4.1        workflowr_1.7.0       
+  [4] plyr_1.8.6             igraph_1.2.11          lazyeval_0.2.2        
+  [7] splines_4.1.0          listenv_0.8.0          scattermore_0.7       
+ [10] digest_0.6.29          htmltools_0.5.2        fansi_1.0.0           
+ [13] tensor_1.5             cluster_2.1.2          ROCR_1.0-11           
+ [16] tzdb_0.2.0             globals_0.14.0         modelr_0.1.8          
+ [19] spatstat.sparse_2.1-0  colorspace_2.0-2       rvest_1.0.2           
+ [22] ggrepel_0.9.1          haven_2.4.3            xfun_0.29             
+ [25] crayon_1.4.2           RCurl_1.98-1.5         jsonlite_1.7.2        
+ [28] spatstat.data_2.1-2    survival_3.2-13        zoo_1.8-9             
+ [31] glue_1.6.0             polyclip_1.10-0        gtable_0.3.0          
+ [34] zlibbioc_1.38.0        XVector_0.32.0         leiden_0.3.9          
+ [37] DelayedArray_0.18.0    car_3.0-12             future.apply_1.8.1    
+ [40] abind_1.4-5            scales_1.1.1           DBI_1.1.2             
+ [43] rstatix_0.7.0          miniUI_0.1.1.1         Rcpp_1.0.7            
+ [46] viridisLite_0.4.0      xtable_1.8-4           reticulate_1.22       
+ [49] spatstat.core_2.3-2    htmlwidgets_1.5.4      httr_1.4.2            
+ [52] RColorBrewer_1.1-2     ellipsis_0.3.2         ica_1.0-2             
+ [55] farver_2.1.0           pkgconfig_2.0.3        uwot_0.1.11           
+ [58] deldir_1.0-6           sass_0.4.0             dbplyr_2.1.1          
+ [61] utf8_1.2.2             labeling_0.4.2         tidyselect_1.1.1      
+ [64] rlang_0.4.12           reshape2_1.4.4         later_1.3.0           
+ [67] munsell_0.5.0          cellranger_1.1.0       tools_4.1.0           
+ [70] cli_3.1.0              generics_0.1.1         broom_0.7.11          
+ [73] ggridges_0.5.3         evaluate_0.14          fastmap_1.1.0         
+ [76] goftest_1.2-3          yaml_2.2.1             knitr_1.37            
+ [79] fs_1.5.2               fitdistrplus_1.1-6     RANN_2.6.1            
+ [82] nlme_3.1-153           pbapply_1.5-0          future_1.23.0         
+ [85] mime_0.12              xml2_1.3.3             compiler_4.1.0        
+ [88] rstudioapi_0.13        plotly_4.10.0          png_0.1-7             
+ [91] ggsignif_0.6.3         spatstat.utils_2.3-0   reprex_2.0.1          
+ [94] bslib_0.3.1            stringi_1.7.6          highr_0.9             
+ [97] RSpectra_0.16-0        lattice_0.20-45        Matrix_1.4-0          
+[100] vctrs_0.3.8            pillar_1.6.4           lifecycle_1.0.1       
+[103] spatstat.geom_2.3-1    lmtest_0.9-39          jquerylib_0.1.4       
+[106] RcppAnnoy_0.0.19       data.table_1.14.2      cowplot_1.1.1         
+[109] bitops_1.0-7           irlba_2.3.5            httpuv_1.6.5          
+[112] patchwork_1.1.1        R6_2.5.1               promises_1.2.0.1      
+[115] KernSmooth_2.23-20     gridExtra_2.3          parallelly_1.30.0     
+[118] codetools_0.2-18       MASS_7.3-54            assertthat_0.2.1      
+[121] rprojroot_2.0.2        withr_2.4.3            sctransform_0.3.2     
+[124] GenomeInfoDbData_1.2.6 mgcv_1.8-38            hms_1.1.1             
+[127] rpart_4.1-15           grid_4.1.0             rmarkdown_2.11        
+[130] carData_3.0-5          Rtsne_0.15             git2r_0.29.0          
+[133] shiny_1.7.1            lubridate_1.8.0       </code></pre>
+</div>
+</div>
+
+
+<!-- Adjust MathJax settings so that all math formulae are shown using
+TeX fonts only; see
+https://docs.mathjax.org/en/latest/web/configuration.html. This will make
+the presentation more consistent at the cost of the webpage sometimes
+taking slightly longer to load. Note that this only works because the
+footer is added to webpages before the MathJax javascript. -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    "HTML-CSS": { availableFonts: ["TeX"] }
+  });
+</script>
+
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

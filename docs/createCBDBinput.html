@@ -38,7 +38,7 @@
 <link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
 
-<link rel="icon" href="https://github.com/workflowr/workflowr-assets/raw/master/img/reproducible.png">
+<link rel="icon" href="https://github.com/workflowr/workflowr-assets/raw/main/img/reproducible.png">
 <!-- Add a small amount of space between sections. -->
 <style type="text/css">
 div.section {
@@ -377,7 +377,7 @@ div.tocify {
 <div class="tab-content">
 <div id="summary" class="tab-pane fade in active">
 <p>
-<strong>Last updated:</strong> 2021-12-10
+<strong>Last updated:</strong> 2022-02-01
 </p>
 <p>
 <strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 6 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 1
@@ -386,8 +386,8 @@ div.tocify {
 <strong>Knit directory:</strong> <code>TCRM_Christina/</code> <span class="glyphicon glyphicon-question-sign" aria-hidden="true" title="This is the local directory in which the code in this file was executed."> </span>
 </p>
 <p>
-This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis was created with <a
-  href="https://github.com/jdblischak/workflowr">workflowr</a> (version 1.6.2). The <em>Checks</em> tab describes the reproducibility checks that were applied when the results were created. The <em>Past versions</em> tab lists the development history.
+This reproducible <a href="https://rmarkdown.rstudio.com">R Markdown</a> analysis was created with <a
+  href="https://github.com/workflowr/workflowr">workflowr</a> (version 1.7.0). The <em>Checks</em> tab describes the reproducibility checks that were applied when the results were created. The <em>Past versions</em> tab lists the development history.
 </p>
 <hr>
 </div>
@@ -401,7 +401,7 @@ This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis
 </div>
 <div id="strongRMarkdownfilestronguncommittedchanges" class="panel-collapse collapse">
 <div class="panel-body">
-<p>The R Markdown is untracked by Git. To know which version of the R Markdown file created these results, you’ll want to first commit it to the Git repo. If you’re still working on the analysis, you can ignore this warning. When you’re finished, you can run <code>wflow_publish</code> to commit the R Markdown file and build the HTML.</p>
+<p>The R Markdown file has unstaged changes. To know which version of the R Markdown file created these results, you’ll want to first commit it to the Git repo. If you’re still working on the analysis, you can ignore this warning. When you’re finished, you can run <code>wflow_publish</code> to commit the R Markdown file and build the HTML.</p>
 </div>
 </div>
 </div>
@@ -468,16 +468,16 @@ This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcommluetgeTCRMChristinatree5474212f9c9e5e0f43b7547bb44bc7a7c465a5c1targetblank5474212a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/mluetge/TCRM_Christina/tree/5474212f9c9e5e0f43b7547bb44bc7a7c465a5c1" target="_blank">5474212</a> </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcommluetgeTCRMChristinatreec68cbededb27b7edc8ab4dac8b3cfce17471fd0dtargetblankc68cbeda"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/mluetge/TCRM_Christina/tree/c68cbededb27b7edc8ab4dac8b3cfce17471fd0d" target="_blank">c68cbed</a> </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcommluetgeTCRMChristinatree5474212f9c9e5e0f43b7547bb44bc7a7c465a5c1targetblank5474212a" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcommluetgeTCRMChristinatreec68cbededb27b7edc8ab4dac8b3cfce17471fd0dtargetblankc68cbeda" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility.
 </p>
 <p>
-The results in this page were generated with repository version <a href="https://github.com/mluetge/TCRM_Christina/tree/5474212f9c9e5e0f43b7547bb44bc7a7c465a5c1" target="_blank">5474212</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
+The results in this page were generated with repository version <a href="https://github.com/mluetge/TCRM_Christina/tree/c68cbededb27b7edc8ab4dac8b3cfce17471fd0d" target="_blank">c68cbed</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
 </p>
 <p>
 Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
@@ -487,18 +487,15 @@ Ignored files:
     Ignored:    .DS_Store
     Ignored:    .Rhistory
     Ignored:    .Rproj.user/
+    Ignored:    analysis/figure/
     Ignored:    data/GSEA/
     Ignored:    data/cellphonedb/
     Ignored:    data/data_old/
     Ignored:    output/.DS_Store
 
-Untracked files:
-    Untracked:  analysis/GSEAendothelial.Rmd
-    Untracked:  analysis/createCBDBinput.Rmd
-
 Unstaged changes:
-    Modified:   analysis/GSEAfibroblasts.Rmd
-    Modified:   analysis/GSEAtotalCells.Rmd
+    Modified:   analysis/analyseCPDBout.Rmd
+    Modified:   analysis/createCBDBinput.Rmd
 
 </code></pre>
 <p>
@@ -511,9 +508,69 @@ Note that any generated files, e.g. HTML, png, CSS, etc., are not included in t
 <hr>
 </div>
 <div id="versions" class="tab-pane fade">
+
 <p>
-There are no past versions. Publish this analysis with <code>wflow_publish()</code> to start tracking its development.
+These are the previous versions of the repository in which changes were made to the R Markdown (<code>analysis/createCBDBinput.Rmd</code>) and HTML (<code>docs/createCBDBinput.html</code>) files. If you’ve configured a remote Git repository (see <code>?wflow_git_remote</code>), click on the hyperlinks in the table below to view the files as they were in that past version.
 </p>
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+File
+</th>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+<th>
+Message
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/c68cbededb27b7edc8ab4dac8b3cfce17471fd0d/analysis/createCBDBinput.Rmd" target="_blank">c68cbed</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2021-12-17
+</td>
+<td>
+add treated samples total cells TCRM
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/mluetge/TCRM_Christina/c68cbededb27b7edc8ab4dac8b3cfce17471fd0d/docs/createCBDBinput.html" target="_blank">c68cbed</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2021-12-17
+</td>
+<td>
+add treated samples total cells TCRM
+</td>
+</tr>
+</tbody>
+</table>
+</div>
 <hr>
 </div>
 </div>
@@ -541,7 +598,8 @@ There are no past versions. Publish this analysis with <code>wflow_publish()</co
 <h2>set dir</h2>
 <pre class="r"><code>basedir &lt;- here()
 seurat &lt;- readRDS(file = paste0(basedir,
-                      &quot;/data/MuHeart_totalCells_integratedLabeled_seurat.rds&quot;))
+                      &quot;/data/MuHeart_totalCellsPlusTreated_integratedLabeled&quot;, 
+                      &quot;_seurat.rds&quot;))
 Idents(seurat) &lt;- seurat$label</code></pre>
 </div>
 <div id="color-vectors" class="section level2">
@@ -553,13 +611,16 @@ colStype &lt;- pal_aaas()(length(unique(seurat$seqType)))
 colDat &lt;- c(pal_npg()(10),
             pal_futurama()(10))[1:(length(unique(seurat$dataset)))]
 colLab &lt;- pal_igv()(length(unique(seurat$label)))
+colTreat &lt;- pal_jama()(length(unique(seurat$treatment)))
+
   
 names(colPal) &lt;- levels(seurat)
 names(colGrp) &lt;- unique(seurat$grp)
 names(colAge) &lt;- unique(seurat$age)
 names(colStype) &lt;- unique(seurat$seqType)
 names(colDat) &lt;- unique(seurat$dataset)
-names(colLab) &lt;- unique(seurat$label)</code></pre>
+names(colLab) &lt;- unique(seurat$label)
+names(colTreat) &lt;- unique(seurat$treatment)</code></pre>
 </div>
 <div id="vis-data" class="section level2 tabset">
 <h2 class="tabset">vis data</h2>
@@ -572,6 +633,43 @@ names(colLab) &lt;- unique(seurat$label)</code></pre>
   xlab(&quot;UMAP1&quot;) +
   ylab(&quot;UMAP2&quot;)</code></pre>
 <p><img src="figure/createCBDBinput.Rmd/vis%20cluster-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-vis-cluster-1">
+Past versions of “vis cluster-1.png”
+</button>
+</p>
+<div id="fig-no-spaces-vis-cluster-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/c68cbededb27b7edc8ab4dac8b3cfce17471fd0d/docs/figure/createCBDBinput.Rmd/vis cluster-1.png" target="_blank">c68cbed</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2021-12-17
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 <div id="group" class="section level3">
 <h3>group</h3>
@@ -582,6 +680,43 @@ names(colLab) &lt;- unique(seurat$label)</code></pre>
   xlab(&quot;UMAP1&quot;) +
   ylab(&quot;UMAP2&quot;)</code></pre>
 <p><img src="figure/createCBDBinput.Rmd/vis%20grp-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-vis-grp-1">
+Past versions of “vis grp-1.png”
+</button>
+</p>
+<div id="fig-no-spaces-vis-grp-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/c68cbededb27b7edc8ab4dac8b3cfce17471fd0d/docs/figure/createCBDBinput.Rmd/vis grp-1.png" target="_blank">c68cbed</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2021-12-17
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 <div id="sample" class="section level3">
 <h3>Sample</h3>
@@ -592,6 +727,43 @@ names(colLab) &lt;- unique(seurat$label)</code></pre>
   xlab(&quot;UMAP1&quot;) +
   ylab(&quot;UMAP2&quot;)</code></pre>
 <p><img src="figure/createCBDBinput.Rmd/vis%20sample-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-vis-sample-1">
+Past versions of “vis sample-1.png”
+</button>
+</p>
+<div id="fig-no-spaces-vis-sample-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/c68cbededb27b7edc8ab4dac8b3cfce17471fd0d/docs/figure/createCBDBinput.Rmd/vis sample-1.png" target="_blank">c68cbed</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2021-12-17
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 <div id="age" class="section level3">
 <h3>Age</h3>
@@ -602,6 +774,43 @@ names(colLab) &lt;- unique(seurat$label)</code></pre>
   xlab(&quot;UMAP1&quot;) +
   ylab(&quot;UMAP2&quot;)</code></pre>
 <p><img src="figure/createCBDBinput.Rmd/vis%20age-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-vis-age-1">
+Past versions of “vis age-1.png”
+</button>
+</p>
+<div id="fig-no-spaces-vis-age-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/c68cbededb27b7edc8ab4dac8b3cfce17471fd0d/docs/figure/createCBDBinput.Rmd/vis age-1.png" target="_blank">c68cbed</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2021-12-17
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 <div id="seqtype" class="section level3">
 <h3>SeqType</h3>
@@ -612,37 +821,102 @@ names(colLab) &lt;- unique(seurat$label)</code></pre>
   xlab(&quot;UMAP1&quot;) +
   ylab(&quot;UMAP2&quot;)</code></pre>
 <p><img src="figure/createCBDBinput.Rmd/vis%20seqType-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-vis-seqType-1">
+Past versions of “vis seqType-1.png”
+</button>
+</p>
+<div id="fig-no-spaces-vis-seqType-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/c68cbededb27b7edc8ab4dac8b3cfce17471fd0d/docs/figure/createCBDBinput.Rmd/vis seqType-1.png" target="_blank">c68cbed</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2021-12-17
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div id="treatment" class="section level3">
+<h3>Treatment</h3>
+<pre class="r"><code>DimPlot(seurat, reduction = &quot;umap&quot;, group.by = &quot;treatment&quot;, cols=colTreat)+
+  theme_bw() +
+  theme(axis.text = element_blank(), axis.ticks = element_blank(), 
+        panel.grid.minor = element_blank()) +
+  xlab(&quot;UMAP1&quot;) +
+  ylab(&quot;UMAP2&quot;)</code></pre>
+<p><img src="figure/createCBDBinput.Rmd/vis%20treat-1.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
 </div>
 <div id="subset-and-create-sce-object" class="section level2">
 <h2>subset and create sce object</h2>
-<pre class="r"><code>seuratSub &lt;- subset(seurat, label %in% c(&quot;Tcells&quot;, &quot;MacrophagesMonocytes&quot;,
+<pre class="r"><code>seuratSub &lt;- subset(seurat, label %in% c(&quot;Tcells&quot;, &quot;Macrophages&quot;, &quot;InfMonos&quot;,
                                          &quot;Fibroblasts&quot;))
 
-seuratSub$label_plus_grp &lt;- paste0(seuratSub$label, &quot;_&quot;, seuratSub$grp)
-table(seuratSub$label_plus_grp)</code></pre>
+
+seuratSub$label_plus_grp_plus_treat &lt;- paste0(seuratSub$label, &quot;_&quot;,
+                                              seuratSub$grp, &quot;_&quot;,
+                                              seuratSub$treatment)
+seuratSub$grp_plus_treat &lt;- paste0(seuratSub$grp, &quot;_&quot;, seuratSub$treatment)
+
+table(seuratSub$label_plus_grp_plus_treat)</code></pre>
 <pre><code>
-         Fibroblasts_control             Fibroblasts_TCRM 
-                        4403                         5553 
-MacrophagesMonocytes_control    MacrophagesMonocytes_TCRM 
-                         275                         3275 
-              Tcells_control                  Tcells_TCRM 
-                         153                         1153 </code></pre>
-<pre class="r"><code>downSam &lt;- min(table(seuratSub$label_plus_grp))
+  Fibroblasts_control_no  Fibroblasts_TCRM_14D102 Fibroblasts_TCRM_isotype 
+                    2874                     3797                     2473 
+     Fibroblasts_TCRM_no      InfMonos_control_no     InfMonos_TCRM_14D102 
+                    3509                      159                      100 
+   InfMonos_TCRM_isotype         InfMonos_TCRM_no   Macrophages_control_no 
+                     283                     1471                      498 
+ Macrophages_TCRM_14D102 Macrophages_TCRM_isotype      Macrophages_TCRM_no 
+                    1204                     1406                     2084 
+       Tcells_control_no       Tcells_TCRM_14D102      Tcells_TCRM_isotype 
+                     185                      319                      877 
+          Tcells_TCRM_no 
+                    1412 </code></pre>
+<pre class="r"><code>downSam &lt;- min(table(seuratSub$label_plus_grp_plus_treat))
+downSam &lt;- 500
 print(downSam)</code></pre>
-<pre><code>[1] 153</code></pre>
-<pre class="r"><code>Idents(seuratSub) &lt;- seuratSub$label_plus_grp
+<pre><code>[1] 500</code></pre>
+<pre class="r"><code>Idents(seuratSub) &lt;- seuratSub$label_plus_grp_plus_treat
 seuratSub &lt;- subset(seuratSub, downsample = downSam)
 
 sceMerge &lt;- as.SingleCellExperiment(seuratSub)
-(table(sceMerge@colData$label_plus_grp))</code></pre>
+(table(sceMerge@colData$label_plus_grp_plus_treat))</code></pre>
 <pre><code>
-         Fibroblasts_control             Fibroblasts_TCRM 
-                         153                          153 
-MacrophagesMonocytes_control    MacrophagesMonocytes_TCRM 
-                         153                          153 
-              Tcells_control                  Tcells_TCRM 
-                         153                          153 </code></pre>
+  Fibroblasts_control_no  Fibroblasts_TCRM_14D102 Fibroblasts_TCRM_isotype 
+                     500                      500                      500 
+     Fibroblasts_TCRM_no      InfMonos_control_no     InfMonos_TCRM_14D102 
+                     500                      159                      100 
+   InfMonos_TCRM_isotype         InfMonos_TCRM_no   Macrophages_control_no 
+                     283                      500                      498 
+ Macrophages_TCRM_14D102 Macrophages_TCRM_isotype      Macrophages_TCRM_no 
+                     500                      500                      500 
+       Tcells_control_no       Tcells_TCRM_14D102      Tcells_TCRM_isotype 
+                     185                      319                      500 
+          Tcells_TCRM_no 
+                     500 </code></pre>
 </div>
 <div id="create-count-matrix-for-cellphonedb" class="section level1">
 <h1>create count matrix for cellphonedb</h1>
@@ -665,13 +939,13 @@ geneIDsMatch$Gene.stable.ID.1[
 geneIDsMatch &lt;- geneIDsMatch[!duplicated(geneIDsMatch$ensIDs),]
 rowData(sceMerge)$humGene &lt;- geneIDsMatch$Gene.stable.ID.1
 dim(sceMerge)</code></pre>
-<pre><code>[1] 27683   918</code></pre>
+<pre><code>[1] 30378  6544</code></pre>
 <pre class="r"><code>sceMerge &lt;- sceMerge[which(rowData(sceMerge)$humGene != &quot;unknown&quot;),] 
 dim(sceMerge)</code></pre>
-<pre><code>[1] 15975   918</code></pre>
+<pre><code>[1] 16430  6544</code></pre>
 <pre class="r"><code>## filter for grp and write cnt mat plus metadat
-lapply(unique(sceMerge$grp), function(grp){
-  sceGrp &lt;- sceMerge[,which(sceMerge@colData$grp == grp)]
+lapply(unique(sceMerge$grp_plus_treat), function(grp){
+  sceGrp &lt;- sceMerge[,which(sceMerge@colData$grp_plus_treat == grp)]
   cellPhoneGrp &lt;- cbind(rowData(sceGrp)$humGene, as.matrix(logcounts(sceGrp)))
   colnames(cellPhoneGrp)[1] &lt;- &quot;gene&quot;
   write.table(cellPhoneGrp, 
@@ -695,6 +969,12 @@ lapply(unique(sceMerge$grp), function(grp){
 NULL
 
 [[2]]
+NULL
+
+[[3]]
+NULL
+
+[[4]]
 NULL</code></pre>
 <div id="session-info" class="section level2">
 <h2>session info</h2>
@@ -719,10 +999,10 @@ other attached packages:
  [3] biomaRt_2.48.3              ggpubr_0.4.0               
  [5] pheatmap_1.0.12             ggsci_2.9                  
  [7] runSeurat3_0.1.0            here_1.0.1                 
- [9] magrittr_2.0.1              SeuratObject_4.0.2         
-[11] Seurat_4.0.5                forcats_0.5.1              
+ [9] magrittr_2.0.1              SeuratObject_4.0.4         
+[11] Seurat_4.0.6                forcats_0.5.1              
 [13] stringr_1.4.0               dplyr_1.0.7                
-[15] purrr_0.3.4                 readr_2.0.2                
+[15] purrr_0.3.4                 readr_2.1.1                
 [17] tidyr_1.1.4                 tibble_3.1.6               
 [19] ggplot2_3.3.5               tidyverse_1.3.1            
 [21] SingleCellExperiment_1.14.1 SummarizedExperiment_1.22.0
@@ -733,57 +1013,57 @@ other attached packages:
 
 loaded via a namespace (and not attached):
   [1] utf8_1.2.2             reticulate_1.22        tidyselect_1.1.1      
-  [4] RSQLite_2.2.8          htmlwidgets_1.5.4      grid_4.1.0            
+  [4] RSQLite_2.2.9          htmlwidgets_1.5.4      grid_4.1.0            
   [7] Rtsne_0.15             munsell_0.5.0          codetools_0.2-18      
  [10] ica_1.0-2              future_1.23.0          miniUI_0.1.1.1        
- [13] withr_2.4.2            colorspace_2.0-2       filelock_1.0.2        
- [16] highr_0.9              knitr_1.36             rstudioapi_0.13       
+ [13] withr_2.4.3            colorspace_2.0-2       filelock_1.0.2        
+ [16] highr_0.9              knitr_1.37             rstudioapi_0.13       
  [19] ROCR_1.0-11            ggsignif_0.6.3         tensor_1.5            
- [22] listenv_0.8.0          labeling_0.4.2         git2r_0.28.0          
+ [22] listenv_0.8.0          labeling_0.4.2         git2r_0.29.0          
  [25] GenomeInfoDbData_1.2.6 polyclip_1.10-0        farver_2.1.0          
- [28] bit64_4.0.5            rprojroot_2.0.2        parallelly_1.28.1     
- [31] vctrs_0.3.8            generics_0.1.1         xfun_0.28             
+ [28] bit64_4.0.5            rprojroot_2.0.2        parallelly_1.30.0     
+ [31] vctrs_0.3.8            generics_0.1.1         xfun_0.29             
  [34] BiocFileCache_2.0.0    R6_2.5.1               cachem_1.0.6          
- [37] bitops_1.0-7           spatstat.utils_2.2-0   DelayedArray_0.18.0   
+ [37] bitops_1.0-7           spatstat.utils_2.3-0   DelayedArray_0.18.0   
  [40] assertthat_0.2.1       promises_1.2.0.1       scales_1.1.1          
  [43] gtable_0.3.0           globals_0.14.0         goftest_1.2-3         
- [46] workflowr_1.6.2        rlang_0.4.12           splines_4.1.0         
- [49] rstatix_0.7.0          lazyeval_0.2.2         spatstat.geom_2.3-0   
- [52] broom_0.7.10           yaml_2.2.1             reshape2_1.4.4        
- [55] abind_1.4-5            modelr_0.1.8           backports_1.3.0       
- [58] httpuv_1.6.3           tools_4.1.0            ellipsis_0.3.2        
- [61] spatstat.core_2.3-1    jquerylib_0.1.4        RColorBrewer_1.1-2    
+ [46] workflowr_1.7.0        rlang_0.4.12           splines_4.1.0         
+ [49] rstatix_0.7.0          lazyeval_0.2.2         spatstat.geom_2.3-1   
+ [52] broom_0.7.11           yaml_2.2.1             reshape2_1.4.4        
+ [55] abind_1.4-5            modelr_0.1.8           backports_1.4.1       
+ [58] httpuv_1.6.5           tools_4.1.0            ellipsis_0.3.2        
+ [61] spatstat.core_2.3-2    jquerylib_0.1.4        RColorBrewer_1.1-2    
  [64] ggridges_0.5.3         Rcpp_1.0.7             plyr_1.8.6            
  [67] progress_1.2.2         zlibbioc_1.38.0        RCurl_1.98-1.5        
  [70] prettyunits_1.1.1      rpart_4.1-15           deldir_1.0-6          
  [73] pbapply_1.5-0          cowplot_1.1.1          zoo_1.8-9             
  [76] haven_2.4.3            ggrepel_0.9.1          cluster_2.1.2         
- [79] fs_1.5.0               data.table_1.14.2      scattermore_0.7       
+ [79] fs_1.5.2               data.table_1.14.2      scattermore_0.7       
  [82] lmtest_0.9-39          reprex_2.0.1           RANN_2.6.1            
- [85] fitdistrplus_1.1-6     hms_1.1.1              patchwork_1.1.1       
- [88] mime_0.12              evaluate_0.14          xtable_1.8-4          
- [91] XML_3.99-0.8           readxl_1.3.1           gridExtra_2.3         
- [94] compiler_4.1.0         KernSmooth_2.23-20     crayon_1.4.2          
- [97] htmltools_0.5.2        mgcv_1.8-38            later_1.3.0           
-[100] tzdb_0.2.0             lubridate_1.8.0        DBI_1.1.1             
-[103] dbplyr_2.1.1           rappdirs_0.3.3         MASS_7.3-54           
-[106] Matrix_1.3-4           car_3.0-12             cli_3.1.0             
-[109] igraph_1.2.8           pkgconfig_2.0.3        plotly_4.10.0         
-[112] spatstat.sparse_2.0-0  xml2_1.3.2             bslib_0.3.1           
-[115] XVector_0.32.0         rvest_1.0.2            digest_0.6.28         
-[118] sctransform_0.3.2      RcppAnnoy_0.0.19       Biostrings_2.60.2     
-[121] spatstat.data_2.1-0    rmarkdown_2.11         cellranger_1.1.0      
-[124] leiden_0.3.9           uwot_0.1.10            curl_4.3.2            
-[127] shiny_1.7.1            lifecycle_1.0.1        nlme_3.1-153          
-[130] jsonlite_1.7.2         carData_3.0-4          viridisLite_0.4.0     
-[133] fansi_0.5.0            pillar_1.6.4           lattice_0.20-45       
-[136] KEGGREST_1.32.0        fastmap_1.1.0          httr_1.4.2            
-[139] survival_3.2-13        glue_1.5.0             png_0.1-7             
-[142] bit_4.0.4              stringi_1.7.5          sass_0.4.0            
-[145] blob_1.2.2             memoise_2.0.0          irlba_2.3.3           
-[148] future.apply_1.8.1    </code></pre>
+ [85] whisker_0.4            fitdistrplus_1.1-6     hms_1.1.1             
+ [88] patchwork_1.1.1        mime_0.12              evaluate_0.14         
+ [91] xtable_1.8-4           XML_3.99-0.8           readxl_1.3.1          
+ [94] gridExtra_2.3          compiler_4.1.0         KernSmooth_2.23-20    
+ [97] crayon_1.4.2           htmltools_0.5.2        mgcv_1.8-38           
+[100] later_1.3.0            tzdb_0.2.0             lubridate_1.8.0       
+[103] DBI_1.1.2              dbplyr_2.1.1           rappdirs_0.3.3        
+[106] MASS_7.3-54            Matrix_1.4-0           car_3.0-12            
+[109] cli_3.1.0              igraph_1.2.11          pkgconfig_2.0.3       
+[112] plotly_4.10.0          spatstat.sparse_2.1-0  xml2_1.3.3            
+[115] bslib_0.3.1            XVector_0.32.0         rvest_1.0.2           
+[118] digest_0.6.29          sctransform_0.3.2      RcppAnnoy_0.0.19      
+[121] Biostrings_2.60.2      spatstat.data_2.1-2    rmarkdown_2.11        
+[124] cellranger_1.1.0       leiden_0.3.9           uwot_0.1.11           
+[127] curl_4.3.2             shiny_1.7.1            lifecycle_1.0.1       
+[130] nlme_3.1-153           jsonlite_1.7.2         carData_3.0-5         
+[133] viridisLite_0.4.0      fansi_1.0.0            pillar_1.6.4          
+[136] lattice_0.20-45        KEGGREST_1.32.0        fastmap_1.1.0         
+[139] httr_1.4.2             survival_3.2-13        glue_1.6.0            
+[142] png_0.1-7              bit_4.0.4              stringi_1.7.6         
+[145] sass_0.4.0             blob_1.2.2             memoise_2.0.1         
+[148] irlba_2.3.5            future.apply_1.8.1    </code></pre>
 <pre class="r"><code>date()</code></pre>
-<pre><code>[1] &quot;Fri Dec 10 17:55:48 2021&quot;</code></pre>
+<pre><code>[1] &quot;Tue Feb  1 08:20:56 2022&quot;</code></pre>
 <p>cd /Users/mechthildluetge/Projects/scRNAseq/ILC_Hungwei/data/cellphonedb eval “<span class="math inline">\((pyenv init -)&quot; eval &quot;\)</span>(pyenv virtualenv-init -)”</p>
 </div>
 <div id="run-cellphonedb" class="section level2">
@@ -791,10 +1071,15 @@ loaded via a namespace (and not attached):
 <div id="build-database" class="section level3">
 <h3>build database</h3>
 <p>cellphonedb database generate –user-interactions custom_interaction_file.csv</p>
-<p>##run statistical analysis ## subsampling in R script.. cellphonedb method statistical_analysis /Users/mechthildluetge/Projects/scRNAseq/TCRM_Christina/data/cellphonedb/totalCellsSubsampled_TCRM_metaData.txt /Users/mechthildluetge/Projects/scRNAseq/TCRM_Christina/data/cellphonedb/totalCellsSubsampled_TCRM_countMatrix.txt –output-path /Users/mechthildluetge/Projects/scRNAseq/TCRM_Christina/data/cellphonedb/outTCRM/ –database /Users/mechthildluetge/Projects/scRNAseq/ILC_Hungwei/data/cellphonedb/out/cellphonedb_user_2021-10-05-09_17.db –debug-seed 3 –iterations 100</p>
-<p>cellphonedb method statistical_analysis /Users/mechthildluetge/Projects/scRNAseq/TCRM_Christina/data/cellphonedb/totalCellsSubsampled_control_metaData.txt /Users/mechthildluetge/Projects/scRNAseq/TCRM_Christina/data/cellphonedb/totalCellsSubsampled_control_countMatrix.txt –output-path /Users/mechthildluetge/Projects/scRNAseq/TCRM_Christina/data/cellphonedb/outControl/ –database /Users/mechthildluetge/Projects/scRNAseq/ILC_Hungwei/data/cellphonedb/out/cellphonedb_user_2021-10-05-09_17.db –debug-seed 3 –iterations 100</p>
-<p>Count network interactions: cellphonedb plot heatmap_plot /Users/mechthildluetge/Projects/scRNAseq/TCRM_Christina/data/cellphonedb/totalCellsSubsampled_TCRM_metaData.txt –pvalues-path /Users/mechthildluetge/Projects/scRNAseq/TCRM_Christina/data/cellphonedb/outTCRM/pvalues.txt –output-path /Users/mechthildluetge/Projects/scRNAseq/TCRM_Christina/data/cellphonedb/outTCRM cellphonedb plot heatmap_plot /Users/mechthildluetge/Projects/scRNAseq/TCRM_Christina/data/cellphonedb/totalCellsSubsampled_control_metaData.txt –pvalues-path /Users/mechthildluetge/Projects/scRNAseq/TCRM_Christina/data/cellphonedb/outControl/pvalues.txt –output-path /Users/mechthildluetge/Projects/scRNAseq/TCRM_Christina/data/cellphonedb/outControl</p>
-<p>We use CellPhoneDB as tool to predict cellular communication between SILT FRCs and ILC populations in our dataset. In brief, pairs of known interacting ligands and receptors are derived from public databases and cell types are analysed for enriched receptor–ligand interactions based on expression of a receptor by one cell type and a ligand by another cell type.</p>
+<p>##run statistical analysis ## subsampling in R script.. cellphonedb method statistical_analysis /Users/mechthildluetge/Projects/scRNAseq/TCRM_Christina/data/cellphonedb/totalCellsSubsampled_TCRM_no_metaData.txt /Users/mechthildluetge/Projects/scRNAseq/TCRM_Christina/data/cellphonedb/totalCellsSubsampled_TCRM_no_countMatrix.txt –output-path /Users/mechthildluetge/Projects/scRNAseq/TCRM_Christina/data/cellphonedb/outTCRM_no/ –database /Users/mechthildluetge/Projects/scRNAseq/ILC_Hungwei/data/cellphonedb/out/cellphonedb_user_2021-10-05-09_17.db –debug-seed 3 –iterations 100</p>
+<p>cellphonedb method statistical_analysis /Users/mechthildluetge/Projects/scRNAseq/TCRM_Christina/data/cellphonedb/totalCellsSubsampled_control_no_metaData.txt /Users/mechthildluetge/Projects/scRNAseq/TCRM_Christina/data/cellphonedb/totalCellsSubsampled_control_no_countMatrix.txt –output-path /Users/mechthildluetge/Projects/scRNAseq/TCRM_Christina/data/cellphonedb/outControl_no/ –database /Users/mechthildluetge/Projects/scRNAseq/ILC_Hungwei/data/cellphonedb/out/cellphonedb_user_2021-10-05-09_17.db –debug-seed 3 –iterations 100</p>
+<p>cellphonedb method statistical_analysis /Users/mechthildluetge/Projects/scRNAseq/TCRM_Christina/data/cellphonedb/totalCellsSubsampled_TCRM_isotype_metaData.txt /Users/mechthildluetge/Projects/scRNAseq/TCRM_Christina/data/cellphonedb/totalCellsSubsampled_TCRM_isotype_countMatrix.txt –output-path /Users/mechthildluetge/Projects/scRNAseq/TCRM_Christina/data/cellphonedb/outTCRM_isotype/ –database /Users/mechthildluetge/Projects/scRNAseq/ILC_Hungwei/data/cellphonedb/out/cellphonedb_user_2021-10-05-09_17.db –debug-seed 3 –iterations 100</p>
+<p>cellphonedb method statistical_analysis /Users/mechthildluetge/Projects/scRNAseq/TCRM_Christina/data/cellphonedb/totalCellsSubsampled_TCRM_14D102_metaData.txt /Users/mechthildluetge/Projects/scRNAseq/TCRM_Christina/data/cellphonedb/totalCellsSubsampled_TCRM_14D102_countMatrix.txt –output-path /Users/mechthildluetge/Projects/scRNAseq/TCRM_Christina/data/cellphonedb/outTCRM_14D102/ –database /Users/mechthildluetge/Projects/scRNAseq/ILC_Hungwei/data/cellphonedb/out/cellphonedb_user_2021-10-05-09_17.db –debug-seed 3 –iterations 100</p>
+<p>Count network interactions: cellphonedb plot heatmap_plot /Users/mechthildluetge/Projects/scRNAseq/TCRM_Christina/data/cellphonedb/totalCellsSubsampled_TCRM_no_metaData.txt –pvalues-path /Users/mechthildluetge/Projects/scRNAseq/TCRM_Christina/data/cellphonedb/outTCRM_no/pvalues.txt –output-path /Users/mechthildluetge/Projects/scRNAseq/TCRM_Christina/data/cellphonedb/outTCRM_no</p>
+<p>cellphonedb plot heatmap_plot /Users/mechthildluetge/Projects/scRNAseq/TCRM_Christina/data/cellphonedb/totalCellsSubsampled_control_no_metaData.txt –pvalues-path /Users/mechthildluetge/Projects/scRNAseq/TCRM_Christina/data/cellphonedb/outControl_no/pvalues.txt –output-path /Users/mechthildluetge/Projects/scRNAseq/TCRM_Christina/data/cellphonedb/outControl_no</p>
+<p>cellphonedb plot heatmap_plot /Users/mechthildluetge/Projects/scRNAseq/TCRM_Christina/data/cellphonedb/totalCellsSubsampled_TCRM_isotype_metaData.txt –pvalues-path /Users/mechthildluetge/Projects/scRNAseq/TCRM_Christina/data/cellphonedb/outTCRM_isotype/pvalues.txt –output-path /Users/mechthildluetge/Projects/scRNAseq/TCRM_Christina/data/cellphonedb/outTCRM_isotype</p>
+<p>cellphonedb plot heatmap_plot /Users/mechthildluetge/Projects/scRNAseq/TCRM_Christina/data/cellphonedb/totalCellsSubsampled_TCRM_14D102_metaData.txt –pvalues-path /Users/mechthildluetge/Projects/scRNAseq/TCRM_Christina/data/cellphonedb/outTCRM_14D102/pvalues.txt –output-path /Users/mechthildluetge/Projects/scRNAseq/TCRM_Christina/data/cellphonedb/outTCRM_14D102</p>
+<p>We use CellPhoneDB as tool to predict cellular communication in our dataset. In brief, pairs of known interacting ligands and receptors are derived from public databases and cell types are analysed for enriched receptor–ligand interactions based on expression of a receptor by one cell type and a ligand by another cell type.</p>
 <p>deactivate</p>
 <br>
 <p>
@@ -824,10 +1109,10 @@ other attached packages:
  [3] biomaRt_2.48.3              ggpubr_0.4.0               
  [5] pheatmap_1.0.12             ggsci_2.9                  
  [7] runSeurat3_0.1.0            here_1.0.1                 
- [9] magrittr_2.0.1              SeuratObject_4.0.2         
-[11] Seurat_4.0.5                forcats_0.5.1              
+ [9] magrittr_2.0.1              SeuratObject_4.0.4         
+[11] Seurat_4.0.6                forcats_0.5.1              
 [13] stringr_1.4.0               dplyr_1.0.7                
-[15] purrr_0.3.4                 readr_2.0.2                
+[15] purrr_0.3.4                 readr_2.1.1                
 [17] tidyr_1.1.4                 tibble_3.1.6               
 [19] ggplot2_3.3.5               tidyverse_1.3.1            
 [21] SingleCellExperiment_1.14.1 SummarizedExperiment_1.22.0
@@ -838,55 +1123,55 @@ other attached packages:
 
 loaded via a namespace (and not attached):
   [1] utf8_1.2.2             reticulate_1.22        tidyselect_1.1.1      
-  [4] RSQLite_2.2.8          htmlwidgets_1.5.4      grid_4.1.0            
+  [4] RSQLite_2.2.9          htmlwidgets_1.5.4      grid_4.1.0            
   [7] Rtsne_0.15             munsell_0.5.0          codetools_0.2-18      
  [10] ica_1.0-2              future_1.23.0          miniUI_0.1.1.1        
- [13] withr_2.4.2            colorspace_2.0-2       filelock_1.0.2        
- [16] highr_0.9              knitr_1.36             rstudioapi_0.13       
+ [13] withr_2.4.3            colorspace_2.0-2       filelock_1.0.2        
+ [16] highr_0.9              knitr_1.37             rstudioapi_0.13       
  [19] ROCR_1.0-11            ggsignif_0.6.3         tensor_1.5            
- [22] listenv_0.8.0          labeling_0.4.2         git2r_0.28.0          
+ [22] listenv_0.8.0          labeling_0.4.2         git2r_0.29.0          
  [25] GenomeInfoDbData_1.2.6 polyclip_1.10-0        farver_2.1.0          
- [28] bit64_4.0.5            rprojroot_2.0.2        parallelly_1.28.1     
- [31] vctrs_0.3.8            generics_0.1.1         xfun_0.28             
+ [28] bit64_4.0.5            rprojroot_2.0.2        parallelly_1.30.0     
+ [31] vctrs_0.3.8            generics_0.1.1         xfun_0.29             
  [34] BiocFileCache_2.0.0    R6_2.5.1               cachem_1.0.6          
- [37] bitops_1.0-7           spatstat.utils_2.2-0   DelayedArray_0.18.0   
+ [37] bitops_1.0-7           spatstat.utils_2.3-0   DelayedArray_0.18.0   
  [40] assertthat_0.2.1       promises_1.2.0.1       scales_1.1.1          
  [43] gtable_0.3.0           globals_0.14.0         goftest_1.2-3         
- [46] workflowr_1.6.2        rlang_0.4.12           splines_4.1.0         
- [49] rstatix_0.7.0          lazyeval_0.2.2         spatstat.geom_2.3-0   
- [52] broom_0.7.10           yaml_2.2.1             reshape2_1.4.4        
- [55] abind_1.4-5            modelr_0.1.8           backports_1.3.0       
- [58] httpuv_1.6.3           tools_4.1.0            ellipsis_0.3.2        
- [61] spatstat.core_2.3-1    jquerylib_0.1.4        RColorBrewer_1.1-2    
+ [46] workflowr_1.7.0        rlang_0.4.12           splines_4.1.0         
+ [49] rstatix_0.7.0          lazyeval_0.2.2         spatstat.geom_2.3-1   
+ [52] broom_0.7.11           yaml_2.2.1             reshape2_1.4.4        
+ [55] abind_1.4-5            modelr_0.1.8           backports_1.4.1       
+ [58] httpuv_1.6.5           tools_4.1.0            ellipsis_0.3.2        
+ [61] spatstat.core_2.3-2    jquerylib_0.1.4        RColorBrewer_1.1-2    
  [64] ggridges_0.5.3         Rcpp_1.0.7             plyr_1.8.6            
  [67] progress_1.2.2         zlibbioc_1.38.0        RCurl_1.98-1.5        
  [70] prettyunits_1.1.1      rpart_4.1-15           deldir_1.0-6          
  [73] pbapply_1.5-0          cowplot_1.1.1          zoo_1.8-9             
  [76] haven_2.4.3            ggrepel_0.9.1          cluster_2.1.2         
- [79] fs_1.5.0               data.table_1.14.2      scattermore_0.7       
+ [79] fs_1.5.2               data.table_1.14.2      scattermore_0.7       
  [82] lmtest_0.9-39          reprex_2.0.1           RANN_2.6.1            
- [85] fitdistrplus_1.1-6     hms_1.1.1              patchwork_1.1.1       
- [88] mime_0.12              evaluate_0.14          xtable_1.8-4          
- [91] XML_3.99-0.8           readxl_1.3.1           gridExtra_2.3         
- [94] compiler_4.1.0         KernSmooth_2.23-20     crayon_1.4.2          
- [97] htmltools_0.5.2        mgcv_1.8-38            later_1.3.0           
-[100] tzdb_0.2.0             lubridate_1.8.0        DBI_1.1.1             
-[103] dbplyr_2.1.1           rappdirs_0.3.3         MASS_7.3-54           
-[106] Matrix_1.3-4           car_3.0-12             cli_3.1.0             
-[109] igraph_1.2.8           pkgconfig_2.0.3        plotly_4.10.0         
-[112] spatstat.sparse_2.0-0  xml2_1.3.2             bslib_0.3.1           
-[115] XVector_0.32.0         rvest_1.0.2            digest_0.6.28         
-[118] sctransform_0.3.2      RcppAnnoy_0.0.19       Biostrings_2.60.2     
-[121] spatstat.data_2.1-0    rmarkdown_2.11         cellranger_1.1.0      
-[124] leiden_0.3.9           uwot_0.1.10            curl_4.3.2            
-[127] shiny_1.7.1            lifecycle_1.0.1        nlme_3.1-153          
-[130] jsonlite_1.7.2         carData_3.0-4          viridisLite_0.4.0     
-[133] fansi_0.5.0            pillar_1.6.4           lattice_0.20-45       
-[136] KEGGREST_1.32.0        fastmap_1.1.0          httr_1.4.2            
-[139] survival_3.2-13        glue_1.5.0             png_0.1-7             
-[142] bit_4.0.4              stringi_1.7.5          sass_0.4.0            
-[145] blob_1.2.2             memoise_2.0.0          irlba_2.3.3           
-[148] future.apply_1.8.1    </code></pre>
+ [85] whisker_0.4            fitdistrplus_1.1-6     hms_1.1.1             
+ [88] patchwork_1.1.1        mime_0.12              evaluate_0.14         
+ [91] xtable_1.8-4           XML_3.99-0.8           readxl_1.3.1          
+ [94] gridExtra_2.3          compiler_4.1.0         KernSmooth_2.23-20    
+ [97] crayon_1.4.2           htmltools_0.5.2        mgcv_1.8-38           
+[100] later_1.3.0            tzdb_0.2.0             lubridate_1.8.0       
+[103] DBI_1.1.2              dbplyr_2.1.1           rappdirs_0.3.3        
+[106] MASS_7.3-54            Matrix_1.4-0           car_3.0-12            
+[109] cli_3.1.0              igraph_1.2.11          pkgconfig_2.0.3       
+[112] plotly_4.10.0          spatstat.sparse_2.1-0  xml2_1.3.3            
+[115] bslib_0.3.1            XVector_0.32.0         rvest_1.0.2           
+[118] digest_0.6.29          sctransform_0.3.2      RcppAnnoy_0.0.19      
+[121] Biostrings_2.60.2      spatstat.data_2.1-2    rmarkdown_2.11        
+[124] cellranger_1.1.0       leiden_0.3.9           uwot_0.1.11           
+[127] curl_4.3.2             shiny_1.7.1            lifecycle_1.0.1       
+[130] nlme_3.1-153           jsonlite_1.7.2         carData_3.0-5         
+[133] viridisLite_0.4.0      fansi_1.0.0            pillar_1.6.4          
+[136] lattice_0.20-45        KEGGREST_1.32.0        fastmap_1.1.0         
+[139] httr_1.4.2             survival_3.2-13        glue_1.6.0            
+[142] png_0.1-7              bit_4.0.4              stringi_1.7.6         
+[145] sass_0.4.0             blob_1.2.2             memoise_2.0.1         
+[148] irlba_2.3.5            future.apply_1.8.1    </code></pre>
 </div>
 </div>
 </div>
@@ -895,7 +1180,7 @@ loaded via a namespace (and not attached):
 
 <!-- Adjust MathJax settings so that all math formulae are shown using
 TeX fonts only; see
-http://docs.mathjax.org/en/latest/configuration.html.  This will make
+https://docs.mathjax.org/en/latest/web/configuration.html. This will make
 the presentation more consistent at the cost of the webpage sometimes
 taking slightly longer to load. Note that this only works because the
 footer is added to webpages before the MathJax javascript. -->
