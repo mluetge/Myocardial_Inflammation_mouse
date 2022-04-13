@@ -359,7 +359,7 @@ div.tocify {
 
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-report" data-toggle="collapse" data-target="#workflowr-report">
-<span class="glyphicon glyphicon-list" aria-hidden="true"></span> workflowr <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span>
+<span class="glyphicon glyphicon-list" aria-hidden="true"></span> workflowr <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
 </button>
 </p>
 <div id="workflowr-report" class="collapse">
@@ -368,7 +368,7 @@ div.tocify {
 <a data-toggle="tab" href="#summary">Summary</a>
 </li>
 <li>
-<a data-toggle="tab" href="#checks"> Checks <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> </a>
+<a data-toggle="tab" href="#checks"> Checks <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> </a>
 </li>
 <li>
 <a data-toggle="tab" href="#versions">Past versions</a>
@@ -377,10 +377,10 @@ div.tocify {
 <div class="tab-content">
 <div id="summary" class="tab-pane fade in active">
 <p>
-<strong>Last updated:</strong> 2022-03-22
+<strong>Last updated:</strong> 2022-04-13
 </p>
 <p>
-<strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 6 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 1
+<strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 7 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 0
 </p>
 <p>
 <strong>Knit directory:</strong> <code>TCRM_Christina/</code> <span class="glyphicon glyphicon-question-sign" aria-hidden="true" title="This is the local directory in which the code in this file was executed."> </span>
@@ -396,12 +396,12 @@ This reproducible <a href="https://rmarkdown.rstudio.com">R Markdown</a> analysi
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguncommittedchanges"> <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> <strong>R Markdown file:</strong> uncommitted changes </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguptodate"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>R Markdown file:</strong> up-to-date </a>
 </p>
 </div>
-<div id="strongRMarkdownfilestronguncommittedchanges" class="panel-collapse collapse">
+<div id="strongRMarkdownfilestronguptodate" class="panel-collapse collapse">
 <div class="panel-body">
-<p>The R Markdown is untracked by Git. To know which version of the R Markdown file created these results, you’ll want to first commit it to the Git repo. If you’re still working on the analysis, you can ignore this warning. When you’re finished, you can run <code>wflow_publish</code> to commit the R Markdown file and build the HTML.</p>
+<p>Great! Since the R Markdown file has been committed to the Git repository, you know the exact version of the code that produced these results.</p>
 </div>
 </div>
 </div>
@@ -468,16 +468,16 @@ This reproducible <a href="https://rmarkdown.rstudio.com">R Markdown</a> analysi
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcommluetgeTCRMChristinatreec68cbededb27b7edc8ab4dac8b3cfce17471fd0dtargetblankc68cbeda"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/mluetge/TCRM_Christina/tree/c68cbededb27b7edc8ab4dac8b3cfce17471fd0d" target="_blank">c68cbed</a> </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcommluetgeTCRMChristinatreebf6c6603c3ffa0297dccd4e87e982a6753a3a4cftargetblankbf6c660a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/mluetge/TCRM_Christina/tree/bf6c6603c3ffa0297dccd4e87e982a6753a3a4cf" target="_blank">bf6c660</a> </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcommluetgeTCRMChristinatreec68cbededb27b7edc8ab4dac8b3cfce17471fd0dtargetblankc68cbeda" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcommluetgeTCRMChristinatreebf6c6603c3ffa0297dccd4e87e982a6753a3a4cftargetblankbf6c660a" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility.
 </p>
 <p>
-The results in this page were generated with repository version <a href="https://github.com/mluetge/TCRM_Christina/tree/c68cbededb27b7edc8ab4dac8b3cfce17471fd0d" target="_blank">c68cbed</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
+The results in this page were generated with repository version <a href="https://github.com/mluetge/TCRM_Christina/tree/bf6c6603c3ffa0297dccd4e87e982a6753a3a4cf" target="_blank">bf6c660</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
 </p>
 <p>
 Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
@@ -492,14 +492,9 @@ Ignored files:
     Ignored:    data/data_old/
     Ignored:    output/.DS_Store
 
-Untracked files:
-    Untracked:  analysis/DEgenesTreatment.Rmd
-    Untracked:  analysis/visualizeTotalCellsUntreated.Rmd
-    Untracked:  figure/DEgenesTreatment.Rmd/
-
 Unstaged changes:
-    Modified:   analysis/analyseCPDBout.Rmd
-    Modified:   analysis/createCBDBinput.Rmd
+    Modified:   analysis/characterizeTotalCellsHumanHeart.Rmd
+    Modified:   analysis/mergeTotalCells_MuHeart_plusTreat.Rmd
 
 </code></pre>
 <p>
@@ -512,9 +507,69 @@ Note that any generated files, e.g. HTML, png, CSS, etc., are not included in t
 <hr>
 </div>
 <div id="versions" class="tab-pane fade">
+
 <p>
-There are no past versions. Publish this analysis with <code>wflow_publish()</code> to start tracking its development.
+These are the previous versions of the repository in which changes were made to the R Markdown (<code>analysis/visualizeTotalCellsUntreated.Rmd</code>) and HTML (<code>docs/visualizeTotalCellsUntreated.html</code>) files. If you’ve configured a remote Git repository (see <code>?wflow_git_remote</code>), click on the hyperlinks in the table below to view the files as they were in that past version.
 </p>
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+File
+</th>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+<th>
+Message
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/bf6c6603c3ffa0297dccd4e87e982a6753a3a4cf/analysis/visualizeTotalCellsUntreated.Rmd" target="_blank">bf6c660</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2022-03-25
+</td>
+<td>
+update analysis total cells treated plus untreated
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/mluetge/TCRM_Christina/bf6c6603c3ffa0297dccd4e87e982a6753a3a4cf/docs/visualizeTotalCellsUntreated.html" target="_blank">bf6c660</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2022-03-25
+</td>
+<td>
+update analysis total cells treated plus untreated
+</td>
+</tr>
+</tbody>
+</table>
+</div>
 <hr>
 </div>
 </div>
@@ -584,10 +639,84 @@ names(colLab) &lt;- c(&quot;InfMonos&quot;, &quot;Tcells&quot;, &quot;Endothelia
   xlab(&quot;UMAP1&quot;) +
   ylab(&quot;UMAP2&quot;)</code></pre>
 <p><img src="figure/visualizeTotalCellsUntreated.Rmd/vis%20cluster%20all-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-vis-cluster-all-1">
+Past versions of “vis cluster all-1.png”
+</button>
+</p>
+<div id="fig-no-spaces-vis-cluster-all-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/bf6c6603c3ffa0297dccd4e87e982a6753a3a4cf/docs/figure/visualizeTotalCellsUntreated.Rmd/vis cluster all-1.png" target="_blank">bf6c660</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2022-03-25
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre class="r"><code>DimPlot(seurat, group.by =&quot;integrated_snn_res.0.4&quot;, reduction = &quot;umap&quot;,
         cols=colPal)+
   theme_void()</code></pre>
 <p><img src="figure/visualizeTotalCellsUntreated.Rmd/vis%20cluster%20all-2.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-vis-cluster-all-2">
+Past versions of “vis cluster all-2.png”
+</button>
+</p>
+<div id="fig-no-spaces-vis-cluster-all-2" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/bf6c6603c3ffa0297dccd4e87e982a6753a3a4cf/docs/figure/visualizeTotalCellsUntreated.Rmd/vis cluster all-2.png" target="_blank">bf6c660</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2022-03-25
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 <div id="label" class="section level3">
 <h3>Label</h3>
@@ -598,10 +727,84 @@ names(colLab) &lt;- c(&quot;InfMonos&quot;, &quot;Tcells&quot;, &quot;Endothelia
   xlab(&quot;UMAP1&quot;) +
   ylab(&quot;UMAP2&quot;)</code></pre>
 <p><img src="figure/visualizeTotalCellsUntreated.Rmd/vis%20label%20all-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-vis-label-all-1">
+Past versions of “vis label all-1.png”
+</button>
+</p>
+<div id="fig-no-spaces-vis-label-all-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/bf6c6603c3ffa0297dccd4e87e982a6753a3a4cf/docs/figure/visualizeTotalCellsUntreated.Rmd/vis label all-1.png" target="_blank">bf6c660</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2022-03-25
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre class="r"><code>DimPlot(seurat, reduction = &quot;umap&quot;, group.by = &quot;label&quot;, cols=colLab,
         shuffle = T)+
   theme_void() </code></pre>
 <p><img src="figure/visualizeTotalCellsUntreated.Rmd/vis%20label%20all-2.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-vis-label-all-2">
+Past versions of “vis label all-2.png”
+</button>
+</p>
+<div id="fig-no-spaces-vis-label-all-2" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/bf6c6603c3ffa0297dccd4e87e982a6753a3a4cf/docs/figure/visualizeTotalCellsUntreated.Rmd/vis label all-2.png" target="_blank">bf6c660</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2022-03-25
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 <div id="group" class="section level3">
 <h3>group</h3>
@@ -612,9 +815,83 @@ names(colLab) &lt;- c(&quot;InfMonos&quot;, &quot;Tcells&quot;, &quot;Endothelia
   xlab(&quot;UMAP1&quot;) +
   ylab(&quot;UMAP2&quot;)</code></pre>
 <p><img src="figure/visualizeTotalCellsUntreated.Rmd/vis%20grp%20all-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-vis-grp-all-1">
+Past versions of “vis grp all-1.png”
+</button>
+</p>
+<div id="fig-no-spaces-vis-grp-all-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/bf6c6603c3ffa0297dccd4e87e982a6753a3a4cf/docs/figure/visualizeTotalCellsUntreated.Rmd/vis grp all-1.png" target="_blank">bf6c660</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2022-03-25
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre class="r"><code>DimPlot(seurat, reduction = &quot;umap&quot;, group.by = &quot;grp&quot;, cols=colGrp, shuffle = T)+
   theme_void() </code></pre>
 <p><img src="figure/visualizeTotalCellsUntreated.Rmd/vis%20grp%20all-2.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-vis-grp-all-2">
+Past versions of “vis grp all-2.png”
+</button>
+</p>
+<div id="fig-no-spaces-vis-grp-all-2" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/bf6c6603c3ffa0297dccd4e87e982a6753a3a4cf/docs/figure/visualizeTotalCellsUntreated.Rmd/vis grp all-2.png" target="_blank">bf6c660</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2022-03-25
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 <div id="sample" class="section level3">
 <h3>Sample</h3>
@@ -625,9 +902,83 @@ names(colLab) &lt;- c(&quot;InfMonos&quot;, &quot;Tcells&quot;, &quot;Endothelia
   xlab(&quot;UMAP1&quot;) +
   ylab(&quot;UMAP2&quot;)</code></pre>
 <p><img src="figure/visualizeTotalCellsUntreated.Rmd/vis%20sample%20all-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-vis-sample-all-1">
+Past versions of “vis sample all-1.png”
+</button>
+</p>
+<div id="fig-no-spaces-vis-sample-all-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/bf6c6603c3ffa0297dccd4e87e982a6753a3a4cf/docs/figure/visualizeTotalCellsUntreated.Rmd/vis sample all-1.png" target="_blank">bf6c660</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2022-03-25
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre class="r"><code>DimPlot(seurat, reduction = &quot;umap&quot;, group.by = &quot;dataset&quot;, cols=colDat)+
   theme_void()</code></pre>
 <p><img src="figure/visualizeTotalCellsUntreated.Rmd/vis%20sample%20all-2.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-vis-sample-all-2">
+Past versions of “vis sample all-2.png”
+</button>
+</p>
+<div id="fig-no-spaces-vis-sample-all-2" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/bf6c6603c3ffa0297dccd4e87e982a6753a3a4cf/docs/figure/visualizeTotalCellsUntreated.Rmd/vis sample all-2.png" target="_blank">bf6c660</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2022-03-25
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 <div id="age" class="section level3">
 <h3>Age</h3>
@@ -638,9 +989,83 @@ names(colLab) &lt;- c(&quot;InfMonos&quot;, &quot;Tcells&quot;, &quot;Endothelia
   xlab(&quot;UMAP1&quot;) +
   ylab(&quot;UMAP2&quot;)</code></pre>
 <p><img src="figure/visualizeTotalCellsUntreated.Rmd/vis%20age%20all-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-vis-age-all-1">
+Past versions of “vis age all-1.png”
+</button>
+</p>
+<div id="fig-no-spaces-vis-age-all-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/bf6c6603c3ffa0297dccd4e87e982a6753a3a4cf/docs/figure/visualizeTotalCellsUntreated.Rmd/vis age all-1.png" target="_blank">bf6c660</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2022-03-25
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre class="r"><code>DimPlot(seurat, reduction = &quot;umap&quot;, group.by = &quot;age&quot;, cols=colAge, shuffle = T)+
   theme_void() </code></pre>
 <p><img src="figure/visualizeTotalCellsUntreated.Rmd/vis%20age%20all-2.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-vis-age-all-2">
+Past versions of “vis age all-2.png”
+</button>
+</p>
+<div id="fig-no-spaces-vis-age-all-2" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/bf6c6603c3ffa0297dccd4e87e982a6753a3a4cf/docs/figure/visualizeTotalCellsUntreated.Rmd/vis age all-2.png" target="_blank">bf6c660</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2022-03-25
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 <div id="seqtype" class="section level3">
 <h3>SeqType</h3>
@@ -651,9 +1076,83 @@ names(colLab) &lt;- c(&quot;InfMonos&quot;, &quot;Tcells&quot;, &quot;Endothelia
   xlab(&quot;UMAP1&quot;) +
   ylab(&quot;UMAP2&quot;)</code></pre>
 <p><img src="figure/visualizeTotalCellsUntreated.Rmd/vis%20seqType%20all-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-vis-seqType-all-1">
+Past versions of “vis seqType all-1.png”
+</button>
+</p>
+<div id="fig-no-spaces-vis-seqType-all-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/bf6c6603c3ffa0297dccd4e87e982a6753a3a4cf/docs/figure/visualizeTotalCellsUntreated.Rmd/vis seqType all-1.png" target="_blank">bf6c660</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2022-03-25
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre class="r"><code>DimPlot(seurat, reduction = &quot;umap&quot;, group.by = &quot;seqType&quot;, cols=colStype)+
   theme_void() </code></pre>
 <p><img src="figure/visualizeTotalCellsUntreated.Rmd/vis%20seqType%20all-2.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-vis-seqType-all-2">
+Past versions of “vis seqType all-2.png”
+</button>
+</p>
+<div id="fig-no-spaces-vis-seqType-all-2" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/bf6c6603c3ffa0297dccd4e87e982a6753a3a4cf/docs/figure/visualizeTotalCellsUntreated.Rmd/vis seqType all-2.png" target="_blank">bf6c660</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2022-03-25
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 <div id="treatment" class="section level3">
 <h3>Treatment</h3>
@@ -664,64 +1163,144 @@ names(colLab) &lt;- c(&quot;InfMonos&quot;, &quot;Tcells&quot;, &quot;Endothelia
   xlab(&quot;UMAP1&quot;) +
   ylab(&quot;UMAP2&quot;)</code></pre>
 <p><img src="figure/visualizeTotalCellsUntreated.Rmd/vis%20treat%20all-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-vis-treat-all-1">
+Past versions of “vis treat all-1.png”
+</button>
+</p>
+<div id="fig-no-spaces-vis-treat-all-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/bf6c6603c3ffa0297dccd4e87e982a6753a3a4cf/docs/figure/visualizeTotalCellsUntreated.Rmd/vis treat all-1.png" target="_blank">bf6c660</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2022-03-25
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre class="r"><code>DimPlot(seurat, reduction = &quot;umap&quot;, group.by = &quot;treatment&quot;, cols=colTreat,
         shuffle = T)+
   theme_void() </code></pre>
 <p><img src="figure/visualizeTotalCellsUntreated.Rmd/vis%20treat%20all-2.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-vis-treat-all-2">
+Past versions of “vis treat all-2.png”
+</button>
+</p>
+<div id="fig-no-spaces-vis-treat-all-2" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/bf6c6603c3ffa0297dccd4e87e982a6753a3a4cf/docs/figure/visualizeTotalCellsUntreated.Rmd/vis treat all-2.png" target="_blank">bf6c660</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2022-03-25
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 <div id="cnt-tab-all" class="section level3">
 <h3>cnt Tab all</h3>
 <pre class="r"><code>table(seurat$label, seurat$seqType)</code></pre>
 <pre><code>                        
                             sc    sn
-  Bcells                   577    81
-  capEndothelial           112     6
-  Cardiomyocytes            65  7227
-  endocardialEndothelial    61  1090
-  Endothelial             6788  2954
-  Fibroblasts            12573    80
-  InfMonos                1913   100
-  Macrophages             2951  2241
-  Neutrophils              546     0
-  NKcells                  593   520
-  pDCsDCs                  705    98
-  Perivascular             911  2111
-  proliferating            449    85
-  Tcells                  2745    48</code></pre>
+  Bcells                   581    86
+  Cardiomyocytes            68  7239
+  DCs                      641    93
+  endocardialEndothelial    98   935
+  Endothelial             6751  2830
+  Eosinophils               72     0
+  Fibroblasts            12733  8780
+  GlialCells               201    80
+  InfMonos                1256   148
+  Macrophages             5206  2409
+  Neutrophils              457     0
+  NKcells                  435   167
+  pDCs                     174     1
+  Perivascular             745  1960
+  proliferating            487   110
+  Tcells                  1173   157</code></pre>
 <pre class="r"><code>table(seurat$label, seurat$grp)</code></pre>
 <pre><code>                        
-                         control TCRM
-  Bcells                      66  592
-  capEndothelial              56   62
-  Cardiomyocytes             450 6842
-  endocardialEndothelial     209  942
-  Endothelial               3069 6673
-  Fibroblasts               2874 9779
-  InfMonos                   159 1854
-  Macrophages                498 4694
-  Neutrophils                 21  525
-  NKcells                     48 1065
-  pDCsDCs                     18  785
-  Perivascular               755 2267
-  proliferating               33  501
-  Tcells                     185 2608</code></pre>
+                         control  TCRM
+  Bcells                      66   601
+  Cardiomyocytes             453  6854
+  DCs                         15   719
+  endocardialEndothelial     203   830
+  Endothelial               3059  6522
+  Eosinophils                  1    71
+  Fibroblasts               4510 17003
+  GlialCells                  65   216
+  InfMonos                    32  1372
+  Macrophages                780  6835
+  Neutrophils                 19   438
+  NKcells                     21   581
+  pDCs                         1   174
+  Perivascular               693  2012
+  proliferating               37   560
+  Tcells                      58  1272</code></pre>
 <pre class="r"><code>table(seurat$label, seurat$treatment)</code></pre>
 <pre><code>                        
-                         14D102 isotype   no
-  Bcells                     42     294  322
-  capEndothelial             30      17   71
-  Cardiomyocytes           2732    2405 2155
-  endocardialEndothelial    198     346  607
-  Endothelial              1940    1843 5959
-  Fibroblasts              3797    2473 6383
-  InfMonos                  100     283 1630
-  Macrophages              1204    1406 2582
-  Neutrophils                62      69  415
-  NKcells                   102     231  780
-  pDCsDCs                   153     279  371
-  Perivascular              736     617 1669
-  proliferating              46     145  343
-  Tcells                    319     877 1597</code></pre>
+                         14D102 isotype    no
+  Bcells                     43     297   327
+  Cardiomyocytes           2739    2412  2156
+  DCs                       146     263   325
+  endocardialEndothelial    177     321   535
+  Endothelial              1922    1829  5830
+  Eosinophils                18      14    40
+  Fibroblasts              6082    4753 10678
+  GlialCells                 62      39   180
+  InfMonos                   66     203  1135
+  Macrophages              1440    2029  4146
+  Neutrophils                44      61   352
+  NKcells                    69     107   426
+  pDCs                       13      45   117
+  Perivascular              655     553  1497
+  proliferating              49     150   398
+  Tcells                    137     422   771</code></pre>
 </div>
 </div>
 <div id="vis-only-untreated" class="section level2 tabset">
@@ -737,10 +1316,84 @@ names(colLab) &lt;- c(&quot;InfMonos&quot;, &quot;Tcells&quot;, &quot;Endothelia
   xlab(&quot;UMAP1&quot;) +
   ylab(&quot;UMAP2&quot;)</code></pre>
 <p><img src="figure/visualizeTotalCellsUntreated.Rmd/vis%20cluster%20untreated-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-vis-cluster-untreated-1">
+Past versions of “vis cluster untreated-1.png”
+</button>
+</p>
+<div id="fig-no-spaces-vis-cluster-untreated-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/bf6c6603c3ffa0297dccd4e87e982a6753a3a4cf/docs/figure/visualizeTotalCellsUntreated.Rmd/vis cluster untreated-1.png" target="_blank">bf6c660</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2022-03-25
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre class="r"><code>DimPlot(seurat, group.by =&quot;integrated_snn_res.0.4&quot;, reduction = &quot;umap&quot;,
         cols=colPal)+
   theme_void()</code></pre>
 <p><img src="figure/visualizeTotalCellsUntreated.Rmd/vis%20cluster%20untreated-2.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-vis-cluster-untreated-2">
+Past versions of “vis cluster untreated-2.png”
+</button>
+</p>
+<div id="fig-no-spaces-vis-cluster-untreated-2" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/bf6c6603c3ffa0297dccd4e87e982a6753a3a4cf/docs/figure/visualizeTotalCellsUntreated.Rmd/vis cluster untreated-2.png" target="_blank">bf6c660</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2022-03-25
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 <div id="label-1" class="section level3">
 <h3>Label</h3>
@@ -751,10 +1404,84 @@ names(colLab) &lt;- c(&quot;InfMonos&quot;, &quot;Tcells&quot;, &quot;Endothelia
   xlab(&quot;UMAP1&quot;) +
   ylab(&quot;UMAP2&quot;)</code></pre>
 <p><img src="figure/visualizeTotalCellsUntreated.Rmd/vis%20label%20untreated-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-vis-label-untreated-1">
+Past versions of “vis label untreated-1.png”
+</button>
+</p>
+<div id="fig-no-spaces-vis-label-untreated-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/bf6c6603c3ffa0297dccd4e87e982a6753a3a4cf/docs/figure/visualizeTotalCellsUntreated.Rmd/vis label untreated-1.png" target="_blank">bf6c660</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2022-03-25
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre class="r"><code>DimPlot(seurat, reduction = &quot;umap&quot;, group.by = &quot;label&quot;, cols=colLab,
         shuffle = T)+
   theme_void() </code></pre>
 <p><img src="figure/visualizeTotalCellsUntreated.Rmd/vis%20label%20untreated-2.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-vis-label-untreated-2">
+Past versions of “vis label untreated-2.png”
+</button>
+</p>
+<div id="fig-no-spaces-vis-label-untreated-2" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/bf6c6603c3ffa0297dccd4e87e982a6753a3a4cf/docs/figure/visualizeTotalCellsUntreated.Rmd/vis label untreated-2.png" target="_blank">bf6c660</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2022-03-25
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 <div id="group-1" class="section level3">
 <h3>group</h3>
@@ -765,9 +1492,83 @@ names(colLab) &lt;- c(&quot;InfMonos&quot;, &quot;Tcells&quot;, &quot;Endothelia
   xlab(&quot;UMAP1&quot;) +
   ylab(&quot;UMAP2&quot;)</code></pre>
 <p><img src="figure/visualizeTotalCellsUntreated.Rmd/vis%20grp%20untreated-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-vis-grp-untreated-1">
+Past versions of “vis grp untreated-1.png”
+</button>
+</p>
+<div id="fig-no-spaces-vis-grp-untreated-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/bf6c6603c3ffa0297dccd4e87e982a6753a3a4cf/docs/figure/visualizeTotalCellsUntreated.Rmd/vis grp untreated-1.png" target="_blank">bf6c660</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2022-03-25
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre class="r"><code>DimPlot(seurat, reduction = &quot;umap&quot;, group.by = &quot;grp&quot;, cols=colGrp, shuffle = T)+
   theme_void() </code></pre>
 <p><img src="figure/visualizeTotalCellsUntreated.Rmd/vis%20grp%20untreated-2.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-vis-grp-untreated-2">
+Past versions of “vis grp untreated-2.png”
+</button>
+</p>
+<div id="fig-no-spaces-vis-grp-untreated-2" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/bf6c6603c3ffa0297dccd4e87e982a6753a3a4cf/docs/figure/visualizeTotalCellsUntreated.Rmd/vis grp untreated-2.png" target="_blank">bf6c660</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2022-03-25
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 <div id="sample-1" class="section level3">
 <h3>Sample</h3>
@@ -778,9 +1579,83 @@ names(colLab) &lt;- c(&quot;InfMonos&quot;, &quot;Tcells&quot;, &quot;Endothelia
   xlab(&quot;UMAP1&quot;) +
   ylab(&quot;UMAP2&quot;)</code></pre>
 <p><img src="figure/visualizeTotalCellsUntreated.Rmd/vis%20sample%20untreated-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-vis-sample-untreated-1">
+Past versions of “vis sample untreated-1.png”
+</button>
+</p>
+<div id="fig-no-spaces-vis-sample-untreated-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/bf6c6603c3ffa0297dccd4e87e982a6753a3a4cf/docs/figure/visualizeTotalCellsUntreated.Rmd/vis sample untreated-1.png" target="_blank">bf6c660</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2022-03-25
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre class="r"><code>DimPlot(seurat, reduction = &quot;umap&quot;, group.by = &quot;dataset&quot;, cols=colDat)+
   theme_void()</code></pre>
 <p><img src="figure/visualizeTotalCellsUntreated.Rmd/vis%20sample%20untreated-2.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-vis-sample-untreated-2">
+Past versions of “vis sample untreated-2.png”
+</button>
+</p>
+<div id="fig-no-spaces-vis-sample-untreated-2" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/bf6c6603c3ffa0297dccd4e87e982a6753a3a4cf/docs/figure/visualizeTotalCellsUntreated.Rmd/vis sample untreated-2.png" target="_blank">bf6c660</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2022-03-25
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 <div id="age-1" class="section level3">
 <h3>Age</h3>
@@ -791,9 +1666,83 @@ names(colLab) &lt;- c(&quot;InfMonos&quot;, &quot;Tcells&quot;, &quot;Endothelia
   xlab(&quot;UMAP1&quot;) +
   ylab(&quot;UMAP2&quot;)</code></pre>
 <p><img src="figure/visualizeTotalCellsUntreated.Rmd/vis%20age%20untreated-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-vis-age-untreated-1">
+Past versions of “vis age untreated-1.png”
+</button>
+</p>
+<div id="fig-no-spaces-vis-age-untreated-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/bf6c6603c3ffa0297dccd4e87e982a6753a3a4cf/docs/figure/visualizeTotalCellsUntreated.Rmd/vis age untreated-1.png" target="_blank">bf6c660</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2022-03-25
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre class="r"><code>DimPlot(seurat, reduction = &quot;umap&quot;, group.by = &quot;age&quot;, cols=colAge, shuffle = T)+
   theme_void() </code></pre>
 <p><img src="figure/visualizeTotalCellsUntreated.Rmd/vis%20age%20untreated-2.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-vis-age-untreated-2">
+Past versions of “vis age untreated-2.png”
+</button>
+</p>
+<div id="fig-no-spaces-vis-age-untreated-2" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/bf6c6603c3ffa0297dccd4e87e982a6753a3a4cf/docs/figure/visualizeTotalCellsUntreated.Rmd/vis age untreated-2.png" target="_blank">bf6c660</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2022-03-25
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 <div id="seqtype-1" class="section level3">
 <h3>SeqType</h3>
@@ -804,9 +1753,83 @@ names(colLab) &lt;- c(&quot;InfMonos&quot;, &quot;Tcells&quot;, &quot;Endothelia
   xlab(&quot;UMAP1&quot;) +
   ylab(&quot;UMAP2&quot;)</code></pre>
 <p><img src="figure/visualizeTotalCellsUntreated.Rmd/vis%20seqType%20untreated-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-vis-seqType-untreated-1">
+Past versions of “vis seqType untreated-1.png”
+</button>
+</p>
+<div id="fig-no-spaces-vis-seqType-untreated-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/bf6c6603c3ffa0297dccd4e87e982a6753a3a4cf/docs/figure/visualizeTotalCellsUntreated.Rmd/vis seqType untreated-1.png" target="_blank">bf6c660</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2022-03-25
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre class="r"><code>DimPlot(seurat, reduction = &quot;umap&quot;, group.by = &quot;seqType&quot;, cols=colStype)+
   theme_void() </code></pre>
 <p><img src="figure/visualizeTotalCellsUntreated.Rmd/vis%20seqType%20untreated-2.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-vis-seqType-untreated-2">
+Past versions of “vis seqType untreated-2.png”
+</button>
+</p>
+<div id="fig-no-spaces-vis-seqType-untreated-2" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/bf6c6603c3ffa0297dccd4e87e982a6753a3a4cf/docs/figure/visualizeTotalCellsUntreated.Rmd/vis seqType untreated-2.png" target="_blank">bf6c660</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2022-03-25
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 <div id="treatment-1" class="section level3">
 <h3>Treatment</h3>
@@ -817,10 +1840,84 @@ names(colLab) &lt;- c(&quot;InfMonos&quot;, &quot;Tcells&quot;, &quot;Endothelia
   xlab(&quot;UMAP1&quot;) +
   ylab(&quot;UMAP2&quot;)</code></pre>
 <p><img src="figure/visualizeTotalCellsUntreated.Rmd/vis%20treat%20untreated-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-vis-treat-untreated-1">
+Past versions of “vis treat untreated-1.png”
+</button>
+</p>
+<div id="fig-no-spaces-vis-treat-untreated-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/bf6c6603c3ffa0297dccd4e87e982a6753a3a4cf/docs/figure/visualizeTotalCellsUntreated.Rmd/vis treat untreated-1.png" target="_blank">bf6c660</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2022-03-25
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre class="r"><code>DimPlot(seurat, reduction = &quot;umap&quot;, group.by = &quot;treatment&quot;, cols=colTreat,
         shuffle = T)+
   theme_void() </code></pre>
 <p><img src="figure/visualizeTotalCellsUntreated.Rmd/vis%20treat%20untreated-2.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-vis-treat-untreated-2">
+Past versions of “vis treat untreated-2.png”
+</button>
+</p>
+<div id="fig-no-spaces-vis-treat-untreated-2" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/bf6c6603c3ffa0297dccd4e87e982a6753a3a4cf/docs/figure/visualizeTotalCellsUntreated.Rmd/vis treat untreated-2.png" target="_blank">bf6c660</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2022-03-25
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 <div id="label-split-by-cond" class="section level3">
 <h3>Label split by cond</h3>
@@ -832,47 +1929,125 @@ names(colLab) &lt;- c(&quot;InfMonos&quot;, &quot;Tcells&quot;, &quot;Endothelia
   xlab(&quot;UMAP1&quot;) +
   ylab(&quot;UMAP2&quot;)</code></pre>
 <p><img src="figure/visualizeTotalCellsUntreated.Rmd/vis%20label%20untreated%20split%20cond-1.png" width="768" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-vis-label-untreated-split-cond-1">
+Past versions of “vis label untreated split cond-1.png”
+</button>
+</p>
+<div id="fig-no-spaces-vis-label-untreated-split-cond-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/bf6c6603c3ffa0297dccd4e87e982a6753a3a4cf/docs/figure/visualizeTotalCellsUntreated.Rmd/vis label untreated split cond-1.png" target="_blank">bf6c660</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2022-03-25
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre class="r"><code>DimPlot(seurat, reduction = &quot;umap&quot;, group.by = &quot;label&quot;, cols=colLab,
         split.by = &quot;grp&quot;)+
   theme_void() </code></pre>
 <p><img src="figure/visualizeTotalCellsUntreated.Rmd/vis%20label%20untreated%20split%20cond-2.png" width="768" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-vis-label-untreated-split-cond-2">
+Past versions of “vis label untreated split cond-2.png”
+</button>
+</p>
+<div id="fig-no-spaces-vis-label-untreated-split-cond-2" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/bf6c6603c3ffa0297dccd4e87e982a6753a3a4cf/docs/figure/visualizeTotalCellsUntreated.Rmd/vis label untreated split cond-2.png" target="_blank">bf6c660</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2022-03-25
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 <div id="cnt-tab-untreated" class="section level3">
 <h3>cnt Tab untreated</h3>
 <pre class="r"><code>table(seurat$label, seurat$seqType)</code></pre>
 <pre><code>                        
                            sc   sn
-  Bcells                  277   45
-  capEndothelial           71    0
-  Cardiomyocytes           64 2091
-  endocardialEndothelial   55  552
-  Endothelial            4588 1371
-  Fibroblasts            6374    9
-  InfMonos               1550   80
-  Macrophages            1076 1506
-  Neutrophils             415    0
-  NKcells                 428  352
-  pDCsDCs                 308   63
-  Perivascular            668 1001
-  proliferating           296   47
-  Tcells                 1578   19</code></pre>
+  Bcells                  281   46
+  Cardiomyocytes           67 2089
+  DCs                     264   61
+  endocardialEndothelial   86  449
+  Endothelial            4555 1275
+  Eosinophils              40    0
+  Fibroblasts            6462 4216
+  GlialCells              153   27
+  InfMonos               1011  124
+  Macrophages            2549 1597
+  Neutrophils             352    0
+  NKcells                 301  125
+  pDCs                    116    1
+  Perivascular            544  953
+  proliferating           334   64
+  Tcells                  684   87</code></pre>
 <pre class="r"><code>table(seurat$label, seurat$grp)</code></pre>
 <pre><code>                        
                          control TCRM
-  Bcells                      66  256
-  capEndothelial              56   15
-  Cardiomyocytes             450 1705
-  endocardialEndothelial     209  398
-  Endothelial               3069 2890
-  Fibroblasts               2874 3509
-  InfMonos                   159 1471
-  Macrophages                498 2084
-  Neutrophils                 21  394
-  NKcells                     48  732
-  pDCsDCs                     18  353
-  Perivascular               755  914
-  proliferating               33  310
-  Tcells                     185 1412</code></pre>
+  Bcells                      66  261
+  Cardiomyocytes             453 1703
+  DCs                         15  310
+  endocardialEndothelial     203  332
+  Endothelial               3059 2771
+  Eosinophils                  1   39
+  Fibroblasts               4510 6168
+  GlialCells                  65  115
+  InfMonos                    32 1103
+  Macrophages                780 3366
+  Neutrophils                 19  333
+  NKcells                     21  405
+  pDCs                         1  116
+  Perivascular               693  804
+  proliferating               37  361
+  Tcells                      58  713</code></pre>
 </div>
 </div>
 <div id="vis-bmps-untreated" class="section level2 tabset">
@@ -886,6 +2061,43 @@ names(colLab) &lt;- c(&quot;InfMonos&quot;, &quot;Tcells&quot;, &quot;Endothelia
   theme(legend.position=&quot;right&quot;)
 p</code></pre>
 <p><img src="figure/visualizeTotalCellsUntreated.Rmd/vis%20Bmp2%20untreated-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-vis-Bmp2-untreated-1">
+Past versions of “vis Bmp2 untreated-1.png”
+</button>
+</p>
+<div id="fig-no-spaces-vis-Bmp2-untreated-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/bf6c6603c3ffa0297dccd4e87e982a6753a3a4cf/docs/figure/visualizeTotalCellsUntreated.Rmd/vis Bmp2 untreated-1.png" target="_blank">bf6c660</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2022-03-25
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 <div id="bmp4" class="section level3">
 <h3>Bmp4</h3>
@@ -896,6 +2108,43 @@ p</code></pre>
   theme(legend.position=&quot;right&quot;)
 p</code></pre>
 <p><img src="figure/visualizeTotalCellsUntreated.Rmd/vis%20Bmp4%20untreated-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-vis-Bmp4-untreated-1">
+Past versions of “vis Bmp4 untreated-1.png”
+</button>
+</p>
+<div id="fig-no-spaces-vis-Bmp4-untreated-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/bf6c6603c3ffa0297dccd4e87e982a6753a3a4cf/docs/figure/visualizeTotalCellsUntreated.Rmd/vis Bmp4 untreated-1.png" target="_blank">bf6c660</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2022-03-25
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 <div id="bmpr1a" class="section level3">
 <h3>Bmpr1a</h3>
@@ -906,6 +2155,43 @@ p</code></pre>
   theme(legend.position=&quot;right&quot;)
 p</code></pre>
 <p><img src="figure/visualizeTotalCellsUntreated.Rmd/vis%20Bmpr1a%20untreated-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-vis-Bmpr1a-untreated-1">
+Past versions of “vis Bmpr1a untreated-1.png”
+</button>
+</p>
+<div id="fig-no-spaces-vis-Bmpr1a-untreated-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/bf6c6603c3ffa0297dccd4e87e982a6753a3a4cf/docs/figure/visualizeTotalCellsUntreated.Rmd/vis Bmpr1a untreated-1.png" target="_blank">bf6c660</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2022-03-25
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 <div id="bmpr2" class="section level3">
 <h3>Bmpr2</h3>
@@ -916,6 +2202,43 @@ p</code></pre>
   theme(legend.position=&quot;right&quot;)
 p</code></pre>
 <p><img src="figure/visualizeTotalCellsUntreated.Rmd/vis%20Bmpr2%20untreated-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-vis-Bmpr2-untreated-1">
+Past versions of “vis Bmpr2 untreated-1.png”
+</button>
+</p>
+<div id="fig-no-spaces-vis-Bmpr2-untreated-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/bf6c6603c3ffa0297dccd4e87e982a6753a3a4cf/docs/figure/visualizeTotalCellsUntreated.Rmd/vis Bmpr2 untreated-1.png" target="_blank">bf6c660</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2022-03-25
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 </div>
 <div id="vis-bmps-untreated-split-by-cond" class="section level2 tabset">
@@ -929,6 +2252,43 @@ p</code></pre>
   theme(legend.position=&quot;right&quot;)
 p</code></pre>
 <p><img src="figure/visualizeTotalCellsUntreated.Rmd/vis%20Bmp2%20untreated%20split-1.png" width="864" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-vis-Bmp2-untreated-split-1">
+Past versions of “vis Bmp2 untreated split-1.png”
+</button>
+</p>
+<div id="fig-no-spaces-vis-Bmp2-untreated-split-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/bf6c6603c3ffa0297dccd4e87e982a6753a3a4cf/docs/figure/visualizeTotalCellsUntreated.Rmd/vis Bmp2 untreated split-1.png" target="_blank">bf6c660</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2022-03-25
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 <div id="bmp4-1" class="section level3">
 <h3>Bmp4</h3>
@@ -939,6 +2299,43 @@ p</code></pre>
   theme(legend.position=&quot;right&quot;)
 p</code></pre>
 <p><img src="figure/visualizeTotalCellsUntreated.Rmd/vis%20Bmp4%20untreated%20split-1.png" width="864" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-vis-Bmp4-untreated-split-1">
+Past versions of “vis Bmp4 untreated split-1.png”
+</button>
+</p>
+<div id="fig-no-spaces-vis-Bmp4-untreated-split-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/bf6c6603c3ffa0297dccd4e87e982a6753a3a4cf/docs/figure/visualizeTotalCellsUntreated.Rmd/vis Bmp4 untreated split-1.png" target="_blank">bf6c660</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2022-03-25
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 <div id="bmpr1a-1" class="section level3">
 <h3>Bmpr1a</h3>
@@ -949,6 +2346,43 @@ p</code></pre>
   theme(legend.position=&quot;right&quot;)
 p</code></pre>
 <p><img src="figure/visualizeTotalCellsUntreated.Rmd/vis%20Bmpr1a%20untreated%20split-1.png" width="864" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-vis-Bmpr1a-untreated-split-1">
+Past versions of “vis Bmpr1a untreated split-1.png”
+</button>
+</p>
+<div id="fig-no-spaces-vis-Bmpr1a-untreated-split-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/bf6c6603c3ffa0297dccd4e87e982a6753a3a4cf/docs/figure/visualizeTotalCellsUntreated.Rmd/vis Bmpr1a untreated split-1.png" target="_blank">bf6c660</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2022-03-25
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 <div id="bmpr2-1" class="section level3">
 <h3>Bmpr2</h3>
@@ -959,6 +2393,43 @@ p</code></pre>
   theme(legend.position=&quot;right&quot;)
 p</code></pre>
 <p><img src="figure/visualizeTotalCellsUntreated.Rmd/vis%20Bmpr2%20untreated%20split-1.png" width="864" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-vis-Bmpr2-untreated-split-1">
+Past versions of “vis Bmpr2 untreated split-1.png”
+</button>
+</p>
+<div id="fig-no-spaces-vis-Bmpr2-untreated-split-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/bf6c6603c3ffa0297dccd4e87e982a6753a3a4cf/docs/figure/visualizeTotalCellsUntreated.Rmd/vis Bmpr2 untreated split-1.png" target="_blank">bf6c660</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2022-03-25
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 </div>
 <div id="save-object-untreated-with-label" class="section level2">
@@ -987,10 +2458,10 @@ attached base packages:
 other attached packages:
  [1] ggpubr_0.4.0                pheatmap_1.0.12            
  [3] ggsci_2.9                   runSeurat3_0.1.0           
- [5] here_1.0.1                  magrittr_2.0.1             
+ [5] here_1.0.1                  magrittr_2.0.2             
  [7] SeuratObject_4.0.4          Seurat_4.0.6               
  [9] forcats_0.5.1               stringr_1.4.0              
-[11] dplyr_1.0.7                 purrr_0.3.4                
+[11] dplyr_1.0.8                 purrr_0.3.4                
 [13] readr_2.1.1                 tidyr_1.1.4                
 [15] tibble_3.1.6                ggplot2_3.3.5              
 [17] tidyverse_1.3.1             SingleCellExperiment_1.14.1
@@ -1004,50 +2475,50 @@ loaded via a namespace (and not attached):
   [1] readxl_1.3.1           backports_1.4.1        workflowr_1.7.0       
   [4] plyr_1.8.6             igraph_1.2.11          lazyeval_0.2.2        
   [7] splines_4.1.0          listenv_0.8.0          scattermore_0.7       
- [10] digest_0.6.29          htmltools_0.5.2        fansi_1.0.0           
+ [10] digest_0.6.29          htmltools_0.5.2        fansi_1.0.2           
  [13] tensor_1.5             cluster_2.1.2          ROCR_1.0-11           
  [16] tzdb_0.2.0             globals_0.14.0         modelr_0.1.8          
  [19] spatstat.sparse_2.1-0  colorspace_2.0-2       rvest_1.0.2           
  [22] ggrepel_0.9.1          haven_2.4.3            xfun_0.29             
- [25] crayon_1.4.2           RCurl_1.98-1.5         jsonlite_1.7.2        
+ [25] crayon_1.5.0           RCurl_1.98-1.5         jsonlite_1.8.0        
  [28] spatstat.data_2.1-2    survival_3.2-13        zoo_1.8-9             
- [31] glue_1.6.0             polyclip_1.10-0        gtable_0.3.0          
+ [31] glue_1.6.2             polyclip_1.10-0        gtable_0.3.0          
  [34] zlibbioc_1.38.0        XVector_0.32.0         leiden_0.3.9          
  [37] DelayedArray_0.18.0    car_3.0-12             future.apply_1.8.1    
  [40] abind_1.4-5            scales_1.1.1           DBI_1.1.2             
- [43] rstatix_0.7.0          miniUI_0.1.1.1         Rcpp_1.0.7            
- [46] viridisLite_0.4.0      xtable_1.8-4           reticulate_1.22       
+ [43] rstatix_0.7.0          miniUI_0.1.1.1         Rcpp_1.0.8.3          
+ [46] viridisLite_0.4.0      xtable_1.8-4           reticulate_1.24       
  [49] spatstat.core_2.3-2    htmlwidgets_1.5.4      httr_1.4.2            
  [52] RColorBrewer_1.1-2     ellipsis_0.3.2         ica_1.0-2             
  [55] farver_2.1.0           pkgconfig_2.0.3        uwot_0.1.11           
  [58] deldir_1.0-6           sass_0.4.0             dbplyr_2.1.1          
- [61] utf8_1.2.2             labeling_0.4.2         tidyselect_1.1.1      
- [64] rlang_0.4.12           reshape2_1.4.4         later_1.3.0           
+ [61] utf8_1.2.2             labeling_0.4.2         tidyselect_1.1.2      
+ [64] rlang_1.0.2            reshape2_1.4.4         later_1.3.0           
  [67] munsell_0.5.0          cellranger_1.1.0       tools_4.1.0           
- [70] cli_3.1.0              generics_0.1.1         broom_0.7.11          
+ [70] cli_3.2.0              generics_0.1.2         broom_0.7.11          
  [73] ggridges_0.5.3         evaluate_0.14          fastmap_1.1.0         
  [76] goftest_1.2-3          yaml_2.2.1             knitr_1.37            
  [79] fs_1.5.2               fitdistrplus_1.1-6     RANN_2.6.1            
  [82] nlme_3.1-153           pbapply_1.5-0          future_1.23.0         
- [85] mime_0.12              xml2_1.3.3             compiler_4.1.0        
- [88] rstudioapi_0.13        plotly_4.10.0          png_0.1-7             
- [91] ggsignif_0.6.3         spatstat.utils_2.3-0   reprex_2.0.1          
- [94] bslib_0.3.1            stringi_1.7.6          highr_0.9             
- [97] lattice_0.20-45        Matrix_1.4-0           vctrs_0.3.8           
-[100] pillar_1.6.4           lifecycle_1.0.1        spatstat.geom_2.3-1   
-[103] lmtest_0.9-39          jquerylib_0.1.4        RcppAnnoy_0.0.19      
-[106] data.table_1.14.2      cowplot_1.1.1          bitops_1.0-7          
-[109] irlba_2.3.5            httpuv_1.6.5           patchwork_1.1.1       
-[112] R6_2.5.1               promises_1.2.0.1       KernSmooth_2.23-20    
-[115] gridExtra_2.3          parallelly_1.30.0      codetools_0.2-18      
-[118] MASS_7.3-54            assertthat_0.2.1       rprojroot_2.0.2       
-[121] withr_2.4.3            sctransform_0.3.2      GenomeInfoDbData_1.2.6
-[124] mgcv_1.8-38            hms_1.1.1              rpart_4.1-15          
-[127] grid_4.1.0             rmarkdown_2.11         carData_3.0-5         
-[130] Rtsne_0.15             git2r_0.29.0           shiny_1.7.1           
-[133] lubridate_1.8.0       </code></pre>
+ [85] whisker_0.4            mime_0.12              xml2_1.3.3            
+ [88] compiler_4.1.0         rstudioapi_0.13        plotly_4.10.0         
+ [91] png_0.1-7              ggsignif_0.6.3         spatstat.utils_2.3-0  
+ [94] reprex_2.0.1           bslib_0.3.1            stringi_1.7.6         
+ [97] highr_0.9              lattice_0.20-45        Matrix_1.4-0          
+[100] vctrs_0.3.8            pillar_1.7.0           lifecycle_1.0.1       
+[103] spatstat.geom_2.3-1    lmtest_0.9-39          jquerylib_0.1.4       
+[106] RcppAnnoy_0.0.19       data.table_1.14.2      cowplot_1.1.1         
+[109] bitops_1.0-7           irlba_2.3.5            httpuv_1.6.5          
+[112] patchwork_1.1.1        R6_2.5.1               promises_1.2.0.1      
+[115] KernSmooth_2.23-20     gridExtra_2.3          parallelly_1.30.0     
+[118] codetools_0.2-18       MASS_7.3-54            assertthat_0.2.1      
+[121] rprojroot_2.0.2        withr_2.5.0            sctransform_0.3.2     
+[124] GenomeInfoDbData_1.2.6 mgcv_1.8-38            hms_1.1.1             
+[127] rpart_4.1-15           grid_4.1.0             rmarkdown_2.11        
+[130] carData_3.0-5          Rtsne_0.15             git2r_0.29.0          
+[133] shiny_1.7.1            lubridate_1.8.0       </code></pre>
 <pre class="r"><code>date()</code></pre>
-<pre><code>[1] &quot;Tue Mar 22 10:43:35 2022&quot;</code></pre>
+<pre><code>[1] &quot;Wed Apr 13 10:45:47 2022&quot;</code></pre>
 <br>
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">
@@ -1074,10 +2545,10 @@ attached base packages:
 other attached packages:
  [1] ggpubr_0.4.0                pheatmap_1.0.12            
  [3] ggsci_2.9                   runSeurat3_0.1.0           
- [5] here_1.0.1                  magrittr_2.0.1             
+ [5] here_1.0.1                  magrittr_2.0.2             
  [7] SeuratObject_4.0.4          Seurat_4.0.6               
  [9] forcats_0.5.1               stringr_1.4.0              
-[11] dplyr_1.0.7                 purrr_0.3.4                
+[11] dplyr_1.0.8                 purrr_0.3.4                
 [13] readr_2.1.1                 tidyr_1.1.4                
 [15] tibble_3.1.6                ggplot2_3.3.5              
 [17] tidyverse_1.3.1             SingleCellExperiment_1.14.1
@@ -1091,48 +2562,48 @@ loaded via a namespace (and not attached):
   [1] readxl_1.3.1           backports_1.4.1        workflowr_1.7.0       
   [4] plyr_1.8.6             igraph_1.2.11          lazyeval_0.2.2        
   [7] splines_4.1.0          listenv_0.8.0          scattermore_0.7       
- [10] digest_0.6.29          htmltools_0.5.2        fansi_1.0.0           
+ [10] digest_0.6.29          htmltools_0.5.2        fansi_1.0.2           
  [13] tensor_1.5             cluster_2.1.2          ROCR_1.0-11           
  [16] tzdb_0.2.0             globals_0.14.0         modelr_0.1.8          
  [19] spatstat.sparse_2.1-0  colorspace_2.0-2       rvest_1.0.2           
  [22] ggrepel_0.9.1          haven_2.4.3            xfun_0.29             
- [25] crayon_1.4.2           RCurl_1.98-1.5         jsonlite_1.7.2        
+ [25] crayon_1.5.0           RCurl_1.98-1.5         jsonlite_1.8.0        
  [28] spatstat.data_2.1-2    survival_3.2-13        zoo_1.8-9             
- [31] glue_1.6.0             polyclip_1.10-0        gtable_0.3.0          
+ [31] glue_1.6.2             polyclip_1.10-0        gtable_0.3.0          
  [34] zlibbioc_1.38.0        XVector_0.32.0         leiden_0.3.9          
  [37] DelayedArray_0.18.0    car_3.0-12             future.apply_1.8.1    
  [40] abind_1.4-5            scales_1.1.1           DBI_1.1.2             
- [43] rstatix_0.7.0          miniUI_0.1.1.1         Rcpp_1.0.7            
- [46] viridisLite_0.4.0      xtable_1.8-4           reticulate_1.22       
+ [43] rstatix_0.7.0          miniUI_0.1.1.1         Rcpp_1.0.8.3          
+ [46] viridisLite_0.4.0      xtable_1.8-4           reticulate_1.24       
  [49] spatstat.core_2.3-2    htmlwidgets_1.5.4      httr_1.4.2            
  [52] RColorBrewer_1.1-2     ellipsis_0.3.2         ica_1.0-2             
  [55] farver_2.1.0           pkgconfig_2.0.3        uwot_0.1.11           
  [58] deldir_1.0-6           sass_0.4.0             dbplyr_2.1.1          
- [61] utf8_1.2.2             labeling_0.4.2         tidyselect_1.1.1      
- [64] rlang_0.4.12           reshape2_1.4.4         later_1.3.0           
+ [61] utf8_1.2.2             labeling_0.4.2         tidyselect_1.1.2      
+ [64] rlang_1.0.2            reshape2_1.4.4         later_1.3.0           
  [67] munsell_0.5.0          cellranger_1.1.0       tools_4.1.0           
- [70] cli_3.1.0              generics_0.1.1         broom_0.7.11          
+ [70] cli_3.2.0              generics_0.1.2         broom_0.7.11          
  [73] ggridges_0.5.3         evaluate_0.14          fastmap_1.1.0         
  [76] goftest_1.2-3          yaml_2.2.1             knitr_1.37            
  [79] fs_1.5.2               fitdistrplus_1.1-6     RANN_2.6.1            
  [82] nlme_3.1-153           pbapply_1.5-0          future_1.23.0         
- [85] mime_0.12              xml2_1.3.3             compiler_4.1.0        
- [88] rstudioapi_0.13        plotly_4.10.0          png_0.1-7             
- [91] ggsignif_0.6.3         spatstat.utils_2.3-0   reprex_2.0.1          
- [94] bslib_0.3.1            stringi_1.7.6          highr_0.9             
- [97] lattice_0.20-45        Matrix_1.4-0           vctrs_0.3.8           
-[100] pillar_1.6.4           lifecycle_1.0.1        spatstat.geom_2.3-1   
-[103] lmtest_0.9-39          jquerylib_0.1.4        RcppAnnoy_0.0.19      
-[106] data.table_1.14.2      cowplot_1.1.1          bitops_1.0-7          
-[109] irlba_2.3.5            httpuv_1.6.5           patchwork_1.1.1       
-[112] R6_2.5.1               promises_1.2.0.1       KernSmooth_2.23-20    
-[115] gridExtra_2.3          parallelly_1.30.0      codetools_0.2-18      
-[118] MASS_7.3-54            assertthat_0.2.1       rprojroot_2.0.2       
-[121] withr_2.4.3            sctransform_0.3.2      GenomeInfoDbData_1.2.6
-[124] mgcv_1.8-38            hms_1.1.1              rpart_4.1-15          
-[127] grid_4.1.0             rmarkdown_2.11         carData_3.0-5         
-[130] Rtsne_0.15             git2r_0.29.0           shiny_1.7.1           
-[133] lubridate_1.8.0       </code></pre>
+ [85] whisker_0.4            mime_0.12              xml2_1.3.3            
+ [88] compiler_4.1.0         rstudioapi_0.13        plotly_4.10.0         
+ [91] png_0.1-7              ggsignif_0.6.3         spatstat.utils_2.3-0  
+ [94] reprex_2.0.1           bslib_0.3.1            stringi_1.7.6         
+ [97] highr_0.9              lattice_0.20-45        Matrix_1.4-0          
+[100] vctrs_0.3.8            pillar_1.7.0           lifecycle_1.0.1       
+[103] spatstat.geom_2.3-1    lmtest_0.9-39          jquerylib_0.1.4       
+[106] RcppAnnoy_0.0.19       data.table_1.14.2      cowplot_1.1.1         
+[109] bitops_1.0-7           irlba_2.3.5            httpuv_1.6.5          
+[112] patchwork_1.1.1        R6_2.5.1               promises_1.2.0.1      
+[115] KernSmooth_2.23-20     gridExtra_2.3          parallelly_1.30.0     
+[118] codetools_0.2-18       MASS_7.3-54            assertthat_0.2.1      
+[121] rprojroot_2.0.2        withr_2.5.0            sctransform_0.3.2     
+[124] GenomeInfoDbData_1.2.6 mgcv_1.8-38            hms_1.1.1             
+[127] rpart_4.1-15           grid_4.1.0             rmarkdown_2.11        
+[130] carData_3.0-5          Rtsne_0.15             git2r_0.29.0          
+[133] shiny_1.7.1            lubridate_1.8.0       </code></pre>
 </div>
 </div>
 

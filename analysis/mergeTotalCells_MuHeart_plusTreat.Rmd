@@ -96,10 +96,6 @@ seurat$seurat_clusters <- seurat$RNA_snn_res.0.25
 dat <- data.frame(table(seurat$dataset))
 colnames(dat) <- c("dataset", "all")
 
-#seuratSub <- subset(seurat, subset = `MGP-BALBcJ-G0026271.Grem1` >0) ## 0 cells
-#dat2 <- data.frame(table(seuratSub$dataset))
-#colnames(dat2) <- c("dataset", "Grem1")
-#dat <- dat %>% left_join(., dat2, by=c("dataset"))
 
 seuratSub <- subset(seurat, subset = `ENSMUSG00000050069.Grem2` >0) ## 2 cells
 dat2 <- data.frame(table(seuratSub$dataset))
@@ -462,9 +458,9 @@ for (i in 1:length(x = seurat.list)) {
         selection.method = "vst", nfeatures = 2000, verbose = FALSE)
 }
 
-seurat.anchors <- FindIntegrationAnchors(object.list = seurat.list, dims = 1:15,
-                                         k.filter = 50)
-seurat.int <- IntegrateData(anchorset = seurat.anchors, dims = 1:15)
+seurat.anchors <- FindIntegrationAnchors(object.list = seurat.list, dims = 1:20,
+                                         k.filter = 200)
+seurat.int <- IntegrateData(anchorset = seurat.anchors, dims = 1:20)
 DefaultAssay(object = seurat.int) <- "integrated"
 
 # rerun seurat
@@ -525,6 +521,7 @@ DimPlot(seurat.int, reduction = "umap", group.by = "dataset", cols=colDat)+
 
 
 ```
+
 ### SeqType
 ```{r vis seqType int}
 

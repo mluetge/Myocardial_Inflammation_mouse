@@ -49,9 +49,8 @@ Idents(seurat) <- seurat$integrated_snn_res.0.4
 
 
 ## remove two contaminating clusters and rerun dim reductions
-## cluster 1 (dying cells, a lot of ribosomal genes)
-## cluster 17 (erythrocytes (Fech, Bpgm, Snca))
-seurat <- subset(seurat, idents = c("1", "17"), invert=T)
+## cluster 18 (erythrocytes (Fech, Bpgm, Snca))
+seurat <- subset(seurat, idents = c("18"), invert=T)
 
 DefaultAssay(object = seurat) <- "integrated"
 seurat <- RunPCA(object = seurat, npcs = 20, verbose = FALSE)
@@ -60,6 +59,10 @@ seurat <- RunUMAP(object = seurat, reduction = "pca", dims = 1:20)
 DefaultAssay(object = seurat) <- "RNA"
 
 
+#saveRDS(seurat, file=paste0(basedir,
+#                             "/data/MuHeart_totalCells_plusTreated_integrated_remEry",
+#                             "_seurat.rds"))
+seurat$age[which(seurat$treatment != "no")] <- "12wk"
 ```
 
 
@@ -114,7 +117,7 @@ DimPlot(seurat, reduction = "umap", group.by = "grp", cols=colGrp)+
 
 
 ### Sample
-```{r vis sample}
+```{r vis sample, fig.height=4, fig.width=8}
 
 DimPlot(seurat, reduction = "umap", group.by = "dataset", cols=colDat)+
   theme_bw() +
@@ -174,7 +177,7 @@ DimPlot(seurat, reduction = "umap", group.by = "treatment", cols=colTreat)+
 
 ## -------------------------------------------------------------------------- ##
 ## cluster 9 re-embedding (Tcells + NKcells mixed)
-seuratSub <- subset(seurat, integrated_snn_res.0.4 == "9")
+seuratSub <- subset(seurat, integrated_snn_res.0.25 %in% c("2", "6", "9", "7", "13"))
 DefaultAssay(object = seuratSub) <- "integrated"
 seuratSub <- ScaleData(object = seuratSub, verbose = FALSE,
                         features = rownames(seuratSub))
@@ -183,35 +186,48 @@ seuratSub <- RunTSNE(object = seuratSub, reduction = "pca", dims = 1:20)
 seuratSub <- RunUMAP(object = seuratSub, reduction = "pca", dims = 1:20)
 
 seuratSub <- FindNeighbors(object = seuratSub, reduction = "pca", dims = 1:20)
-res <- c(0.1,0.25,0.4)
+res <- c(0.1,0.25)
 for(i in 1:length(res)){
   seuratSub <- FindClusters(object = seuratSub, resolution = res[i],
                              seuratSub = 1234)
 }
 
-Tcells <- colnames(seuratSub)[seuratSub$integrated_snn_res.0.1 %in% c("2", "4")]
-NKcells <- colnames(seuratSub)[seuratSub$integrated_snn_res.0.1 %in% c("0", "1", "3")]
+Tcells <- colnames(seuratSub)[seuratSub$integrated_snn_res.0.25 %in% c("5", "6")]
+NKcells <- colnames(seuratSub)[seuratSub$integrated_snn_res.0.25 %in% c("8")]
+Neutro <- colnames(seuratSub)[seuratSub$integrated_snn_res.0.25 %in% c("9")]
+Eosino <- colnames(seuratSub)[seuratSub$integrated_snn_res.0.25 %in% c("12")]
+pDCs <- colnames(seuratSub)[seuratSub$integrated_snn_res.0.25 %in% c("11")]
+Macro <- colnames(seuratSub)[seuratSub$integrated_snn_res.0.25 %in% c("0", "3",
+                                                                      "1", "10", "7")]
+infMono <- colnames(seuratSub)[seuratSub$integrated_snn_res.0.25 %in% c("2")]
+DCs <- colnames(seuratSub)[seuratSub$integrated_snn_res.0.25 %in% c("4")]
 
 
 ## -------------------------------------------------------------------------- ##
 
 
 seurat$label <- "other"
-seurat$label[which(seurat$integrated_snn_res.0.4 %in% c("4"))] <- "Macrophages"
-seurat$label[which(seurat$integrated_snn_res.0.4 %in% c("12"))] <- "Bcells"
-seurat$label[which(seurat$integrated_snn_res.0.4 %in% c("6"))] <- "Tcells"
-seurat$label[which(seurat$integrated_snn_res.0.4 %in% c("14"))] <- "Neutrophils"
-seurat$label[which(seurat$integrated_snn_res.0.4 %in% c("11"))] <- "pDCsDCs"
-seurat$label[which(seurat$integrated_snn_res.0.4 %in% c("15"))] <- "proliferating"
-seurat$label[which(seurat$integrated_snn_res.0.4 %in% c("0", "13"))] <-"Fibroblasts"
-seurat$label[which(seurat$integrated_snn_res.0.4 %in% c("2", "19"))] <- "Cardiomyocytes"
-seurat$label[which(seurat$integrated_snn_res.0.4 %in% c("3", "5"))] <- "Endothelial"
-seurat$label[which(seurat$integrated_snn_res.0.4 %in% c("7", "16", "18"))] <- "Perivascular"
-seurat$label[which(seurat$integrated_snn_res.0.4 %in% c("10"))] <- "endocardialEndothelial"
-seurat$label[which(seurat$integrated_snn_res.0.4 %in% c("20"))] <- "capEndothelial"
-seurat$label[which(seurat$integrated_snn_res.0.4 %in% c("8"))] <- "InfMonos"
+#seurat$label[which(seurat$integrated_snn_res.0.4 %in% c("12", "4"))] <- "Macrophages"
+seurat$label[which(seurat$integrated_snn_res.0.25 %in% c("11"))] <- "Bcells"
+#seurat$label[which(seurat$integrated_snn_res.0.4 %in% c("6"))] <- "Tcells"
+#seurat$label[which(seurat$integrated_snn_res.0.25 %in% c("13"))] <- "Neutrophils"
+#seurat$label[which(seurat$integrated_snn_res.0.4 %in% c("21"))] <- "pDCs"
+seurat$label[which(seurat$integrated_snn_res.0.25 %in% c("12"))] <- "proliferating"
+seurat$label[which(seurat$integrated_snn_res.0.25 %in% c("0", "4", "16", "10"))] <-"Fibroblasts"
+seurat$label[which(seurat$integrated_snn_res.0.25 %in% c("3", "17"))] <- "Cardiomyocytes"
+seurat$label[which(seurat$integrated_snn_res.0.25 %in% c("1"))] <- "Endothelial"
+seurat$label[which(seurat$integrated_snn_res.0.25 %in% c("5"))] <- "Perivascular"
+seurat$label[which(seurat$integrated_snn_res.0.25 %in% c("8"))] <- "endocardialEndothelial"
+seurat$label[which(seurat$integrated_snn_res.0.25 %in% c("15"))] <- "GlialCells"
+#seurat$label[which(seurat$integrated_snn_res.0.4 %in% c("7"))] <- "InfMonos"
 seurat$label[which(colnames(seurat) %in% NKcells)] <- "NKcells"
 seurat$label[which(colnames(seurat) %in% Tcells)] <- "Tcells"
+seurat$label[which(colnames(seurat) %in% Eosino)] <- "Eosinophils"
+seurat$label[which(colnames(seurat) %in% Neutro)] <- "Neutrophils"
+seurat$label[which(colnames(seurat) %in% pDCs)] <- "pDCs"
+seurat$label[which(colnames(seurat) %in% DCs)] <- "DCs"
+seurat$label[which(colnames(seurat) %in% Macro)] <- "Macrophages"
+seurat$label[which(colnames(seurat) %in% infMono)] <- "InfMonos"
 
 colLab <- pal_igv()(length(unique(seurat$label)))
 names(colLab) <- unique(seurat$label)
