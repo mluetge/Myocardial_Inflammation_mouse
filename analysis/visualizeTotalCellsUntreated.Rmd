@@ -70,15 +70,16 @@ names(colStype) <- unique(seurat$seqType)
 names(colDat) <- unique(seurat$dataset)
 names(colTreat) <- unique(seurat$treatment)
 
-colLab <- c("#f4c37e", "#e73213", "#209ab9", "#df7f13",
-            "#609eca", "#caa160", "#dbb6ca", "#98bfe8",
-            "#7c0606", "#c2a17d", "#db27ab", "#dadada",
-            "#32b4a5", "#4c8376")
+colLab <- c("#5050FF", "#CE3D32", "#749B58", "#F0E685",
+            "#466983", "#BA6388", "#5DB1DD", "#802268",
+            "#6BD76B", "#D595A7", "#924822", "#837B8D",
+            "#C75127", "#D58F5C", "#7A65A5", "#E4AF69")
 
 names(colLab) <- c("InfMonos", "Tcells", "Endothelial", "Macrophages",
-                   "Fibroblasts", "pDCsDCs", "NKcells", "Perivascular",
+                   "Fibroblasts", "DCs", "NKcells", "Perivascular",
                    "Neutrophils", "Bcells", "Cardiomyocytes", "proliferating",
-                   "endocardialEndothelial", "capEndothelial")
+                   "pDCs", "endocardialEndothelial", "Eosinophils",
+                   "GlialCells")
 
 
 ```

@@ -15,7 +15,7 @@
 
 <title>visualize total cells untreated</title>
 
-<script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.13/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
@@ -75,6 +75,7 @@ if (window.hljs) {
 
 
 
+
 <style type = "text/css">
 .main-container {
   max-width: 940px;
@@ -95,6 +96,9 @@ button.code-folding-btn:focus {
 }
 summary {
   display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
 }
 pre code {
   padding: 0;
@@ -320,7 +324,7 @@ div.tocify {
 <div class="navbar navbar-default  navbar-fixed-top" role="navigation">
   <div class="container">
     <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
@@ -359,7 +363,7 @@ div.tocify {
 
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-report" data-toggle="collapse" data-target="#workflowr-report">
-<span class="glyphicon glyphicon-list" aria-hidden="true"></span> workflowr <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
+<span class="glyphicon glyphicon-list" aria-hidden="true"></span> workflowr <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span>
 </button>
 </p>
 <div id="workflowr-report" class="collapse">
@@ -368,7 +372,7 @@ div.tocify {
 <a data-toggle="tab" href="#summary">Summary</a>
 </li>
 <li>
-<a data-toggle="tab" href="#checks"> Checks <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> </a>
+<a data-toggle="tab" href="#checks"> Checks <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> </a>
 </li>
 <li>
 <a data-toggle="tab" href="#versions">Past versions</a>
@@ -377,10 +381,10 @@ div.tocify {
 <div class="tab-content">
 <div id="summary" class="tab-pane fade in active">
 <p>
-<strong>Last updated:</strong> 2022-04-13
+<strong>Last updated:</strong> 2022-04-27
 </p>
 <p>
-<strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 7 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 0
+<strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 6 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 1
 </p>
 <p>
 <strong>Knit directory:</strong> <code>TCRM_Christina/</code> <span class="glyphicon glyphicon-question-sign" aria-hidden="true" title="This is the local directory in which the code in this file was executed."> </span>
@@ -396,12 +400,12 @@ This reproducible <a href="https://rmarkdown.rstudio.com">R Markdown</a> analysi
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguptodate"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>R Markdown file:</strong> up-to-date </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguncommittedchanges"> <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> <strong>R Markdown file:</strong> uncommitted changes </a>
 </p>
 </div>
-<div id="strongRMarkdownfilestronguptodate" class="panel-collapse collapse">
+<div id="strongRMarkdownfilestronguncommittedchanges" class="panel-collapse collapse">
 <div class="panel-body">
-<p>Great! Since the R Markdown file has been committed to the Git repository, you know the exact version of the code that produced these results.</p>
+<p>The R Markdown file has unstaged changes. To know which version of the R Markdown file created these results, you’ll want to first commit it to the Git repo. If you’re still working on the analysis, you can ignore this warning. When you’re finished, you can run <code>wflow_publish</code> to commit the R Markdown file and build the HTML.</p>
 </div>
 </div>
 </div>
@@ -468,16 +472,16 @@ This reproducible <a href="https://rmarkdown.rstudio.com">R Markdown</a> analysi
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcommluetgeTCRMChristinatreebf6c6603c3ffa0297dccd4e87e982a6753a3a4cftargetblankbf6c660a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/mluetge/TCRM_Christina/tree/bf6c6603c3ffa0297dccd4e87e982a6753a3a4cf" target="_blank">bf6c660</a> </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcommluetgeTCRMChristinatree2e3fdf5e61b3d15e34799e6a2a80cc84c85245d3targetblank2e3fdf5a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/mluetge/TCRM_Christina/tree/2e3fdf5e61b3d15e34799e6a2a80cc84c85245d3" target="_blank">2e3fdf5</a> </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcommluetgeTCRMChristinatreebf6c6603c3ffa0297dccd4e87e982a6753a3a4cftargetblankbf6c660a" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcommluetgeTCRMChristinatree2e3fdf5e61b3d15e34799e6a2a80cc84c85245d3targetblank2e3fdf5a" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility.
 </p>
 <p>
-The results in this page were generated with repository version <a href="https://github.com/mluetge/TCRM_Christina/tree/bf6c6603c3ffa0297dccd4e87e982a6753a3a4cf" target="_blank">bf6c660</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
+The results in this page were generated with repository version <a href="https://github.com/mluetge/TCRM_Christina/tree/2e3fdf5e61b3d15e34799e6a2a80cc84c85245d3" target="_blank">2e3fdf5</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
 </p>
 <p>
 Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
@@ -492,9 +496,11 @@ Ignored files:
     Ignored:    data/data_old/
     Ignored:    output/.DS_Store
 
+Untracked files:
+    Untracked:  analysis/visSignaturesTotalCellsUntreated.Rmd
+
 Unstaged changes:
-    Modified:   analysis/characterizeTotalCellsHumanHeart.Rmd
-    Modified:   analysis/mergeTotalCells_MuHeart_plusTreat.Rmd
+    Modified:   analysis/visualizeTotalCellsUntreated.Rmd
 
 </code></pre>
 <p>
@@ -533,6 +539,23 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/mluetge/TCRM_Christina/2e3fdf5e61b3d15e34799e6a2a80cc84c85245d3/docs/visualizeTotalCellsUntreated.html" target="_blank">2e3fdf5</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2022-04-13
+</td>
+<td>
+update label after re-integration
+</td>
+</tr>
 <tr>
 <td>
 Rmd
@@ -617,15 +640,16 @@ names(colStype) &lt;- unique(seurat$seqType)
 names(colDat) &lt;- unique(seurat$dataset)
 names(colTreat) &lt;- unique(seurat$treatment)
 
-colLab &lt;- c(&quot;#f4c37e&quot;, &quot;#e73213&quot;, &quot;#209ab9&quot;, &quot;#df7f13&quot;,
-            &quot;#609eca&quot;, &quot;#caa160&quot;, &quot;#dbb6ca&quot;, &quot;#98bfe8&quot;,
-            &quot;#7c0606&quot;, &quot;#c2a17d&quot;, &quot;#db27ab&quot;, &quot;#dadada&quot;,
-            &quot;#32b4a5&quot;, &quot;#4c8376&quot;)
+colLab &lt;- c(&quot;#5050FF&quot;, &quot;#CE3D32&quot;, &quot;#749B58&quot;, &quot;#F0E685&quot;,
+            &quot;#466983&quot;, &quot;#BA6388&quot;, &quot;#5DB1DD&quot;, &quot;#802268&quot;,
+            &quot;#6BD76B&quot;, &quot;#D595A7&quot;, &quot;#924822&quot;, &quot;#837B8D&quot;,
+            &quot;#C75127&quot;, &quot;#D58F5C&quot;, &quot;#7A65A5&quot;, &quot;#E4AF69&quot;)
 
 names(colLab) &lt;- c(&quot;InfMonos&quot;, &quot;Tcells&quot;, &quot;Endothelial&quot;, &quot;Macrophages&quot;,
-                   &quot;Fibroblasts&quot;, &quot;pDCsDCs&quot;, &quot;NKcells&quot;, &quot;Perivascular&quot;,
+                   &quot;Fibroblasts&quot;, &quot;DCs&quot;, &quot;NKcells&quot;, &quot;Perivascular&quot;,
                    &quot;Neutrophils&quot;, &quot;Bcells&quot;, &quot;Cardiomyocytes&quot;, &quot;proliferating&quot;,
-                   &quot;endocardialEndothelial&quot;, &quot;capEndothelial&quot;)</code></pre>
+                   &quot;pDCs&quot;, &quot;endocardialEndothelial&quot;, &quot;Eosinophils&quot;,
+                   &quot;GlialCells&quot;)</code></pre>
 </div>
 <div id="vis-data-all" class="section level2 tabset">
 <h2 class="tabset">vis data all</h2>
@@ -661,6 +685,17 @@ Date
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/2e3fdf5e61b3d15e34799e6a2a80cc84c85245d3/docs/figure/visualizeTotalCellsUntreated.Rmd/vis cluster all-1.png" target="_blank">2e3fdf5</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2022-04-13
+</td>
+</tr>
 <tr>
 <td>
 <a href="https://github.com/mluetge/TCRM_Christina/blob/bf6c6603c3ffa0297dccd4e87e982a6753a3a4cf/docs/figure/visualizeTotalCellsUntreated.Rmd/vis cluster all-1.png" target="_blank">bf6c660</a>
@@ -702,6 +737,17 @@ Date
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/2e3fdf5e61b3d15e34799e6a2a80cc84c85245d3/docs/figure/visualizeTotalCellsUntreated.Rmd/vis cluster all-2.png" target="_blank">2e3fdf5</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2022-04-13
+</td>
+</tr>
 <tr>
 <td>
 <a href="https://github.com/mluetge/TCRM_Christina/blob/bf6c6603c3ffa0297dccd4e87e982a6753a3a4cf/docs/figure/visualizeTotalCellsUntreated.Rmd/vis cluster all-2.png" target="_blank">bf6c660</a>
@@ -751,6 +797,17 @@ Date
 <tbody>
 <tr>
 <td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/2e3fdf5e61b3d15e34799e6a2a80cc84c85245d3/docs/figure/visualizeTotalCellsUntreated.Rmd/vis label all-1.png" target="_blank">2e3fdf5</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2022-04-13
+</td>
+</tr>
+<tr>
+<td>
 <a href="https://github.com/mluetge/TCRM_Christina/blob/bf6c6603c3ffa0297dccd4e87e982a6753a3a4cf/docs/figure/visualizeTotalCellsUntreated.Rmd/vis label all-1.png" target="_blank">bf6c660</a>
 </td>
 <td>
@@ -790,6 +847,17 @@ Date
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/2e3fdf5e61b3d15e34799e6a2a80cc84c85245d3/docs/figure/visualizeTotalCellsUntreated.Rmd/vis label all-2.png" target="_blank">2e3fdf5</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2022-04-13
+</td>
+</tr>
 <tr>
 <td>
 <a href="https://github.com/mluetge/TCRM_Christina/blob/bf6c6603c3ffa0297dccd4e87e982a6753a3a4cf/docs/figure/visualizeTotalCellsUntreated.Rmd/vis label all-2.png" target="_blank">bf6c660</a>
@@ -839,6 +907,17 @@ Date
 <tbody>
 <tr>
 <td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/2e3fdf5e61b3d15e34799e6a2a80cc84c85245d3/docs/figure/visualizeTotalCellsUntreated.Rmd/vis grp all-1.png" target="_blank">2e3fdf5</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2022-04-13
+</td>
+</tr>
+<tr>
+<td>
 <a href="https://github.com/mluetge/TCRM_Christina/blob/bf6c6603c3ffa0297dccd4e87e982a6753a3a4cf/docs/figure/visualizeTotalCellsUntreated.Rmd/vis grp all-1.png" target="_blank">bf6c660</a>
 </td>
 <td>
@@ -877,6 +956,17 @@ Date
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/2e3fdf5e61b3d15e34799e6a2a80cc84c85245d3/docs/figure/visualizeTotalCellsUntreated.Rmd/vis grp all-2.png" target="_blank">2e3fdf5</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2022-04-13
+</td>
+</tr>
 <tr>
 <td>
 <a href="https://github.com/mluetge/TCRM_Christina/blob/bf6c6603c3ffa0297dccd4e87e982a6753a3a4cf/docs/figure/visualizeTotalCellsUntreated.Rmd/vis grp all-2.png" target="_blank">bf6c660</a>
@@ -966,6 +1056,17 @@ Date
 <tbody>
 <tr>
 <td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/2e3fdf5e61b3d15e34799e6a2a80cc84c85245d3/docs/figure/visualizeTotalCellsUntreated.Rmd/vis sample all-2.png" target="_blank">2e3fdf5</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2022-04-13
+</td>
+</tr>
+<tr>
+<td>
 <a href="https://github.com/mluetge/TCRM_Christina/blob/bf6c6603c3ffa0297dccd4e87e982a6753a3a4cf/docs/figure/visualizeTotalCellsUntreated.Rmd/vis sample all-2.png" target="_blank">bf6c660</a>
 </td>
 <td>
@@ -1013,6 +1114,17 @@ Date
 <tbody>
 <tr>
 <td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/2e3fdf5e61b3d15e34799e6a2a80cc84c85245d3/docs/figure/visualizeTotalCellsUntreated.Rmd/vis age all-1.png" target="_blank">2e3fdf5</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2022-04-13
+</td>
+</tr>
+<tr>
+<td>
 <a href="https://github.com/mluetge/TCRM_Christina/blob/bf6c6603c3ffa0297dccd4e87e982a6753a3a4cf/docs/figure/visualizeTotalCellsUntreated.Rmd/vis age all-1.png" target="_blank">bf6c660</a>
 </td>
 <td>
@@ -1051,6 +1163,17 @@ Date
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/2e3fdf5e61b3d15e34799e6a2a80cc84c85245d3/docs/figure/visualizeTotalCellsUntreated.Rmd/vis age all-2.png" target="_blank">2e3fdf5</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2022-04-13
+</td>
+</tr>
 <tr>
 <td>
 <a href="https://github.com/mluetge/TCRM_Christina/blob/bf6c6603c3ffa0297dccd4e87e982a6753a3a4cf/docs/figure/visualizeTotalCellsUntreated.Rmd/vis age all-2.png" target="_blank">bf6c660</a>
@@ -1100,6 +1223,17 @@ Date
 <tbody>
 <tr>
 <td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/2e3fdf5e61b3d15e34799e6a2a80cc84c85245d3/docs/figure/visualizeTotalCellsUntreated.Rmd/vis seqType all-1.png" target="_blank">2e3fdf5</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2022-04-13
+</td>
+</tr>
+<tr>
+<td>
 <a href="https://github.com/mluetge/TCRM_Christina/blob/bf6c6603c3ffa0297dccd4e87e982a6753a3a4cf/docs/figure/visualizeTotalCellsUntreated.Rmd/vis seqType all-1.png" target="_blank">bf6c660</a>
 </td>
 <td>
@@ -1138,6 +1272,17 @@ Date
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/2e3fdf5e61b3d15e34799e6a2a80cc84c85245d3/docs/figure/visualizeTotalCellsUntreated.Rmd/vis seqType all-2.png" target="_blank">2e3fdf5</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2022-04-13
+</td>
+</tr>
 <tr>
 <td>
 <a href="https://github.com/mluetge/TCRM_Christina/blob/bf6c6603c3ffa0297dccd4e87e982a6753a3a4cf/docs/figure/visualizeTotalCellsUntreated.Rmd/vis seqType all-2.png" target="_blank">bf6c660</a>
@@ -1187,6 +1332,17 @@ Date
 <tbody>
 <tr>
 <td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/2e3fdf5e61b3d15e34799e6a2a80cc84c85245d3/docs/figure/visualizeTotalCellsUntreated.Rmd/vis treat all-1.png" target="_blank">2e3fdf5</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2022-04-13
+</td>
+</tr>
+<tr>
+<td>
 <a href="https://github.com/mluetge/TCRM_Christina/blob/bf6c6603c3ffa0297dccd4e87e982a6753a3a4cf/docs/figure/visualizeTotalCellsUntreated.Rmd/vis treat all-1.png" target="_blank">bf6c660</a>
 </td>
 <td>
@@ -1226,6 +1382,17 @@ Date
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/2e3fdf5e61b3d15e34799e6a2a80cc84c85245d3/docs/figure/visualizeTotalCellsUntreated.Rmd/vis treat all-2.png" target="_blank">2e3fdf5</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2022-04-13
+</td>
+</tr>
 <tr>
 <td>
 <a href="https://github.com/mluetge/TCRM_Christina/blob/bf6c6603c3ffa0297dccd4e87e982a6753a3a4cf/docs/figure/visualizeTotalCellsUntreated.Rmd/vis treat all-2.png" target="_blank">bf6c660</a>
@@ -1340,6 +1507,17 @@ Date
 <tbody>
 <tr>
 <td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/2e3fdf5e61b3d15e34799e6a2a80cc84c85245d3/docs/figure/visualizeTotalCellsUntreated.Rmd/vis cluster untreated-1.png" target="_blank">2e3fdf5</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2022-04-13
+</td>
+</tr>
+<tr>
+<td>
 <a href="https://github.com/mluetge/TCRM_Christina/blob/bf6c6603c3ffa0297dccd4e87e982a6753a3a4cf/docs/figure/visualizeTotalCellsUntreated.Rmd/vis cluster untreated-1.png" target="_blank">bf6c660</a>
 </td>
 <td>
@@ -1379,6 +1557,17 @@ Date
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/2e3fdf5e61b3d15e34799e6a2a80cc84c85245d3/docs/figure/visualizeTotalCellsUntreated.Rmd/vis cluster untreated-2.png" target="_blank">2e3fdf5</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2022-04-13
+</td>
+</tr>
 <tr>
 <td>
 <a href="https://github.com/mluetge/TCRM_Christina/blob/bf6c6603c3ffa0297dccd4e87e982a6753a3a4cf/docs/figure/visualizeTotalCellsUntreated.Rmd/vis cluster untreated-2.png" target="_blank">bf6c660</a>
@@ -1428,6 +1617,17 @@ Date
 <tbody>
 <tr>
 <td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/2e3fdf5e61b3d15e34799e6a2a80cc84c85245d3/docs/figure/visualizeTotalCellsUntreated.Rmd/vis label untreated-1.png" target="_blank">2e3fdf5</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2022-04-13
+</td>
+</tr>
+<tr>
+<td>
 <a href="https://github.com/mluetge/TCRM_Christina/blob/bf6c6603c3ffa0297dccd4e87e982a6753a3a4cf/docs/figure/visualizeTotalCellsUntreated.Rmd/vis label untreated-1.png" target="_blank">bf6c660</a>
 </td>
 <td>
@@ -1467,6 +1667,17 @@ Date
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/2e3fdf5e61b3d15e34799e6a2a80cc84c85245d3/docs/figure/visualizeTotalCellsUntreated.Rmd/vis label untreated-2.png" target="_blank">2e3fdf5</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2022-04-13
+</td>
+</tr>
 <tr>
 <td>
 <a href="https://github.com/mluetge/TCRM_Christina/blob/bf6c6603c3ffa0297dccd4e87e982a6753a3a4cf/docs/figure/visualizeTotalCellsUntreated.Rmd/vis label untreated-2.png" target="_blank">bf6c660</a>
@@ -1516,6 +1727,17 @@ Date
 <tbody>
 <tr>
 <td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/2e3fdf5e61b3d15e34799e6a2a80cc84c85245d3/docs/figure/visualizeTotalCellsUntreated.Rmd/vis grp untreated-1.png" target="_blank">2e3fdf5</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2022-04-13
+</td>
+</tr>
+<tr>
+<td>
 <a href="https://github.com/mluetge/TCRM_Christina/blob/bf6c6603c3ffa0297dccd4e87e982a6753a3a4cf/docs/figure/visualizeTotalCellsUntreated.Rmd/vis grp untreated-1.png" target="_blank">bf6c660</a>
 </td>
 <td>
@@ -1554,6 +1776,17 @@ Date
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/2e3fdf5e61b3d15e34799e6a2a80cc84c85245d3/docs/figure/visualizeTotalCellsUntreated.Rmd/vis grp untreated-2.png" target="_blank">2e3fdf5</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2022-04-13
+</td>
+</tr>
 <tr>
 <td>
 <a href="https://github.com/mluetge/TCRM_Christina/blob/bf6c6603c3ffa0297dccd4e87e982a6753a3a4cf/docs/figure/visualizeTotalCellsUntreated.Rmd/vis grp untreated-2.png" target="_blank">bf6c660</a>
@@ -1643,6 +1876,17 @@ Date
 <tbody>
 <tr>
 <td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/2e3fdf5e61b3d15e34799e6a2a80cc84c85245d3/docs/figure/visualizeTotalCellsUntreated.Rmd/vis sample untreated-2.png" target="_blank">2e3fdf5</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2022-04-13
+</td>
+</tr>
+<tr>
+<td>
 <a href="https://github.com/mluetge/TCRM_Christina/blob/bf6c6603c3ffa0297dccd4e87e982a6753a3a4cf/docs/figure/visualizeTotalCellsUntreated.Rmd/vis sample untreated-2.png" target="_blank">bf6c660</a>
 </td>
 <td>
@@ -1690,6 +1934,17 @@ Date
 <tbody>
 <tr>
 <td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/2e3fdf5e61b3d15e34799e6a2a80cc84c85245d3/docs/figure/visualizeTotalCellsUntreated.Rmd/vis age untreated-1.png" target="_blank">2e3fdf5</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2022-04-13
+</td>
+</tr>
+<tr>
+<td>
 <a href="https://github.com/mluetge/TCRM_Christina/blob/bf6c6603c3ffa0297dccd4e87e982a6753a3a4cf/docs/figure/visualizeTotalCellsUntreated.Rmd/vis age untreated-1.png" target="_blank">bf6c660</a>
 </td>
 <td>
@@ -1728,6 +1983,17 @@ Date
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/2e3fdf5e61b3d15e34799e6a2a80cc84c85245d3/docs/figure/visualizeTotalCellsUntreated.Rmd/vis age untreated-2.png" target="_blank">2e3fdf5</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2022-04-13
+</td>
+</tr>
 <tr>
 <td>
 <a href="https://github.com/mluetge/TCRM_Christina/blob/bf6c6603c3ffa0297dccd4e87e982a6753a3a4cf/docs/figure/visualizeTotalCellsUntreated.Rmd/vis age untreated-2.png" target="_blank">bf6c660</a>
@@ -1777,6 +2043,17 @@ Date
 <tbody>
 <tr>
 <td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/2e3fdf5e61b3d15e34799e6a2a80cc84c85245d3/docs/figure/visualizeTotalCellsUntreated.Rmd/vis seqType untreated-1.png" target="_blank">2e3fdf5</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2022-04-13
+</td>
+</tr>
+<tr>
+<td>
 <a href="https://github.com/mluetge/TCRM_Christina/blob/bf6c6603c3ffa0297dccd4e87e982a6753a3a4cf/docs/figure/visualizeTotalCellsUntreated.Rmd/vis seqType untreated-1.png" target="_blank">bf6c660</a>
 </td>
 <td>
@@ -1815,6 +2092,17 @@ Date
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/2e3fdf5e61b3d15e34799e6a2a80cc84c85245d3/docs/figure/visualizeTotalCellsUntreated.Rmd/vis seqType untreated-2.png" target="_blank">2e3fdf5</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2022-04-13
+</td>
+</tr>
 <tr>
 <td>
 <a href="https://github.com/mluetge/TCRM_Christina/blob/bf6c6603c3ffa0297dccd4e87e982a6753a3a4cf/docs/figure/visualizeTotalCellsUntreated.Rmd/vis seqType untreated-2.png" target="_blank">bf6c660</a>
@@ -1864,6 +2152,17 @@ Date
 <tbody>
 <tr>
 <td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/2e3fdf5e61b3d15e34799e6a2a80cc84c85245d3/docs/figure/visualizeTotalCellsUntreated.Rmd/vis treat untreated-1.png" target="_blank">2e3fdf5</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2022-04-13
+</td>
+</tr>
+<tr>
+<td>
 <a href="https://github.com/mluetge/TCRM_Christina/blob/bf6c6603c3ffa0297dccd4e87e982a6753a3a4cf/docs/figure/visualizeTotalCellsUntreated.Rmd/vis treat untreated-1.png" target="_blank">bf6c660</a>
 </td>
 <td>
@@ -1903,6 +2202,17 @@ Date
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/2e3fdf5e61b3d15e34799e6a2a80cc84c85245d3/docs/figure/visualizeTotalCellsUntreated.Rmd/vis treat untreated-2.png" target="_blank">2e3fdf5</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2022-04-13
+</td>
+</tr>
 <tr>
 <td>
 <a href="https://github.com/mluetge/TCRM_Christina/blob/bf6c6603c3ffa0297dccd4e87e982a6753a3a4cf/docs/figure/visualizeTotalCellsUntreated.Rmd/vis treat untreated-2.png" target="_blank">bf6c660</a>
@@ -1953,6 +2263,17 @@ Date
 <tbody>
 <tr>
 <td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/2e3fdf5e61b3d15e34799e6a2a80cc84c85245d3/docs/figure/visualizeTotalCellsUntreated.Rmd/vis label untreated split cond-1.png" target="_blank">2e3fdf5</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2022-04-13
+</td>
+</tr>
+<tr>
+<td>
 <a href="https://github.com/mluetge/TCRM_Christina/blob/bf6c6603c3ffa0297dccd4e87e982a6753a3a4cf/docs/figure/visualizeTotalCellsUntreated.Rmd/vis label untreated split cond-1.png" target="_blank">bf6c660</a>
 </td>
 <td>
@@ -1992,6 +2313,17 @@ Date
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/2e3fdf5e61b3d15e34799e6a2a80cc84c85245d3/docs/figure/visualizeTotalCellsUntreated.Rmd/vis label untreated split cond-2.png" target="_blank">2e3fdf5</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2022-04-13
+</td>
+</tr>
 <tr>
 <td>
 <a href="https://github.com/mluetge/TCRM_Christina/blob/bf6c6603c3ffa0297dccd4e87e982a6753a3a4cf/docs/figure/visualizeTotalCellsUntreated.Rmd/vis label untreated split cond-2.png" target="_blank">bf6c660</a>
@@ -2085,6 +2417,17 @@ Date
 <tbody>
 <tr>
 <td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/2e3fdf5e61b3d15e34799e6a2a80cc84c85245d3/docs/figure/visualizeTotalCellsUntreated.Rmd/vis Bmp2 untreated-1.png" target="_blank">2e3fdf5</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2022-04-13
+</td>
+</tr>
+<tr>
+<td>
 <a href="https://github.com/mluetge/TCRM_Christina/blob/bf6c6603c3ffa0297dccd4e87e982a6753a3a4cf/docs/figure/visualizeTotalCellsUntreated.Rmd/vis Bmp2 untreated-1.png" target="_blank">bf6c660</a>
 </td>
 <td>
@@ -2130,6 +2473,17 @@ Date
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/2e3fdf5e61b3d15e34799e6a2a80cc84c85245d3/docs/figure/visualizeTotalCellsUntreated.Rmd/vis Bmp4 untreated-1.png" target="_blank">2e3fdf5</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2022-04-13
+</td>
+</tr>
 <tr>
 <td>
 <a href="https://github.com/mluetge/TCRM_Christina/blob/bf6c6603c3ffa0297dccd4e87e982a6753a3a4cf/docs/figure/visualizeTotalCellsUntreated.Rmd/vis Bmp4 untreated-1.png" target="_blank">bf6c660</a>
@@ -2179,6 +2533,17 @@ Date
 <tbody>
 <tr>
 <td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/2e3fdf5e61b3d15e34799e6a2a80cc84c85245d3/docs/figure/visualizeTotalCellsUntreated.Rmd/vis Bmpr1a untreated-1.png" target="_blank">2e3fdf5</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2022-04-13
+</td>
+</tr>
+<tr>
+<td>
 <a href="https://github.com/mluetge/TCRM_Christina/blob/bf6c6603c3ffa0297dccd4e87e982a6753a3a4cf/docs/figure/visualizeTotalCellsUntreated.Rmd/vis Bmpr1a untreated-1.png" target="_blank">bf6c660</a>
 </td>
 <td>
@@ -2224,6 +2589,17 @@ Date
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/2e3fdf5e61b3d15e34799e6a2a80cc84c85245d3/docs/figure/visualizeTotalCellsUntreated.Rmd/vis Bmpr2 untreated-1.png" target="_blank">2e3fdf5</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2022-04-13
+</td>
+</tr>
 <tr>
 <td>
 <a href="https://github.com/mluetge/TCRM_Christina/blob/bf6c6603c3ffa0297dccd4e87e982a6753a3a4cf/docs/figure/visualizeTotalCellsUntreated.Rmd/vis Bmpr2 untreated-1.png" target="_blank">bf6c660</a>
@@ -2276,6 +2652,17 @@ Date
 <tbody>
 <tr>
 <td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/2e3fdf5e61b3d15e34799e6a2a80cc84c85245d3/docs/figure/visualizeTotalCellsUntreated.Rmd/vis Bmp2 untreated split-1.png" target="_blank">2e3fdf5</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2022-04-13
+</td>
+</tr>
+<tr>
+<td>
 <a href="https://github.com/mluetge/TCRM_Christina/blob/bf6c6603c3ffa0297dccd4e87e982a6753a3a4cf/docs/figure/visualizeTotalCellsUntreated.Rmd/vis Bmp2 untreated split-1.png" target="_blank">bf6c660</a>
 </td>
 <td>
@@ -2321,6 +2708,17 @@ Date
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/2e3fdf5e61b3d15e34799e6a2a80cc84c85245d3/docs/figure/visualizeTotalCellsUntreated.Rmd/vis Bmp4 untreated split-1.png" target="_blank">2e3fdf5</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2022-04-13
+</td>
+</tr>
 <tr>
 <td>
 <a href="https://github.com/mluetge/TCRM_Christina/blob/bf6c6603c3ffa0297dccd4e87e982a6753a3a4cf/docs/figure/visualizeTotalCellsUntreated.Rmd/vis Bmp4 untreated split-1.png" target="_blank">bf6c660</a>
@@ -2370,6 +2768,17 @@ Date
 <tbody>
 <tr>
 <td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/2e3fdf5e61b3d15e34799e6a2a80cc84c85245d3/docs/figure/visualizeTotalCellsUntreated.Rmd/vis Bmpr1a untreated split-1.png" target="_blank">2e3fdf5</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2022-04-13
+</td>
+</tr>
+<tr>
+<td>
 <a href="https://github.com/mluetge/TCRM_Christina/blob/bf6c6603c3ffa0297dccd4e87e982a6753a3a4cf/docs/figure/visualizeTotalCellsUntreated.Rmd/vis Bmpr1a untreated split-1.png" target="_blank">bf6c660</a>
 </td>
 <td>
@@ -2417,6 +2826,17 @@ Date
 <tbody>
 <tr>
 <td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/2e3fdf5e61b3d15e34799e6a2a80cc84c85245d3/docs/figure/visualizeTotalCellsUntreated.Rmd/vis Bmpr2 untreated split-1.png" target="_blank">2e3fdf5</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2022-04-13
+</td>
+</tr>
+<tr>
+<td>
 <a href="https://github.com/mluetge/TCRM_Christina/blob/bf6c6603c3ffa0297dccd4e87e982a6753a3a4cf/docs/figure/visualizeTotalCellsUntreated.Rmd/vis Bmpr2 untreated split-1.png" target="_blank">bf6c660</a>
 </td>
 <td>
@@ -2458,11 +2878,11 @@ attached base packages:
 other attached packages:
  [1] ggpubr_0.4.0                pheatmap_1.0.12            
  [3] ggsci_2.9                   runSeurat3_0.1.0           
- [5] here_1.0.1                  magrittr_2.0.2             
- [7] SeuratObject_4.0.4          Seurat_4.0.6               
+ [5] here_1.0.1                  magrittr_2.0.3             
+ [7] SeuratObject_4.0.4          Seurat_4.1.0               
  [9] forcats_0.5.1               stringr_1.4.0              
 [11] dplyr_1.0.8                 purrr_0.3.4                
-[13] readr_2.1.1                 tidyr_1.1.4                
+[13] readr_2.1.2                 tidyr_1.2.0                
 [15] tibble_3.1.6                ggplot2_3.3.5              
 [17] tidyverse_1.3.1             SingleCellExperiment_1.14.1
 [19] SummarizedExperiment_1.22.0 Biobase_2.52.0             
@@ -2472,53 +2892,53 @@ other attached packages:
 [27] matrixStats_0.61.0         
 
 loaded via a namespace (and not attached):
-  [1] readxl_1.3.1           backports_1.4.1        workflowr_1.7.0       
-  [4] plyr_1.8.6             igraph_1.2.11          lazyeval_0.2.2        
-  [7] splines_4.1.0          listenv_0.8.0          scattermore_0.7       
- [10] digest_0.6.29          htmltools_0.5.2        fansi_1.0.2           
- [13] tensor_1.5             cluster_2.1.2          ROCR_1.0-11           
- [16] tzdb_0.2.0             globals_0.14.0         modelr_0.1.8          
- [19] spatstat.sparse_2.1-0  colorspace_2.0-2       rvest_1.0.2           
- [22] ggrepel_0.9.1          haven_2.4.3            xfun_0.29             
- [25] crayon_1.5.0           RCurl_1.98-1.5         jsonlite_1.8.0        
- [28] spatstat.data_2.1-2    survival_3.2-13        zoo_1.8-9             
+  [1] readxl_1.4.0           backports_1.4.1        workflowr_1.7.0       
+  [4] plyr_1.8.7             igraph_1.3.0           lazyeval_0.2.2        
+  [7] splines_4.1.0          listenv_0.8.0          scattermore_0.8       
+ [10] digest_0.6.29          htmltools_0.5.2        fansi_1.0.3           
+ [13] tensor_1.5             cluster_2.1.3          ROCR_1.0-11           
+ [16] tzdb_0.3.0             globals_0.14.0         modelr_0.1.8          
+ [19] spatstat.sparse_2.1-0  colorspace_2.0-3       rvest_1.0.2           
+ [22] ggrepel_0.9.1          haven_2.4.3            xfun_0.30             
+ [25] crayon_1.5.1           RCurl_1.98-1.6         jsonlite_1.8.0        
+ [28] spatstat.data_2.1-4    survival_3.3-1         zoo_1.8-9             
  [31] glue_1.6.2             polyclip_1.10-0        gtable_0.3.0          
  [34] zlibbioc_1.38.0        XVector_0.32.0         leiden_0.3.9          
  [37] DelayedArray_0.18.0    car_3.0-12             future.apply_1.8.1    
- [40] abind_1.4-5            scales_1.1.1           DBI_1.1.2             
- [43] rstatix_0.7.0          miniUI_0.1.1.1         Rcpp_1.0.8.3          
- [46] viridisLite_0.4.0      xtable_1.8-4           reticulate_1.24       
- [49] spatstat.core_2.3-2    htmlwidgets_1.5.4      httr_1.4.2            
- [52] RColorBrewer_1.1-2     ellipsis_0.3.2         ica_1.0-2             
- [55] farver_2.1.0           pkgconfig_2.0.3        uwot_0.1.11           
- [58] deldir_1.0-6           sass_0.4.0             dbplyr_2.1.1          
- [61] utf8_1.2.2             labeling_0.4.2         tidyselect_1.1.2      
- [64] rlang_1.0.2            reshape2_1.4.4         later_1.3.0           
- [67] munsell_0.5.0          cellranger_1.1.0       tools_4.1.0           
- [70] cli_3.2.0              generics_0.1.2         broom_0.7.11          
- [73] ggridges_0.5.3         evaluate_0.14          fastmap_1.1.0         
- [76] goftest_1.2-3          yaml_2.2.1             knitr_1.37            
- [79] fs_1.5.2               fitdistrplus_1.1-6     RANN_2.6.1            
- [82] nlme_3.1-153           pbapply_1.5-0          future_1.23.0         
- [85] whisker_0.4            mime_0.12              xml2_1.3.3            
- [88] compiler_4.1.0         rstudioapi_0.13        plotly_4.10.0         
- [91] png_0.1-7              ggsignif_0.6.3         spatstat.utils_2.3-0  
- [94] reprex_2.0.1           bslib_0.3.1            stringi_1.7.6         
- [97] highr_0.9              lattice_0.20-45        Matrix_1.4-0          
-[100] vctrs_0.3.8            pillar_1.7.0           lifecycle_1.0.1       
-[103] spatstat.geom_2.3-1    lmtest_0.9-39          jquerylib_0.1.4       
-[106] RcppAnnoy_0.0.19       data.table_1.14.2      cowplot_1.1.1         
-[109] bitops_1.0-7           irlba_2.3.5            httpuv_1.6.5          
-[112] patchwork_1.1.1        R6_2.5.1               promises_1.2.0.1      
-[115] KernSmooth_2.23-20     gridExtra_2.3          parallelly_1.30.0     
-[118] codetools_0.2-18       MASS_7.3-54            assertthat_0.2.1      
-[121] rprojroot_2.0.2        withr_2.5.0            sctransform_0.3.2     
-[124] GenomeInfoDbData_1.2.6 mgcv_1.8-38            hms_1.1.1             
-[127] rpart_4.1-15           grid_4.1.0             rmarkdown_2.11        
-[130] carData_3.0-5          Rtsne_0.15             git2r_0.29.0          
-[133] shiny_1.7.1            lubridate_1.8.0       </code></pre>
+ [40] abind_1.4-5            scales_1.2.0           DBI_1.1.2             
+ [43] rstatix_0.7.0          spatstat.random_2.2-0  miniUI_0.1.1.1        
+ [46] Rcpp_1.0.8.3           viridisLite_0.4.0      xtable_1.8-4          
+ [49] reticulate_1.24        spatstat.core_2.4-2    htmlwidgets_1.5.4     
+ [52] httr_1.4.2             RColorBrewer_1.1-3     ellipsis_0.3.2        
+ [55] ica_1.0-2              farver_2.1.0           pkgconfig_2.0.3       
+ [58] uwot_0.1.11            deldir_1.0-6           sass_0.4.1            
+ [61] dbplyr_2.1.1           utf8_1.2.2             labeling_0.4.2        
+ [64] tidyselect_1.1.2       rlang_1.0.2            reshape2_1.4.4        
+ [67] later_1.3.0            munsell_0.5.0          cellranger_1.1.0      
+ [70] tools_4.1.0            cli_3.2.0              generics_0.1.2        
+ [73] broom_0.8.0            ggridges_0.5.3         evaluate_0.15         
+ [76] fastmap_1.1.0          goftest_1.2-3          yaml_2.3.5            
+ [79] knitr_1.38             fs_1.5.2               fitdistrplus_1.1-8    
+ [82] RANN_2.6.1             nlme_3.1-157           pbapply_1.5-0         
+ [85] future_1.24.0          whisker_0.4            mime_0.12             
+ [88] xml2_1.3.3             compiler_4.1.0         rstudioapi_0.13       
+ [91] plotly_4.10.0          png_0.1-7              ggsignif_0.6.3        
+ [94] spatstat.utils_2.3-0   reprex_2.0.1           bslib_0.3.1           
+ [97] stringi_1.7.6          highr_0.9              lattice_0.20-45       
+[100] Matrix_1.4-1           vctrs_0.4.1            pillar_1.7.0          
+[103] lifecycle_1.0.1        spatstat.geom_2.4-0    lmtest_0.9-40         
+[106] jquerylib_0.1.4        RcppAnnoy_0.0.19       data.table_1.14.2     
+[109] cowplot_1.1.1          bitops_1.0-7           irlba_2.3.5           
+[112] httpuv_1.6.5           patchwork_1.1.1        R6_2.5.1              
+[115] promises_1.2.0.1       KernSmooth_2.23-20     gridExtra_2.3         
+[118] parallelly_1.31.0      codetools_0.2-18       MASS_7.3-56           
+[121] assertthat_0.2.1       rprojroot_2.0.3        withr_2.5.0           
+[124] sctransform_0.3.3      GenomeInfoDbData_1.2.6 mgcv_1.8-40           
+[127] hms_1.1.1              rpart_4.1.16           grid_4.1.0            
+[130] rmarkdown_2.13         carData_3.0-5          Rtsne_0.15            
+[133] git2r_0.30.1           shiny_1.7.1            lubridate_1.8.0       </code></pre>
 <pre class="r"><code>date()</code></pre>
-<pre><code>[1] &quot;Wed Apr 13 10:45:47 2022&quot;</code></pre>
+<pre><code>[1] &quot;Wed Apr 27 16:42:25 2022&quot;</code></pre>
 <br>
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">
@@ -2545,11 +2965,11 @@ attached base packages:
 other attached packages:
  [1] ggpubr_0.4.0                pheatmap_1.0.12            
  [3] ggsci_2.9                   runSeurat3_0.1.0           
- [5] here_1.0.1                  magrittr_2.0.2             
- [7] SeuratObject_4.0.4          Seurat_4.0.6               
+ [5] here_1.0.1                  magrittr_2.0.3             
+ [7] SeuratObject_4.0.4          Seurat_4.1.0               
  [9] forcats_0.5.1               stringr_1.4.0              
 [11] dplyr_1.0.8                 purrr_0.3.4                
-[13] readr_2.1.1                 tidyr_1.1.4                
+[13] readr_2.1.2                 tidyr_1.2.0                
 [15] tibble_3.1.6                ggplot2_3.3.5              
 [17] tidyverse_1.3.1             SingleCellExperiment_1.14.1
 [19] SummarizedExperiment_1.22.0 Biobase_2.52.0             
@@ -2559,51 +2979,51 @@ other attached packages:
 [27] matrixStats_0.61.0         
 
 loaded via a namespace (and not attached):
-  [1] readxl_1.3.1           backports_1.4.1        workflowr_1.7.0       
-  [4] plyr_1.8.6             igraph_1.2.11          lazyeval_0.2.2        
-  [7] splines_4.1.0          listenv_0.8.0          scattermore_0.7       
- [10] digest_0.6.29          htmltools_0.5.2        fansi_1.0.2           
- [13] tensor_1.5             cluster_2.1.2          ROCR_1.0-11           
- [16] tzdb_0.2.0             globals_0.14.0         modelr_0.1.8          
- [19] spatstat.sparse_2.1-0  colorspace_2.0-2       rvest_1.0.2           
- [22] ggrepel_0.9.1          haven_2.4.3            xfun_0.29             
- [25] crayon_1.5.0           RCurl_1.98-1.5         jsonlite_1.8.0        
- [28] spatstat.data_2.1-2    survival_3.2-13        zoo_1.8-9             
+  [1] readxl_1.4.0           backports_1.4.1        workflowr_1.7.0       
+  [4] plyr_1.8.7             igraph_1.3.0           lazyeval_0.2.2        
+  [7] splines_4.1.0          listenv_0.8.0          scattermore_0.8       
+ [10] digest_0.6.29          htmltools_0.5.2        fansi_1.0.3           
+ [13] tensor_1.5             cluster_2.1.3          ROCR_1.0-11           
+ [16] tzdb_0.3.0             globals_0.14.0         modelr_0.1.8          
+ [19] spatstat.sparse_2.1-0  colorspace_2.0-3       rvest_1.0.2           
+ [22] ggrepel_0.9.1          haven_2.4.3            xfun_0.30             
+ [25] crayon_1.5.1           RCurl_1.98-1.6         jsonlite_1.8.0        
+ [28] spatstat.data_2.1-4    survival_3.3-1         zoo_1.8-9             
  [31] glue_1.6.2             polyclip_1.10-0        gtable_0.3.0          
  [34] zlibbioc_1.38.0        XVector_0.32.0         leiden_0.3.9          
  [37] DelayedArray_0.18.0    car_3.0-12             future.apply_1.8.1    
- [40] abind_1.4-5            scales_1.1.1           DBI_1.1.2             
- [43] rstatix_0.7.0          miniUI_0.1.1.1         Rcpp_1.0.8.3          
- [46] viridisLite_0.4.0      xtable_1.8-4           reticulate_1.24       
- [49] spatstat.core_2.3-2    htmlwidgets_1.5.4      httr_1.4.2            
- [52] RColorBrewer_1.1-2     ellipsis_0.3.2         ica_1.0-2             
- [55] farver_2.1.0           pkgconfig_2.0.3        uwot_0.1.11           
- [58] deldir_1.0-6           sass_0.4.0             dbplyr_2.1.1          
- [61] utf8_1.2.2             labeling_0.4.2         tidyselect_1.1.2      
- [64] rlang_1.0.2            reshape2_1.4.4         later_1.3.0           
- [67] munsell_0.5.0          cellranger_1.1.0       tools_4.1.0           
- [70] cli_3.2.0              generics_0.1.2         broom_0.7.11          
- [73] ggridges_0.5.3         evaluate_0.14          fastmap_1.1.0         
- [76] goftest_1.2-3          yaml_2.2.1             knitr_1.37            
- [79] fs_1.5.2               fitdistrplus_1.1-6     RANN_2.6.1            
- [82] nlme_3.1-153           pbapply_1.5-0          future_1.23.0         
- [85] whisker_0.4            mime_0.12              xml2_1.3.3            
- [88] compiler_4.1.0         rstudioapi_0.13        plotly_4.10.0         
- [91] png_0.1-7              ggsignif_0.6.3         spatstat.utils_2.3-0  
- [94] reprex_2.0.1           bslib_0.3.1            stringi_1.7.6         
- [97] highr_0.9              lattice_0.20-45        Matrix_1.4-0          
-[100] vctrs_0.3.8            pillar_1.7.0           lifecycle_1.0.1       
-[103] spatstat.geom_2.3-1    lmtest_0.9-39          jquerylib_0.1.4       
-[106] RcppAnnoy_0.0.19       data.table_1.14.2      cowplot_1.1.1         
-[109] bitops_1.0-7           irlba_2.3.5            httpuv_1.6.5          
-[112] patchwork_1.1.1        R6_2.5.1               promises_1.2.0.1      
-[115] KernSmooth_2.23-20     gridExtra_2.3          parallelly_1.30.0     
-[118] codetools_0.2-18       MASS_7.3-54            assertthat_0.2.1      
-[121] rprojroot_2.0.2        withr_2.5.0            sctransform_0.3.2     
-[124] GenomeInfoDbData_1.2.6 mgcv_1.8-38            hms_1.1.1             
-[127] rpart_4.1-15           grid_4.1.0             rmarkdown_2.11        
-[130] carData_3.0-5          Rtsne_0.15             git2r_0.29.0          
-[133] shiny_1.7.1            lubridate_1.8.0       </code></pre>
+ [40] abind_1.4-5            scales_1.2.0           DBI_1.1.2             
+ [43] rstatix_0.7.0          spatstat.random_2.2-0  miniUI_0.1.1.1        
+ [46] Rcpp_1.0.8.3           viridisLite_0.4.0      xtable_1.8-4          
+ [49] reticulate_1.24        spatstat.core_2.4-2    htmlwidgets_1.5.4     
+ [52] httr_1.4.2             RColorBrewer_1.1-3     ellipsis_0.3.2        
+ [55] ica_1.0-2              farver_2.1.0           pkgconfig_2.0.3       
+ [58] uwot_0.1.11            deldir_1.0-6           sass_0.4.1            
+ [61] dbplyr_2.1.1           utf8_1.2.2             labeling_0.4.2        
+ [64] tidyselect_1.1.2       rlang_1.0.2            reshape2_1.4.4        
+ [67] later_1.3.0            munsell_0.5.0          cellranger_1.1.0      
+ [70] tools_4.1.0            cli_3.2.0              generics_0.1.2        
+ [73] broom_0.8.0            ggridges_0.5.3         evaluate_0.15         
+ [76] fastmap_1.1.0          goftest_1.2-3          yaml_2.3.5            
+ [79] knitr_1.38             fs_1.5.2               fitdistrplus_1.1-8    
+ [82] RANN_2.6.1             nlme_3.1-157           pbapply_1.5-0         
+ [85] future_1.24.0          whisker_0.4            mime_0.12             
+ [88] xml2_1.3.3             compiler_4.1.0         rstudioapi_0.13       
+ [91] plotly_4.10.0          png_0.1-7              ggsignif_0.6.3        
+ [94] spatstat.utils_2.3-0   reprex_2.0.1           bslib_0.3.1           
+ [97] stringi_1.7.6          highr_0.9              lattice_0.20-45       
+[100] Matrix_1.4-1           vctrs_0.4.1            pillar_1.7.0          
+[103] lifecycle_1.0.1        spatstat.geom_2.4-0    lmtest_0.9-40         
+[106] jquerylib_0.1.4        RcppAnnoy_0.0.19       data.table_1.14.2     
+[109] cowplot_1.1.1          bitops_1.0-7           irlba_2.3.5           
+[112] httpuv_1.6.5           patchwork_1.1.1        R6_2.5.1              
+[115] promises_1.2.0.1       KernSmooth_2.23-20     gridExtra_2.3         
+[118] parallelly_1.31.0      codetools_0.2-18       MASS_7.3-56           
+[121] assertthat_0.2.1       rprojroot_2.0.3        withr_2.5.0           
+[124] sctransform_0.3.3      GenomeInfoDbData_1.2.6 mgcv_1.8-40           
+[127] hms_1.1.1              rpart_4.1.16           grid_4.1.0            
+[130] rmarkdown_2.13         carData_3.0-5          Rtsne_0.15            
+[133] git2r_0.30.1           shiny_1.7.1            lubridate_1.8.0       </code></pre>
 </div>
 </div>
 
