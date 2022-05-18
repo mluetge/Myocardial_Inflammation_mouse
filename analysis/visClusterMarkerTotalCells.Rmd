@@ -1,0 +1,337 @@
+---
+title: "Merge samples total cells"
+author: "Mechthild Lütge"
+date: "24 July 2020"
+output:
+  html_document:
+    self_contained: no
+    code_folding: show
+    number_sections: no
+    toc: yes
+    toc_depth: 3
+    toc_float: true
+    collapsed: no
+    smooth_scroll: yes
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(warning = FALSE, message = FALSE, dev = c("png", "pdf"))
+set.seed(1000)
+```
+
+## load packages
+```{r libs}
+suppressPackageStartupMessages({
+  library(SingleCellExperiment)
+  library(tidyverse)
+  library(Seurat)
+  library(magrittr)
+  library(dplyr)
+  library(purrr)
+  library(ggplot2)
+  library(here)
+  library(runSeurat3)
+  library(ggsci)
+  library(pheatmap)
+  library(ggpubr)
+})
+
+```
+
+## heatmap function
+
+```{r avg heatmap funct}
+avgHeatmap <- function(seurat, selGenes, colVecIdent, colVecCond=NULL,
+                       ordVec=NULL, gapVecR=NULL, gapVecC=NULL,cc=FALSE,
+                       cr=FALSE, condCol=FALSE){
+  
+  selGenes <- selGenes$geneID
+  
+  ## assay data
+  clusterAssigned <- as.data.frame(Idents(seurat)) %>%
+  dplyr::mutate(cell=rownames(.))
+  colnames(clusterAssigned)[1] <- "ident"
+  seuratDat <- GetAssayData(seurat)
+  
+  ## genes of interest
+  genes <- data.frame(gene=rownames(seurat)) %>% 
+    mutate(geneID=gsub("^.*\\.", "", gene)) %>% filter(geneID %in% selGenes)
+
+  ## matrix with averaged cnts per ident
+  logNormExpres <- as.data.frame(t(as.matrix(
+    seuratDat[which(rownames(seuratDat) %in% genes$gene),])))
+  logNormExpres <- logNormExpres %>% dplyr::mutate(cell=rownames(.)) %>%
+    dplyr::left_join(.,clusterAssigned, by=c("cell")) %>%
+    dplyr::select(-cell) %>% dplyr::group_by(ident) %>%
+    dplyr::summarise_all(mean)
+  logNormExpresMa <- logNormExpres %>% dplyr::select(-ident) %>% as.matrix()
+  rownames(logNormExpresMa) <- logNormExpres$ident
+  logNormExpresMa <- t(logNormExpresMa)
+  rownames(logNormExpresMa) <- gsub("^.*?\\.","",rownames(logNormExpresMa))
+  
+  ## remove genes if they are all the same in all groups
+  ind <- apply(logNormExpresMa, 1, sd) == 0
+  logNormExpresMa <- logNormExpresMa[!ind,]
+  genes <- genes[!ind,]
+
+  ## color columns according to cluster
+  annotation_col <- as.data.frame(gsub("(^.*?_)","",
+                                       colnames(logNormExpresMa)))%>%
+    dplyr::mutate(celltype=gsub("(_.*$)","",colnames(logNormExpresMa)))
+  colnames(annotation_col)[1] <- "col1"
+  annotation_col <- annotation_col %>%
+    dplyr::mutate(cond = gsub(".*_","",col1)) %>%
+    dplyr::select(cond, celltype)
+  rownames(annotation_col) <- colnames(logNormExpresMa) 
+
+  ann_colors = list(
+      cond = colVecCond,
+      celltype=colVecIdent)
+  if(is.null(ann_colors$cond)){
+    annotation_col$cond <- NULL
+  }
+  
+  ## adjust order
+  logNormExpresMa <- logNormExpresMa[selGenes,]
+  if(is.null(ordVec)){
+    ordVec <- levels(seurat)
+  }
+  logNormExpresMa <- logNormExpresMa[,ordVec]
+
+  ## scaled row-wise
+  pheatmap(logNormExpresMa, scale="row" ,treeheight_row = 0, cluster_rows = cr, 
+         cluster_cols = cc,
+         color = colorRampPalette(c("#2166AC", "#F7F7F7", "#B2182B"))(50),
+         annotation_col = annotation_col, cellwidth=15, cellheight=10,
+         annotation_colors = ann_colors, gaps_row = gapVecR, gaps_col = gapVecC)
+}
+
+```
+
+
+
+## set dir
+```{r set dir}
+basedir <- here()
+seurat <- readRDS(file = paste0(basedir,
+                      "/data/MuHeart_totalCellsPlusTreated_integratedLabeled", 
+                      "_seurat.rds"))
+Idents(seurat) <- seurat$label
+```
+
+
+
+## color vectors
+```{r colVec}
+
+colPal <- c(pal_igv()(12), pal_npg()(12))[1:length(unique(
+  seurat$integrated_snn_res.0.25))]
+colGrp <- pal_jama()(length(unique(seurat$grp)))
+colAge <- pal_uchicago()(length(unique(seurat$age)))
+colStype <- pal_aaas()(length(unique(seurat$seqType)))
+colDat <- c(pal_npg()(10),
+            pal_futurama()(10))[1:(length(unique(seurat$dataset)))]
+colTreat <- pal_jama()(length(unique(seurat$treatment)))
+
+  
+names(colPal) <- unique(seurat$integrated_snn_res.0.25)
+names(colGrp) <- unique(seurat$grp)
+names(colAge) <- unique(seurat$age)
+names(colStype) <- unique(seurat$seqType)
+names(colDat) <- unique(seurat$dataset)
+names(colTreat) <- unique(seurat$treatment)
+
+colLab <- c("#5050FF", "#CE3D32", "#749B58", "#F0E685",
+            "#466983", "#BA6388", "#5DB1DD", "#802268",
+            "#6BD76B", "#D595A7", "#924822", "#837B8D",
+            "#C75127", "#D58F5C", "#7A65A5", "#E4AF69")
+
+names(colLab) <- c("InfMonos", "Tcells", "Endothelial", "Macrophages",
+                   "Fibroblasts", "DCs", "NKcells", "Perivascular",
+                   "Neutrophils", "Bcells", "Cardiomyocytes", "proliferating",
+                   "pDCs", "endocardialEndothelial", "Eosinophils",
+                   "GlialCells")
+
+```
+
+
+## vis data {.tabset}
+### label
+```{r vis label}
+
+DimPlot(seurat, reduction = "umap", cols=colLab, group.by = "label")+
+  theme_bw() +
+  theme(axis.text = element_blank(), axis.ticks = element_blank(), 
+        panel.grid.minor = element_blank()) +
+  xlab("UMAP1") +
+  ylab("UMAP2")
+
+
+```
+
+
+### cluster
+```{r vis cluster}
+
+DimPlot(seurat, reduction = "umap", cols=colPal, 
+        group.by = "integrated_snn_res.0.25")+
+  theme_bw() +
+  theme(axis.text = element_blank(), axis.ticks = element_blank(), 
+        panel.grid.minor = element_blank()) +
+  xlab("UMAP1") +
+  ylab("UMAP2")
+
+
+```
+
+
+### group
+```{r vis grp}
+
+DimPlot(seurat, reduction = "umap", group.by = "grp", cols=colGrp)+
+  theme_bw() +
+  theme(axis.text = element_blank(), axis.ticks = element_blank(), 
+        panel.grid.minor = element_blank()) +
+  xlab("UMAP1") +
+  ylab("UMAP2")
+
+```
+
+
+
+### Age
+```{r vis age}
+
+DimPlot(seurat, reduction = "umap", group.by = "age", cols=colAge)+
+  theme_bw() +
+  theme(axis.text = element_blank(), axis.ticks = element_blank(), 
+        panel.grid.minor = element_blank()) +
+  xlab("UMAP1") +
+  ylab("UMAP2")
+
+
+```
+
+
+### Treatment
+```{r vis treat}
+
+DimPlot(seurat, reduction = "umap", group.by = "treatment", cols=colTreat)+
+  theme_bw() +
+  theme(axis.text = element_blank(), axis.ticks = element_blank(), 
+        panel.grid.minor = element_blank()) +
+  xlab("UMAP1") +
+  ylab("UMAP2")
+
+
+```
+
+## read marker
+```{r read marker genes}
+genes <- data.frame(gene=rownames(seurat)) %>%
+  mutate(geneID=gsub(".*\\.", "", gene))
+selMarker <- read_tsv(file=paste0(basedir, "/data/clusterCharacterization", 
+                                  "TotalCellsGenes.txt")) %>% 
+  left_join(., genes, by = "geneID")
+
+```
+
+
+## vis marker genes across all {.tabset}
+### heatmap
+```{r vis marker across all heatmap, fig.height=12, fig.width=14}
+
+seurat$label <- factor(seurat$label, levels = names(colLab))
+seurat$label_plus_grp <- paste0(seurat$label, "_", seurat$grp)
+Idents(seurat) <- seurat$label_plus_grp
+ordDat <- expand.grid(levels(seurat$label), unique(seurat$grp)) %>% 
+  mutate(ord=paste0(Var1, "_", Var2)) %>% arrange(., Var1)
+gapC <- seq(from=2, to=nrow(ordDat), by=2)
+selMarkerSum <- selMarker %>% group_by(label) %>% summarise(cnt = n()) %>% 
+  arrange(match(label, unique(selMarker$label)))
+gapR <- cumsum(selMarkerSum$cnt)
+
+pOut <- avgHeatmap(seurat = seurat, selGenes = selMarker,
+                  colVecIdent = colLab, 
+                  ordVec=ordDat$ord,
+                  gapVecR=gapR, gapVecC=gapC,cc=F,
+                  cr=F, condCol=T, colVecCond = colGrp)
+
+Idents(seurat) <- seurat$label
+ordDat <- levels(seurat$label)
+
+pOut <- avgHeatmap(seurat = seurat, selGenes = selMarker,
+                  colVecIdent = colLab, 
+                  ordVec=ordDat,
+                  gapVecR=gapR, gapVecC=NULL,cc=T,
+                  cr=F, condCol=F, colVecCond = NULL)
+
+Idents(seurat) <- seurat$integrated_snn_res.0.25
+ordDat <- levels(seurat)
+
+pOut <- avgHeatmap(seurat = seurat, selGenes = selMarker,
+                  colVecIdent = colPal, 
+                  ordVec=ordDat,
+                  gapVecR=gapR, gapVecC=NULL,cc=T,
+                  cr=F, condCol=F, colVecCond = NULL)
+
+```
+
+### dotplot by label plus grp
+```{r vis marker dotplot by label plus grp, fig.height=12, fig.width=12}
+
+ordDat <- expand.grid(levels(seurat$label), unique(seurat$grp)) %>% 
+  mutate(ord=paste0(Var1, "_", Var2)) %>% arrange(., Var1)
+seurat$label_plus_grp <- factor(seurat$label_plus_grp, levels = ordDat$ord)
+Idents(seurat) <- seurat$label_plus_grp
+
+DotPlot(seurat, assay="RNA", features = selMarker$gene, scale =F) +
+  scale_color_viridis_c() +
+  coord_flip() +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
+  scale_x_discrete(breaks=selMarker$gene, labels=selMarker$geneID) +
+  scale_y_discrete(breaks=ordDat$ord, labels=ordDat$ord) +
+  xlab("") + ylab("")
+
+```
+
+### dotplot by label
+```{r vis marker dotplot by label, fig.height=13, fig.width=8}
+
+Idents(seurat) <- seurat$label
+
+DotPlot(seurat, assay="RNA", features = selMarker$gene, scale =F) +
+  scale_color_viridis_c() +
+  coord_flip() +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
+  scale_x_discrete(breaks=selMarker$gene, labels=selMarker$geneID) +
+  scale_y_discrete(breaks=levels(seurat$label), labels=levels(seurat$label)) +
+  xlab("") + ylab("")
+
+```
+
+### dotplot by cluster
+```{r vis marker dotplot by cluster, fig.height=12, fig.width=7}
+
+Idents(seurat) <- seurat$integrated_snn_res.0.25
+
+DotPlot(seurat, assay="RNA", features = selMarker$gene, scale =F) +
+  scale_color_viridis_c() +
+  coord_flip() +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
+  scale_x_discrete(breaks=selMarker$gene, labels=selMarker$geneID) +
+  xlab("") + ylab("")
+
+```
+
+
+## session info
+```{r session info}
+sessionInfo()
+date()
+```
+
+
+
+

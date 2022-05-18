@@ -63,14 +63,24 @@ colAge <- pal_uchicago()(length(unique(seurat$age)))
 colStype <- pal_aaas()(length(unique(seurat$seqType)))
 colDat <- c(pal_npg()(10),
             pal_futurama()(10))[1:(length(unique(seurat$dataset)))]
-colLab <- pal_igv()(length(unique(seurat$label)))
-  
+
 names(colPal) <- levels(seurat)
 names(colGrp) <- unique(seurat$grp)
 names(colAge) <- unique(seurat$age)
 names(colStype) <- unique(seurat$seqType)
 names(colDat) <- unique(seurat$dataset)
-names(colLab) <- unique(seurat$label)
+
+colLab <- c("#5050FF", "#CE3D32", "#749B58", "#F0E685",
+            "#466983", "#BA6388", "#5DB1DD", "#802268",
+            "#6BD76B", "#D595A7", "#924822", "#837B8D",
+            "#C75127", "#D58F5C", "#7A65A5", "#E4AF69")
+
+names(colLab) <- c("InfMonos", "Tcells", "Endothelial", "Macrophages",
+                   "Fibroblasts", "DCs", "NKcells", "Perivascular",
+                   "Neutrophils", "Bcells", "Cardiomyocytes", "proliferating",
+                   "pDCs", "endocardialEndothelial", "Eosinophils",
+                   "GlialCells")
+
 
 ```
 
@@ -212,6 +222,83 @@ p
 
 
 ```
+
+## scatterplot overall DE genes
+```{r scatterplot overall DEgenes, fig.height=3.5, fig.width=4}
+
+## scatterplot
+## in red are all genes with an adjusted p_val < 0.01 and avg_logFC >0.25
+
+################################################################################
+### include only genes expressed in at least 10 % of cells in one condition ####
+################################################################################
+
+allID <- seurat
+Idents(allID) <-allID$grp
+avg.allID <- AverageExpression(allID, group.by="grp",
+                               show.progress = FALSE)
+avg.allID <- data.frame(log1p(avg.allID$RNA)) %>% 
+  rownames_to_column(var="gene")
+
+## expression frequency
+GeneFreqSel <- as.data.frame(GetAssayData(allID, assay = "RNA",
+                                          slot = "data")) %>%
+  tibble::rownames_to_column(var="gene") %>% mutate(count=rowSums(.!=0)-1) %>%
+  mutate(countFreq=count/ncol(allID)) %>%
+  dplyr::select(gene,count, countFreq) %>%
+  dplyr::filter(countFreq>=0.1)
+
+signGenes2 <- DEgenes %>% dplyr::filter(p_val_adj<0.01 & (avg_log2FC > 0.25)) 
+
+# genes.to.label <- DEgenes %>% group_by(.,cluster) %>% 
+#   slice_max(avg_log2FC, n=7) %>% mutate(labelNam=gsub("^.*\\.", "", gene))
+
+genes.to.label <- read_tsv(file = paste0(basedir, "/data/GSEA/",
+                                         "selGenesScatterplotTotalDE.txt"))
+
+avg.allID <- avg.allID %>% mutate(labelNam=gsub("^.*\\.", "", gene)) %>%
+  mutate(colourGrp=ifelse(labelNam %in% genes.to.label$labelNam, "lab",
+                          ifelse(gene%in%signGenes2$gene, "sig", "notSig"))) %>%
+  dplyr::filter(gene%in%GeneFreqSel$gene)
+
+
+p_allID <- ggscatter(avg.allID, x="control", y="TCRM",
+                    color = "colourGrp",
+                    palette = c("#660000", "#808080", "#FF3333"),
+                    label="labelNam",
+                    label.select = genes.to.label$labelNam,
+                    repel = F,
+                    label.rectangle=F,
+                    xlab="control",
+                    ylab = "TCRM",
+                    title="",
+                    legend="none",
+                    font.label=6,
+                    alpha=0.9,
+                    size=0.5)
+
+
+p_allID 
+
+p_allID <- ggscatter(avg.allID, x="control", y="TCRM",
+                    color = "colourGrp",
+                    palette = c("#660000", "#808080", "#FF3333"),
+                    label=NULL,
+                    repel = F,
+                    label.rectangle=F,
+                    xlab="control",
+                    ylab = "TCRM",
+                    title="",
+                    legend="none",
+                    font.label=6,
+                    alpha=0.9,
+                    size=0.5)
+
+
+p_allID 
+
+```
+
 
 ## DE genes Cardiomyocytes {.tabset} 
 

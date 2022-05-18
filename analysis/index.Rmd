@@ -25,8 +25,9 @@ characterize total cells murine heart: [link](characterizeTotalCellsHumanHeart.h
 GSEA total cells: [link](GSEAtotalCells.html)  
 visualize total cells untreated: [link](visualizeTotalCellsUntreated.html)  
 DE genes upon antibody treatment: [link](DEgenesTreatment.html)  
-Reembedding Fibroblast: [link](reembeddingFibro.html)  
+Reembedding Fibroblast: [link](reembeddingFibroWoTreatment.html)  
 visualize gene signatures total cells untreated: [link](visSignaturesTotalCellsUntreated.html)  
+visualize marker genes total cells: [link](visClusterMarkerTotalCells.html)  
 
 
 ### medLN data:  

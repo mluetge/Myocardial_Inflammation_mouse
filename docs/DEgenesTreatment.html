@@ -15,7 +15,7 @@
 
 <title>DE genes treated versus untreated total cells</title>
 
-<script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.14/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
@@ -75,6 +75,7 @@ if (window.hljs) {
 
 
 
+
 <style type = "text/css">
 .main-container {
   max-width: 940px;
@@ -95,6 +96,9 @@ button.code-folding-btn:focus {
 }
 summary {
   display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
 }
 pre code {
   padding: 0;
@@ -320,7 +324,7 @@ div.tocify {
 <div class="navbar navbar-default  navbar-fixed-top" role="navigation">
   <div class="container">
     <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
@@ -377,7 +381,7 @@ div.tocify {
 <div class="tab-content">
 <div id="summary" class="tab-pane fade in active">
 <p>
-<strong>Last updated:</strong> 2022-03-22
+<strong>Last updated:</strong> 2022-05-17
 </p>
 <p>
 <strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 6 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 1
@@ -401,7 +405,7 @@ This reproducible <a href="https://rmarkdown.rstudio.com">R Markdown</a> analysi
 </div>
 <div id="strongRMarkdownfilestronguncommittedchanges" class="panel-collapse collapse">
 <div class="panel-body">
-<p>The R Markdown is untracked by Git. To know which version of the R Markdown file created these results, you’ll want to first commit it to the Git repo. If you’re still working on the analysis, you can ignore this warning. When you’re finished, you can run <code>wflow_publish</code> to commit the R Markdown file and build the HTML.</p>
+<p>The R Markdown file has unstaged changes. To know which version of the R Markdown file created these results, you’ll want to first commit it to the Git repo. If you’re still working on the analysis, you can ignore this warning. When you’re finished, you can run <code>wflow_publish</code> to commit the R Markdown file and build the HTML.</p>
 </div>
 </div>
 </div>
@@ -468,16 +472,16 @@ This reproducible <a href="https://rmarkdown.rstudio.com">R Markdown</a> analysi
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcommluetgeTCRMChristinatreec68cbededb27b7edc8ab4dac8b3cfce17471fd0dtargetblankc68cbeda"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/mluetge/TCRM_Christina/tree/c68cbededb27b7edc8ab4dac8b3cfce17471fd0d" target="_blank">c68cbed</a> </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcommluetgeTCRMChristinatreebd5f70243c908c5428112e95e4640ea45721f080targetblankbd5f702a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/mluetge/TCRM_Christina/tree/bd5f70243c908c5428112e95e4640ea45721f080" target="_blank">bd5f702</a> </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcommluetgeTCRMChristinatreec68cbededb27b7edc8ab4dac8b3cfce17471fd0dtargetblankc68cbeda" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcommluetgeTCRMChristinatreebd5f70243c908c5428112e95e4640ea45721f080targetblankbd5f702a" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility.
 </p>
 <p>
-The results in this page were generated with repository version <a href="https://github.com/mluetge/TCRM_Christina/tree/c68cbededb27b7edc8ab4dac8b3cfce17471fd0d" target="_blank">c68cbed</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
+The results in this page were generated with repository version <a href="https://github.com/mluetge/TCRM_Christina/tree/bd5f70243c908c5428112e95e4640ea45721f080" target="_blank">bd5f702</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
 </p>
 <p>
 Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
@@ -490,18 +494,169 @@ Ignored files:
     Ignored:    data/GSEA/
     Ignored:    data/cellphonedb/
     Ignored:    data/data_old/
+    Ignored:    figure/.DS_Store
     Ignored:    output/.DS_Store
 
 Untracked files:
-    Untracked:  analysis/DEgenesTreatment.Rmd
-    Untracked:  analysis/reembeddingFibro.Rmd
-    Untracked:  analysis/visualizeTotalCellsUntreated.Rmd
-    Untracked:  figure/DEgenesTreatment.Rmd/
-    Untracked:  figure/reembeddingFibro.Rmd/
+    Untracked:  analysis/reembeddingFibroWoTreatment.Rmd
+    Untracked:  analysis/visClusterMarkerTotalCells.Rmd
+    Untracked:  figure/reembeddingFibroWoTreatment.Rmd/
 
 Unstaged changes:
-    Modified:   analysis/analyseCPDBout.Rmd
-    Modified:   analysis/createCBDBinput.Rmd
+    Modified:   analysis/DEgenesTreatment.Rmd
+    Modified:   analysis/GSEAfibroblasts.Rmd
+    Modified:   analysis/GSEAtotalCells.Rmd
+    Modified:   analysis/reembeddingFibro.Rmd
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes across all ENSMUSG00000001131.Timp1-1.pdf
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes across all ENSMUSG00000001131.Timp1-1.png
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes across all ENSMUSG00000004371.Il11-1.pdf
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes across all ENSMUSG00000004371.Il11-1.png
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes across all ENSMUSG00000006818.Sod2-1.pdf
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes across all ENSMUSG00000006818.Sod2-1.png
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes across all ENSMUSG00000008999.Bmp7-1.pdf
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes across all ENSMUSG00000008999.Bmp7-1.png
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes across all ENSMUSG00000021109.Hif1a-1.pdf
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes across all ENSMUSG00000021109.Hif1a-1.png
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes across all ENSMUSG00000021796.Bmpr1a-1.pdf
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes across all ENSMUSG00000021796.Bmpr1a-1.png
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes across all ENSMUSG00000021835.Bmp4-1.pdf
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes across all ENSMUSG00000021835.Bmp4-1.png
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes across all ENSMUSG00000022037.Clu-1.pdf
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes across all ENSMUSG00000022037.Clu-1.png
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes across all ENSMUSG00000023078.Cxcl13-1.pdf
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes across all ENSMUSG00000023078.Cxcl13-1.png
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes across all ENSMUSG00000024810.Il33-1.pdf
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes across all ENSMUSG00000024810.Il33-1.png
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes across all ENSMUSG00000025746.Il6-1.pdf
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes across all ENSMUSG00000025746.Il6-1.png
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes across all ENSMUSG00000027358.Bmp2-1.pdf
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes across all ENSMUSG00000027358.Bmp2-1.png
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes across all ENSMUSG00000027962.Vcam1-1.pdf
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes across all ENSMUSG00000027962.Vcam1-1.png
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes across all ENSMUSG00000029082.Bst1-1.pdf
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes across all ENSMUSG00000029082.Bst1-1.png
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes across all ENSMUSG00000029417.Cxcl9-1.pdf
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes across all ENSMUSG00000029417.Cxcl9-1.png
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes across all ENSMUSG00000035385.Ccl2-1.pdf
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes across all ENSMUSG00000035385.Ccl2-1.png
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes across all ENSMUSG00000036594.H2-Aa-1.pdf
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes across all ENSMUSG00000036594.H2-Aa-1.png
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes across all ENSMUSG00000037405.Icam1-1.pdf
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes across all ENSMUSG00000037405.Icam1-1.png
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes across all ENSMUSG00000039542.Ncam1-1.pdf
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes across all ENSMUSG00000039542.Ncam1-1.png
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes across all ENSMUSG00000046223.Plaur-1.pdf
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes across all ENSMUSG00000046223.Plaur-1.png
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes across all ENSMUSG00000050069.Grem2-1.pdf
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes across all ENSMUSG00000050069.Grem2-1.png
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes across all ENSMUSG00000052430.Bmpr1b-1.pdf
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes across all ENSMUSG00000052430.Bmpr1b-1.png
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes across all ENSMUSG00000067336.Bmpr2-1.pdf
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes across all ENSMUSG00000067336.Bmpr2-1.png
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes across all ENSMUSG00000071005.Ccl19-1.pdf
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes across all ENSMUSG00000071005.Ccl19-1.png
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes across all ENSMUSG00000075602.Ly6a-1.pdf
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes across all ENSMUSG00000075602.Ly6a-1.png
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes split by age ENSMUSG00000001131.Timp1-1.pdf
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes split by age ENSMUSG00000001131.Timp1-1.png
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes split by age ENSMUSG00000004371.Il11-1.pdf
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes split by age ENSMUSG00000004371.Il11-1.png
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes split by age ENSMUSG00000006818.Sod2-1.pdf
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes split by age ENSMUSG00000006818.Sod2-1.png
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes split by age ENSMUSG00000008999.Bmp7-1.pdf
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes split by age ENSMUSG00000008999.Bmp7-1.png
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes split by age ENSMUSG00000021109.Hif1a-1.pdf
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes split by age ENSMUSG00000021109.Hif1a-1.png
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes split by age ENSMUSG00000021796.Bmpr1a-1.pdf
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes split by age ENSMUSG00000021796.Bmpr1a-1.png
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes split by age ENSMUSG00000021835.Bmp4-1.pdf
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes split by age ENSMUSG00000021835.Bmp4-1.png
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes split by age ENSMUSG00000022037.Clu-1.pdf
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes split by age ENSMUSG00000022037.Clu-1.png
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes split by age ENSMUSG00000023078.Cxcl13-1.pdf
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes split by age ENSMUSG00000023078.Cxcl13-1.png
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes split by age ENSMUSG00000024810.Il33-1.pdf
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes split by age ENSMUSG00000024810.Il33-1.png
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes split by age ENSMUSG00000025746.Il6-1.pdf
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes split by age ENSMUSG00000025746.Il6-1.png
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes split by age ENSMUSG00000027358.Bmp2-1.pdf
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes split by age ENSMUSG00000027358.Bmp2-1.png
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes split by age ENSMUSG00000027962.Vcam1-1.pdf
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes split by age ENSMUSG00000027962.Vcam1-1.png
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes split by age ENSMUSG00000029082.Bst1-1.pdf
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes split by age ENSMUSG00000029082.Bst1-1.png
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes split by age ENSMUSG00000029417.Cxcl9-1.pdf
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes split by age ENSMUSG00000029417.Cxcl9-1.png
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes split by age ENSMUSG00000035385.Ccl2-1.pdf
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes split by age ENSMUSG00000035385.Ccl2-1.png
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes split by age ENSMUSG00000036594.H2-Aa-1.pdf
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes split by age ENSMUSG00000036594.H2-Aa-1.png
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes split by age ENSMUSG00000037405.Icam1-1.pdf
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes split by age ENSMUSG00000037405.Icam1-1.png
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes split by age ENSMUSG00000039542.Ncam1-1.pdf
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes split by age ENSMUSG00000039542.Ncam1-1.png
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes split by age ENSMUSG00000046223.Plaur-1.pdf
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes split by age ENSMUSG00000046223.Plaur-1.png
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes split by age ENSMUSG00000050069.Grem2-1.pdf
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes split by age ENSMUSG00000050069.Grem2-1.png
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes split by age ENSMUSG00000052430.Bmpr1b-1.pdf
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes split by age ENSMUSG00000052430.Bmpr1b-1.png
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes split by age ENSMUSG00000067336.Bmpr2-1.pdf
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes split by age ENSMUSG00000067336.Bmpr2-1.png
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes split by age ENSMUSG00000071005.Ccl19-1.pdf
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes split by age ENSMUSG00000071005.Ccl19-1.png
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes split by age ENSMUSG00000075602.Ly6a-1.pdf
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes split by age ENSMUSG00000075602.Ly6a-1.png
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes split by grp ENSMUSG00000001131.Timp1-1.pdf
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes split by grp ENSMUSG00000001131.Timp1-1.png
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes split by grp ENSMUSG00000004371.Il11-1.pdf
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes split by grp ENSMUSG00000004371.Il11-1.png
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes split by grp ENSMUSG00000006818.Sod2-1.pdf
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes split by grp ENSMUSG00000006818.Sod2-1.png
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes split by grp ENSMUSG00000008999.Bmp7-1.pdf
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes split by grp ENSMUSG00000008999.Bmp7-1.png
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes split by grp ENSMUSG00000021109.Hif1a-1.pdf
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes split by grp ENSMUSG00000021109.Hif1a-1.png
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes split by grp ENSMUSG00000021796.Bmpr1a-1.pdf
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes split by grp ENSMUSG00000021796.Bmpr1a-1.png
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes split by grp ENSMUSG00000021835.Bmp4-1.pdf
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes split by grp ENSMUSG00000021835.Bmp4-1.png
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes split by grp ENSMUSG00000022037.Clu-1.pdf
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes split by grp ENSMUSG00000022037.Clu-1.png
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes split by grp ENSMUSG00000023078.Cxcl13-1.pdf
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes split by grp ENSMUSG00000023078.Cxcl13-1.png
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes split by grp ENSMUSG00000024810.Il33-1.pdf
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes split by grp ENSMUSG00000024810.Il33-1.png
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes split by grp ENSMUSG00000025746.Il6-1.pdf
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes split by grp ENSMUSG00000025746.Il6-1.png
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes split by grp ENSMUSG00000027358.Bmp2-1.pdf
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes split by grp ENSMUSG00000027358.Bmp2-1.png
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes split by grp ENSMUSG00000027962.Vcam1-1.pdf
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes split by grp ENSMUSG00000027962.Vcam1-1.png
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes split by grp ENSMUSG00000029082.Bst1-1.pdf
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes split by grp ENSMUSG00000029082.Bst1-1.png
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes split by grp ENSMUSG00000029417.Cxcl9-1.pdf
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes split by grp ENSMUSG00000029417.Cxcl9-1.png
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes split by grp ENSMUSG00000035385.Ccl2-1.pdf
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes split by grp ENSMUSG00000035385.Ccl2-1.png
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes split by grp ENSMUSG00000036594.H2-Aa-1.pdf
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes split by grp ENSMUSG00000036594.H2-Aa-1.png
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes split by grp ENSMUSG00000037405.Icam1-1.pdf
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes split by grp ENSMUSG00000037405.Icam1-1.png
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes split by grp ENSMUSG00000039542.Ncam1-1.pdf
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes split by grp ENSMUSG00000039542.Ncam1-1.png
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes split by grp ENSMUSG00000046223.Plaur-1.pdf
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes split by grp ENSMUSG00000046223.Plaur-1.png
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes split by grp ENSMUSG00000050069.Grem2-1.pdf
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes split by grp ENSMUSG00000050069.Grem2-1.png
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes split by grp ENSMUSG00000052430.Bmpr1b-1.pdf
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes split by grp ENSMUSG00000052430.Bmpr1b-1.png
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes split by grp ENSMUSG00000067336.Bmpr2-1.pdf
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes split by grp ENSMUSG00000067336.Bmpr2-1.png
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes split by grp ENSMUSG00000071005.Ccl19-1.pdf
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes split by grp ENSMUSG00000071005.Ccl19-1.png
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes split by grp ENSMUSG00000075602.Ly6a-1.pdf
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes split by grp ENSMUSG00000075602.Ly6a-1.png
 
 </code></pre>
 <p>
@@ -514,9 +669,69 @@ Note that any generated files, e.g. HTML, png, CSS, etc., are not included in t
 <hr>
 </div>
 <div id="versions" class="tab-pane fade">
+
 <p>
-There are no past versions. Publish this analysis with <code>wflow_publish()</code> to start tracking its development.
+These are the previous versions of the repository in which changes were made to the R Markdown (<code>analysis/DEgenesTreatment.Rmd</code>) and HTML (<code>docs/DEgenesTreatment.html</code>) files. If you’ve configured a remote Git repository (see <code>?wflow_git_remote</code>), click on the hyperlinks in the table below to view the files as they were in that past version.
 </p>
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+File
+</th>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+<th>
+Message
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/bf6c6603c3ffa0297dccd4e87e982a6753a3a4cf/analysis/DEgenesTreatment.Rmd" target="_blank">bf6c660</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2022-03-25
+</td>
+<td>
+update analysis total cells treated plus untreated
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/mluetge/TCRM_Christina/bf6c6603c3ffa0297dccd4e87e982a6753a3a4cf/docs/DEgenesTreatment.html" target="_blank">bf6c660</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2022-03-25
+</td>
+<td>
+update analysis total cells treated plus untreated
+</td>
+</tr>
+</tbody>
+</table>
+</div>
 <hr>
 </div>
 </div>
@@ -686,15 +901,16 @@ names(colStype) &lt;- unique(seurat$seqType)
 names(colDat) &lt;- unique(seurat$dataset)
 names(colTreat) &lt;- unique(seurat$treatment)
 
-colLab &lt;- c(&quot;#f4c37e&quot;, &quot;#e73213&quot;, &quot;#209ab9&quot;, &quot;#df7f13&quot;,
-            &quot;#609eca&quot;, &quot;#caa160&quot;, &quot;#dbb6ca&quot;, &quot;#98bfe8&quot;,
-            &quot;#7c0606&quot;, &quot;#c2a17d&quot;, &quot;#db27ab&quot;, &quot;#dadada&quot;,
-            &quot;#32b4a5&quot;, &quot;#4c8376&quot;)
+colLab &lt;- c(&quot;#5050FF&quot;, &quot;#CE3D32&quot;, &quot;#749B58&quot;, &quot;#F0E685&quot;,
+            &quot;#466983&quot;, &quot;#BA6388&quot;, &quot;#5DB1DD&quot;, &quot;#802268&quot;,
+            &quot;#6BD76B&quot;, &quot;#D595A7&quot;, &quot;#924822&quot;, &quot;#837B8D&quot;,
+            &quot;#C75127&quot;, &quot;#D58F5C&quot;, &quot;#7A65A5&quot;, &quot;#E4AF69&quot;)
 
 names(colLab) &lt;- c(&quot;InfMonos&quot;, &quot;Tcells&quot;, &quot;Endothelial&quot;, &quot;Macrophages&quot;,
-                   &quot;Fibroblasts&quot;, &quot;pDCsDCs&quot;, &quot;NKcells&quot;, &quot;Perivascular&quot;,
+                   &quot;Fibroblasts&quot;, &quot;DCs&quot;, &quot;NKcells&quot;, &quot;Perivascular&quot;,
                    &quot;Neutrophils&quot;, &quot;Bcells&quot;, &quot;Cardiomyocytes&quot;, &quot;proliferating&quot;,
-                   &quot;endocardialEndothelial&quot;, &quot;capEndothelial&quot;)</code></pre>
+                   &quot;pDCs&quot;, &quot;endocardialEndothelial&quot;, &quot;Eosinophils&quot;,
+                   &quot;GlialCells&quot;)</code></pre>
 </div>
 <div id="subset-on-12wks-data" class="section level2">
 <h2>subset on 12wks data</h2>
@@ -711,6 +927,43 @@ names(colLab) &lt;- c(&quot;InfMonos&quot;, &quot;Tcells&quot;, &quot;Endothelia
   xlab(&quot;UMAP1&quot;) +
   ylab(&quot;UMAP2&quot;)</code></pre>
 <p><img src="figure/DEgenesTreatment.Rmd/vis%20grp-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-vis-grp-1">
+Past versions of “vis grp-1.png”
+</button>
+</p>
+<div id="fig-no-spaces-vis-grp-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/bf6c6603c3ffa0297dccd4e87e982a6753a3a4cf/docs/figure/DEgenesTreatment.Rmd/vis grp-1.png" target="_blank">bf6c660</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2022-03-25
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 <div id="sample" class="section level3">
 <h3>Sample</h3>
@@ -721,6 +974,43 @@ names(colLab) &lt;- c(&quot;InfMonos&quot;, &quot;Tcells&quot;, &quot;Endothelia
   xlab(&quot;UMAP1&quot;) +
   ylab(&quot;UMAP2&quot;)</code></pre>
 <p><img src="figure/DEgenesTreatment.Rmd/vis%20sample-1.png" width="576" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-vis-sample-1">
+Past versions of “vis sample-1.png”
+</button>
+</p>
+<div id="fig-no-spaces-vis-sample-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/bf6c6603c3ffa0297dccd4e87e982a6753a3a4cf/docs/figure/DEgenesTreatment.Rmd/vis sample-1.png" target="_blank">bf6c660</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2022-03-25
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 <div id="age" class="section level3">
 <h3>Age</h3>
@@ -731,6 +1021,43 @@ names(colLab) &lt;- c(&quot;InfMonos&quot;, &quot;Tcells&quot;, &quot;Endothelia
   xlab(&quot;UMAP1&quot;) +
   ylab(&quot;UMAP2&quot;)</code></pre>
 <p><img src="figure/DEgenesTreatment.Rmd/vis%20age-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-vis-age-1">
+Past versions of “vis age-1.png”
+</button>
+</p>
+<div id="fig-no-spaces-vis-age-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/bf6c6603c3ffa0297dccd4e87e982a6753a3a4cf/docs/figure/DEgenesTreatment.Rmd/vis age-1.png" target="_blank">bf6c660</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2022-03-25
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 <div id="seqtype" class="section level3">
 <h3>SeqType</h3>
@@ -741,9 +1068,83 @@ names(colLab) &lt;- c(&quot;InfMonos&quot;, &quot;Tcells&quot;, &quot;Endothelia
   xlab(&quot;UMAP1&quot;) +
   ylab(&quot;UMAP2&quot;)</code></pre>
 <p><img src="figure/DEgenesTreatment.Rmd/vis%20seqType-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-vis-seqType-1">
+Past versions of “vis seqType-1.png”
+</button>
+</p>
+<div id="fig-no-spaces-vis-seqType-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/bf6c6603c3ffa0297dccd4e87e982a6753a3a4cf/docs/figure/DEgenesTreatment.Rmd/vis seqType-1.png" target="_blank">bf6c660</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2022-03-25
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre class="r"><code>DimPlot(seurat, reduction = &quot;umap&quot;, group.by = &quot;seqType&quot;, cols=colStype)+
   theme_void() </code></pre>
 <p><img src="figure/DEgenesTreatment.Rmd/vis%20seqType-2.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-vis-seqType-2">
+Past versions of “vis seqType-2.png”
+</button>
+</p>
+<div id="fig-no-spaces-vis-seqType-2" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/bf6c6603c3ffa0297dccd4e87e982a6753a3a4cf/docs/figure/DEgenesTreatment.Rmd/vis seqType-2.png" target="_blank">bf6c660</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2022-03-25
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 <div id="treatment" class="section level3">
 <h3>Treatment</h3>
@@ -754,9 +1155,83 @@ names(colLab) &lt;- c(&quot;InfMonos&quot;, &quot;Tcells&quot;, &quot;Endothelia
   xlab(&quot;UMAP1&quot;) +
   ylab(&quot;UMAP2&quot;)</code></pre>
 <p><img src="figure/DEgenesTreatment.Rmd/vis%20treat-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-vis-treat-1">
+Past versions of “vis treat-1.png”
+</button>
+</p>
+<div id="fig-no-spaces-vis-treat-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/bf6c6603c3ffa0297dccd4e87e982a6753a3a4cf/docs/figure/DEgenesTreatment.Rmd/vis treat-1.png" target="_blank">bf6c660</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2022-03-25
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre class="r"><code>DimPlot(seurat, reduction = &quot;umap&quot;, group.by = &quot;treatment&quot;, cols=colTreat)+
   theme_void() </code></pre>
 <p><img src="figure/DEgenesTreatment.Rmd/vis%20treat-2.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-vis-treat-2">
+Past versions of “vis treat-2.png”
+</button>
+</p>
+<div id="fig-no-spaces-vis-treat-2" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/bf6c6603c3ffa0297dccd4e87e982a6753a3a4cf/docs/figure/DEgenesTreatment.Rmd/vis treat-2.png" target="_blank">bf6c660</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2022-03-25
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 <div id="label" class="section level3">
 <h3>label</h3>
@@ -767,9 +1242,83 @@ names(colLab) &lt;- c(&quot;InfMonos&quot;, &quot;Tcells&quot;, &quot;Endothelia
   xlab(&quot;UMAP1&quot;) +
   ylab(&quot;UMAP2&quot;)</code></pre>
 <p><img src="figure/DEgenesTreatment.Rmd/vis%20label-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-vis-label-1">
+Past versions of “vis label-1.png”
+</button>
+</p>
+<div id="fig-no-spaces-vis-label-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/bf6c6603c3ffa0297dccd4e87e982a6753a3a4cf/docs/figure/DEgenesTreatment.Rmd/vis label-1.png" target="_blank">bf6c660</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2022-03-25
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre class="r"><code>DimPlot(seurat, reduction = &quot;umap&quot;, group.by = &quot;label&quot;, cols=colLab)+
   theme_void() </code></pre>
 <p><img src="figure/DEgenesTreatment.Rmd/vis%20label-2.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-vis-label-2">
+Past versions of “vis label-2.png”
+</button>
+</p>
+<div id="fig-no-spaces-vis-label-2" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/bf6c6603c3ffa0297dccd4e87e982a6753a3a4cf/docs/figure/DEgenesTreatment.Rmd/vis label-2.png" target="_blank">bf6c660</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2022-03-25
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 <div id="label-split-by-seqtype" class="section level3">
 <h3>label split by seqType</h3>
@@ -781,6 +1330,43 @@ names(colLab) &lt;- c(&quot;InfMonos&quot;, &quot;Tcells&quot;, &quot;Endothelia
   xlab(&quot;UMAP1&quot;) +
   ylab(&quot;UMAP2&quot;)</code></pre>
 <p><img src="figure/DEgenesTreatment.Rmd/vis%20label%20split%20seq-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-vis-label-split-seq-1">
+Past versions of “vis label split seq-1.png”
+</button>
+</p>
+<div id="fig-no-spaces-vis-label-split-seq-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/bf6c6603c3ffa0297dccd4e87e982a6753a3a4cf/docs/figure/DEgenesTreatment.Rmd/vis label split seq-1.png" target="_blank">bf6c660</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2022-03-25
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 <div id="label-split-by-treat" class="section level3">
 <h3>label split by treat</h3>
@@ -792,64 +1378,144 @@ names(colLab) &lt;- c(&quot;InfMonos&quot;, &quot;Tcells&quot;, &quot;Endothelia
   xlab(&quot;UMAP1&quot;) +
   ylab(&quot;UMAP2&quot;)</code></pre>
 <p><img src="figure/DEgenesTreatment.Rmd/vis%20label%20split%20treat-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-vis-label-split-treat-1">
+Past versions of “vis label split treat-1.png”
+</button>
+</p>
+<div id="fig-no-spaces-vis-label-split-treat-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/bf6c6603c3ffa0297dccd4e87e982a6753a3a4cf/docs/figure/DEgenesTreatment.Rmd/vis label split treat-1.png" target="_blank">bf6c660</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2022-03-25
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre class="r"><code>DimPlot(seurat, reduction = &quot;umap&quot;, group.by = &quot;label&quot;, cols=colLab,
         split.by = &quot;treatment&quot;)+
   theme_void() </code></pre>
 <p><img src="figure/DEgenesTreatment.Rmd/vis%20label%20split%20treat-2.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-vis-label-split-treat-2">
+Past versions of “vis label split treat-2.png”
+</button>
+</p>
+<div id="fig-no-spaces-vis-label-split-treat-2" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/bf6c6603c3ffa0297dccd4e87e982a6753a3a4cf/docs/figure/DEgenesTreatment.Rmd/vis label split treat-2.png" target="_blank">bf6c660</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2022-03-25
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 <div id="cnt-tab" class="section level3">
 <h3>cnt Tab</h3>
 <pre class="r"><code>table(seurat$label, seurat$seqType)</code></pre>
 <pre><code>                        
                            sc   sn
-  Bcells                  300   36
-  capEndothelial           41    6
-  Cardiomyocytes            1 5136
-  endocardialEndothelial    6  538
-  Endothelial            2200 1583
-  Fibroblasts            6199   71
-  InfMonos                363   20
-  Macrophages            1875  735
-  Neutrophils             131    0
-  NKcells                 165  168
-  pDCsDCs                 397   35
-  Perivascular            243 1110
-  proliferating           153   38
-  Tcells                 1167   29</code></pre>
+  Bcells                  300   40
+  Cardiomyocytes            1 5150
+  DCs                     377   32
+  endocardialEndothelial   12  486
+  Endothelial            2196 1555
+  Eosinophils              32    0
+  Fibroblasts            6271 4564
+  GlialCells               48   53
+  InfMonos                245   24
+  Macrophages            2657  812
+  Neutrophils             105    0
+  NKcells                 134   42
+  pDCs                     58    0
+  Perivascular            201 1007
+  proliferating           153   46
+  Tcells                  489   70</code></pre>
 <pre class="r"><code>table(seurat$label, seurat$grp)</code></pre>
 <pre><code>                        
-                         TCRM
-  Bcells                  336
-  capEndothelial           47
-  Cardiomyocytes         5137
-  endocardialEndothelial  544
-  Endothelial            3783
-  Fibroblasts            6270
-  InfMonos                383
-  Macrophages            2610
-  Neutrophils             131
-  NKcells                 333
-  pDCsDCs                 432
-  Perivascular           1353
-  proliferating           191
-  Tcells                 1196</code></pre>
+                          TCRM
+  Bcells                   340
+  Cardiomyocytes          5151
+  DCs                      409
+  endocardialEndothelial   498
+  Endothelial             3751
+  Eosinophils               32
+  Fibroblasts            10835
+  GlialCells               101
+  InfMonos                 269
+  Macrophages             3469
+  Neutrophils              105
+  NKcells                  176
+  pDCs                      58
+  Perivascular            1208
+  proliferating            199
+  Tcells                   559</code></pre>
 <pre class="r"><code>table(seurat$label, seurat$treatment)</code></pre>
 <pre><code>                        
                          14D102 isotype
-  Bcells                     42     294
-  capEndothelial             30      17
-  Cardiomyocytes           2732    2405
-  endocardialEndothelial    198     346
-  Endothelial              1940    1843
-  Fibroblasts              3797    2473
-  InfMonos                  100     283
-  Macrophages              1204    1406
-  Neutrophils                62      69
-  NKcells                   102     231
-  pDCsDCs                   153     279
-  Perivascular              736     617
-  proliferating              46     145
-  Tcells                    319     877</code></pre>
+  Bcells                     43     297
+  Cardiomyocytes           2739    2412
+  DCs                       146     263
+  endocardialEndothelial    177     321
+  Endothelial              1922    1829
+  Eosinophils                18      14
+  Fibroblasts              6082    4753
+  GlialCells                 62      39
+  InfMonos                   66     203
+  Macrophages              1440    2029
+  Neutrophils                44      61
+  NKcells                    69     107
+  pDCs                       13      45
+  Perivascular              655     553
+  proliferating              49     150
+  Tcells                    137     422</code></pre>
 </div>
 </div>
 <div id="overall-de-genes" class="section level2 tabset">
@@ -882,6 +1548,43 @@ pOut &lt;- avgHeatmap(seurat = seurat, selGenes = DEGenesAll,
                   gapVecR=gapR, gapVecC=gapC,cc=F,
                   cr=F, condCol=T, colVecCond = colTreat)</code></pre>
 <p><img src="figure/DEgenesTreatment.Rmd/overall%20DE-1.png" width="960" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-overall-DE-1">
+Past versions of “overall DE-1.png”
+</button>
+</p>
+<div id="fig-no-spaces-overall-DE-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/bf6c6603c3ffa0297dccd4e87e982a6753a3a4cf/docs/figure/DEgenesTreatment.Rmd/overall DE-1.png" target="_blank">bf6c660</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2022-03-25
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <div id="sc-heatmap" class="section level3">
 <h3>sc heatmap</h3>
 <pre class="r"><code>DefaultAssay(object = seurat) &lt;- &quot;integrated&quot;
@@ -898,12 +1601,86 @@ DoHeatmap(seurat, features = selFeatures$gene, group.by = &quot;treatment&quot;,
   scale_fill_continuous(type = &quot;viridis&quot;) +
   scale_y_discrete(breaks=selFeatures$gene, labels=selFeatures$label)</code></pre>
 <p><img src="figure/DEgenesTreatment.Rmd/sc%20heatmap%20overall%20%20DE-1.png" width="1152" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-sc-heatmap-overall--DE-1">
+Past versions of “sc heatmap overall DE-1.png”
+</button>
+</p>
+<div id="fig-no-spaces-sc-heatmap-overall--DE-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/bf6c6603c3ffa0297dccd4e87e982a6753a3a4cf/docs/figure/DEgenesTreatment.Rmd/sc heatmap overall  DE-1.png" target="_blank">bf6c660</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2022-03-25
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre class="r"><code>DoHeatmap(seurat, features = selFeatures$gene, group.by = &quot;treatment&quot;, 
           group.colors = colTreat, slot = &#39;scale.data&#39;, label = F,
           disp.min = -1, disp.max = 1.5, draw.lines = F) +
   scale_fill_gradientn(colors=colorRampPalette(c(&quot;#45628f&quot;, &quot;#F7F7F7&quot;, &quot;#de425b&quot;))(30)) +
   scale_y_discrete(breaks=selFeatures$gene, labels=selFeatures$label)</code></pre>
 <p><img src="figure/DEgenesTreatment.Rmd/sc%20heatmap%20overall%20%20DE-2.png" width="1152" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-sc-heatmap-overall--DE-2">
+Past versions of “sc heatmap overall DE-2.png”
+</button>
+</p>
+<div id="fig-no-spaces-sc-heatmap-overall--DE-2" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/bf6c6603c3ffa0297dccd4e87e982a6753a3a4cf/docs/figure/DEgenesTreatment.Rmd/sc heatmap overall  DE-2.png" target="_blank">bf6c660</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2022-03-25
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre class="r"><code>DefaultAssay(object = seurat) &lt;- &quot;RNA&quot;</code></pre>
 </div>
 <div id="clusterprofiler" class="section level3">
@@ -954,9 +1731,83 @@ p
 })</code></pre>
 <pre><code>[[1]]</code></pre>
 <p><img src="figure/DEgenesTreatment.Rmd/vis%20summary-1.png" width="960" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-vis-summary-1">
+Past versions of “vis summary-1.png”
+</button>
+</p>
+<div id="fig-no-spaces-vis-summary-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/bf6c6603c3ffa0297dccd4e87e982a6753a3a4cf/docs/figure/DEgenesTreatment.Rmd/vis summary-1.png" target="_blank">bf6c660</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2022-03-25
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre><code>
 [[2]]</code></pre>
 <p><img src="figure/DEgenesTreatment.Rmd/vis%20summary-2.png" width="960" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-vis-summary-2">
+Past versions of “vis summary-2.png”
+</button>
+</p>
+<div id="fig-no-spaces-vis-summary-2" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/bf6c6603c3ffa0297dccd4e87e982a6753a3a4cf/docs/figure/DEgenesTreatment.Rmd/vis summary-2.png" target="_blank">bf6c660</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2022-03-25
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 </div>
 <div id="cw-de-genes" class="section level2">
@@ -986,50 +1837,420 @@ clustDE_Dat &lt;- data.frame(do.call(&quot;rbind&quot;, clustDE))</code></pre>
 <div id="fibroblasts" class="section level4">
 <h4>Fibroblasts</h4>
 <p><img src="figure/DEgenesTreatment.Rmd/avgHeat cwDE Fibroblasts-1.png" width="960" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-avgHeat-cwDE-Fibroblasts-1">
+Past versions of “avgHeat cwDE Fibroblasts-1.png”
+</button>
+</p>
+<div id="fig-no-spaces-avgHeat-cwDE-Fibroblasts-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/bf6c6603c3ffa0297dccd4e87e982a6753a3a4cf/figure/DEgenesTreatment.Rmd/avgHeat cwDE Fibroblasts-1.png" target="_blank">bf6c660</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2022-03-25
+</td>
+</tr>
+</tbody>
+</table>
 </div>
-<div id="tcells" class="section level4">
-<h4>Tcells</h4>
-<p><img src="figure/DEgenesTreatment.Rmd/avgHeat cwDE Tcells-1.png" width="960" style="display: block; margin: auto;" /></p>
 </div>
-<div id="endothelial" class="section level4">
-<h4>Endothelial</h4>
-<p><img src="figure/DEgenesTreatment.Rmd/avgHeat cwDE Endothelial-1.png" width="960" style="display: block; margin: auto;" /></p>
-</div>
-<div id="pdcsdcs" class="section level4">
-<h4>pDCsDCs</h4>
-<p><img src="figure/DEgenesTreatment.Rmd/avgHeat cwDE pDCsDCs-1.png" width="960" style="display: block; margin: auto;" /></p>
-</div>
-<div id="nkcells" class="section level4">
-<h4>NKcells</h4>
-<p><img src="figure/DEgenesTreatment.Rmd/avgHeat cwDE NKcells-1.png" width="960" style="display: block; margin: auto;" /></p>
-</div>
-<div id="perivascular" class="section level4">
-<h4>Perivascular</h4>
-<p><img src="figure/DEgenesTreatment.Rmd/avgHeat cwDE Perivascular-1.png" width="960" style="display: block; margin: auto;" /></p>
 </div>
 <div id="macrophages" class="section level4">
 <h4>Macrophages</h4>
 <p><img src="figure/DEgenesTreatment.Rmd/avgHeat cwDE Macrophages-1.png" width="960" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-avgHeat-cwDE-Macrophages-1">
+Past versions of “avgHeat cwDE Macrophages-1.png”
+</button>
+</p>
+<div id="fig-no-spaces-avgHeat-cwDE-Macrophages-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/bf6c6603c3ffa0297dccd4e87e982a6753a3a4cf/figure/DEgenesTreatment.Rmd/avgHeat cwDE Macrophages-1.png" target="_blank">bf6c660</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2022-03-25
+</td>
+</tr>
+</tbody>
+</table>
 </div>
-<div id="infmonos" class="section level4">
-<h4>InfMonos</h4>
-<p><img src="figure/DEgenesTreatment.Rmd/avgHeat cwDE InfMonos-1.png" width="960" style="display: block; margin: auto;" /></p>
+</div>
+</div>
+<div id="endothelial" class="section level4">
+<h4>Endothelial</h4>
+<p><img src="figure/DEgenesTreatment.Rmd/avgHeat cwDE Endothelial-1.png" width="960" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-avgHeat-cwDE-Endothelial-1">
+Past versions of “avgHeat cwDE Endothelial-1.png”
+</button>
+</p>
+<div id="fig-no-spaces-avgHeat-cwDE-Endothelial-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/bf6c6603c3ffa0297dccd4e87e982a6753a3a4cf/figure/DEgenesTreatment.Rmd/avgHeat cwDE Endothelial-1.png" target="_blank">bf6c660</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2022-03-25
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div id="dcs" class="section level4">
+<h4>DCs</h4>
+<p><img src="figure/DEgenesTreatment.Rmd/avgHeat cwDE DCs-1.png" width="960" style="display: block; margin: auto;" /></p>
+</div>
+<div id="nkcells" class="section level4">
+<h4>NKcells</h4>
+<p><img src="figure/DEgenesTreatment.Rmd/avgHeat cwDE NKcells-1.png" width="960" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-avgHeat-cwDE-NKcells-1">
+Past versions of “avgHeat cwDE NKcells-1.png”
+</button>
+</p>
+<div id="fig-no-spaces-avgHeat-cwDE-NKcells-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/bf6c6603c3ffa0297dccd4e87e982a6753a3a4cf/figure/DEgenesTreatment.Rmd/avgHeat cwDE NKcells-1.png" target="_blank">bf6c660</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2022-03-25
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div id="perivascular" class="section level4">
+<h4>Perivascular</h4>
+<p><img src="figure/DEgenesTreatment.Rmd/avgHeat cwDE Perivascular-1.png" width="960" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-avgHeat-cwDE-Perivascular-1">
+Past versions of “avgHeat cwDE Perivascular-1.png”
+</button>
+</p>
+<div id="fig-no-spaces-avgHeat-cwDE-Perivascular-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/bf6c6603c3ffa0297dccd4e87e982a6753a3a4cf/figure/DEgenesTreatment.Rmd/avgHeat cwDE Perivascular-1.png" target="_blank">bf6c660</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2022-03-25
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div id="tcells" class="section level4">
+<h4>Tcells</h4>
+<p><img src="figure/DEgenesTreatment.Rmd/avgHeat cwDE Tcells-1.png" width="960" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-avgHeat-cwDE-Tcells-1">
+Past versions of “avgHeat cwDE Tcells-1.png”
+</button>
+</p>
+<div id="fig-no-spaces-avgHeat-cwDE-Tcells-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/bf6c6603c3ffa0297dccd4e87e982a6753a3a4cf/figure/DEgenesTreatment.Rmd/avgHeat cwDE Tcells-1.png" target="_blank">bf6c660</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2022-03-25
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div id="bcells" class="section level4">
+<h4>Bcells</h4>
+<p><img src="figure/DEgenesTreatment.Rmd/avgHeat cwDE Bcells-1.png" width="960" style="display: block; margin: auto;" /></p>
 </div>
 <div id="proliferating" class="section level4">
 <h4>proliferating</h4>
 <p><img src="figure/DEgenesTreatment.Rmd/avgHeat cwDE proliferating-1.png" width="960" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-avgHeat-cwDE-proliferating-1">
+Past versions of “avgHeat cwDE proliferating-1.png”
+</button>
+</p>
+<div id="fig-no-spaces-avgHeat-cwDE-proliferating-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/bf6c6603c3ffa0297dccd4e87e982a6753a3a4cf/figure/DEgenesTreatment.Rmd/avgHeat cwDE proliferating-1.png" target="_blank">bf6c660</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2022-03-25
+</td>
+</tr>
+</tbody>
+</table>
 </div>
-<div id="neutrophils" class="section level4">
-<h4>Neutrophils</h4>
-<p><img src="figure/DEgenesTreatment.Rmd/avgHeat cwDE Neutrophils-1.png" width="960" style="display: block; margin: auto;" /></p>
+</div>
+</div>
+<div id="infmonos" class="section level4">
+<h4>InfMonos</h4>
+<p><img src="figure/DEgenesTreatment.Rmd/avgHeat cwDE InfMonos-1.png" width="960" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-avgHeat-cwDE-InfMonos-1">
+Past versions of “avgHeat cwDE InfMonos-1.png”
+</button>
+</p>
+<div id="fig-no-spaces-avgHeat-cwDE-InfMonos-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/bf6c6603c3ffa0297dccd4e87e982a6753a3a4cf/figure/DEgenesTreatment.Rmd/avgHeat cwDE InfMonos-1.png" target="_blank">bf6c660</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2022-03-25
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 <div id="endocardialendothelial" class="section level4">
 <h4>endocardialEndothelial</h4>
 <p><img src="figure/DEgenesTreatment.Rmd/avgHeat cwDE endocardialEndothelial-1.png" width="960" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-avgHeat-cwDE-endocardialEndothelial-1">
+Past versions of “avgHeat cwDE endocardialEndothelial-1.png”
+</button>
+</p>
+<div id="fig-no-spaces-avgHeat-cwDE-endocardialEndothelial-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/bf6c6603c3ffa0297dccd4e87e982a6753a3a4cf/figure/DEgenesTreatment.Rmd/avgHeat cwDE endocardialEndothelial-1.png" target="_blank">bf6c660</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2022-03-25
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 <div id="cardiomyocytes" class="section level4">
 <h4>Cardiomyocytes</h4>
 <p><img src="figure/DEgenesTreatment.Rmd/avgHeat cwDE Cardiomyocytes-1.png" width="960" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-avgHeat-cwDE-Cardiomyocytes-1">
+Past versions of “avgHeat cwDE Cardiomyocytes-1.png”
+</button>
+</p>
+<div id="fig-no-spaces-avgHeat-cwDE-Cardiomyocytes-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/bf6c6603c3ffa0297dccd4e87e982a6753a3a4cf/figure/DEgenesTreatment.Rmd/avgHeat cwDE Cardiomyocytes-1.png" target="_blank">bf6c660</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2022-03-25
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 </div>
 </div>
@@ -1059,6 +2280,43 @@ DotPlot(seurat, assay=&quot;RNA&quot;, features = selGenes$ensID, scale =T) +
   scale_x_discrete(breaks=selGenes$ensID, labels=selGenes$gene) +
   xlab(&quot;&quot;) + ylab(&quot;&quot;)</code></pre>
 <p><img src="figure/DEgenesTreatment.Rmd/dotplot-1.png" width="336" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-dotplot-1">
+Past versions of dotplot-1.png
+</button>
+</p>
+<div id="fig-dotplot-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/bf6c6603c3ffa0297dccd4e87e982a6753a3a4cf/docs/figure/DEgenesTreatment.Rmd/dotplot-1.png" target="_blank">bf6c660</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2022-03-25
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre class="r"><code>DotPlot(seurat, assay=&quot;RNA&quot;, features = selGenes$ensID, scale =T, dot.scale =10,
         scale.max = 50) +
   scale_color_viridis_c() +
@@ -1067,6 +2325,43 @@ DotPlot(seurat, assay=&quot;RNA&quot;, features = selGenes$ensID, scale =T) +
   scale_x_discrete(breaks=selGenes$ensID, labels=selGenes$gene) +
   xlab(&quot;&quot;) + ylab(&quot;&quot;)</code></pre>
 <p><img src="figure/DEgenesTreatment.Rmd/dotplot-2.png" width="336" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-dotplot-2">
+Past versions of dotplot-2.png
+</button>
+</p>
+<div id="fig-dotplot-2" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/bf6c6603c3ffa0297dccd4e87e982a6753a3a4cf/docs/figure/DEgenesTreatment.Rmd/dotplot-2.png" target="_blank">bf6c660</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2022-03-25
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre class="r"><code>DotPlot(seurat, assay=&quot;RNA&quot;, features = selGenes$ensID, scale =F) +
   scale_color_viridis_c() +
   coord_flip() +
@@ -1074,6 +2369,59 @@ DotPlot(seurat, assay=&quot;RNA&quot;, features = selGenes$ensID, scale =T) +
   scale_x_discrete(breaks=selGenes$ensID, labels=selGenes$gene) +
   xlab(&quot;&quot;) + ylab(&quot;&quot;)</code></pre>
 <p><img src="figure/DEgenesTreatment.Rmd/dotplot-3.png" width="336" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-dotplot-3">
+Past versions of dotplot-3.png
+</button>
+</p>
+<div id="fig-dotplot-3" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/bf6c6603c3ffa0297dccd4e87e982a6753a3a4cf/docs/figure/DEgenesTreatment.Rmd/dotplot-3.png" target="_blank">bf6c660</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2022-03-25
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div id="dotplot-with-selgenes-label-plus-treatment" class="section level2">
+<h2>Dotplot with selGenes label plus treatment</h2>
+<pre class="r"><code>ordDat &lt;- expand.grid(levels(seurat$label), unique(seurat$treatment)) %&gt;% 
+  mutate(ord=paste0(Var1, &quot;_&quot;, Var2)) %&gt;% arrange(., Var1)
+seurat$label_plus_treat &lt;- factor(seurat$label_plus_treat, levels = ordDat$ord)
+
+Idents(seurat) &lt;- seurat$label_plus_treat
+
+DotPlot(seurat, assay=&quot;RNA&quot;, features = selGenes$ensID, scale =T) +
+  scale_color_viridis_c() +
+  coord_flip() +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
+  scale_x_discrete(breaks=selGenes$ensID, labels=selGenes$gene) +
+  xlab(&quot;&quot;) + ylab(&quot;&quot;)</code></pre>
+<p><img src="figure/DEgenesTreatment.Rmd/dotplot%20label%20plus%20treatment-1.png" width="960" style="display: block; margin: auto;" /></p>
 </div>
 <div id="signature-cut-2" class="section level2">
 <h2>signature cut 2</h2>
@@ -1116,41 +2464,411 @@ lapply(unique(signDat$signature), function(sign){
 <pre><code>[[1]]
 [[1]][[1]]</code></pre>
 <p><img src="figure/DEgenesTreatment.Rmd/signature%20cut%202-1.png" width="768" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-signature-cut-2-1">
+Past versions of “signature cut 2-1.png”
+</button>
+</p>
+<div id="fig-no-spaces-signature-cut-2-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/bf6c6603c3ffa0297dccd4e87e982a6753a3a4cf/docs/figure/DEgenesTreatment.Rmd/signature cut 2-1.png" target="_blank">bf6c660</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2022-03-25
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre><code>
 [[1]][[2]]</code></pre>
 <p><img src="figure/DEgenesTreatment.Rmd/signature%20cut%202-2.png" width="768" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-signature-cut-2-2">
+Past versions of “signature cut 2-2.png”
+</button>
+</p>
+<div id="fig-no-spaces-signature-cut-2-2" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/bf6c6603c3ffa0297dccd4e87e982a6753a3a4cf/docs/figure/DEgenesTreatment.Rmd/signature cut 2-2.png" target="_blank">bf6c660</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2022-03-25
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre><code>
 
 [[2]]
 [[2]][[1]]</code></pre>
 <p><img src="figure/DEgenesTreatment.Rmd/signature%20cut%202-3.png" width="768" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-signature-cut-2-3">
+Past versions of “signature cut 2-3.png”
+</button>
+</p>
+<div id="fig-no-spaces-signature-cut-2-3" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/bf6c6603c3ffa0297dccd4e87e982a6753a3a4cf/docs/figure/DEgenesTreatment.Rmd/signature cut 2-3.png" target="_blank">bf6c660</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2022-03-25
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre><code>
 [[2]][[2]]</code></pre>
 <p><img src="figure/DEgenesTreatment.Rmd/signature%20cut%202-4.png" width="768" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-signature-cut-2-4">
+Past versions of “signature cut 2-4.png”
+</button>
+</p>
+<div id="fig-no-spaces-signature-cut-2-4" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/bf6c6603c3ffa0297dccd4e87e982a6753a3a4cf/docs/figure/DEgenesTreatment.Rmd/signature cut 2-4.png" target="_blank">bf6c660</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2022-03-25
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre><code>
 
 [[3]]
 [[3]][[1]]</code></pre>
 <p><img src="figure/DEgenesTreatment.Rmd/signature%20cut%202-5.png" width="768" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-signature-cut-2-5">
+Past versions of “signature cut 2-5.png”
+</button>
+</p>
+<div id="fig-no-spaces-signature-cut-2-5" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/bf6c6603c3ffa0297dccd4e87e982a6753a3a4cf/docs/figure/DEgenesTreatment.Rmd/signature cut 2-5.png" target="_blank">bf6c660</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2022-03-25
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre><code>
 [[3]][[2]]</code></pre>
 <p><img src="figure/DEgenesTreatment.Rmd/signature%20cut%202-6.png" width="768" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-signature-cut-2-6">
+Past versions of “signature cut 2-6.png”
+</button>
+</p>
+<div id="fig-no-spaces-signature-cut-2-6" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/bf6c6603c3ffa0297dccd4e87e982a6753a3a4cf/docs/figure/DEgenesTreatment.Rmd/signature cut 2-6.png" target="_blank">bf6c660</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2022-03-25
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre><code>
 
 [[4]]
 [[4]][[1]]</code></pre>
 <p><img src="figure/DEgenesTreatment.Rmd/signature%20cut%202-7.png" width="768" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-signature-cut-2-7">
+Past versions of “signature cut 2-7.png”
+</button>
+</p>
+<div id="fig-no-spaces-signature-cut-2-7" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/bf6c6603c3ffa0297dccd4e87e982a6753a3a4cf/docs/figure/DEgenesTreatment.Rmd/signature cut 2-7.png" target="_blank">bf6c660</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2022-03-25
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre><code>
 [[4]][[2]]</code></pre>
 <p><img src="figure/DEgenesTreatment.Rmd/signature%20cut%202-8.png" width="768" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-signature-cut-2-8">
+Past versions of “signature cut 2-8.png”
+</button>
+</p>
+<div id="fig-no-spaces-signature-cut-2-8" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/bf6c6603c3ffa0297dccd4e87e982a6753a3a4cf/docs/figure/DEgenesTreatment.Rmd/signature cut 2-8.png" target="_blank">bf6c660</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2022-03-25
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre><code>
 
 [[5]]
 [[5]][[1]]</code></pre>
 <p><img src="figure/DEgenesTreatment.Rmd/signature%20cut%202-9.png" width="768" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-signature-cut-2-9">
+Past versions of “signature cut 2-9.png”
+</button>
+</p>
+<div id="fig-no-spaces-signature-cut-2-9" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/bf6c6603c3ffa0297dccd4e87e982a6753a3a4cf/docs/figure/DEgenesTreatment.Rmd/signature cut 2-9.png" target="_blank">bf6c660</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2022-03-25
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre><code>
 [[5]][[2]]</code></pre>
 <p><img src="figure/DEgenesTreatment.Rmd/signature%20cut%202-10.png" width="768" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-signature-cut-2-10">
+Past versions of “signature cut 2-10.png”
+</button>
+</p>
+<div id="fig-no-spaces-signature-cut-2-10" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/bf6c6603c3ffa0297dccd4e87e982a6753a3a4cf/docs/figure/DEgenesTreatment.Rmd/signature cut 2-10.png" target="_blank">bf6c660</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2022-03-25
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre class="r"><code>DefaultAssay(object = seurat) &lt;- &quot;RNA&quot;</code></pre>
 </div>
 <div id="signature-cut-3" class="section level2">
@@ -1186,41 +2904,411 @@ lapply(unique(signDat$signature), function(sign){
 <pre><code>[[1]]
 [[1]][[1]]</code></pre>
 <p><img src="figure/DEgenesTreatment.Rmd/signature%20cut%203-1.png" width="768" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-signature-cut-3-1">
+Past versions of “signature cut 3-1.png”
+</button>
+</p>
+<div id="fig-no-spaces-signature-cut-3-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/bf6c6603c3ffa0297dccd4e87e982a6753a3a4cf/docs/figure/DEgenesTreatment.Rmd/signature cut 3-1.png" target="_blank">bf6c660</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2022-03-25
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre><code>
 [[1]][[2]]</code></pre>
 <p><img src="figure/DEgenesTreatment.Rmd/signature%20cut%203-2.png" width="768" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-signature-cut-3-2">
+Past versions of “signature cut 3-2.png”
+</button>
+</p>
+<div id="fig-no-spaces-signature-cut-3-2" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/bf6c6603c3ffa0297dccd4e87e982a6753a3a4cf/docs/figure/DEgenesTreatment.Rmd/signature cut 3-2.png" target="_blank">bf6c660</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2022-03-25
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre><code>
 
 [[2]]
 [[2]][[1]]</code></pre>
 <p><img src="figure/DEgenesTreatment.Rmd/signature%20cut%203-3.png" width="768" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-signature-cut-3-3">
+Past versions of “signature cut 3-3.png”
+</button>
+</p>
+<div id="fig-no-spaces-signature-cut-3-3" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/bf6c6603c3ffa0297dccd4e87e982a6753a3a4cf/docs/figure/DEgenesTreatment.Rmd/signature cut 3-3.png" target="_blank">bf6c660</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2022-03-25
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre><code>
 [[2]][[2]]</code></pre>
 <p><img src="figure/DEgenesTreatment.Rmd/signature%20cut%203-4.png" width="768" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-signature-cut-3-4">
+Past versions of “signature cut 3-4.png”
+</button>
+</p>
+<div id="fig-no-spaces-signature-cut-3-4" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/bf6c6603c3ffa0297dccd4e87e982a6753a3a4cf/docs/figure/DEgenesTreatment.Rmd/signature cut 3-4.png" target="_blank">bf6c660</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2022-03-25
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre><code>
 
 [[3]]
 [[3]][[1]]</code></pre>
 <p><img src="figure/DEgenesTreatment.Rmd/signature%20cut%203-5.png" width="768" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-signature-cut-3-5">
+Past versions of “signature cut 3-5.png”
+</button>
+</p>
+<div id="fig-no-spaces-signature-cut-3-5" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/bf6c6603c3ffa0297dccd4e87e982a6753a3a4cf/docs/figure/DEgenesTreatment.Rmd/signature cut 3-5.png" target="_blank">bf6c660</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2022-03-25
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre><code>
 [[3]][[2]]</code></pre>
 <p><img src="figure/DEgenesTreatment.Rmd/signature%20cut%203-6.png" width="768" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-signature-cut-3-6">
+Past versions of “signature cut 3-6.png”
+</button>
+</p>
+<div id="fig-no-spaces-signature-cut-3-6" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/bf6c6603c3ffa0297dccd4e87e982a6753a3a4cf/docs/figure/DEgenesTreatment.Rmd/signature cut 3-6.png" target="_blank">bf6c660</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2022-03-25
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre><code>
 
 [[4]]
 [[4]][[1]]</code></pre>
 <p><img src="figure/DEgenesTreatment.Rmd/signature%20cut%203-7.png" width="768" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-signature-cut-3-7">
+Past versions of “signature cut 3-7.png”
+</button>
+</p>
+<div id="fig-no-spaces-signature-cut-3-7" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/bf6c6603c3ffa0297dccd4e87e982a6753a3a4cf/docs/figure/DEgenesTreatment.Rmd/signature cut 3-7.png" target="_blank">bf6c660</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2022-03-25
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre><code>
 [[4]][[2]]</code></pre>
 <p><img src="figure/DEgenesTreatment.Rmd/signature%20cut%203-8.png" width="768" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-signature-cut-3-8">
+Past versions of “signature cut 3-8.png”
+</button>
+</p>
+<div id="fig-no-spaces-signature-cut-3-8" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/bf6c6603c3ffa0297dccd4e87e982a6753a3a4cf/docs/figure/DEgenesTreatment.Rmd/signature cut 3-8.png" target="_blank">bf6c660</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2022-03-25
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre><code>
 
 [[5]]
 [[5]][[1]]</code></pre>
 <p><img src="figure/DEgenesTreatment.Rmd/signature%20cut%203-9.png" width="768" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-signature-cut-3-9">
+Past versions of “signature cut 3-9.png”
+</button>
+</p>
+<div id="fig-no-spaces-signature-cut-3-9" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/bf6c6603c3ffa0297dccd4e87e982a6753a3a4cf/docs/figure/DEgenesTreatment.Rmd/signature cut 3-9.png" target="_blank">bf6c660</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2022-03-25
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre><code>
 [[5]][[2]]</code></pre>
 <p><img src="figure/DEgenesTreatment.Rmd/signature%20cut%203-10.png" width="768" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-signature-cut-3-10">
+Past versions of “signature cut 3-10.png”
+</button>
+</p>
+<div id="fig-no-spaces-signature-cut-3-10" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/bf6c6603c3ffa0297dccd4e87e982a6753a3a4cf/docs/figure/DEgenesTreatment.Rmd/signature cut 3-10.png" target="_blank">bf6c660</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2022-03-25
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre class="r"><code>DefaultAssay(object = seurat) &lt;- &quot;RNA&quot;</code></pre>
 </div>
 <div id="signature-cut-1.5" class="section level2">
@@ -1256,41 +3344,411 @@ lapply(unique(signDat$signature), function(sign){
 <pre><code>[[1]]
 [[1]][[1]]</code></pre>
 <p><img src="figure/DEgenesTreatment.Rmd/signature%20cut%201.5-1.png" width="768" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-signature-cut-1.5-1">
+Past versions of “signature cut 1.5-1.png”
+</button>
+</p>
+<div id="fig-no-spaces-signature-cut-1.5-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/bf6c6603c3ffa0297dccd4e87e982a6753a3a4cf/docs/figure/DEgenesTreatment.Rmd/signature cut 1.5-1.png" target="_blank">bf6c660</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2022-03-25
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre><code>
 [[1]][[2]]</code></pre>
 <p><img src="figure/DEgenesTreatment.Rmd/signature%20cut%201.5-2.png" width="768" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-signature-cut-1.5-2">
+Past versions of “signature cut 1.5-2.png”
+</button>
+</p>
+<div id="fig-no-spaces-signature-cut-1.5-2" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/bf6c6603c3ffa0297dccd4e87e982a6753a3a4cf/docs/figure/DEgenesTreatment.Rmd/signature cut 1.5-2.png" target="_blank">bf6c660</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2022-03-25
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre><code>
 
 [[2]]
 [[2]][[1]]</code></pre>
 <p><img src="figure/DEgenesTreatment.Rmd/signature%20cut%201.5-3.png" width="768" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-signature-cut-1.5-3">
+Past versions of “signature cut 1.5-3.png”
+</button>
+</p>
+<div id="fig-no-spaces-signature-cut-1.5-3" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/bf6c6603c3ffa0297dccd4e87e982a6753a3a4cf/docs/figure/DEgenesTreatment.Rmd/signature cut 1.5-3.png" target="_blank">bf6c660</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2022-03-25
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre><code>
 [[2]][[2]]</code></pre>
 <p><img src="figure/DEgenesTreatment.Rmd/signature%20cut%201.5-4.png" width="768" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-signature-cut-1.5-4">
+Past versions of “signature cut 1.5-4.png”
+</button>
+</p>
+<div id="fig-no-spaces-signature-cut-1.5-4" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/bf6c6603c3ffa0297dccd4e87e982a6753a3a4cf/docs/figure/DEgenesTreatment.Rmd/signature cut 1.5-4.png" target="_blank">bf6c660</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2022-03-25
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre><code>
 
 [[3]]
 [[3]][[1]]</code></pre>
 <p><img src="figure/DEgenesTreatment.Rmd/signature%20cut%201.5-5.png" width="768" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-signature-cut-1.5-5">
+Past versions of “signature cut 1.5-5.png”
+</button>
+</p>
+<div id="fig-no-spaces-signature-cut-1.5-5" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/bf6c6603c3ffa0297dccd4e87e982a6753a3a4cf/docs/figure/DEgenesTreatment.Rmd/signature cut 1.5-5.png" target="_blank">bf6c660</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2022-03-25
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre><code>
 [[3]][[2]]</code></pre>
 <p><img src="figure/DEgenesTreatment.Rmd/signature%20cut%201.5-6.png" width="768" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-signature-cut-1.5-6">
+Past versions of “signature cut 1.5-6.png”
+</button>
+</p>
+<div id="fig-no-spaces-signature-cut-1.5-6" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/bf6c6603c3ffa0297dccd4e87e982a6753a3a4cf/docs/figure/DEgenesTreatment.Rmd/signature cut 1.5-6.png" target="_blank">bf6c660</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2022-03-25
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre><code>
 
 [[4]]
 [[4]][[1]]</code></pre>
 <p><img src="figure/DEgenesTreatment.Rmd/signature%20cut%201.5-7.png" width="768" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-signature-cut-1.5-7">
+Past versions of “signature cut 1.5-7.png”
+</button>
+</p>
+<div id="fig-no-spaces-signature-cut-1.5-7" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/bf6c6603c3ffa0297dccd4e87e982a6753a3a4cf/docs/figure/DEgenesTreatment.Rmd/signature cut 1.5-7.png" target="_blank">bf6c660</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2022-03-25
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre><code>
 [[4]][[2]]</code></pre>
 <p><img src="figure/DEgenesTreatment.Rmd/signature%20cut%201.5-8.png" width="768" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-signature-cut-1.5-8">
+Past versions of “signature cut 1.5-8.png”
+</button>
+</p>
+<div id="fig-no-spaces-signature-cut-1.5-8" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/bf6c6603c3ffa0297dccd4e87e982a6753a3a4cf/docs/figure/DEgenesTreatment.Rmd/signature cut 1.5-8.png" target="_blank">bf6c660</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2022-03-25
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre><code>
 
 [[5]]
 [[5]][[1]]</code></pre>
 <p><img src="figure/DEgenesTreatment.Rmd/signature%20cut%201.5-9.png" width="768" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-signature-cut-1.5-9">
+Past versions of “signature cut 1.5-9.png”
+</button>
+</p>
+<div id="fig-no-spaces-signature-cut-1.5-9" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/bf6c6603c3ffa0297dccd4e87e982a6753a3a4cf/docs/figure/DEgenesTreatment.Rmd/signature cut 1.5-9.png" target="_blank">bf6c660</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2022-03-25
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre><code>
 [[5]][[2]]</code></pre>
 <p><img src="figure/DEgenesTreatment.Rmd/signature%20cut%201.5-10.png" width="768" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-signature-cut-1.5-10">
+Past versions of “signature cut 1.5-10.png”
+</button>
+</p>
+<div id="fig-no-spaces-signature-cut-1.5-10" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/bf6c6603c3ffa0297dccd4e87e982a6753a3a4cf/docs/figure/DEgenesTreatment.Rmd/signature cut 1.5-10.png" target="_blank">bf6c660</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2022-03-25
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre class="r"><code>DefaultAssay(object = seurat) &lt;- &quot;RNA&quot;</code></pre>
 </div>
 <div id="signature-cut-1" class="section level2">
@@ -1326,41 +3784,411 @@ lapply(unique(signDat$signature), function(sign){
 <pre><code>[[1]]
 [[1]][[1]]</code></pre>
 <p><img src="figure/DEgenesTreatment.Rmd/signature%20cut%201-1.png" width="768" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-signature-cut-1-1">
+Past versions of “signature cut 1-1.png”
+</button>
+</p>
+<div id="fig-no-spaces-signature-cut-1-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/bf6c6603c3ffa0297dccd4e87e982a6753a3a4cf/docs/figure/DEgenesTreatment.Rmd/signature cut 1-1.png" target="_blank">bf6c660</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2022-03-25
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre><code>
 [[1]][[2]]</code></pre>
 <p><img src="figure/DEgenesTreatment.Rmd/signature%20cut%201-2.png" width="768" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-signature-cut-1-2">
+Past versions of “signature cut 1-2.png”
+</button>
+</p>
+<div id="fig-no-spaces-signature-cut-1-2" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/bf6c6603c3ffa0297dccd4e87e982a6753a3a4cf/docs/figure/DEgenesTreatment.Rmd/signature cut 1-2.png" target="_blank">bf6c660</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2022-03-25
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre><code>
 
 [[2]]
 [[2]][[1]]</code></pre>
 <p><img src="figure/DEgenesTreatment.Rmd/signature%20cut%201-3.png" width="768" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-signature-cut-1-3">
+Past versions of “signature cut 1-3.png”
+</button>
+</p>
+<div id="fig-no-spaces-signature-cut-1-3" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/bf6c6603c3ffa0297dccd4e87e982a6753a3a4cf/docs/figure/DEgenesTreatment.Rmd/signature cut 1-3.png" target="_blank">bf6c660</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2022-03-25
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre><code>
 [[2]][[2]]</code></pre>
 <p><img src="figure/DEgenesTreatment.Rmd/signature%20cut%201-4.png" width="768" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-signature-cut-1-4">
+Past versions of “signature cut 1-4.png”
+</button>
+</p>
+<div id="fig-no-spaces-signature-cut-1-4" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/bf6c6603c3ffa0297dccd4e87e982a6753a3a4cf/docs/figure/DEgenesTreatment.Rmd/signature cut 1-4.png" target="_blank">bf6c660</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2022-03-25
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre><code>
 
 [[3]]
 [[3]][[1]]</code></pre>
 <p><img src="figure/DEgenesTreatment.Rmd/signature%20cut%201-5.png" width="768" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-signature-cut-1-5">
+Past versions of “signature cut 1-5.png”
+</button>
+</p>
+<div id="fig-no-spaces-signature-cut-1-5" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/bf6c6603c3ffa0297dccd4e87e982a6753a3a4cf/docs/figure/DEgenesTreatment.Rmd/signature cut 1-5.png" target="_blank">bf6c660</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2022-03-25
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre><code>
 [[3]][[2]]</code></pre>
 <p><img src="figure/DEgenesTreatment.Rmd/signature%20cut%201-6.png" width="768" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-signature-cut-1-6">
+Past versions of “signature cut 1-6.png”
+</button>
+</p>
+<div id="fig-no-spaces-signature-cut-1-6" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/bf6c6603c3ffa0297dccd4e87e982a6753a3a4cf/docs/figure/DEgenesTreatment.Rmd/signature cut 1-6.png" target="_blank">bf6c660</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2022-03-25
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre><code>
 
 [[4]]
 [[4]][[1]]</code></pre>
 <p><img src="figure/DEgenesTreatment.Rmd/signature%20cut%201-7.png" width="768" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-signature-cut-1-7">
+Past versions of “signature cut 1-7.png”
+</button>
+</p>
+<div id="fig-no-spaces-signature-cut-1-7" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/bf6c6603c3ffa0297dccd4e87e982a6753a3a4cf/docs/figure/DEgenesTreatment.Rmd/signature cut 1-7.png" target="_blank">bf6c660</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2022-03-25
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre><code>
 [[4]][[2]]</code></pre>
 <p><img src="figure/DEgenesTreatment.Rmd/signature%20cut%201-8.png" width="768" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-signature-cut-1-8">
+Past versions of “signature cut 1-8.png”
+</button>
+</p>
+<div id="fig-no-spaces-signature-cut-1-8" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/bf6c6603c3ffa0297dccd4e87e982a6753a3a4cf/docs/figure/DEgenesTreatment.Rmd/signature cut 1-8.png" target="_blank">bf6c660</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2022-03-25
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre><code>
 
 [[5]]
 [[5]][[1]]</code></pre>
 <p><img src="figure/DEgenesTreatment.Rmd/signature%20cut%201-9.png" width="768" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-signature-cut-1-9">
+Past versions of “signature cut 1-9.png”
+</button>
+</p>
+<div id="fig-no-spaces-signature-cut-1-9" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/bf6c6603c3ffa0297dccd4e87e982a6753a3a4cf/docs/figure/DEgenesTreatment.Rmd/signature cut 1-9.png" target="_blank">bf6c660</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2022-03-25
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre><code>
 [[5]][[2]]</code></pre>
 <p><img src="figure/DEgenesTreatment.Rmd/signature%20cut%201-10.png" width="768" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-signature-cut-1-10">
+Past versions of “signature cut 1-10.png”
+</button>
+</p>
+<div id="fig-no-spaces-signature-cut-1-10" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/bf6c6603c3ffa0297dccd4e87e982a6753a3a4cf/docs/figure/DEgenesTreatment.Rmd/signature cut 1-10.png" target="_blank">bf6c660</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2022-03-25
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre class="r"><code>DefaultAssay(object = seurat) &lt;- &quot;RNA&quot;</code></pre>
 </div>
 <div id="vis-fibro-macro-genes" class="section level2">
@@ -1384,6 +4212,43 @@ pOut &lt;- avgHeatmap(seurat = seuratSub, selGenes = selGenesFibro,
                   gapVecR=gapR, gapVecC=gapC,cc=F,
                   cr=F, condCol=T, colVecCond = colTreat)</code></pre>
 <p><img src="figure/DEgenesTreatment.Rmd/plot%20sel%20fibro%20macro%20%20genes-1.png" width="768" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-plot-sel-fibro-macro--genes-1">
+Past versions of “plot sel fibro macro genes-1.png”
+</button>
+</p>
+<div id="fig-no-spaces-plot-sel-fibro-macro--genes-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/bf6c6603c3ffa0297dccd4e87e982a6753a3a4cf/docs/figure/DEgenesTreatment.Rmd/plot sel fibro macro  genes-1.png" target="_blank">bf6c660</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2022-03-25
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre class="r"><code>selGenesM &lt;- selGenes %&gt;% filter(celltype == &quot;Macrophages&quot;)
 pOut &lt;- avgHeatmap(seurat = seuratSub, selGenes = selGenesM,
                   colVecIdent = colLab, 
@@ -1391,6 +4256,43 @@ pOut &lt;- avgHeatmap(seurat = seuratSub, selGenes = selGenesM,
                   gapVecR=gapR, gapVecC=gapC,cc=F,
                   cr=F, condCol=T, colVecCond = colTreat)</code></pre>
 <p><img src="figure/DEgenesTreatment.Rmd/plot%20sel%20fibro%20macro%20%20genes-2.png" width="768" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-plot-sel-fibro-macro--genes-2">
+Past versions of “plot sel fibro macro genes-2.png”
+</button>
+</p>
+<div id="fig-no-spaces-plot-sel-fibro-macro--genes-2" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/bf6c6603c3ffa0297dccd4e87e982a6753a3a4cf/docs/figure/DEgenesTreatment.Rmd/plot sel fibro macro  genes-2.png" target="_blank">bf6c660</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2022-03-25
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 <div id="save-gene-lists" class="section level2">
 <h2>save gene lists</h2>
@@ -1413,7 +4315,7 @@ saveRDS(seurat, file=paste0(basedir, &quot;/data/MuHeart_TreatedOnly_&quot;,
 <pre class="r"><code>sessionInfo()</code></pre>
 <pre><code>R version 4.1.0 (2021-05-18)
 Platform: x86_64-apple-darwin17.0 (64-bit)
-Running under: macOS Catalina 10.15.7
+Running under: macOS Big Sur 10.16
 
 Matrix products: default
 BLAS:   /Library/Frameworks/R.framework/Versions/4.1/Resources/lib/libRblas.dylib
@@ -1433,77 +4335,79 @@ other attached packages:
  [7] clusterProfiler_4.0.5       ggpubr_0.4.0               
  [9] pheatmap_1.0.12             ggsci_2.9                  
 [11] runSeurat3_0.1.0            here_1.0.1                 
-[13] magrittr_2.0.1              SeuratObject_4.0.4         
-[15] Seurat_4.0.6                forcats_0.5.1              
-[17] stringr_1.4.0               dplyr_1.0.7                
-[19] purrr_0.3.4                 readr_2.1.1                
-[21] tidyr_1.1.4                 tibble_3.1.6               
-[23] ggplot2_3.3.5               tidyverse_1.3.1            
-[25] SingleCellExperiment_1.14.1 SummarizedExperiment_1.22.0
-[27] Biobase_2.52.0              GenomicRanges_1.44.0       
-[29] GenomeInfoDb_1.28.4         IRanges_2.26.0             
-[31] S4Vectors_0.30.2            BiocGenerics_0.38.0        
-[33] MatrixGenerics_1.4.3        matrixStats_0.61.0         
+[13] magrittr_2.0.3              sp_1.4-7                   
+[15] SeuratObject_4.1.0          Seurat_4.1.1               
+[17] forcats_0.5.1               stringr_1.4.0              
+[19] dplyr_1.0.9                 purrr_0.3.4                
+[21] readr_2.1.2                 tidyr_1.2.0                
+[23] tibble_3.1.7                ggplot2_3.3.6              
+[25] tidyverse_1.3.1             SingleCellExperiment_1.14.1
+[27] SummarizedExperiment_1.22.0 Biobase_2.52.0             
+[29] GenomicRanges_1.44.0        GenomeInfoDb_1.28.4        
+[31] IRanges_2.26.0              S4Vectors_0.30.2           
+[33] BiocGenerics_0.38.0         MatrixGenerics_1.4.3       
+[35] matrixStats_0.62.0         
 
 loaded via a namespace (and not attached):
-  [1] utf8_1.2.2             reticulate_1.22        tidyselect_1.1.1      
-  [4] RSQLite_2.2.9          htmlwidgets_1.5.4      BiocParallel_1.26.2   
-  [7] grid_4.1.0             Rtsne_0.15             scatterpie_0.1.7      
- [10] munsell_0.5.0          codetools_0.2-18       ica_1.0-2             
- [13] future_1.23.0          miniUI_0.1.1.1         withr_2.4.3           
- [16] GOSemSim_2.18.1        colorspace_2.0-2       highr_0.9             
- [19] knitr_1.37             rstudioapi_0.13        ROCR_1.0-11           
- [22] ggsignif_0.6.3         tensor_1.5             listenv_0.8.0         
- [25] labeling_0.4.2         git2r_0.29.0           GenomeInfoDbData_1.2.6
- [28] polyclip_1.10-0        farver_2.1.0           bit64_4.0.5           
- [31] downloader_0.4         rprojroot_2.0.2        treeio_1.16.2         
- [34] parallelly_1.30.0      vctrs_0.3.8            generics_0.1.1        
- [37] xfun_0.29              R6_2.5.1               graphlayouts_0.8.0    
- [40] gridGraphics_0.5-1     fgsea_1.18.0           cachem_1.0.6          
- [43] bitops_1.0-7           spatstat.utils_2.3-0   DelayedArray_0.18.0   
- [46] assertthat_0.2.1       vroom_1.5.7            promises_1.2.0.1      
- [49] scales_1.1.1           ggraph_2.0.5           gtable_0.3.0          
- [52] globals_0.14.0         goftest_1.2-3          tidygraph_1.2.0       
- [55] workflowr_1.7.0        rlang_0.4.12           splines_4.1.0         
- [58] rstatix_0.7.0          lazyeval_0.2.2         spatstat.geom_2.3-1   
- [61] broom_0.7.11           yaml_2.2.1             reshape2_1.4.4        
- [64] abind_1.4-5            modelr_0.1.8           backports_1.4.1       
- [67] httpuv_1.6.5           qvalue_2.24.0          tools_4.1.0           
- [70] ggplotify_0.1.0        ellipsis_0.3.2         spatstat.core_2.3-2   
- [73] jquerylib_0.1.4        RColorBrewer_1.1-2     ggridges_0.5.3        
- [76] Rcpp_1.0.7             plyr_1.8.6             zlibbioc_1.38.0       
- [79] RCurl_1.98-1.5         rpart_4.1-15           deldir_1.0-6          
- [82] pbapply_1.5-0          cowplot_1.1.1          zoo_1.8-9             
- [85] haven_2.4.3            ggrepel_0.9.1          cluster_2.1.2         
- [88] fs_1.5.2               data.table_1.14.2      scattermore_0.7       
- [91] DO.db_2.9              lmtest_0.9-39          reprex_2.0.1          
- [94] RANN_2.6.1             fitdistrplus_1.1-6     hms_1.1.1             
- [97] patchwork_1.1.1        mime_0.12              evaluate_0.14         
-[100] xtable_1.8-4           readxl_1.3.1           gridExtra_2.3         
-[103] compiler_4.1.0         shadowtext_0.1.1       KernSmooth_2.23-20    
-[106] crayon_1.4.2           htmltools_0.5.2        ggfun_0.0.4           
-[109] mgcv_1.8-38            later_1.3.0            tzdb_0.2.0            
-[112] aplot_0.1.2            lubridate_1.8.0        DBI_1.1.2             
-[115] tweenr_1.0.2           dbplyr_2.1.1           MASS_7.3-54           
-[118] Matrix_1.4-0           car_3.0-12             cli_3.1.0             
-[121] igraph_1.2.11          pkgconfig_2.0.3        plotly_4.10.0         
-[124] spatstat.sparse_2.1-0  xml2_1.3.3             ggtree_3.0.4          
-[127] bslib_0.3.1            XVector_0.32.0         rvest_1.0.2           
-[130] yulab.utils_0.0.4      digest_0.6.29          sctransform_0.3.2     
-[133] RcppAnnoy_0.0.19       Biostrings_2.60.2      spatstat.data_2.1-2   
-[136] fastmatch_1.1-3        rmarkdown_2.11         cellranger_1.1.0      
-[139] leiden_0.3.9           tidytree_0.3.7         uwot_0.1.11           
-[142] shiny_1.7.1            lifecycle_1.0.1        nlme_3.1-153          
-[145] jsonlite_1.7.2         carData_3.0-5          limma_3.48.3          
-[148] fansi_1.0.0            pillar_1.6.4           lattice_0.20-45       
-[151] GO.db_3.13.0           KEGGREST_1.32.0        fastmap_1.1.0         
-[154] httr_1.4.2             survival_3.2-13        glue_1.6.0            
-[157] png_0.1-7              bit_4.0.4              ggforce_0.3.3         
-[160] stringi_1.7.6          sass_0.4.0             blob_1.2.2            
-[163] memoise_2.0.1          ape_5.6-1              irlba_2.3.5           
-[166] future.apply_1.8.1    </code></pre>
+  [1] scattermore_0.8        bit64_4.0.5            knitr_1.39            
+  [4] irlba_2.3.5            DelayedArray_0.18.0    data.table_1.14.2     
+  [7] rpart_4.1.16           KEGGREST_1.32.0        RCurl_1.98-1.6        
+ [10] generics_0.1.2         cowplot_1.1.1          RSQLite_2.2.14        
+ [13] shadowtext_0.1.2       RANN_2.6.1             future_1.25.0         
+ [16] bit_4.0.4              tzdb_0.3.0             spatstat.data_2.2-0   
+ [19] xml2_1.3.3             lubridate_1.8.0        httpuv_1.6.5          
+ [22] assertthat_0.2.1       xfun_0.30              hms_1.1.1             
+ [25] jquerylib_0.1.4        evaluate_0.15          promises_1.2.0.1      
+ [28] fansi_1.0.3            dbplyr_2.1.1           readxl_1.4.0          
+ [31] igraph_1.3.1           DBI_1.1.2              htmlwidgets_1.5.4     
+ [34] spatstat.geom_2.4-0    ellipsis_0.3.2         backports_1.4.1       
+ [37] deldir_1.0-6           vctrs_0.4.1            ROCR_1.0-11           
+ [40] abind_1.4-5            cachem_1.0.6           withr_2.5.0           
+ [43] ggforce_0.3.3          progressr_0.10.0       vroom_1.5.7           
+ [46] sctransform_0.3.3      treeio_1.16.2          goftest_1.2-3         
+ [49] cluster_2.1.3          ape_5.6-2              lazyeval_0.2.2        
+ [52] crayon_1.5.1           pkgconfig_2.0.3        labeling_0.4.2        
+ [55] tweenr_1.0.2           nlme_3.1-157           rlang_1.0.2           
+ [58] globals_0.15.0         lifecycle_1.0.1        miniUI_0.1.1.1        
+ [61] downloader_0.4         modelr_0.1.8           cellranger_1.1.0      
+ [64] rprojroot_2.0.3        polyclip_1.10-0        lmtest_0.9-40         
+ [67] Matrix_1.4-1           aplot_0.1.4            carData_3.0-5         
+ [70] zoo_1.8-10             reprex_2.0.1           whisker_0.4           
+ [73] ggridges_0.5.3         png_0.1-7              bitops_1.0-7          
+ [76] KernSmooth_2.23-20     Biostrings_2.60.2      blob_1.2.3            
+ [79] workflowr_1.7.0        qvalue_2.24.0          parallelly_1.31.1     
+ [82] spatstat.random_2.2-0  rstatix_0.7.0          gridGraphics_0.5-1    
+ [85] ggsignif_0.6.3         scales_1.2.0           memoise_2.0.1         
+ [88] plyr_1.8.7             ica_1.0-2              zlibbioc_1.38.0       
+ [91] compiler_4.1.0         scatterpie_0.1.7       RColorBrewer_1.1-3    
+ [94] fitdistrplus_1.1-8     cli_3.3.0              XVector_0.32.0        
+ [97] listenv_0.8.0          patchwork_1.1.1        pbapply_1.5-0         
+[100] MASS_7.3-57            mgcv_1.8-40            tidyselect_1.1.2      
+[103] stringi_1.7.6          highr_0.9              yaml_2.3.5            
+[106] GOSemSim_2.18.1        ggrepel_0.9.1          grid_4.1.0            
+[109] sass_0.4.1             fastmatch_1.1-3        tools_4.1.0           
+[112] future.apply_1.9.0     rstudioapi_0.13        git2r_0.30.1          
+[115] gridExtra_2.3          farver_2.1.0           Rtsne_0.16            
+[118] ggraph_2.0.5           digest_0.6.29          rgeos_0.5-9           
+[121] shiny_1.7.1            Rcpp_1.0.8.3           car_3.0-13            
+[124] broom_0.8.0            later_1.3.0            RcppAnnoy_0.0.19      
+[127] httr_1.4.3             colorspace_2.0-3       rvest_1.0.2           
+[130] fs_1.5.2               tensor_1.5             reticulate_1.24       
+[133] splines_4.1.0          uwot_0.1.11            yulab.utils_0.0.4     
+[136] tidytree_0.3.9         spatstat.utils_2.3-1   graphlayouts_0.8.0    
+[139] ggplotify_0.1.0        plotly_4.10.0          xtable_1.8-4          
+[142] jsonlite_1.8.0         ggtree_3.0.4           tidygraph_1.2.1       
+[145] ggfun_0.0.6            R6_2.5.1               pillar_1.7.0          
+[148] htmltools_0.5.2        mime_0.12              glue_1.6.2            
+[151] fastmap_1.1.0          BiocParallel_1.26.2    codetools_0.2-18      
+[154] fgsea_1.18.0           utf8_1.2.2             lattice_0.20-45       
+[157] bslib_0.3.1            spatstat.sparse_2.1-1  leiden_0.3.10         
+[160] GO.db_3.13.0           limma_3.48.3           survival_3.3-1        
+[163] rmarkdown_2.14         munsell_0.5.0          DO.db_2.9             
+[166] GenomeInfoDbData_1.2.6 haven_2.5.0            reshape2_1.4.4        
+[169] gtable_0.3.0           spatstat.core_2.4-2   </code></pre>
 <pre class="r"><code>date()</code></pre>
-<pre><code>[1] &quot;Tue Mar 22 14:59:48 2022&quot;</code></pre>
+<pre><code>[1] &quot;Tue May 17 13:46:44 2022&quot;</code></pre>
 <br>
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">
@@ -1514,7 +4418,7 @@ loaded via a namespace (and not attached):
 <pre class="r"><code>sessionInfo()</code></pre>
 <pre><code>R version 4.1.0 (2021-05-18)
 Platform: x86_64-apple-darwin17.0 (64-bit)
-Running under: macOS Catalina 10.15.7
+Running under: macOS Big Sur 10.16
 
 Matrix products: default
 BLAS:   /Library/Frameworks/R.framework/Versions/4.1/Resources/lib/libRblas.dylib
@@ -1534,75 +4438,77 @@ other attached packages:
  [7] clusterProfiler_4.0.5       ggpubr_0.4.0               
  [9] pheatmap_1.0.12             ggsci_2.9                  
 [11] runSeurat3_0.1.0            here_1.0.1                 
-[13] magrittr_2.0.1              SeuratObject_4.0.4         
-[15] Seurat_4.0.6                forcats_0.5.1              
-[17] stringr_1.4.0               dplyr_1.0.7                
-[19] purrr_0.3.4                 readr_2.1.1                
-[21] tidyr_1.1.4                 tibble_3.1.6               
-[23] ggplot2_3.3.5               tidyverse_1.3.1            
-[25] SingleCellExperiment_1.14.1 SummarizedExperiment_1.22.0
-[27] Biobase_2.52.0              GenomicRanges_1.44.0       
-[29] GenomeInfoDb_1.28.4         IRanges_2.26.0             
-[31] S4Vectors_0.30.2            BiocGenerics_0.38.0        
-[33] MatrixGenerics_1.4.3        matrixStats_0.61.0         
+[13] magrittr_2.0.3              sp_1.4-7                   
+[15] SeuratObject_4.1.0          Seurat_4.1.1               
+[17] forcats_0.5.1               stringr_1.4.0              
+[19] dplyr_1.0.9                 purrr_0.3.4                
+[21] readr_2.1.2                 tidyr_1.2.0                
+[23] tibble_3.1.7                ggplot2_3.3.6              
+[25] tidyverse_1.3.1             SingleCellExperiment_1.14.1
+[27] SummarizedExperiment_1.22.0 Biobase_2.52.0             
+[29] GenomicRanges_1.44.0        GenomeInfoDb_1.28.4        
+[31] IRanges_2.26.0              S4Vectors_0.30.2           
+[33] BiocGenerics_0.38.0         MatrixGenerics_1.4.3       
+[35] matrixStats_0.62.0         
 
 loaded via a namespace (and not attached):
-  [1] utf8_1.2.2             reticulate_1.22        tidyselect_1.1.1      
-  [4] RSQLite_2.2.9          htmlwidgets_1.5.4      BiocParallel_1.26.2   
-  [7] grid_4.1.0             Rtsne_0.15             scatterpie_0.1.7      
- [10] munsell_0.5.0          codetools_0.2-18       ica_1.0-2             
- [13] future_1.23.0          miniUI_0.1.1.1         withr_2.4.3           
- [16] GOSemSim_2.18.1        colorspace_2.0-2       highr_0.9             
- [19] knitr_1.37             rstudioapi_0.13        ROCR_1.0-11           
- [22] ggsignif_0.6.3         tensor_1.5             listenv_0.8.0         
- [25] labeling_0.4.2         git2r_0.29.0           GenomeInfoDbData_1.2.6
- [28] polyclip_1.10-0        farver_2.1.0           bit64_4.0.5           
- [31] downloader_0.4         rprojroot_2.0.2        treeio_1.16.2         
- [34] parallelly_1.30.0      vctrs_0.3.8            generics_0.1.1        
- [37] xfun_0.29              R6_2.5.1               graphlayouts_0.8.0    
- [40] gridGraphics_0.5-1     fgsea_1.18.0           cachem_1.0.6          
- [43] bitops_1.0-7           spatstat.utils_2.3-0   DelayedArray_0.18.0   
- [46] assertthat_0.2.1       vroom_1.5.7            promises_1.2.0.1      
- [49] scales_1.1.1           ggraph_2.0.5           gtable_0.3.0          
- [52] globals_0.14.0         goftest_1.2-3          tidygraph_1.2.0       
- [55] workflowr_1.7.0        rlang_0.4.12           splines_4.1.0         
- [58] rstatix_0.7.0          lazyeval_0.2.2         spatstat.geom_2.3-1   
- [61] broom_0.7.11           yaml_2.2.1             reshape2_1.4.4        
- [64] abind_1.4-5            modelr_0.1.8           backports_1.4.1       
- [67] httpuv_1.6.5           qvalue_2.24.0          tools_4.1.0           
- [70] ggplotify_0.1.0        ellipsis_0.3.2         spatstat.core_2.3-2   
- [73] jquerylib_0.1.4        RColorBrewer_1.1-2     ggridges_0.5.3        
- [76] Rcpp_1.0.7             plyr_1.8.6             zlibbioc_1.38.0       
- [79] RCurl_1.98-1.5         rpart_4.1-15           deldir_1.0-6          
- [82] pbapply_1.5-0          cowplot_1.1.1          zoo_1.8-9             
- [85] haven_2.4.3            ggrepel_0.9.1          cluster_2.1.2         
- [88] fs_1.5.2               data.table_1.14.2      scattermore_0.7       
- [91] DO.db_2.9              lmtest_0.9-39          reprex_2.0.1          
- [94] RANN_2.6.1             fitdistrplus_1.1-6     hms_1.1.1             
- [97] patchwork_1.1.1        mime_0.12              evaluate_0.14         
-[100] xtable_1.8-4           readxl_1.3.1           gridExtra_2.3         
-[103] compiler_4.1.0         shadowtext_0.1.1       KernSmooth_2.23-20    
-[106] crayon_1.4.2           htmltools_0.5.2        ggfun_0.0.4           
-[109] mgcv_1.8-38            later_1.3.0            tzdb_0.2.0            
-[112] aplot_0.1.2            lubridate_1.8.0        DBI_1.1.2             
-[115] tweenr_1.0.2           dbplyr_2.1.1           MASS_7.3-54           
-[118] Matrix_1.4-0           car_3.0-12             cli_3.1.0             
-[121] igraph_1.2.11          pkgconfig_2.0.3        plotly_4.10.0         
-[124] spatstat.sparse_2.1-0  xml2_1.3.3             ggtree_3.0.4          
-[127] bslib_0.3.1            XVector_0.32.0         rvest_1.0.2           
-[130] yulab.utils_0.0.4      digest_0.6.29          sctransform_0.3.2     
-[133] RcppAnnoy_0.0.19       Biostrings_2.60.2      spatstat.data_2.1-2   
-[136] fastmatch_1.1-3        rmarkdown_2.11         cellranger_1.1.0      
-[139] leiden_0.3.9           tidytree_0.3.7         uwot_0.1.11           
-[142] shiny_1.7.1            lifecycle_1.0.1        nlme_3.1-153          
-[145] jsonlite_1.7.2         carData_3.0-5          limma_3.48.3          
-[148] fansi_1.0.0            pillar_1.6.4           lattice_0.20-45       
-[151] GO.db_3.13.0           KEGGREST_1.32.0        fastmap_1.1.0         
-[154] httr_1.4.2             survival_3.2-13        glue_1.6.0            
-[157] png_0.1-7              bit_4.0.4              ggforce_0.3.3         
-[160] stringi_1.7.6          sass_0.4.0             blob_1.2.2            
-[163] memoise_2.0.1          ape_5.6-1              irlba_2.3.5           
-[166] future.apply_1.8.1    </code></pre>
+  [1] scattermore_0.8        bit64_4.0.5            knitr_1.39            
+  [4] irlba_2.3.5            DelayedArray_0.18.0    data.table_1.14.2     
+  [7] rpart_4.1.16           KEGGREST_1.32.0        RCurl_1.98-1.6        
+ [10] generics_0.1.2         cowplot_1.1.1          RSQLite_2.2.14        
+ [13] shadowtext_0.1.2       RANN_2.6.1             future_1.25.0         
+ [16] bit_4.0.4              tzdb_0.3.0             spatstat.data_2.2-0   
+ [19] xml2_1.3.3             lubridate_1.8.0        httpuv_1.6.5          
+ [22] assertthat_0.2.1       xfun_0.30              hms_1.1.1             
+ [25] jquerylib_0.1.4        evaluate_0.15          promises_1.2.0.1      
+ [28] fansi_1.0.3            dbplyr_2.1.1           readxl_1.4.0          
+ [31] igraph_1.3.1           DBI_1.1.2              htmlwidgets_1.5.4     
+ [34] spatstat.geom_2.4-0    ellipsis_0.3.2         backports_1.4.1       
+ [37] deldir_1.0-6           vctrs_0.4.1            ROCR_1.0-11           
+ [40] abind_1.4-5            cachem_1.0.6           withr_2.5.0           
+ [43] ggforce_0.3.3          progressr_0.10.0       vroom_1.5.7           
+ [46] sctransform_0.3.3      treeio_1.16.2          goftest_1.2-3         
+ [49] cluster_2.1.3          ape_5.6-2              lazyeval_0.2.2        
+ [52] crayon_1.5.1           pkgconfig_2.0.3        labeling_0.4.2        
+ [55] tweenr_1.0.2           nlme_3.1-157           rlang_1.0.2           
+ [58] globals_0.15.0         lifecycle_1.0.1        miniUI_0.1.1.1        
+ [61] downloader_0.4         modelr_0.1.8           cellranger_1.1.0      
+ [64] rprojroot_2.0.3        polyclip_1.10-0        lmtest_0.9-40         
+ [67] Matrix_1.4-1           aplot_0.1.4            carData_3.0-5         
+ [70] zoo_1.8-10             reprex_2.0.1           whisker_0.4           
+ [73] ggridges_0.5.3         png_0.1-7              bitops_1.0-7          
+ [76] KernSmooth_2.23-20     Biostrings_2.60.2      blob_1.2.3            
+ [79] workflowr_1.7.0        qvalue_2.24.0          parallelly_1.31.1     
+ [82] spatstat.random_2.2-0  rstatix_0.7.0          gridGraphics_0.5-1    
+ [85] ggsignif_0.6.3         scales_1.2.0           memoise_2.0.1         
+ [88] plyr_1.8.7             ica_1.0-2              zlibbioc_1.38.0       
+ [91] compiler_4.1.0         scatterpie_0.1.7       RColorBrewer_1.1-3    
+ [94] fitdistrplus_1.1-8     cli_3.3.0              XVector_0.32.0        
+ [97] listenv_0.8.0          patchwork_1.1.1        pbapply_1.5-0         
+[100] MASS_7.3-57            mgcv_1.8-40            tidyselect_1.1.2      
+[103] stringi_1.7.6          highr_0.9              yaml_2.3.5            
+[106] GOSemSim_2.18.1        ggrepel_0.9.1          grid_4.1.0            
+[109] sass_0.4.1             fastmatch_1.1-3        tools_4.1.0           
+[112] future.apply_1.9.0     rstudioapi_0.13        git2r_0.30.1          
+[115] gridExtra_2.3          farver_2.1.0           Rtsne_0.16            
+[118] ggraph_2.0.5           digest_0.6.29          rgeos_0.5-9           
+[121] shiny_1.7.1            Rcpp_1.0.8.3           car_3.0-13            
+[124] broom_0.8.0            later_1.3.0            RcppAnnoy_0.0.19      
+[127] httr_1.4.3             colorspace_2.0-3       rvest_1.0.2           
+[130] fs_1.5.2               tensor_1.5             reticulate_1.24       
+[133] splines_4.1.0          uwot_0.1.11            yulab.utils_0.0.4     
+[136] tidytree_0.3.9         spatstat.utils_2.3-1   graphlayouts_0.8.0    
+[139] ggplotify_0.1.0        plotly_4.10.0          xtable_1.8-4          
+[142] jsonlite_1.8.0         ggtree_3.0.4           tidygraph_1.2.1       
+[145] ggfun_0.0.6            R6_2.5.1               pillar_1.7.0          
+[148] htmltools_0.5.2        mime_0.12              glue_1.6.2            
+[151] fastmap_1.1.0          BiocParallel_1.26.2    codetools_0.2-18      
+[154] fgsea_1.18.0           utf8_1.2.2             lattice_0.20-45       
+[157] bslib_0.3.1            spatstat.sparse_2.1-1  leiden_0.3.10         
+[160] GO.db_3.13.0           limma_3.48.3           survival_3.3-1        
+[163] rmarkdown_2.14         munsell_0.5.0          DO.db_2.9             
+[166] GenomeInfoDbData_1.2.6 haven_2.5.0            reshape2_1.4.4        
+[169] gtable_0.3.0           spatstat.core_2.4-2   </code></pre>
 </div>
 </div>
 

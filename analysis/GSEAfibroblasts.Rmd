@@ -46,10 +46,9 @@ suppressPackageStartupMessages({
 ## set dir
 ```{r set dir}
 basedir <- here()
-seurat <- readRDS(file = paste0(basedir, 
-                                "/data/TCRM_all10samplesMerged_seurat.rds"))
+seurat <- readRDS(file = paste0(basedir, "/data/MuHeart_totalCells_", 
+                                "FibroReembedded_wotreat_seurat.rds"))
 
-seurat$time_plus_grp <- paste0(seurat$time, "_", seurat$grp)
 
 ```
 
@@ -61,12 +60,12 @@ seurat$time_plus_grp <- paste0(seurat$time, "_", seurat$grp)
 colPal <- pal_igv()(length(levels(seurat)))
 colGrp <- pal_jama()(length(unique(seurat$grp)))
 colSmp <- c(pal_uchicago()(8), pal_npg()(8))[1:length(unique(seurat$dataset))]
-colTime <- pal_npg()(length(unique(seurat$time)))
+colAge <- pal_uchicago()(length(unique(seurat$age)))
 
 names(colPal) <- levels(seurat)
 names(colGrp) <- unique(seurat$grp)
 names(colSmp) <- unique(seurat$dataset)
-names(colTime) <- unique(seurat$time)
+names(colAge) <- unique(seurat$age)
 
 ```
 
@@ -115,7 +114,7 @@ DimPlot(seurat, reduction = "umap", group.by = "dataset", cols=colSmp)+
 ### Time
 ```{r vis time}
 
-DimPlot(seurat, reduction = "umap", group.by = "time", cols=colTime)+
+DimPlot(seurat, reduction = "umap", group.by = "age", cols=colAge)+
   theme_bw() +
   theme(axis.text = element_blank(), axis.ticks = element_blank(), 
         panel.grid.minor = element_blank()) +
@@ -173,12 +172,13 @@ write.table(GOconsDat, quote=F, row.names = T, col.names = T, sep= "\t",
             "_GO.txt"))
 
 selGO <- read_tsv(paste0(basedir,"/data/GSEA/selGO_Fibroblast.txt"))
-GOconsDat <- GOconsDat %>% filter(ID %in% selGO$GOterm) %>% 
-  mutate(Grp=ifelse(subset=="Ccl19", "Ctrl", "TCRM"))
+GOconsDat <- GOconsDat %>% mutate(Grp=ifelse(subset=="control", "Ctrl", "TCRM"))
 
 grpVec <- unique(selGO$Grp)
 lapply(grpVec, function(grp){
-  selGODat <- GOconsDat %>% filter(Grp == grp)
+  selGOsub <- selGO %>% filter(Grp == grp)
+  selGODat <- GOconsDat %>% filter(Grp == grp) %>%
+    filter(ID %in% selGOsub$GOterm)
   selGODat <- selGODat %>% mutate(qscore=-log(p.adjust, base=10)) 
   p <- ggbarplot(selGODat, x = "Description", y = "qscore",
           fill = "subset",               

@@ -86,14 +86,40 @@ names(colLab) <- c("InfMonos", "Tcells", "Endothelial", "Macrophages",
 ## reembedding Fibroblasts
 ```{r reembedding fbroblasts}
 seurat <- subset(seurat, label == "Fibroblasts")
-seurat <- subset(seurat, seqType == "sc")
 
-DefaultAssay(object = seurat) <- "RNA"
-seurat <- FindVariableFeatures(seurat)
-seurat <- ScaleData(seurat, features = rownames(seurat))
-seurat <- RunPCA(object = seurat, npcs = 20, verbose = FALSE)
-seurat <- RunTSNE(object = seurat, reduction = "pca", dims = 1:20)
-seurat <- RunUMAP(object = seurat, reduction = "pca", dims = 1:20)
+### rerun integration
+seurat.list <- SplitObject(object = seurat, split.by = "seqType")
+for (i in 1:length(x = seurat.list)) {
+    seurat.list[[i]] <- NormalizeData(object = seurat.list[[i]],
+                                      verbose = FALSE)
+    seurat.list[[i]] <- FindVariableFeatures(object = seurat.list[[i]], 
+        selection.method = "vst", nfeatures = 2000, verbose = FALSE)
+}
+
+seurat.anchors <- FindIntegrationAnchors(object.list = seurat.list, dims = 1:30,
+                                         k.filter = 500)
+seurat.int <- IntegrateData(anchorset = seurat.anchors, dims = 1:30)
+DefaultAssay(object = seurat.int) <- "integrated"
+
+# rerun seurat
+seurat.int <- ScaleData(object = seurat.int, verbose = FALSE,
+                        features = rownames(seurat.int))
+seurat.int <- RunPCA(object = seurat.int, npcs = 20, verbose = FALSE)
+seurat.int <- RunTSNE(object = seurat.int, reduction = "pca", dims = 1:20)
+seurat.int <- RunUMAP(object = seurat.int, reduction = "pca", dims = 1:20)
+
+seurat.int <- FindNeighbors(object = seurat.int, reduction = "pca", dims = 1:20)
+res <- c(0.6,0.8,0.4,0.25)
+for(i in 1:length(res)){
+  seurat.int <- FindClusters(object = seurat.int, resolution = res[i],
+                             random.seed = 1234)
+}
+
+DefaultAssay(object = seurat.int) <- "RNA"
+seurat <- seurat.int
+
+colPal <- pal_igv()(length(seurat$integrated_snn_res.0.25))
+names(colPal) <- unique(seurat$integrated_snn_res.0.25)
 
 ```
 
@@ -103,7 +129,7 @@ seurat <- RunUMAP(object = seurat, reduction = "pca", dims = 1:20)
 ### clusters
 ```{r vis cluster all}
 
-DimPlot(seurat, group.by ="integrated_snn_res.0.4", reduction = "umap",
+DimPlot(seurat, group.by ="integrated_snn_res.0.25", reduction = "umap",
         cols=colPal)+
   theme_bw() +
   theme(axis.text = element_blank(), axis.ticks = element_blank(), 
@@ -111,7 +137,7 @@ DimPlot(seurat, group.by ="integrated_snn_res.0.4", reduction = "umap",
   xlab("UMAP1") +
   ylab("UMAP2")
 
-DimPlot(seurat, group.by ="integrated_snn_res.0.4", reduction = "umap",
+DimPlot(seurat, group.by ="integrated_snn_res.0.25", reduction = "umap",
         cols=colPal)+
   theme_void()
 ```
@@ -239,7 +265,7 @@ seurat <- subset(seurat, treatment=="no")
 ### clusters
 ```{r vis cluster untreated}
 
-DimPlot(seurat, group.by ="integrated_snn_res.0.4", reduction = "umap",
+DimPlot(seurat, group.by ="integrated_snn_res.0.25", reduction = "umap",
         cols=colPal)+
   theme_bw() +
   theme(axis.text = element_blank(), axis.ticks = element_blank(), 
@@ -247,7 +273,7 @@ DimPlot(seurat, group.by ="integrated_snn_res.0.4", reduction = "umap",
   xlab("UMAP1") +
   ylab("UMAP2")
 
-DimPlot(seurat, group.by ="integrated_snn_res.0.4", reduction = "umap",
+DimPlot(seurat, group.by ="integrated_snn_res.0.25", reduction = "umap",
         cols=colPal)+
   theme_void()
 ```

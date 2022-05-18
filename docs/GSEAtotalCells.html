@@ -15,7 +15,7 @@
 
 <title>Merge samples total cells</title>
 
-<script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.14/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
@@ -38,7 +38,7 @@
 <link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
 
-<link rel="icon" href="https://github.com/workflowr/workflowr-assets/raw/master/img/reproducible.png">
+<link rel="icon" href="https://github.com/workflowr/workflowr-assets/raw/main/img/reproducible.png">
 <!-- Add a small amount of space between sections. -->
 <style type="text/css">
 div.section {
@@ -75,6 +75,7 @@ if (window.hljs) {
 
 
 
+
 <style type = "text/css">
 .main-container {
   max-width: 940px;
@@ -95,6 +96,9 @@ button.code-folding-btn:focus {
 }
 summary {
   display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
 }
 pre code {
   padding: 0;
@@ -320,7 +324,7 @@ div.tocify {
 <div class="navbar navbar-default  navbar-fixed-top" role="navigation">
   <div class="container">
     <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
@@ -377,7 +381,7 @@ div.tocify {
 <div class="tab-content">
 <div id="summary" class="tab-pane fade in active">
 <p>
-<strong>Last updated:</strong> 2021-11-18
+<strong>Last updated:</strong> 2022-05-16
 </p>
 <p>
 <strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 6 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 1
@@ -386,8 +390,8 @@ div.tocify {
 <strong>Knit directory:</strong> <code>TCRM_Christina/</code> <span class="glyphicon glyphicon-question-sign" aria-hidden="true" title="This is the local directory in which the code in this file was executed."> </span>
 </p>
 <p>
-This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis was created with <a
-  href="https://github.com/jdblischak/workflowr">workflowr</a> (version 1.6.2). The <em>Checks</em> tab describes the reproducibility checks that were applied when the results were created. The <em>Past versions</em> tab lists the development history.
+This reproducible <a href="https://rmarkdown.rstudio.com">R Markdown</a> analysis was created with <a
+  href="https://github.com/workflowr/workflowr">workflowr</a> (version 1.7.0). The <em>Checks</em> tab describes the reproducibility checks that were applied when the results were created. The <em>Past versions</em> tab lists the development history.
 </p>
 <hr>
 </div>
@@ -468,16 +472,16 @@ This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcommluetgeTCRMChristinatree5474212f9c9e5e0f43b7547bb44bc7a7c465a5c1targetblank5474212a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/mluetge/TCRM_Christina/tree/5474212f9c9e5e0f43b7547bb44bc7a7c465a5c1" target="_blank">5474212</a> </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcommluetgeTCRMChristinatreebd5f70243c908c5428112e95e4640ea45721f080targetblankbd5f702a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/mluetge/TCRM_Christina/tree/bd5f70243c908c5428112e95e4640ea45721f080" target="_blank">bd5f702</a> </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcommluetgeTCRMChristinatree5474212f9c9e5e0f43b7547bb44bc7a7c465a5c1targetblank5474212a" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcommluetgeTCRMChristinatreebd5f70243c908c5428112e95e4640ea45721f080targetblankbd5f702a" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility.
 </p>
 <p>
-The results in this page were generated with repository version <a href="https://github.com/mluetge/TCRM_Christina/tree/5474212f9c9e5e0f43b7547bb44bc7a7c465a5c1" target="_blank">5474212</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
+The results in this page were generated with repository version <a href="https://github.com/mluetge/TCRM_Christina/tree/bd5f70243c908c5428112e95e4640ea45721f080" target="_blank">bd5f702</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
 </p>
 <p>
 Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
@@ -487,14 +491,165 @@ Ignored files:
     Ignored:    .DS_Store
     Ignored:    .Rhistory
     Ignored:    .Rproj.user/
-    Ignored:    analysis/figure/
     Ignored:    data/GSEA/
+    Ignored:    data/cellphonedb/
     Ignored:    data/data_old/
+    Ignored:    figure/.DS_Store
     Ignored:    output/.DS_Store
 
 Unstaged changes:
-    Modified:   analysis/GSEAfibroblasts.Rmd
     Modified:   analysis/GSEAtotalCells.Rmd
+    Modified:   analysis/reembeddingFibro.Rmd
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes across all ENSMUSG00000001131.Timp1-1.pdf
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes across all ENSMUSG00000001131.Timp1-1.png
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes across all ENSMUSG00000004371.Il11-1.pdf
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes across all ENSMUSG00000004371.Il11-1.png
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes across all ENSMUSG00000006818.Sod2-1.pdf
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes across all ENSMUSG00000006818.Sod2-1.png
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes across all ENSMUSG00000008999.Bmp7-1.pdf
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes across all ENSMUSG00000008999.Bmp7-1.png
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes across all ENSMUSG00000021109.Hif1a-1.pdf
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes across all ENSMUSG00000021109.Hif1a-1.png
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes across all ENSMUSG00000021796.Bmpr1a-1.pdf
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes across all ENSMUSG00000021796.Bmpr1a-1.png
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes across all ENSMUSG00000021835.Bmp4-1.pdf
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes across all ENSMUSG00000021835.Bmp4-1.png
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes across all ENSMUSG00000022037.Clu-1.pdf
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes across all ENSMUSG00000022037.Clu-1.png
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes across all ENSMUSG00000023078.Cxcl13-1.pdf
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes across all ENSMUSG00000023078.Cxcl13-1.png
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes across all ENSMUSG00000024810.Il33-1.pdf
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes across all ENSMUSG00000024810.Il33-1.png
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes across all ENSMUSG00000025746.Il6-1.pdf
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes across all ENSMUSG00000025746.Il6-1.png
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes across all ENSMUSG00000027358.Bmp2-1.pdf
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes across all ENSMUSG00000027358.Bmp2-1.png
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes across all ENSMUSG00000027962.Vcam1-1.pdf
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes across all ENSMUSG00000027962.Vcam1-1.png
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes across all ENSMUSG00000029082.Bst1-1.pdf
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes across all ENSMUSG00000029082.Bst1-1.png
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes across all ENSMUSG00000029417.Cxcl9-1.pdf
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes across all ENSMUSG00000029417.Cxcl9-1.png
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes across all ENSMUSG00000035385.Ccl2-1.pdf
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes across all ENSMUSG00000035385.Ccl2-1.png
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes across all ENSMUSG00000036594.H2-Aa-1.pdf
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes across all ENSMUSG00000036594.H2-Aa-1.png
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes across all ENSMUSG00000037405.Icam1-1.pdf
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes across all ENSMUSG00000037405.Icam1-1.png
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes across all ENSMUSG00000039542.Ncam1-1.pdf
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes across all ENSMUSG00000039542.Ncam1-1.png
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes across all ENSMUSG00000046223.Plaur-1.pdf
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes across all ENSMUSG00000046223.Plaur-1.png
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes across all ENSMUSG00000050069.Grem2-1.pdf
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes across all ENSMUSG00000050069.Grem2-1.png
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes across all ENSMUSG00000052430.Bmpr1b-1.pdf
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes across all ENSMUSG00000052430.Bmpr1b-1.png
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes across all ENSMUSG00000067336.Bmpr2-1.pdf
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes across all ENSMUSG00000067336.Bmpr2-1.png
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes across all ENSMUSG00000071005.Ccl19-1.pdf
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes across all ENSMUSG00000071005.Ccl19-1.png
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes across all ENSMUSG00000075602.Ly6a-1.pdf
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes across all ENSMUSG00000075602.Ly6a-1.png
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes split by age ENSMUSG00000001131.Timp1-1.pdf
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes split by age ENSMUSG00000001131.Timp1-1.png
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes split by age ENSMUSG00000004371.Il11-1.pdf
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes split by age ENSMUSG00000004371.Il11-1.png
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes split by age ENSMUSG00000006818.Sod2-1.pdf
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes split by age ENSMUSG00000006818.Sod2-1.png
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes split by age ENSMUSG00000008999.Bmp7-1.pdf
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes split by age ENSMUSG00000008999.Bmp7-1.png
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes split by age ENSMUSG00000021109.Hif1a-1.pdf
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes split by age ENSMUSG00000021109.Hif1a-1.png
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes split by age ENSMUSG00000021796.Bmpr1a-1.pdf
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes split by age ENSMUSG00000021796.Bmpr1a-1.png
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes split by age ENSMUSG00000021835.Bmp4-1.pdf
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes split by age ENSMUSG00000021835.Bmp4-1.png
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes split by age ENSMUSG00000022037.Clu-1.pdf
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes split by age ENSMUSG00000022037.Clu-1.png
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes split by age ENSMUSG00000023078.Cxcl13-1.pdf
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes split by age ENSMUSG00000023078.Cxcl13-1.png
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes split by age ENSMUSG00000024810.Il33-1.pdf
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes split by age ENSMUSG00000024810.Il33-1.png
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes split by age ENSMUSG00000025746.Il6-1.pdf
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes split by age ENSMUSG00000025746.Il6-1.png
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes split by age ENSMUSG00000027358.Bmp2-1.pdf
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes split by age ENSMUSG00000027358.Bmp2-1.png
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes split by age ENSMUSG00000027962.Vcam1-1.pdf
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes split by age ENSMUSG00000027962.Vcam1-1.png
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes split by age ENSMUSG00000029082.Bst1-1.pdf
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes split by age ENSMUSG00000029082.Bst1-1.png
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes split by age ENSMUSG00000029417.Cxcl9-1.pdf
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes split by age ENSMUSG00000029417.Cxcl9-1.png
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes split by age ENSMUSG00000035385.Ccl2-1.pdf
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes split by age ENSMUSG00000035385.Ccl2-1.png
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes split by age ENSMUSG00000036594.H2-Aa-1.pdf
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes split by age ENSMUSG00000036594.H2-Aa-1.png
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes split by age ENSMUSG00000037405.Icam1-1.pdf
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes split by age ENSMUSG00000037405.Icam1-1.png
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes split by age ENSMUSG00000039542.Ncam1-1.pdf
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes split by age ENSMUSG00000039542.Ncam1-1.png
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes split by age ENSMUSG00000046223.Plaur-1.pdf
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes split by age ENSMUSG00000046223.Plaur-1.png
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes split by age ENSMUSG00000050069.Grem2-1.pdf
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes split by age ENSMUSG00000050069.Grem2-1.png
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes split by age ENSMUSG00000052430.Bmpr1b-1.pdf
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes split by age ENSMUSG00000052430.Bmpr1b-1.png
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes split by age ENSMUSG00000067336.Bmpr2-1.pdf
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes split by age ENSMUSG00000067336.Bmpr2-1.png
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes split by age ENSMUSG00000071005.Ccl19-1.pdf
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes split by age ENSMUSG00000071005.Ccl19-1.png
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes split by age ENSMUSG00000075602.Ly6a-1.pdf
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes split by age ENSMUSG00000075602.Ly6a-1.png
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes split by grp ENSMUSG00000001131.Timp1-1.pdf
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes split by grp ENSMUSG00000001131.Timp1-1.png
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes split by grp ENSMUSG00000004371.Il11-1.pdf
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes split by grp ENSMUSG00000004371.Il11-1.png
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes split by grp ENSMUSG00000006818.Sod2-1.pdf
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes split by grp ENSMUSG00000006818.Sod2-1.png
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes split by grp ENSMUSG00000008999.Bmp7-1.pdf
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes split by grp ENSMUSG00000008999.Bmp7-1.png
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes split by grp ENSMUSG00000021109.Hif1a-1.pdf
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes split by grp ENSMUSG00000021109.Hif1a-1.png
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes split by grp ENSMUSG00000021796.Bmpr1a-1.pdf
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes split by grp ENSMUSG00000021796.Bmpr1a-1.png
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes split by grp ENSMUSG00000021835.Bmp4-1.pdf
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes split by grp ENSMUSG00000021835.Bmp4-1.png
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes split by grp ENSMUSG00000022037.Clu-1.pdf
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes split by grp ENSMUSG00000022037.Clu-1.png
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes split by grp ENSMUSG00000023078.Cxcl13-1.pdf
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes split by grp ENSMUSG00000023078.Cxcl13-1.png
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes split by grp ENSMUSG00000024810.Il33-1.pdf
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes split by grp ENSMUSG00000024810.Il33-1.png
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes split by grp ENSMUSG00000025746.Il6-1.pdf
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes split by grp ENSMUSG00000025746.Il6-1.png
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes split by grp ENSMUSG00000027358.Bmp2-1.pdf
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes split by grp ENSMUSG00000027358.Bmp2-1.png
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes split by grp ENSMUSG00000027962.Vcam1-1.pdf
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes split by grp ENSMUSG00000027962.Vcam1-1.png
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes split by grp ENSMUSG00000029082.Bst1-1.pdf
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes split by grp ENSMUSG00000029082.Bst1-1.png
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes split by grp ENSMUSG00000029417.Cxcl9-1.pdf
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes split by grp ENSMUSG00000029417.Cxcl9-1.png
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes split by grp ENSMUSG00000035385.Ccl2-1.pdf
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes split by grp ENSMUSG00000035385.Ccl2-1.png
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes split by grp ENSMUSG00000036594.H2-Aa-1.pdf
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes split by grp ENSMUSG00000036594.H2-Aa-1.png
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes split by grp ENSMUSG00000037405.Icam1-1.pdf
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes split by grp ENSMUSG00000037405.Icam1-1.png
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes split by grp ENSMUSG00000039542.Ncam1-1.pdf
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes split by grp ENSMUSG00000039542.Ncam1-1.png
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes split by grp ENSMUSG00000046223.Plaur-1.pdf
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes split by grp ENSMUSG00000046223.Plaur-1.png
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes split by grp ENSMUSG00000050069.Grem2-1.pdf
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes split by grp ENSMUSG00000050069.Grem2-1.png
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes split by grp ENSMUSG00000052430.Bmpr1b-1.pdf
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes split by grp ENSMUSG00000052430.Bmpr1b-1.png
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes split by grp ENSMUSG00000067336.Bmpr2-1.pdf
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes split by grp ENSMUSG00000067336.Bmpr2-1.png
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes split by grp ENSMUSG00000071005.Ccl19-1.pdf
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes split by grp ENSMUSG00000071005.Ccl19-1.png
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes split by grp ENSMUSG00000075602.Ly6a-1.pdf
+    Modified:   figure/reembeddingFibro.Rmd/sel Genes split by grp ENSMUSG00000075602.Ly6a-1.png
 
 </code></pre>
 <p>
@@ -533,6 +688,40 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/c68cbededb27b7edc8ab4dac8b3cfce17471fd0d/analysis/GSEAtotalCells.Rmd" target="_blank">c68cbed</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2021-12-17
+</td>
+<td>
+add treated samples total cells TCRM
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/mluetge/TCRM_Christina/c68cbededb27b7edc8ab4dac8b3cfce17471fd0d/docs/GSEAtotalCells.html" target="_blank">c68cbed</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2021-12-17
+</td>
+<td>
+add treated samples total cells TCRM
+</td>
+</tr>
 <tr>
 <td>
 Rmd
@@ -610,14 +799,23 @@ colAge &lt;- pal_uchicago()(length(unique(seurat$age)))
 colStype &lt;- pal_aaas()(length(unique(seurat$seqType)))
 colDat &lt;- c(pal_npg()(10),
             pal_futurama()(10))[1:(length(unique(seurat$dataset)))]
-colLab &lt;- pal_igv()(length(unique(seurat$label)))
-  
+
 names(colPal) &lt;- levels(seurat)
 names(colGrp) &lt;- unique(seurat$grp)
 names(colAge) &lt;- unique(seurat$age)
 names(colStype) &lt;- unique(seurat$seqType)
 names(colDat) &lt;- unique(seurat$dataset)
-names(colLab) &lt;- unique(seurat$label)</code></pre>
+
+colLab &lt;- c(&quot;#5050FF&quot;, &quot;#CE3D32&quot;, &quot;#749B58&quot;, &quot;#F0E685&quot;,
+            &quot;#466983&quot;, &quot;#BA6388&quot;, &quot;#5DB1DD&quot;, &quot;#802268&quot;,
+            &quot;#6BD76B&quot;, &quot;#D595A7&quot;, &quot;#924822&quot;, &quot;#837B8D&quot;,
+            &quot;#C75127&quot;, &quot;#D58F5C&quot;, &quot;#7A65A5&quot;, &quot;#E4AF69&quot;)
+
+names(colLab) &lt;- c(&quot;InfMonos&quot;, &quot;Tcells&quot;, &quot;Endothelial&quot;, &quot;Macrophages&quot;,
+                   &quot;Fibroblasts&quot;, &quot;DCs&quot;, &quot;NKcells&quot;, &quot;Perivascular&quot;,
+                   &quot;Neutrophils&quot;, &quot;Bcells&quot;, &quot;Cardiomyocytes&quot;, &quot;proliferating&quot;,
+                   &quot;pDCs&quot;, &quot;endocardialEndothelial&quot;, &quot;Eosinophils&quot;,
+                   &quot;GlialCells&quot;)</code></pre>
 </div>
 <div id="vis-data" class="section level2 tabset">
 <h2 class="tabset">vis data</h2>
@@ -934,6 +1132,17 @@ Date
 <tbody>
 <tr>
 <td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/c68cbededb27b7edc8ab4dac8b3cfce17471fd0d/docs/figure/GSEAtotalCells.Rmd/vis summary-1.png" target="_blank">c68cbed</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2021-12-17
+</td>
+</tr>
+<tr>
+<td>
 <a href="https://github.com/mluetge/TCRM_Christina/blob/5474212f9c9e5e0f43b7547bb44bc7a7c465a5c1/docs/figure/GSEAtotalCells.Rmd/vis summary-1.png" target="_blank">5474212</a>
 </td>
 <td>
@@ -974,6 +1183,17 @@ Date
 <tbody>
 <tr>
 <td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/c68cbededb27b7edc8ab4dac8b3cfce17471fd0d/docs/figure/GSEAtotalCells.Rmd/vis summary-2.png" target="_blank">c68cbed</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2021-12-17
+</td>
+</tr>
+<tr>
+<td>
 <a href="https://github.com/mluetge/TCRM_Christina/blob/5474212f9c9e5e0f43b7547bb44bc7a7c465a5c1/docs/figure/GSEAtotalCells.Rmd/vis summary-2.png" target="_blank">5474212</a>
 </td>
 <td>
@@ -988,6 +1208,80 @@ mluetge
 </div>
 </div>
 </div>
+</div>
+<div id="scatterplot-overall-de-genes" class="section level2">
+<h2>scatterplot overall DE genes</h2>
+<pre class="r"><code>## scatterplot
+## in red are all genes with an adjusted p_val &lt; 0.01 and avg_logFC &gt;0.25
+
+################################################################################
+### include only genes expressed in at least 10 % of cells in one condition ####
+################################################################################
+
+allID &lt;- seurat
+Idents(allID) &lt;-allID$grp
+avg.allID &lt;- AverageExpression(allID, group.by=&quot;grp&quot;,
+                               show.progress = FALSE)
+avg.allID &lt;- data.frame(log1p(avg.allID$RNA)) %&gt;% 
+  rownames_to_column(var=&quot;gene&quot;)
+
+## expression frequency
+GeneFreqSel &lt;- as.data.frame(GetAssayData(allID, assay = &quot;RNA&quot;,
+                                          slot = &quot;data&quot;)) %&gt;%
+  tibble::rownames_to_column(var=&quot;gene&quot;) %&gt;% mutate(count=rowSums(.!=0)-1) %&gt;%
+  mutate(countFreq=count/ncol(allID)) %&gt;%
+  dplyr::select(gene,count, countFreq) %&gt;%
+  dplyr::filter(countFreq&gt;=0.1)
+
+signGenes2 &lt;- DEgenes %&gt;% dplyr::filter(p_val_adj&lt;0.01 &amp; (avg_log2FC &gt; 0.25)) 
+
+# genes.to.label &lt;- DEgenes %&gt;% group_by(.,cluster) %&gt;% 
+#   slice_max(avg_log2FC, n=7) %&gt;% mutate(labelNam=gsub(&quot;^.*\\.&quot;, &quot;&quot;, gene))
+
+genes.to.label &lt;- read_tsv(file = paste0(basedir, &quot;/data/GSEA/&quot;,
+                                         &quot;selGenesScatterplotTotalDE.txt&quot;))
+
+avg.allID &lt;- avg.allID %&gt;% mutate(labelNam=gsub(&quot;^.*\\.&quot;, &quot;&quot;, gene)) %&gt;%
+  mutate(colourGrp=ifelse(labelNam %in% genes.to.label$labelNam, &quot;lab&quot;,
+                          ifelse(gene%in%signGenes2$gene, &quot;sig&quot;, &quot;notSig&quot;))) %&gt;%
+  dplyr::filter(gene%in%GeneFreqSel$gene)
+
+
+p_allID &lt;- ggscatter(avg.allID, x=&quot;control&quot;, y=&quot;TCRM&quot;,
+                    color = &quot;colourGrp&quot;,
+                    palette = c(&quot;#660000&quot;, &quot;#808080&quot;, &quot;#FF3333&quot;),
+                    label=&quot;labelNam&quot;,
+                    label.select = genes.to.label$labelNam,
+                    repel = F,
+                    label.rectangle=F,
+                    xlab=&quot;control&quot;,
+                    ylab = &quot;TCRM&quot;,
+                    title=&quot;&quot;,
+                    legend=&quot;none&quot;,
+                    font.label=6,
+                    alpha=0.9,
+                    size=0.5)
+
+
+p_allID </code></pre>
+<p><img src="figure/GSEAtotalCells.Rmd/scatterplot%20overall%20DEgenes-1.png" width="384" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>p_allID &lt;- ggscatter(avg.allID, x=&quot;control&quot;, y=&quot;TCRM&quot;,
+                    color = &quot;colourGrp&quot;,
+                    palette = c(&quot;#660000&quot;, &quot;#808080&quot;, &quot;#FF3333&quot;),
+                    label=NULL,
+                    repel = F,
+                    label.rectangle=F,
+                    xlab=&quot;control&quot;,
+                    ylab = &quot;TCRM&quot;,
+                    title=&quot;&quot;,
+                    legend=&quot;none&quot;,
+                    font.label=6,
+                    alpha=0.9,
+                    size=0.5)
+
+
+p_allID </code></pre>
+<p><img src="figure/GSEAtotalCells.Rmd/scatterplot%20overall%20DEgenes-2.png" width="384" style="display: block; margin: auto;" /></p>
 </div>
 <div id="de-genes-cardiomyocytes" class="section level2 tabset">
 <h2 class="tabset">DE genes Cardiomyocytes</h2>
@@ -1067,6 +1361,17 @@ Date
 <tbody>
 <tr>
 <td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/c68cbededb27b7edc8ab4dac8b3cfce17471fd0d/docs/figure/GSEAtotalCells.Rmd/vis summary CM-1.png" target="_blank">c68cbed</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2021-12-17
+</td>
+</tr>
+<tr>
+<td>
 <a href="https://github.com/mluetge/TCRM_Christina/blob/5474212f9c9e5e0f43b7547bb44bc7a7c465a5c1/docs/figure/GSEAtotalCells.Rmd/vis summary CM-1.png" target="_blank">5474212</a>
 </td>
 <td>
@@ -1107,6 +1412,17 @@ Date
 <tbody>
 <tr>
 <td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/c68cbededb27b7edc8ab4dac8b3cfce17471fd0d/docs/figure/GSEAtotalCells.Rmd/vis summary CM-2.png" target="_blank">c68cbed</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2021-12-17
+</td>
+</tr>
+<tr>
+<td>
 <a href="https://github.com/mluetge/TCRM_Christina/blob/5474212f9c9e5e0f43b7547bb44bc7a7c465a5c1/docs/figure/GSEAtotalCells.Rmd/vis summary CM-2.png" target="_blank">5474212</a>
 </td>
 <td>
@@ -1127,7 +1443,7 @@ mluetge
 <pre class="r"><code>sessionInfo()</code></pre>
 <pre><code>R version 4.1.0 (2021-05-18)
 Platform: x86_64-apple-darwin17.0 (64-bit)
-Running under: macOS Catalina 10.15.7
+Running under: macOS Big Sur 10.16
 
 Matrix products: default
 BLAS:   /Library/Frameworks/R.framework/Versions/4.1/Resources/lib/libRblas.dylib
@@ -1146,78 +1462,80 @@ other attached packages:
  [5] clusterProfiler_4.0.5       ggpubr_0.4.0               
  [7] pheatmap_1.0.12             ggsci_2.9                  
  [9] runSeurat3_0.1.0            here_1.0.1                 
-[11] magrittr_2.0.1              SeuratObject_4.0.2         
-[13] Seurat_4.0.5                forcats_0.5.1              
-[15] stringr_1.4.0               dplyr_1.0.7                
-[17] purrr_0.3.4                 readr_2.0.2                
-[19] tidyr_1.1.4                 tibble_3.1.6               
-[21] ggplot2_3.3.5               tidyverse_1.3.1            
-[23] SingleCellExperiment_1.14.1 SummarizedExperiment_1.22.0
-[25] Biobase_2.52.0              GenomicRanges_1.44.0       
-[27] GenomeInfoDb_1.28.4         IRanges_2.26.0             
-[29] S4Vectors_0.30.2            BiocGenerics_0.38.0        
-[31] MatrixGenerics_1.4.3        matrixStats_0.61.0         
+[11] magrittr_2.0.3              sp_1.4-7                   
+[13] SeuratObject_4.1.0          Seurat_4.1.1               
+[15] forcats_0.5.1               stringr_1.4.0              
+[17] dplyr_1.0.9                 purrr_0.3.4                
+[19] readr_2.1.2                 tidyr_1.2.0                
+[21] tibble_3.1.7                ggplot2_3.3.6              
+[23] tidyverse_1.3.1             SingleCellExperiment_1.14.1
+[25] SummarizedExperiment_1.22.0 Biobase_2.52.0             
+[27] GenomicRanges_1.44.0        GenomeInfoDb_1.28.4        
+[29] IRanges_2.26.0              S4Vectors_0.30.2           
+[31] BiocGenerics_0.38.0         MatrixGenerics_1.4.3       
+[33] matrixStats_0.62.0         
 
 loaded via a namespace (and not attached):
-  [1] scattermore_0.7        bit64_4.0.5            knitr_1.36            
-  [4] irlba_2.3.3            DelayedArray_0.18.0    data.table_1.14.2     
-  [7] rpart_4.1-15           KEGGREST_1.32.0        RCurl_1.98-1.5        
- [10] generics_0.1.1         cowplot_1.1.1          RSQLite_2.2.8         
- [13] shadowtext_0.0.9       RANN_2.6.1             future_1.23.0         
- [16] bit_4.0.4              tzdb_0.2.0             spatstat.data_2.1-0   
- [19] xml2_1.3.2             lubridate_1.8.0        httpuv_1.6.3          
- [22] assertthat_0.2.1       viridis_0.6.2          xfun_0.28             
- [25] hms_1.1.1              jquerylib_0.1.4        evaluate_0.14         
- [28] promises_1.2.0.1       fansi_0.5.0            dbplyr_2.1.1          
- [31] readxl_1.3.1           igraph_1.2.8           DBI_1.1.1             
- [34] htmlwidgets_1.5.4      spatstat.geom_2.3-0    ellipsis_0.3.2        
- [37] backports_1.3.0        deldir_1.0-6           vctrs_0.3.8           
+  [1] scattermore_0.8        bit64_4.0.5            knitr_1.39            
+  [4] irlba_2.3.5            DelayedArray_0.18.0    data.table_1.14.2     
+  [7] rpart_4.1.16           KEGGREST_1.32.0        RCurl_1.98-1.6        
+ [10] generics_0.1.2         cowplot_1.1.1          RSQLite_2.2.14        
+ [13] shadowtext_0.1.2       RANN_2.6.1             future_1.25.0         
+ [16] bit_4.0.4              tzdb_0.3.0             spatstat.data_2.2-0   
+ [19] xml2_1.3.3             lubridate_1.8.0        httpuv_1.6.5          
+ [22] assertthat_0.2.1       viridis_0.6.2          xfun_0.30             
+ [25] hms_1.1.1              jquerylib_0.1.4        evaluate_0.15         
+ [28] promises_1.2.0.1       fansi_1.0.3            dbplyr_2.1.1          
+ [31] readxl_1.4.0           igraph_1.3.1           DBI_1.1.2             
+ [34] htmlwidgets_1.5.4      spatstat.geom_2.4-0    ellipsis_0.3.2        
+ [37] backports_1.4.1        deldir_1.0-6           vctrs_0.4.1           
  [40] ROCR_1.0-11            abind_1.4-5            cachem_1.0.6          
- [43] withr_2.4.2            ggforce_0.3.3          vroom_1.5.5           
- [46] sctransform_0.3.2      treeio_1.16.2          goftest_1.2-3         
- [49] cluster_2.1.2          ape_5.5                lazyeval_0.2.2        
- [52] crayon_1.4.2           pkgconfig_2.0.3        labeling_0.4.2        
- [55] tweenr_1.0.2           nlme_3.1-153           rlang_0.4.12          
- [58] globals_0.14.0         lifecycle_1.0.1        miniUI_0.1.1.1        
- [61] downloader_0.4         modelr_0.1.8           cellranger_1.1.0      
- [64] rprojroot_2.0.2        polyclip_1.10-0        lmtest_0.9-39         
- [67] Matrix_1.3-4           aplot_0.1.1            carData_3.0-4         
- [70] zoo_1.8-9              reprex_2.0.1           whisker_0.4           
- [73] ggridges_0.5.3         png_0.1-7              viridisLite_0.4.0     
- [76] bitops_1.0-7           KernSmooth_2.23-20     Biostrings_2.60.2     
- [79] blob_1.2.2             workflowr_1.6.2        qvalue_2.24.0         
- [82] parallelly_1.28.1      rstatix_0.7.0          gridGraphics_0.5-1    
- [85] ggsignif_0.6.3         scales_1.1.1           memoise_2.0.0         
- [88] plyr_1.8.6             ica_1.0-2              zlibbioc_1.38.0       
- [91] compiler_4.1.0         scatterpie_0.1.7       RColorBrewer_1.1-2    
- [94] fitdistrplus_1.1-6     cli_3.1.0              XVector_0.32.0        
- [97] listenv_0.8.0          patchwork_1.1.1        pbapply_1.5-0         
-[100] MASS_7.3-54            mgcv_1.8-38            tidyselect_1.1.1      
-[103] stringi_1.7.5          highr_0.9              yaml_2.2.1            
-[106] GOSemSim_2.18.1        ggrepel_0.9.1          grid_4.1.0            
-[109] sass_0.4.0             fastmatch_1.1-3        tools_4.1.0           
-[112] future.apply_1.8.1     rstudioapi_0.13        git2r_0.28.0          
-[115] gridExtra_2.3          farver_2.1.0           Rtsne_0.15            
-[118] ggraph_2.0.5           digest_0.6.28          shiny_1.7.1           
-[121] Rcpp_1.0.7             car_3.0-12             broom_0.7.10          
-[124] later_1.3.0            RcppAnnoy_0.0.19       httr_1.4.2            
-[127] colorspace_2.0-2       rvest_1.0.2            fs_1.5.0              
-[130] tensor_1.5             reticulate_1.22        splines_4.1.0         
-[133] uwot_0.1.10            yulab.utils_0.0.4      tidytree_0.3.5        
-[136] spatstat.utils_2.2-0   graphlayouts_0.7.1     ggplotify_0.1.0       
-[139] plotly_4.10.0          xtable_1.8-4           jsonlite_1.7.2        
-[142] ggtree_3.0.4           tidygraph_1.2.0        ggfun_0.0.4           
-[145] R6_2.5.1               pillar_1.6.4           htmltools_0.5.2       
-[148] mime_0.12              glue_1.5.0             fastmap_1.1.0         
-[151] BiocParallel_1.26.2    codetools_0.2-18       fgsea_1.18.0          
-[154] utf8_1.2.2             lattice_0.20-45        bslib_0.3.1           
-[157] spatstat.sparse_2.0-0  leiden_0.3.9           GO.db_3.13.0          
-[160] survival_3.2-13        limma_3.48.3           rmarkdown_2.11        
-[163] munsell_0.5.0          DO.db_2.9              GenomeInfoDbData_1.2.6
-[166] haven_2.4.3            reshape2_1.4.4         gtable_0.3.0          
-[169] spatstat.core_2.3-1   </code></pre>
+ [43] withr_2.5.0            ggforce_0.3.3          progressr_0.10.0      
+ [46] vroom_1.5.7            sctransform_0.3.3      treeio_1.16.2         
+ [49] goftest_1.2-3          cluster_2.1.3          ape_5.6-2             
+ [52] lazyeval_0.2.2         crayon_1.5.1           pkgconfig_2.0.3       
+ [55] labeling_0.4.2         tweenr_1.0.2           nlme_3.1-157          
+ [58] rlang_1.0.2            globals_0.15.0         lifecycle_1.0.1       
+ [61] miniUI_0.1.1.1         downloader_0.4         modelr_0.1.8          
+ [64] cellranger_1.1.0       rprojroot_2.0.3        polyclip_1.10-0       
+ [67] lmtest_0.9-40          Matrix_1.4-1           aplot_0.1.4           
+ [70] carData_3.0-5          zoo_1.8-10             reprex_2.0.1          
+ [73] whisker_0.4            ggridges_0.5.3         png_0.1-7             
+ [76] viridisLite_0.4.0      bitops_1.0-7           KernSmooth_2.23-20    
+ [79] Biostrings_2.60.2      blob_1.2.3             workflowr_1.7.0       
+ [82] qvalue_2.24.0          parallelly_1.31.1      spatstat.random_2.2-0 
+ [85] rstatix_0.7.0          gridGraphics_0.5-1     ggsignif_0.6.3        
+ [88] scales_1.2.0           memoise_2.0.1          plyr_1.8.7            
+ [91] ica_1.0-2              zlibbioc_1.38.0        compiler_4.1.0        
+ [94] scatterpie_0.1.7       RColorBrewer_1.1-3     fitdistrplus_1.1-8    
+ [97] cli_3.3.0              XVector_0.32.0         listenv_0.8.0         
+[100] patchwork_1.1.1        pbapply_1.5-0          MASS_7.3-57           
+[103] mgcv_1.8-40            tidyselect_1.1.2       stringi_1.7.6         
+[106] highr_0.9              yaml_2.3.5             GOSemSim_2.18.1       
+[109] ggrepel_0.9.1          grid_4.1.0             sass_0.4.1            
+[112] fastmatch_1.1-3        tools_4.1.0            future.apply_1.9.0    
+[115] rstudioapi_0.13        git2r_0.30.1           gridExtra_2.3         
+[118] farver_2.1.0           Rtsne_0.16             ggraph_2.0.5          
+[121] digest_0.6.29          rgeos_0.5-9            shiny_1.7.1           
+[124] Rcpp_1.0.8.3           car_3.0-13             broom_0.8.0           
+[127] later_1.3.0            RcppAnnoy_0.0.19       httr_1.4.3            
+[130] colorspace_2.0-3       rvest_1.0.2            fs_1.5.2              
+[133] tensor_1.5             reticulate_1.24        splines_4.1.0         
+[136] uwot_0.1.11            yulab.utils_0.0.4      tidytree_0.3.9        
+[139] spatstat.utils_2.3-1   graphlayouts_0.8.0     ggplotify_0.1.0       
+[142] plotly_4.10.0          xtable_1.8-4           jsonlite_1.8.0        
+[145] ggtree_3.0.4           tidygraph_1.2.1        ggfun_0.0.6           
+[148] R6_2.5.1               pillar_1.7.0           htmltools_0.5.2       
+[151] mime_0.12              glue_1.6.2             fastmap_1.1.0         
+[154] BiocParallel_1.26.2    codetools_0.2-18       fgsea_1.18.0          
+[157] utf8_1.2.2             lattice_0.20-45        bslib_0.3.1           
+[160] spatstat.sparse_2.1-1  leiden_0.3.10          GO.db_3.13.0          
+[163] limma_3.48.3           survival_3.3-1         rmarkdown_2.14        
+[166] munsell_0.5.0          DO.db_2.9              GenomeInfoDbData_1.2.6
+[169] haven_2.5.0            reshape2_1.4.4         gtable_0.3.0          
+[172] spatstat.core_2.4-2   </code></pre>
 <pre class="r"><code>date()</code></pre>
-<pre><code>[1] &quot;Thu Nov 18 16:27:54 2021&quot;</code></pre>
+<pre><code>[1] &quot;Mon May 16 18:16:40 2022&quot;</code></pre>
 <br>
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">
@@ -1228,7 +1546,7 @@ loaded via a namespace (and not attached):
 <pre class="r"><code>sessionInfo()</code></pre>
 <pre><code>R version 4.1.0 (2021-05-18)
 Platform: x86_64-apple-darwin17.0 (64-bit)
-Running under: macOS Catalina 10.15.7
+Running under: macOS Big Sur 10.16
 
 Matrix products: default
 BLAS:   /Library/Frameworks/R.framework/Versions/4.1/Resources/lib/libRblas.dylib
@@ -1247,83 +1565,85 @@ other attached packages:
  [5] clusterProfiler_4.0.5       ggpubr_0.4.0               
  [7] pheatmap_1.0.12             ggsci_2.9                  
  [9] runSeurat3_0.1.0            here_1.0.1                 
-[11] magrittr_2.0.1              SeuratObject_4.0.2         
-[13] Seurat_4.0.5                forcats_0.5.1              
-[15] stringr_1.4.0               dplyr_1.0.7                
-[17] purrr_0.3.4                 readr_2.0.2                
-[19] tidyr_1.1.4                 tibble_3.1.6               
-[21] ggplot2_3.3.5               tidyverse_1.3.1            
-[23] SingleCellExperiment_1.14.1 SummarizedExperiment_1.22.0
-[25] Biobase_2.52.0              GenomicRanges_1.44.0       
-[27] GenomeInfoDb_1.28.4         IRanges_2.26.0             
-[29] S4Vectors_0.30.2            BiocGenerics_0.38.0        
-[31] MatrixGenerics_1.4.3        matrixStats_0.61.0         
+[11] magrittr_2.0.3              sp_1.4-7                   
+[13] SeuratObject_4.1.0          Seurat_4.1.1               
+[15] forcats_0.5.1               stringr_1.4.0              
+[17] dplyr_1.0.9                 purrr_0.3.4                
+[19] readr_2.1.2                 tidyr_1.2.0                
+[21] tibble_3.1.7                ggplot2_3.3.6              
+[23] tidyverse_1.3.1             SingleCellExperiment_1.14.1
+[25] SummarizedExperiment_1.22.0 Biobase_2.52.0             
+[27] GenomicRanges_1.44.0        GenomeInfoDb_1.28.4        
+[29] IRanges_2.26.0              S4Vectors_0.30.2           
+[31] BiocGenerics_0.38.0         MatrixGenerics_1.4.3       
+[33] matrixStats_0.62.0         
 
 loaded via a namespace (and not attached):
-  [1] scattermore_0.7        bit64_4.0.5            knitr_1.36            
-  [4] irlba_2.3.3            DelayedArray_0.18.0    data.table_1.14.2     
-  [7] rpart_4.1-15           KEGGREST_1.32.0        RCurl_1.98-1.5        
- [10] generics_0.1.1         cowplot_1.1.1          RSQLite_2.2.8         
- [13] shadowtext_0.0.9       RANN_2.6.1             future_1.23.0         
- [16] bit_4.0.4              tzdb_0.2.0             spatstat.data_2.1-0   
- [19] xml2_1.3.2             lubridate_1.8.0        httpuv_1.6.3          
- [22] assertthat_0.2.1       viridis_0.6.2          xfun_0.28             
- [25] hms_1.1.1              jquerylib_0.1.4        evaluate_0.14         
- [28] promises_1.2.0.1       fansi_0.5.0            dbplyr_2.1.1          
- [31] readxl_1.3.1           igraph_1.2.8           DBI_1.1.1             
- [34] htmlwidgets_1.5.4      spatstat.geom_2.3-0    ellipsis_0.3.2        
- [37] backports_1.3.0        deldir_1.0-6           vctrs_0.3.8           
+  [1] scattermore_0.8        bit64_4.0.5            knitr_1.39            
+  [4] irlba_2.3.5            DelayedArray_0.18.0    data.table_1.14.2     
+  [7] rpart_4.1.16           KEGGREST_1.32.0        RCurl_1.98-1.6        
+ [10] generics_0.1.2         cowplot_1.1.1          RSQLite_2.2.14        
+ [13] shadowtext_0.1.2       RANN_2.6.1             future_1.25.0         
+ [16] bit_4.0.4              tzdb_0.3.0             spatstat.data_2.2-0   
+ [19] xml2_1.3.3             lubridate_1.8.0        httpuv_1.6.5          
+ [22] assertthat_0.2.1       viridis_0.6.2          xfun_0.30             
+ [25] hms_1.1.1              jquerylib_0.1.4        evaluate_0.15         
+ [28] promises_1.2.0.1       fansi_1.0.3            dbplyr_2.1.1          
+ [31] readxl_1.4.0           igraph_1.3.1           DBI_1.1.2             
+ [34] htmlwidgets_1.5.4      spatstat.geom_2.4-0    ellipsis_0.3.2        
+ [37] backports_1.4.1        deldir_1.0-6           vctrs_0.4.1           
  [40] ROCR_1.0-11            abind_1.4-5            cachem_1.0.6          
- [43] withr_2.4.2            ggforce_0.3.3          vroom_1.5.5           
- [46] sctransform_0.3.2      treeio_1.16.2          goftest_1.2-3         
- [49] cluster_2.1.2          ape_5.5                lazyeval_0.2.2        
- [52] crayon_1.4.2           pkgconfig_2.0.3        labeling_0.4.2        
- [55] tweenr_1.0.2           nlme_3.1-153           rlang_0.4.12          
- [58] globals_0.14.0         lifecycle_1.0.1        miniUI_0.1.1.1        
- [61] downloader_0.4         modelr_0.1.8           cellranger_1.1.0      
- [64] rprojroot_2.0.2        polyclip_1.10-0        lmtest_0.9-39         
- [67] Matrix_1.3-4           aplot_0.1.1            carData_3.0-4         
- [70] zoo_1.8-9              reprex_2.0.1           whisker_0.4           
- [73] ggridges_0.5.3         png_0.1-7              viridisLite_0.4.0     
- [76] bitops_1.0-7           KernSmooth_2.23-20     Biostrings_2.60.2     
- [79] blob_1.2.2             workflowr_1.6.2        qvalue_2.24.0         
- [82] parallelly_1.28.1      rstatix_0.7.0          gridGraphics_0.5-1    
- [85] ggsignif_0.6.3         scales_1.1.1           memoise_2.0.0         
- [88] plyr_1.8.6             ica_1.0-2              zlibbioc_1.38.0       
- [91] compiler_4.1.0         scatterpie_0.1.7       RColorBrewer_1.1-2    
- [94] fitdistrplus_1.1-6     cli_3.1.0              XVector_0.32.0        
- [97] listenv_0.8.0          patchwork_1.1.1        pbapply_1.5-0         
-[100] MASS_7.3-54            mgcv_1.8-38            tidyselect_1.1.1      
-[103] stringi_1.7.5          highr_0.9              yaml_2.2.1            
-[106] GOSemSim_2.18.1        ggrepel_0.9.1          grid_4.1.0            
-[109] sass_0.4.0             fastmatch_1.1-3        tools_4.1.0           
-[112] future.apply_1.8.1     rstudioapi_0.13        git2r_0.28.0          
-[115] gridExtra_2.3          farver_2.1.0           Rtsne_0.15            
-[118] ggraph_2.0.5           digest_0.6.28          shiny_1.7.1           
-[121] Rcpp_1.0.7             car_3.0-12             broom_0.7.10          
-[124] later_1.3.0            RcppAnnoy_0.0.19       httr_1.4.2            
-[127] colorspace_2.0-2       rvest_1.0.2            fs_1.5.0              
-[130] tensor_1.5             reticulate_1.22        splines_4.1.0         
-[133] uwot_0.1.10            yulab.utils_0.0.4      tidytree_0.3.5        
-[136] spatstat.utils_2.2-0   graphlayouts_0.7.1     ggplotify_0.1.0       
-[139] plotly_4.10.0          xtable_1.8-4           jsonlite_1.7.2        
-[142] ggtree_3.0.4           tidygraph_1.2.0        ggfun_0.0.4           
-[145] R6_2.5.1               pillar_1.6.4           htmltools_0.5.2       
-[148] mime_0.12              glue_1.5.0             fastmap_1.1.0         
-[151] BiocParallel_1.26.2    codetools_0.2-18       fgsea_1.18.0          
-[154] utf8_1.2.2             lattice_0.20-45        bslib_0.3.1           
-[157] spatstat.sparse_2.0-0  leiden_0.3.9           GO.db_3.13.0          
-[160] survival_3.2-13        limma_3.48.3           rmarkdown_2.11        
-[163] munsell_0.5.0          DO.db_2.9              GenomeInfoDbData_1.2.6
-[166] haven_2.4.3            reshape2_1.4.4         gtable_0.3.0          
-[169] spatstat.core_2.3-1   </code></pre>
+ [43] withr_2.5.0            ggforce_0.3.3          progressr_0.10.0      
+ [46] vroom_1.5.7            sctransform_0.3.3      treeio_1.16.2         
+ [49] goftest_1.2-3          cluster_2.1.3          ape_5.6-2             
+ [52] lazyeval_0.2.2         crayon_1.5.1           pkgconfig_2.0.3       
+ [55] labeling_0.4.2         tweenr_1.0.2           nlme_3.1-157          
+ [58] rlang_1.0.2            globals_0.15.0         lifecycle_1.0.1       
+ [61] miniUI_0.1.1.1         downloader_0.4         modelr_0.1.8          
+ [64] cellranger_1.1.0       rprojroot_2.0.3        polyclip_1.10-0       
+ [67] lmtest_0.9-40          Matrix_1.4-1           aplot_0.1.4           
+ [70] carData_3.0-5          zoo_1.8-10             reprex_2.0.1          
+ [73] whisker_0.4            ggridges_0.5.3         png_0.1-7             
+ [76] viridisLite_0.4.0      bitops_1.0-7           KernSmooth_2.23-20    
+ [79] Biostrings_2.60.2      blob_1.2.3             workflowr_1.7.0       
+ [82] qvalue_2.24.0          parallelly_1.31.1      spatstat.random_2.2-0 
+ [85] rstatix_0.7.0          gridGraphics_0.5-1     ggsignif_0.6.3        
+ [88] scales_1.2.0           memoise_2.0.1          plyr_1.8.7            
+ [91] ica_1.0-2              zlibbioc_1.38.0        compiler_4.1.0        
+ [94] scatterpie_0.1.7       RColorBrewer_1.1-3     fitdistrplus_1.1-8    
+ [97] cli_3.3.0              XVector_0.32.0         listenv_0.8.0         
+[100] patchwork_1.1.1        pbapply_1.5-0          MASS_7.3-57           
+[103] mgcv_1.8-40            tidyselect_1.1.2       stringi_1.7.6         
+[106] highr_0.9              yaml_2.3.5             GOSemSim_2.18.1       
+[109] ggrepel_0.9.1          grid_4.1.0             sass_0.4.1            
+[112] fastmatch_1.1-3        tools_4.1.0            future.apply_1.9.0    
+[115] rstudioapi_0.13        git2r_0.30.1           gridExtra_2.3         
+[118] farver_2.1.0           Rtsne_0.16             ggraph_2.0.5          
+[121] digest_0.6.29          rgeos_0.5-9            shiny_1.7.1           
+[124] Rcpp_1.0.8.3           car_3.0-13             broom_0.8.0           
+[127] later_1.3.0            RcppAnnoy_0.0.19       httr_1.4.3            
+[130] colorspace_2.0-3       rvest_1.0.2            fs_1.5.2              
+[133] tensor_1.5             reticulate_1.24        splines_4.1.0         
+[136] uwot_0.1.11            yulab.utils_0.0.4      tidytree_0.3.9        
+[139] spatstat.utils_2.3-1   graphlayouts_0.8.0     ggplotify_0.1.0       
+[142] plotly_4.10.0          xtable_1.8-4           jsonlite_1.8.0        
+[145] ggtree_3.0.4           tidygraph_1.2.1        ggfun_0.0.6           
+[148] R6_2.5.1               pillar_1.7.0           htmltools_0.5.2       
+[151] mime_0.12              glue_1.6.2             fastmap_1.1.0         
+[154] BiocParallel_1.26.2    codetools_0.2-18       fgsea_1.18.0          
+[157] utf8_1.2.2             lattice_0.20-45        bslib_0.3.1           
+[160] spatstat.sparse_2.1-1  leiden_0.3.10          GO.db_3.13.0          
+[163] limma_3.48.3           survival_3.3-1         rmarkdown_2.14        
+[166] munsell_0.5.0          DO.db_2.9              GenomeInfoDbData_1.2.6
+[169] haven_2.5.0            reshape2_1.4.4         gtable_0.3.0          
+[172] spatstat.core_2.4-2   </code></pre>
 </div>
 </div>
 
 
 <!-- Adjust MathJax settings so that all math formulae are shown using
 TeX fonts only; see
-http://docs.mathjax.org/en/latest/configuration.html.  This will make
+https://docs.mathjax.org/en/latest/web/configuration.html. This will make
 the presentation more consistent at the cost of the webpage sometimes
 taking slightly longer to load. Note that this only works because the
 footer is added to webpages before the MathJax javascript. -->
