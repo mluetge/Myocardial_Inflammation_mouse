@@ -37,6 +37,7 @@ suppressPackageStartupMessages({
   library(pheatmap)
   library(RColorBrewer)
   library(CellMixS)
+  library(scater)
 })
 
 ```
@@ -165,9 +166,16 @@ c7Sig <- data.frame(gene=c("Ecrg4","Wif1","Prg4","Clu","Dkk3","Pdlim3")) %>%
 c10Sig <- data.frame(gene=c("Tnnt2","Myl7","Tnni3","Mb","Myl3","Acta1")) %>%
   mutate(signature="C10")
 
+ARsig <- data.frame(gene=c("Plaur","Il11","Timp1","Sod2","Hif1a","Il33")) %>%
+  mutate(signature="AdverseRemod")
+
+IIsig <- data.frame(gene=c("Bst1","H2-Aa","Ccl2","Cxcl9","Ccl19","Cxcl10",
+                           "Cxcl5")) %>%
+  mutate(signature="ImmunInt")
+
 allGenes <- data.frame(geneID = rownames(seurat)) %>%
   mutate(gene=gsub("^.*\\.","", geneID))
-allSign <- rbind(c0Sig, c1Sig, c5Sig, c7Sig, c10Sig) %>%
+allSign <- rbind(c0Sig, c1Sig, c5Sig, c7Sig, c10Sig, ARsig, IIsig) %>%
   left_join(., allGenes, by="gene")
 
 ```
