@@ -45,9 +45,13 @@ suppressPackageStartupMessages({
 ```{r set dir}
 basedir <- here()
 seurat <- readRDS(file = paste0(basedir, 
-                                "/data/TCRM_all10samplesMerged_seurat.rds"))
+                              "/data/TCRM_all10samplesMerged_wo12w_seurat.rds"))
 
 seurat$time_plus_grp <- paste0(seurat$time, "_", seurat$grp)
+
+## Remove cluster with cycling cells (mki67 high) and
+## endothelial cells (Chdh5, Pecam1 high)
+seurat <- subset(seurat, RNA_snn_res.0.4 %in% c("10", "11"), invert = T)
 ```
 
 
@@ -78,7 +82,8 @@ DimPlot(seurat, reduction = "umap", cols=colPal)+
   xlab("UMAP1") +
   ylab("UMAP2")
 
-
+DimPlot(seurat, reduction = "umap", cols=colPal)+
+  theme_void() 
 ```
 
 ### group
@@ -90,6 +95,10 @@ DimPlot(seurat, reduction = "umap", group.by = "grp", cols=colGrp)+
         panel.grid.minor = element_blank()) +
   xlab("UMAP1") +
   ylab("UMAP2")
+
+DimPlot(seurat, reduction = "umap", group.by = "grp", cols=colGrp)+
+  theme_void() 
+
 
 ```
 
@@ -104,6 +113,8 @@ DimPlot(seurat, reduction = "umap", group.by = "dataset", cols=colSmp)+
   xlab("UMAP1") +
   ylab("UMAP2")
 
+DimPlot(seurat, reduction = "umap", group.by = "dataset", cols=colSmp)+
+  theme_void() 
 
 ```
 
@@ -130,6 +141,8 @@ DimPlot(seurat, reduction = "umap", group.by = "time", cols=colTime)+
   xlab("UMAP1") +
   ylab("UMAP2")
 
+DimPlot(seurat, reduction = "umap", group.by = "time", cols=colTime)+
+  theme_void() 
 
 ```
 
@@ -536,6 +549,28 @@ plots_fp <- lapply(selGenesLong$gene,
 ```
 
 `r knitr::knit(text = unlist(plots_fp))`
+
+## BMP signaling
+### violin plots
+```{r violinplots BMP}
+
+genes <- data.frame(geneID=rownames(seurat)) %>% 
+  mutate(gene = gsub(".*\\.", "", geneID))
+selGenes <- data.frame(gene = c("Bmp2", "Bmp4", "Bmpr1a","Bmpr1b","Bmpr2")) %>%
+  left_join(., genes, by = "gene")
+
+
+pList <- sapply(selGenes$geneID, function(x){
+  p <- VlnPlot(object = seurat, features = x,
+               group.by = "RNA_snn_res.0.4",
+               cols = colPal, pt.size = 0,
+               fill.by = "ident"
+               )
+  plot(p)
+})
+
+
+```
 
 
 ## session info

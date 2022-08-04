@@ -15,7 +15,8 @@
 
 <title>Merge samples</title>
 
-<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<script src="site_libs/header-attrs-2.14/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
@@ -37,13 +38,15 @@
 <link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
 
-<link rel="icon" href="https://github.com/workflowr/workflowr-assets/raw/master/img/reproducible.png">
+<link rel="icon" href="https://github.com/workflowr/workflowr-assets/raw/main/img/reproducible.png">
 <!-- Add a small amount of space between sections. -->
 <style type="text/css">
 div.section {
   padding-top: 12px;
 }
 </style>
+
+
 
 <style type="text/css">
   code{white-space: pre-wrap;}
@@ -72,6 +75,7 @@ if (window.hljs) {
 
 
 
+
 <style type = "text/css">
 .main-container {
   max-width: 940px;
@@ -92,6 +96,9 @@ button.code-folding-btn:focus {
 }
 summary {
   display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
 }
 pre code {
   padding: 0;
@@ -317,7 +324,7 @@ div.tocify {
 <div class="navbar navbar-default  navbar-fixed-top" role="navigation">
   <div class="container">
     <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
@@ -356,7 +363,9 @@ div.tocify {
 
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-report" data-toggle="collapse" data-target="#workflowr-report">
-<span class="glyphicon glyphicon-list" aria-hidden="true"></span> workflowr <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span>
+<span class="glyphicon glyphicon-list" aria-hidden="true"></span>
+workflowr <span class="glyphicon glyphicon-exclamation-sign text-danger"
+aria-hidden="true"></span>
 </button>
 </p>
 <div id="workflowr-report" class="collapse">
@@ -365,7 +374,9 @@ div.tocify {
 <a data-toggle="tab" href="#summary">Summary</a>
 </li>
 <li>
-<a data-toggle="tab" href="#checks"> Checks <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> </a>
+<a data-toggle="tab" href="#checks"> Checks <span
+class="glyphicon glyphicon-exclamation-sign text-danger"
+aria-hidden="true"></span> </a>
 </li>
 <li>
 <a data-toggle="tab" href="#versions">Past versions</a>
@@ -374,17 +385,27 @@ div.tocify {
 <div class="tab-content">
 <div id="summary" class="tab-pane fade in active">
 <p>
-<strong>Last updated:</strong> 2021-06-25
+<strong>Last updated:</strong> 2022-08-04
 </p>
 <p>
-<strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 6 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 1
+<strong>Checks:</strong> <span
+class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 6
+<span class="glyphicon glyphicon-exclamation-sign text-danger"
+aria-hidden="true"></span> 1
 </p>
 <p>
-<strong>Knit directory:</strong> <code>TCRM_Christina/</code> <span class="glyphicon glyphicon-question-sign" aria-hidden="true" title="This is the local directory in which the code in this file was executed."> </span>
+<strong>Knit directory:</strong> <code>TCRM_Christina/</code> <span
+class="glyphicon glyphicon-question-sign" aria-hidden="true"
+title="This is the local directory in which the code in this file was executed.">
+</span>
 </p>
 <p>
-This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis was created with <a
-  href="https://github.com/jdblischak/workflowr">workflowr</a> (version 1.6.2). The <em>Checks</em> tab describes the reproducibility checks that were applied when the results were created. The <em>Past versions</em> tab lists the development history.
+This reproducible <a href="https://rmarkdown.rstudio.com">R Markdown</a>
+analysis was created with <a
+  href="https://github.com/workflowr/workflowr">workflowr</a> (version
+1.7.0). The <em>Checks</em> tab describes the reproducibility checks
+that were applied when the results were created. The <em>Past
+versions</em> tab lists the development history.
 </p>
 <hr>
 </div>
@@ -393,108 +414,443 @@ This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguncommittedchanges"> <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> <strong>R Markdown file:</strong> uncommitted changes </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguncommittedchanges">
+<span class="glyphicon glyphicon-exclamation-sign text-danger"
+aria-hidden="true"></span> <strong>R Markdown file:</strong> uncommitted
+changes </a>
 </p>
 </div>
-<div id="strongRMarkdownfilestronguncommittedchanges" class="panel-collapse collapse">
+<div id="strongRMarkdownfilestronguncommittedchanges"
+class="panel-collapse collapse">
 <div class="panel-body">
-<p>The R Markdown file has unstaged changes. To know which version of the R Markdown file created these results, you’ll want to first commit it to the Git repo. If you’re still working on the analysis, you can ignore this warning. When you’re finished, you can run <code>wflow_publish</code> to commit the R Markdown file and build the HTML.</p>
+<p>The R Markdown file has unstaged changes. To know which version of
+the R Markdown file created these results, you’ll want to first commit
+it to the Git repo. If you’re still working on the analysis, you can
+ignore this warning. When you’re finished, you can run
+<code>wflow_publish</code> to commit the R Markdown file and build the
+HTML.</p>
 </div>
 </div>
 </div>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongEnvironmentstrongempty"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Environment:</strong> empty </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongEnvironmentstrongempty">
+<span class="glyphicon glyphicon-ok text-success"
+aria-hidden="true"></span> <strong>Environment:</strong> empty </a>
 </p>
 </div>
 <div id="strongEnvironmentstrongempty" class="panel-collapse collapse">
 <div class="panel-body">
-<p>Great job! The global environment was empty. Objects defined in the global environment can affect the analysis in your R Markdown file in unknown ways. For reproduciblity it’s best to always run the code in an empty environment.</p>
+<p>Great job! The global environment was empty. Objects defined in the
+global environment can affect the analysis in your R Markdown file in
+unknown ways. For reproduciblity it’s best to always run the code in an
+empty environment.</p>
 </div>
 </div>
 </div>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongSeedstrongcodesetseed20200518code"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Seed:</strong> <code>set.seed(20200518)</code> </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongSeedstrongcodesetseed20200518code">
+<span class="glyphicon glyphicon-ok text-success"
+aria-hidden="true"></span> <strong>Seed:</strong>
+<code>set.seed(20200518)</code> </a>
 </p>
 </div>
-<div id="strongSeedstrongcodesetseed20200518code" class="panel-collapse collapse">
+<div id="strongSeedstrongcodesetseed20200518code"
+class="panel-collapse collapse">
 <div class="panel-body">
-<p>The command <code>set.seed(20200518)</code> was run prior to running the code in the R Markdown file. Setting a seed ensures that any results that rely on randomness, e.g. subsampling or permutations, are reproducible.</p>
+<p>The command <code>set.seed(20200518)</code> was run prior to running
+the code in the R Markdown file. Setting a seed ensures that any results
+that rely on randomness, e.g. subsampling or permutations, are
+reproducible.</p>
 </div>
 </div>
 </div>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongSessioninformationstrongrecorded"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Session information:</strong> recorded </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongSessioninformationstrongrecorded">
+<span class="glyphicon glyphicon-ok text-success"
+aria-hidden="true"></span> <strong>Session information:</strong>
+recorded </a>
 </p>
 </div>
-<div id="strongSessioninformationstrongrecorded" class="panel-collapse collapse">
+<div id="strongSessioninformationstrongrecorded"
+class="panel-collapse collapse">
 <div class="panel-body">
-<p>Great job! Recording the operating system, R version, and package versions is critical for reproducibility.</p>
+<p>Great job! Recording the operating system, R version, and package
+versions is critical for reproducibility.</p>
 </div>
 </div>
 </div>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongCachestrongnone"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Cache:</strong> none </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongCachestrongnone">
+<span class="glyphicon glyphicon-ok text-success"
+aria-hidden="true"></span> <strong>Cache:</strong> none </a>
 </p>
 </div>
 <div id="strongCachestrongnone" class="panel-collapse collapse">
 <div class="panel-body">
-<p>Nice! There were no cached chunks for this analysis, so you can be confident that you successfully produced the results during this run.</p>
+<p>Nice! There were no cached chunks for this analysis, so you can be
+confident that you successfully produced the results during this
+run.</p>
 </div>
 </div>
 </div>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongFilepathsstrongrelative"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>File paths:</strong> relative </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongFilepathsstrongrelative">
+<span class="glyphicon glyphicon-ok text-success"
+aria-hidden="true"></span> <strong>File paths:</strong> relative </a>
 </p>
 </div>
 <div id="strongFilepathsstrongrelative" class="panel-collapse collapse">
 <div class="panel-body">
-<p>Great job! Using relative paths to the files within your workflowr project makes it easier to run your code on other machines.</p>
+<p>Great job! Using relative paths to the files within your workflowr
+project makes it easier to run your code on other machines.</p>
 </div>
 </div>
 </div>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcommluetgeTCRMChristinatree4091b70f1df9d77800d6d68f2b2519e90a26bd39targetblank4091b70a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/mluetge/TCRM_Christina/tree/4091b70f1df9d77800d6d68f2b2519e90a26bd39" target="_blank">4091b70</a> </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcommluetgeTCRMChristinatreebe5464f19a4d50016a561170eac37462196e0f60targetblankbe5464fa">
+<span class="glyphicon glyphicon-ok text-success"
+aria-hidden="true"></span> <strong>Repository version:</strong>
+<a href="https://github.com/mluetge/TCRM_Christina/tree/be5464f19a4d50016a561170eac37462196e0f60" target="_blank">be5464f</a>
+</a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcommluetgeTCRMChristinatree4091b70f1df9d77800d6d68f2b2519e90a26bd39targetblank4091b70a" class="panel-collapse collapse">
+<div
+id="strongRepositoryversionstrongahrefhttpsgithubcommluetgeTCRMChristinatreebe5464f19a4d50016a561170eac37462196e0f60targetblankbe5464fa"
+class="panel-collapse collapse">
 <div class="panel-body">
 <p>
-Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility.
+Great! You are using Git for version control. Tracking code development
+and connecting the code version to the results is critical for
+reproducibility.
 </p>
 <p>
-The results in this page were generated with repository version <a href="https://github.com/mluetge/TCRM_Christina/tree/4091b70f1df9d77800d6d68f2b2519e90a26bd39" target="_blank">4091b70</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
+The results in this page were generated with repository version
+<a href="https://github.com/mluetge/TCRM_Christina/tree/be5464f19a4d50016a561170eac37462196e0f60" target="_blank">be5464f</a>.
+See the <em>Past versions</em> tab to see a history of the changes made
+to the R Markdown and HTML files.
 </p>
 <p>
-Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
+Note that you need to be careful to ensure that all relevant files for
+the analysis have been committed to Git prior to generating the results
+(you can use <code>wflow_publish</code> or
+<code>wflow_git_commit</code>). workflowr only checks the R Markdown
+file, but you know if there are other scripts or data files that it
+depends on. Below is the status of the Git repository when the results
+were generated:
 </p>
 <pre><code>
 Ignored files:
     Ignored:    .DS_Store
     Ignored:    .Rhistory
     Ignored:    .Rproj.user/
+    Ignored:    data/GSEA/
+    Ignored:    data/cellphonedb/
     Ignored:    data/data_old/
+    Ignored:    figure/.DS_Store
     Ignored:    output/.DS_Store
 
 Unstaged changes:
     Modified:   analysis/characterizeFibroblasts.Rmd
-    Modified:   analysis/pseudotimeAnalysisFibroblasts.Rmd
-    Modified:   analysis/visGrps_CD45Data.Rmd
+    Deleted:    figure/characterizeFibroblasts.Rmd/map sign C0-1.pdf
+    Deleted:    figure/characterizeFibroblasts.Rmd/map sign C0-1.png
+    Deleted:    figure/characterizeFibroblasts.Rmd/map sign C1-1.pdf
+    Deleted:    figure/characterizeFibroblasts.Rmd/map sign C1-1.png
+    Deleted:    figure/characterizeFibroblasts.Rmd/map sign C10-1.pdf
+    Deleted:    figure/characterizeFibroblasts.Rmd/map sign C10-1.png
+    Deleted:    figure/characterizeFibroblasts.Rmd/map sign C5-1.pdf
+    Deleted:    figure/characterizeFibroblasts.Rmd/map sign C5-1.png
+    Deleted:    figure/characterizeFibroblasts.Rmd/map sign C7-1.pdf
+    Deleted:    figure/characterizeFibroblasts.Rmd/map sign C7-1.png
+    Deleted:    figure/characterizeFibroblasts.Rmd/map sign cut 2 C0-1.pdf
+    Deleted:    figure/characterizeFibroblasts.Rmd/map sign cut 2 C0-1.png
+    Deleted:    figure/characterizeFibroblasts.Rmd/map sign cut 2 C1-1.pdf
+    Deleted:    figure/characterizeFibroblasts.Rmd/map sign cut 2 C1-1.png
+    Deleted:    figure/characterizeFibroblasts.Rmd/map sign cut 2 C10-1.pdf
+    Deleted:    figure/characterizeFibroblasts.Rmd/map sign cut 2 C10-1.png
+    Deleted:    figure/characterizeFibroblasts.Rmd/map sign cut 2 C5-1.pdf
+    Deleted:    figure/characterizeFibroblasts.Rmd/map sign cut 2 C5-1.png
+    Deleted:    figure/characterizeFibroblasts.Rmd/map sign cut 2 C7-1.pdf
+    Deleted:    figure/characterizeFibroblasts.Rmd/map sign cut 2 C7-1.png
+    Deleted:    figure/characterizeFibroblasts.Rmd/map sign time C0-1.pdf
+    Deleted:    figure/characterizeFibroblasts.Rmd/map sign time C0-1.png
+    Deleted:    figure/characterizeFibroblasts.Rmd/map sign time C0-2.pdf
+    Deleted:    figure/characterizeFibroblasts.Rmd/map sign time C0-2.png
+    Deleted:    figure/characterizeFibroblasts.Rmd/map sign time C0-3.pdf
+    Deleted:    figure/characterizeFibroblasts.Rmd/map sign time C0-3.png
+    Deleted:    figure/characterizeFibroblasts.Rmd/map sign time C0-4.pdf
+    Deleted:    figure/characterizeFibroblasts.Rmd/map sign time C0-4.png
+    Deleted:    figure/characterizeFibroblasts.Rmd/map sign time C0-5.pdf
+    Deleted:    figure/characterizeFibroblasts.Rmd/map sign time C0-5.png
+    Deleted:    figure/characterizeFibroblasts.Rmd/map sign time C1-1.pdf
+    Deleted:    figure/characterizeFibroblasts.Rmd/map sign time C1-1.png
+    Deleted:    figure/characterizeFibroblasts.Rmd/map sign time C1-2.pdf
+    Deleted:    figure/characterizeFibroblasts.Rmd/map sign time C1-2.png
+    Deleted:    figure/characterizeFibroblasts.Rmd/map sign time C1-3.pdf
+    Deleted:    figure/characterizeFibroblasts.Rmd/map sign time C1-3.png
+    Deleted:    figure/characterizeFibroblasts.Rmd/map sign time C1-4.pdf
+    Deleted:    figure/characterizeFibroblasts.Rmd/map sign time C1-4.png
+    Deleted:    figure/characterizeFibroblasts.Rmd/map sign time C1-5.pdf
+    Deleted:    figure/characterizeFibroblasts.Rmd/map sign time C1-5.png
+    Deleted:    figure/characterizeFibroblasts.Rmd/map sign time C10-1.pdf
+    Deleted:    figure/characterizeFibroblasts.Rmd/map sign time C10-1.png
+    Deleted:    figure/characterizeFibroblasts.Rmd/map sign time C10-2.pdf
+    Deleted:    figure/characterizeFibroblasts.Rmd/map sign time C10-2.png
+    Deleted:    figure/characterizeFibroblasts.Rmd/map sign time C10-3.pdf
+    Deleted:    figure/characterizeFibroblasts.Rmd/map sign time C10-3.png
+    Deleted:    figure/characterizeFibroblasts.Rmd/map sign time C10-4.pdf
+    Deleted:    figure/characterizeFibroblasts.Rmd/map sign time C10-4.png
+    Deleted:    figure/characterizeFibroblasts.Rmd/map sign time C10-5.pdf
+    Deleted:    figure/characterizeFibroblasts.Rmd/map sign time C10-5.png
+    Deleted:    figure/characterizeFibroblasts.Rmd/map sign time C5-1.pdf
+    Deleted:    figure/characterizeFibroblasts.Rmd/map sign time C5-1.png
+    Deleted:    figure/characterizeFibroblasts.Rmd/map sign time C5-2.pdf
+    Deleted:    figure/characterizeFibroblasts.Rmd/map sign time C5-2.png
+    Deleted:    figure/characterizeFibroblasts.Rmd/map sign time C5-3.pdf
+    Deleted:    figure/characterizeFibroblasts.Rmd/map sign time C5-3.png
+    Deleted:    figure/characterizeFibroblasts.Rmd/map sign time C5-4.pdf
+    Deleted:    figure/characterizeFibroblasts.Rmd/map sign time C5-4.png
+    Deleted:    figure/characterizeFibroblasts.Rmd/map sign time C5-5.pdf
+    Deleted:    figure/characterizeFibroblasts.Rmd/map sign time C5-5.png
+    Deleted:    figure/characterizeFibroblasts.Rmd/map sign time C7-1.pdf
+    Deleted:    figure/characterizeFibroblasts.Rmd/map sign time C7-1.png
+    Deleted:    figure/characterizeFibroblasts.Rmd/map sign time C7-2.pdf
+    Deleted:    figure/characterizeFibroblasts.Rmd/map sign time C7-2.png
+    Deleted:    figure/characterizeFibroblasts.Rmd/map sign time C7-3.pdf
+    Deleted:    figure/characterizeFibroblasts.Rmd/map sign time C7-3.png
+    Deleted:    figure/characterizeFibroblasts.Rmd/map sign time C7-4.pdf
+    Deleted:    figure/characterizeFibroblasts.Rmd/map sign time C7-4.png
+    Deleted:    figure/characterizeFibroblasts.Rmd/map sign time C7-5.pdf
+    Deleted:    figure/characterizeFibroblasts.Rmd/map sign time C7-5.png
+    Deleted:    figure/characterizeFibroblasts.Rmd/map sign time cut 2 C0-1.pdf
+    Deleted:    figure/characterizeFibroblasts.Rmd/map sign time cut 2 C0-1.png
+    Deleted:    figure/characterizeFibroblasts.Rmd/map sign time cut 2 C0-2.pdf
+    Deleted:    figure/characterizeFibroblasts.Rmd/map sign time cut 2 C0-2.png
+    Deleted:    figure/characterizeFibroblasts.Rmd/map sign time cut 2 C0-3.pdf
+    Deleted:    figure/characterizeFibroblasts.Rmd/map sign time cut 2 C0-3.png
+    Deleted:    figure/characterizeFibroblasts.Rmd/map sign time cut 2 C0-4.pdf
+    Deleted:    figure/characterizeFibroblasts.Rmd/map sign time cut 2 C0-4.png
+    Deleted:    figure/characterizeFibroblasts.Rmd/map sign time cut 2 C0-5.pdf
+    Deleted:    figure/characterizeFibroblasts.Rmd/map sign time cut 2 C0-5.png
+    Deleted:    figure/characterizeFibroblasts.Rmd/map sign time cut 2 C1-1.pdf
+    Deleted:    figure/characterizeFibroblasts.Rmd/map sign time cut 2 C1-1.png
+    Deleted:    figure/characterizeFibroblasts.Rmd/map sign time cut 2 C1-2.pdf
+    Deleted:    figure/characterizeFibroblasts.Rmd/map sign time cut 2 C1-2.png
+    Deleted:    figure/characterizeFibroblasts.Rmd/map sign time cut 2 C1-3.pdf
+    Deleted:    figure/characterizeFibroblasts.Rmd/map sign time cut 2 C1-3.png
+    Deleted:    figure/characterizeFibroblasts.Rmd/map sign time cut 2 C1-4.pdf
+    Deleted:    figure/characterizeFibroblasts.Rmd/map sign time cut 2 C1-4.png
+    Deleted:    figure/characterizeFibroblasts.Rmd/map sign time cut 2 C1-5.pdf
+    Deleted:    figure/characterizeFibroblasts.Rmd/map sign time cut 2 C1-5.png
+    Deleted:    figure/characterizeFibroblasts.Rmd/map sign time cut 2 C10-1.pdf
+    Deleted:    figure/characterizeFibroblasts.Rmd/map sign time cut 2 C10-1.png
+    Deleted:    figure/characterizeFibroblasts.Rmd/map sign time cut 2 C10-2.pdf
+    Deleted:    figure/characterizeFibroblasts.Rmd/map sign time cut 2 C10-2.png
+    Deleted:    figure/characterizeFibroblasts.Rmd/map sign time cut 2 C10-3.pdf
+    Deleted:    figure/characterizeFibroblasts.Rmd/map sign time cut 2 C10-3.png
+    Deleted:    figure/characterizeFibroblasts.Rmd/map sign time cut 2 C10-4.pdf
+    Deleted:    figure/characterizeFibroblasts.Rmd/map sign time cut 2 C10-4.png
+    Deleted:    figure/characterizeFibroblasts.Rmd/map sign time cut 2 C10-5.pdf
+    Deleted:    figure/characterizeFibroblasts.Rmd/map sign time cut 2 C10-5.png
+    Deleted:    figure/characterizeFibroblasts.Rmd/map sign time cut 2 C5-1.pdf
+    Deleted:    figure/characterizeFibroblasts.Rmd/map sign time cut 2 C5-1.png
+    Deleted:    figure/characterizeFibroblasts.Rmd/map sign time cut 2 C5-2.pdf
+    Deleted:    figure/characterizeFibroblasts.Rmd/map sign time cut 2 C5-2.png
+    Deleted:    figure/characterizeFibroblasts.Rmd/map sign time cut 2 C5-3.pdf
+    Deleted:    figure/characterizeFibroblasts.Rmd/map sign time cut 2 C5-3.png
+    Deleted:    figure/characterizeFibroblasts.Rmd/map sign time cut 2 C5-4.pdf
+    Deleted:    figure/characterizeFibroblasts.Rmd/map sign time cut 2 C5-4.png
+    Deleted:    figure/characterizeFibroblasts.Rmd/map sign time cut 2 C5-5.pdf
+    Deleted:    figure/characterizeFibroblasts.Rmd/map sign time cut 2 C5-5.png
+    Deleted:    figure/characterizeFibroblasts.Rmd/map sign time cut 2 C7-1.pdf
+    Deleted:    figure/characterizeFibroblasts.Rmd/map sign time cut 2 C7-1.png
+    Deleted:    figure/characterizeFibroblasts.Rmd/map sign time cut 2 C7-2.pdf
+    Deleted:    figure/characterizeFibroblasts.Rmd/map sign time cut 2 C7-2.png
+    Deleted:    figure/characterizeFibroblasts.Rmd/map sign time cut 2 C7-3.pdf
+    Deleted:    figure/characterizeFibroblasts.Rmd/map sign time cut 2 C7-3.png
+    Deleted:    figure/characterizeFibroblasts.Rmd/map sign time cut 2 C7-4.pdf
+    Deleted:    figure/characterizeFibroblasts.Rmd/map sign time cut 2 C7-4.png
+    Deleted:    figure/characterizeFibroblasts.Rmd/map sign time cut 2 C7-5.pdf
+    Deleted:    figure/characterizeFibroblasts.Rmd/map sign time cut 2 C7-5.png
+    Deleted:    figure/characterizeFibroblasts.Rmd/sel Genes across all ENSMUSG00000001131.Timp1-1.pdf
+    Deleted:    figure/characterizeFibroblasts.Rmd/sel Genes across all ENSMUSG00000001131.Timp1-1.png
+    Deleted:    figure/characterizeFibroblasts.Rmd/sel Genes across all ENSMUSG00000004371.Il11-1.pdf
+    Deleted:    figure/characterizeFibroblasts.Rmd/sel Genes across all ENSMUSG00000004371.Il11-1.png
+    Deleted:    figure/characterizeFibroblasts.Rmd/sel Genes across all ENSMUSG00000006818.Sod2-1.pdf
+    Deleted:    figure/characterizeFibroblasts.Rmd/sel Genes across all ENSMUSG00000006818.Sod2-1.png
+    Deleted:    figure/characterizeFibroblasts.Rmd/sel Genes across all ENSMUSG00000008999.Bmp7-1.pdf
+    Deleted:    figure/characterizeFibroblasts.Rmd/sel Genes across all ENSMUSG00000008999.Bmp7-1.png
+    Deleted:    figure/characterizeFibroblasts.Rmd/sel Genes across all ENSMUSG00000021109.Hif1a-1.pdf
+    Deleted:    figure/characterizeFibroblasts.Rmd/sel Genes across all ENSMUSG00000021109.Hif1a-1.png
+    Deleted:    figure/characterizeFibroblasts.Rmd/sel Genes across all ENSMUSG00000021796.Bmpr1a-1.pdf
+    Deleted:    figure/characterizeFibroblasts.Rmd/sel Genes across all ENSMUSG00000021796.Bmpr1a-1.png
+    Deleted:    figure/characterizeFibroblasts.Rmd/sel Genes across all ENSMUSG00000021835.Bmp4-1.pdf
+    Deleted:    figure/characterizeFibroblasts.Rmd/sel Genes across all ENSMUSG00000021835.Bmp4-1.png
+    Deleted:    figure/characterizeFibroblasts.Rmd/sel Genes across all ENSMUSG00000022037.Clu-1.pdf
+    Deleted:    figure/characterizeFibroblasts.Rmd/sel Genes across all ENSMUSG00000022037.Clu-1.png
+    Deleted:    figure/characterizeFibroblasts.Rmd/sel Genes across all ENSMUSG00000023078.Cxcl13-1.pdf
+    Deleted:    figure/characterizeFibroblasts.Rmd/sel Genes across all ENSMUSG00000023078.Cxcl13-1.png
+    Deleted:    figure/characterizeFibroblasts.Rmd/sel Genes across all ENSMUSG00000024810.Il33-1.pdf
+    Deleted:    figure/characterizeFibroblasts.Rmd/sel Genes across all ENSMUSG00000024810.Il33-1.png
+    Deleted:    figure/characterizeFibroblasts.Rmd/sel Genes across all ENSMUSG00000025746.Il6-1.pdf
+    Deleted:    figure/characterizeFibroblasts.Rmd/sel Genes across all ENSMUSG00000025746.Il6-1.png
+    Deleted:    figure/characterizeFibroblasts.Rmd/sel Genes across all ENSMUSG00000027358.Bmp2-1.pdf
+    Deleted:    figure/characterizeFibroblasts.Rmd/sel Genes across all ENSMUSG00000027358.Bmp2-1.png
+    Deleted:    figure/characterizeFibroblasts.Rmd/sel Genes across all ENSMUSG00000027962.Vcam1-1.pdf
+    Deleted:    figure/characterizeFibroblasts.Rmd/sel Genes across all ENSMUSG00000027962.Vcam1-1.png
+    Deleted:    figure/characterizeFibroblasts.Rmd/sel Genes across all ENSMUSG00000029082.Bst1-1.pdf
+    Deleted:    figure/characterizeFibroblasts.Rmd/sel Genes across all ENSMUSG00000029082.Bst1-1.png
+    Deleted:    figure/characterizeFibroblasts.Rmd/sel Genes across all ENSMUSG00000029417.Cxcl9-1.pdf
+    Deleted:    figure/characterizeFibroblasts.Rmd/sel Genes across all ENSMUSG00000029417.Cxcl9-1.png
+    Deleted:    figure/characterizeFibroblasts.Rmd/sel Genes across all ENSMUSG00000035385.Ccl2-1.pdf
+    Deleted:    figure/characterizeFibroblasts.Rmd/sel Genes across all ENSMUSG00000035385.Ccl2-1.png
+    Deleted:    figure/characterizeFibroblasts.Rmd/sel Genes across all ENSMUSG00000036594.H2-Aa-1.pdf
+    Deleted:    figure/characterizeFibroblasts.Rmd/sel Genes across all ENSMUSG00000036594.H2-Aa-1.png
+    Deleted:    figure/characterizeFibroblasts.Rmd/sel Genes across all ENSMUSG00000037405.Icam1-1.pdf
+    Deleted:    figure/characterizeFibroblasts.Rmd/sel Genes across all ENSMUSG00000037405.Icam1-1.png
+    Deleted:    figure/characterizeFibroblasts.Rmd/sel Genes across all ENSMUSG00000039542.Ncam1-1.pdf
+    Deleted:    figure/characterizeFibroblasts.Rmd/sel Genes across all ENSMUSG00000039542.Ncam1-1.png
+    Deleted:    figure/characterizeFibroblasts.Rmd/sel Genes across all ENSMUSG00000046223.Plaur-1.pdf
+    Deleted:    figure/characterizeFibroblasts.Rmd/sel Genes across all ENSMUSG00000046223.Plaur-1.png
+    Deleted:    figure/characterizeFibroblasts.Rmd/sel Genes across all ENSMUSG00000050069.Grem2-1.pdf
+    Deleted:    figure/characterizeFibroblasts.Rmd/sel Genes across all ENSMUSG00000050069.Grem2-1.png
+    Deleted:    figure/characterizeFibroblasts.Rmd/sel Genes across all ENSMUSG00000052430.Bmpr1b-1.pdf
+    Deleted:    figure/characterizeFibroblasts.Rmd/sel Genes across all ENSMUSG00000052430.Bmpr1b-1.png
+    Deleted:    figure/characterizeFibroblasts.Rmd/sel Genes across all ENSMUSG00000067336.Bmpr2-1.pdf
+    Deleted:    figure/characterizeFibroblasts.Rmd/sel Genes across all ENSMUSG00000067336.Bmpr2-1.png
+    Deleted:    figure/characterizeFibroblasts.Rmd/sel Genes across all ENSMUSG00000071005.Ccl19-1.pdf
+    Deleted:    figure/characterizeFibroblasts.Rmd/sel Genes across all ENSMUSG00000071005.Ccl19-1.png
+    Deleted:    figure/characterizeFibroblasts.Rmd/sel Genes across all ENSMUSG00000074934.Grem1-1.pdf
+    Deleted:    figure/characterizeFibroblasts.Rmd/sel Genes across all ENSMUSG00000074934.Grem1-1.png
+    Deleted:    figure/characterizeFibroblasts.Rmd/sel Genes across all ENSMUSG00000075602.Ly6a-1.pdf
+    Deleted:    figure/characterizeFibroblasts.Rmd/sel Genes across all ENSMUSG00000075602.Ly6a-1.png
+    Deleted:    figure/characterizeFibroblasts.Rmd/sel Genes across all Rosa26eyfp.Rosa26eyfp-1.pdf
+    Deleted:    figure/characterizeFibroblasts.Rmd/sel Genes across all Rosa26eyfp.Rosa26eyfp-1.png
+    Deleted:    figure/characterizeFibroblasts.Rmd/sel Genes split by grp ENSMUSG00000001131.Timp1-1.pdf
+    Deleted:    figure/characterizeFibroblasts.Rmd/sel Genes split by grp ENSMUSG00000001131.Timp1-1.png
+    Deleted:    figure/characterizeFibroblasts.Rmd/sel Genes split by grp ENSMUSG00000004371.Il11-1.pdf
+    Deleted:    figure/characterizeFibroblasts.Rmd/sel Genes split by grp ENSMUSG00000004371.Il11-1.png
+    Deleted:    figure/characterizeFibroblasts.Rmd/sel Genes split by grp ENSMUSG00000006818.Sod2-1.pdf
+    Deleted:    figure/characterizeFibroblasts.Rmd/sel Genes split by grp ENSMUSG00000006818.Sod2-1.png
+    Deleted:    figure/characterizeFibroblasts.Rmd/sel Genes split by grp ENSMUSG00000008999.Bmp7-1.pdf
+    Deleted:    figure/characterizeFibroblasts.Rmd/sel Genes split by grp ENSMUSG00000008999.Bmp7-1.png
+    Deleted:    figure/characterizeFibroblasts.Rmd/sel Genes split by grp ENSMUSG00000021109.Hif1a-1.pdf
+    Deleted:    figure/characterizeFibroblasts.Rmd/sel Genes split by grp ENSMUSG00000021109.Hif1a-1.png
+    Deleted:    figure/characterizeFibroblasts.Rmd/sel Genes split by grp ENSMUSG00000021796.Bmpr1a-1.pdf
+    Deleted:    figure/characterizeFibroblasts.Rmd/sel Genes split by grp ENSMUSG00000021796.Bmpr1a-1.png
+    Deleted:    figure/characterizeFibroblasts.Rmd/sel Genes split by grp ENSMUSG00000021835.Bmp4-1.pdf
+    Deleted:    figure/characterizeFibroblasts.Rmd/sel Genes split by grp ENSMUSG00000021835.Bmp4-1.png
+    Deleted:    figure/characterizeFibroblasts.Rmd/sel Genes split by grp ENSMUSG00000022037.Clu-1.pdf
+    Deleted:    figure/characterizeFibroblasts.Rmd/sel Genes split by grp ENSMUSG00000022037.Clu-1.png
+    Deleted:    figure/characterizeFibroblasts.Rmd/sel Genes split by grp ENSMUSG00000023078.Cxcl13-1.pdf
+    Deleted:    figure/characterizeFibroblasts.Rmd/sel Genes split by grp ENSMUSG00000023078.Cxcl13-1.png
+    Deleted:    figure/characterizeFibroblasts.Rmd/sel Genes split by grp ENSMUSG00000024810.Il33-1.pdf
+    Deleted:    figure/characterizeFibroblasts.Rmd/sel Genes split by grp ENSMUSG00000024810.Il33-1.png
+    Deleted:    figure/characterizeFibroblasts.Rmd/sel Genes split by grp ENSMUSG00000025746.Il6-1.pdf
+    Deleted:    figure/characterizeFibroblasts.Rmd/sel Genes split by grp ENSMUSG00000025746.Il6-1.png
+    Deleted:    figure/characterizeFibroblasts.Rmd/sel Genes split by grp ENSMUSG00000027358.Bmp2-1.pdf
+    Deleted:    figure/characterizeFibroblasts.Rmd/sel Genes split by grp ENSMUSG00000027358.Bmp2-1.png
+    Deleted:    figure/characterizeFibroblasts.Rmd/sel Genes split by grp ENSMUSG00000027962.Vcam1-1.pdf
+    Deleted:    figure/characterizeFibroblasts.Rmd/sel Genes split by grp ENSMUSG00000027962.Vcam1-1.png
+    Deleted:    figure/characterizeFibroblasts.Rmd/sel Genes split by grp ENSMUSG00000029082.Bst1-1.pdf
+    Deleted:    figure/characterizeFibroblasts.Rmd/sel Genes split by grp ENSMUSG00000029082.Bst1-1.png
+    Deleted:    figure/characterizeFibroblasts.Rmd/sel Genes split by grp ENSMUSG00000029417.Cxcl9-1.pdf
+    Deleted:    figure/characterizeFibroblasts.Rmd/sel Genes split by grp ENSMUSG00000029417.Cxcl9-1.png
+    Deleted:    figure/characterizeFibroblasts.Rmd/sel Genes split by grp ENSMUSG00000035385.Ccl2-1.pdf
+    Deleted:    figure/characterizeFibroblasts.Rmd/sel Genes split by grp ENSMUSG00000035385.Ccl2-1.png
+    Deleted:    figure/characterizeFibroblasts.Rmd/sel Genes split by grp ENSMUSG00000036594.H2-Aa-1.pdf
+    Deleted:    figure/characterizeFibroblasts.Rmd/sel Genes split by grp ENSMUSG00000036594.H2-Aa-1.png
+    Deleted:    figure/characterizeFibroblasts.Rmd/sel Genes split by grp ENSMUSG00000037405.Icam1-1.pdf
+    Deleted:    figure/characterizeFibroblasts.Rmd/sel Genes split by grp ENSMUSG00000037405.Icam1-1.png
+    Deleted:    figure/characterizeFibroblasts.Rmd/sel Genes split by grp ENSMUSG00000039542.Ncam1-1.pdf
+    Deleted:    figure/characterizeFibroblasts.Rmd/sel Genes split by grp ENSMUSG00000039542.Ncam1-1.png
+    Deleted:    figure/characterizeFibroblasts.Rmd/sel Genes split by grp ENSMUSG00000046223.Plaur-1.pdf
+    Deleted:    figure/characterizeFibroblasts.Rmd/sel Genes split by grp ENSMUSG00000046223.Plaur-1.png
+    Deleted:    figure/characterizeFibroblasts.Rmd/sel Genes split by grp ENSMUSG00000050069.Grem2-1.pdf
+    Deleted:    figure/characterizeFibroblasts.Rmd/sel Genes split by grp ENSMUSG00000050069.Grem2-1.png
+    Deleted:    figure/characterizeFibroblasts.Rmd/sel Genes split by grp ENSMUSG00000052430.Bmpr1b-1.pdf
+    Deleted:    figure/characterizeFibroblasts.Rmd/sel Genes split by grp ENSMUSG00000052430.Bmpr1b-1.png
+    Deleted:    figure/characterizeFibroblasts.Rmd/sel Genes split by grp ENSMUSG00000067336.Bmpr2-1.pdf
+    Deleted:    figure/characterizeFibroblasts.Rmd/sel Genes split by grp ENSMUSG00000067336.Bmpr2-1.png
+    Deleted:    figure/characterizeFibroblasts.Rmd/sel Genes split by grp ENSMUSG00000071005.Ccl19-1.pdf
+    Deleted:    figure/characterizeFibroblasts.Rmd/sel Genes split by grp ENSMUSG00000071005.Ccl19-1.png
+    Deleted:    figure/characterizeFibroblasts.Rmd/sel Genes split by grp ENSMUSG00000074934.Grem1-1.pdf
+    Deleted:    figure/characterizeFibroblasts.Rmd/sel Genes split by grp ENSMUSG00000074934.Grem1-1.png
+    Deleted:    figure/characterizeFibroblasts.Rmd/sel Genes split by grp ENSMUSG00000075602.Ly6a-1.pdf
+    Deleted:    figure/characterizeFibroblasts.Rmd/sel Genes split by grp ENSMUSG00000075602.Ly6a-1.png
+    Deleted:    figure/characterizeFibroblasts.Rmd/sel Genes split by grp Rosa26eyfp.Rosa26eyfp-1.pdf
+    Deleted:    figure/characterizeFibroblasts.Rmd/sel Genes split by grp Rosa26eyfp.Rosa26eyfp-1.png
+    Deleted:    figure/characterizeFibroblasts.Rmd/sel Genes split by time ENSMUSG00000001131.Timp1-1.pdf
+    Deleted:    figure/characterizeFibroblasts.Rmd/sel Genes split by time ENSMUSG00000001131.Timp1-1.png
+    Deleted:    figure/characterizeFibroblasts.Rmd/sel Genes split by time ENSMUSG00000004371.Il11-1.pdf
+    Deleted:    figure/characterizeFibroblasts.Rmd/sel Genes split by time ENSMUSG00000004371.Il11-1.png
+    Deleted:    figure/characterizeFibroblasts.Rmd/sel Genes split by time ENSMUSG00000006818.Sod2-1.pdf
+    Deleted:    figure/characterizeFibroblasts.Rmd/sel Genes split by time ENSMUSG00000006818.Sod2-1.png
+    Deleted:    figure/characterizeFibroblasts.Rmd/sel Genes split by time ENSMUSG00000008999.Bmp7-1.pdf
+    Deleted:    figure/characterizeFibroblasts.Rmd/sel Genes split by time ENSMUSG00000008999.Bmp7-1.png
+    Deleted:    figure/characterizeFibroblasts.Rmd/sel Genes split by time ENSMUSG00000021109.Hif1a-1.pdf
+    Deleted:    figure/characterizeFibroblasts.Rmd/sel Genes split by time ENSMUSG00000021109.Hif1a-1.png
+    Deleted:    figure/characterizeFibroblasts.Rmd/sel Genes split by time ENSMUSG00000021796.Bmpr1a-1.pdf
+    Deleted:    figure/characterizeFibroblasts.Rmd/sel Genes split by time ENSMUSG00000021796.Bmpr1a-1.png
+    Deleted:    figure/characterizeFibroblasts.Rmd/sel Genes split by time ENSMUSG00000021835.Bmp4-1.pdf
+    Deleted:    figure/characterizeFibroblasts.Rmd/sel Genes split by time ENSMUSG00000021835.Bmp4-1.png
+    Deleted:    figure/characterizeFibroblasts.Rmd/sel Genes split by time ENSMUSG00000022037.Clu-1.pdf
+    Deleted:    figure/characterizeFibroblasts.Rmd/sel Genes split by time ENSMUSG00000022037.Clu-1.png
+    Deleted:    figure/characterizeFibroblasts.Rmd/sel Genes split by time ENSMUSG00000023078.Cxcl13-1.pdf
+    Deleted:    figure/characterizeFibroblasts.Rmd/sel Genes split by time ENSMUSG00000023078.Cxcl13-1.png
+    Deleted:    figure/characterizeFibroblasts.Rmd/sel Genes split by time ENSMUSG00000024810.Il33-1.pdf
+    Deleted:    figure/characterizeFibroblasts.Rmd/sel Genes split by time ENSMUSG00000024810.Il33-1.png
+    Deleted:    figure/characterizeFibroblasts.Rmd/sel Genes split by time ENSMUSG00000025746.Il6-1.pdf
+    Deleted:    figure/characterizeFibroblasts.Rmd/sel Genes split by time ENSMUSG00000025746.Il6-1.png
+    Deleted:    figure/characterizeFibroblasts.Rmd/sel Genes split by time ENSMUSG00000027358.Bmp2-1.pdf
+    Deleted:    figure/characterizeFibroblasts.Rmd/sel Genes split by time ENSMUSG00000027358.Bmp2-1.png
+    Deleted:    figure/characterizeFibroblasts.Rmd/sel Genes split by time ENSMUSG00000027962.Vcam1-1.pdf
+    Deleted:    figure/characterizeFibroblasts.Rmd/sel Genes split by time ENSMUSG00000027962.Vcam1-1.png
+    Deleted:    figure/characterizeFibroblasts.Rmd/sel Genes split by time ENSMUSG00000029082.Bst1-1.pdf
+    Deleted:    figure/characterizeFibroblasts.Rmd/sel Genes split by time ENSMUSG00000029082.Bst1-1.png
+    Deleted:    figure/characterizeFibroblasts.Rmd/sel Genes split by time ENSMUSG00000029417.Cxcl9-1.pdf
+    Deleted:    figure/characterizeFibroblasts.Rmd/sel Genes split by time ENSMUSG00000029417.Cxcl9-1.png
+    Deleted:    figure/characterizeFibroblasts.Rmd/sel Genes split by time ENSMUSG00000035385.Ccl2-1.pdf
+    Deleted:    figure/characterizeFibroblasts.Rmd/sel Genes split by time ENSMUSG00000035385.Ccl2-1.png
+    Deleted:    figure/characterizeFibroblasts.Rmd/sel Genes split by time ENSMUSG00000036594.H2-Aa-1.pdf
+    Deleted:    figure/characterizeFibroblasts.Rmd/sel Genes split by time ENSMUSG00000036594.H2-Aa-1.png
+    Deleted:    figure/characterizeFibroblasts.Rmd/sel Genes split by time ENSMUSG00000037405.Icam1-1.pdf
+    Deleted:    figure/characterizeFibroblasts.Rmd/sel Genes split by time ENSMUSG00000037405.Icam1-1.png
+    Deleted:    figure/characterizeFibroblasts.Rmd/sel Genes split by time ENSMUSG00000039542.Ncam1-1.pdf
+    Deleted:    figure/characterizeFibroblasts.Rmd/sel Genes split by time ENSMUSG00000039542.Ncam1-1.png
+    Deleted:    figure/characterizeFibroblasts.Rmd/sel Genes split by time ENSMUSG00000046223.Plaur-1.pdf
+    Deleted:    figure/characterizeFibroblasts.Rmd/sel Genes split by time ENSMUSG00000046223.Plaur-1.png
+    Deleted:    figure/characterizeFibroblasts.Rmd/sel Genes split by time ENSMUSG00000050069.Grem2-1.pdf
+    Deleted:    figure/characterizeFibroblasts.Rmd/sel Genes split by time ENSMUSG00000050069.Grem2-1.png
+    Deleted:    figure/characterizeFibroblasts.Rmd/sel Genes split by time ENSMUSG00000052430.Bmpr1b-1.pdf
+    Deleted:    figure/characterizeFibroblasts.Rmd/sel Genes split by time ENSMUSG00000052430.Bmpr1b-1.png
+    Deleted:    figure/characterizeFibroblasts.Rmd/sel Genes split by time ENSMUSG00000067336.Bmpr2-1.pdf
+    Deleted:    figure/characterizeFibroblasts.Rmd/sel Genes split by time ENSMUSG00000067336.Bmpr2-1.png
+    Deleted:    figure/characterizeFibroblasts.Rmd/sel Genes split by time ENSMUSG00000071005.Ccl19-1.pdf
+    Deleted:    figure/characterizeFibroblasts.Rmd/sel Genes split by time ENSMUSG00000071005.Ccl19-1.png
+    Deleted:    figure/characterizeFibroblasts.Rmd/sel Genes split by time ENSMUSG00000074934.Grem1-1.pdf
+    Deleted:    figure/characterizeFibroblasts.Rmd/sel Genes split by time ENSMUSG00000074934.Grem1-1.png
+    Deleted:    figure/characterizeFibroblasts.Rmd/sel Genes split by time ENSMUSG00000075602.Ly6a-1.pdf
+    Deleted:    figure/characterizeFibroblasts.Rmd/sel Genes split by time ENSMUSG00000075602.Ly6a-1.png
+    Deleted:    figure/characterizeFibroblasts.Rmd/sel Genes split by time Rosa26eyfp.Rosa26eyfp-1.pdf
+    Deleted:    figure/characterizeFibroblasts.Rmd/sel Genes split by time Rosa26eyfp.Rosa26eyfp-1.png
 
 </code></pre>
 <p>
-Note that any generated files, e.g. HTML, png, CSS, etc., are not included in this status report because it is ok for generated content to have uncommitted changes.
+Note that any generated files, e.g. HTML, png, CSS, etc., are not
+included in this status report because it is ok for generated content to
+have uncommitted changes.
 </p>
 </div>
 </div>
@@ -505,7 +861,13 @@ Note that any generated files, e.g. HTML, png, CSS, etc., are not included in t
 <div id="versions" class="tab-pane fade">
 
 <p>
-These are the previous versions of the repository in which changes were made to the R Markdown (<code>analysis/characterizeFibroblasts.Rmd</code>) and HTML (<code>docs/characterizeFibroblasts.html</code>) files. If you’ve configured a remote Git repository (see <code>?wflow_git_remote</code>), click on the hyperlinks in the table below to view the files as they were in that past version.
+These are the previous versions of the repository in which changes were
+made to the R Markdown
+(<code>analysis/characterizeFibroblasts.Rmd</code>) and HTML
+(<code>docs/characterizeFibroblasts.html</code>) files. If you’ve
+configured a remote Git repository (see <code>?wflow_git_remote</code>),
+click on the hyperlinks in the table below to view the files as they
+were in that past version.
 </p>
 <div class="table-responsive">
 <table class="table table-condensed table-hover">
@@ -529,6 +891,40 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/2691b1d89a643045aebcc6dda37bfcb61d72168c/analysis/characterizeFibroblasts.Rmd" target="_blank">2691b1d</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2021-06-25
+</td>
+<td>
+add fibroblast pseudotime ordering and vis cd45 cells
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/mluetge/TCRM_Christina/2691b1d89a643045aebcc6dda37bfcb61d72168c/docs/characterizeFibroblasts.html" target="_blank">2691b1d</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2021-06-25
+</td>
+<td>
+add fibroblast pseudotime ordering and vis cd45 cells
+</td>
+</tr>
 <tr>
 <td>
 Rmd
@@ -678,9 +1074,13 @@ update hematopoietic cells
 <h2>set dir</h2>
 <pre class="r"><code>basedir &lt;- here()
 seurat &lt;- readRDS(file = paste0(basedir, 
-                                &quot;/data/TCRM_all10samplesMerged_seurat.rds&quot;))
+                              &quot;/data/TCRM_all10samplesMerged_wo12w_seurat.rds&quot;))
 
-seurat$time_plus_grp &lt;- paste0(seurat$time, &quot;_&quot;, seurat$grp)</code></pre>
+seurat$time_plus_grp &lt;- paste0(seurat$time, &quot;_&quot;, seurat$grp)
+
+## Remove cluster with cycling cells (mki67 high) and
+## endothelial cells (Chdh5, Pecam1 high)
+seurat &lt;- subset(seurat, RNA_snn_res.0.4 %in% c(&quot;10&quot;, &quot;11&quot;), invert = T)</code></pre>
 </div>
 <div id="color-vectors" class="section level2">
 <h2>color vectors</h2>
@@ -695,7 +1095,7 @@ names(colSmp) &lt;- unique(seurat$dataset)
 names(colTime) &lt;- unique(seurat$time)</code></pre>
 </div>
 <div id="vis-data" class="section level2 tabset">
-<h2>vis data</h2>
+<h2 class="tabset">vis data</h2>
 <div id="clusters" class="section level3">
 <h3>clusters</h3>
 <pre class="r"><code>DimPlot(seurat, reduction = &quot;umap&quot;, cols=colPal)+
@@ -707,7 +1107,7 @@ names(colTime) &lt;- unique(seurat$time)</code></pre>
 <p><img src="figure/characterizeFibroblasts.Rmd/vis%20cluster-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-vis-cluster-1">
-Past versions of “vis cluster-1.png”
+Past versions of "vis cluster-1.png"
 </button>
 </p>
 <div id="fig-no-spaces-vis-cluster-1" class="collapse">
@@ -753,6 +1153,9 @@ mluetge
 </table>
 </div>
 </div>
+<pre class="r"><code>DimPlot(seurat, reduction = &quot;umap&quot;, cols=colPal)+
+  theme_void() </code></pre>
+<p><img src="figure/characterizeFibroblasts.Rmd/vis%20cluster-2.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
 <div id="group" class="section level3">
 <h3>group</h3>
@@ -765,7 +1168,7 @@ mluetge
 <p><img src="figure/characterizeFibroblasts.Rmd/vis%20grp-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-vis-grp-1">
-Past versions of “vis grp-1.png”
+Past versions of "vis grp-1.png"
 </button>
 </p>
 <div id="fig-no-spaces-vis-grp-1" class="collapse">
@@ -785,6 +1188,17 @@ Date
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/2691b1d89a643045aebcc6dda37bfcb61d72168c/docs/figure/characterizeFibroblasts.Rmd/vis grp-1.png" target="_blank">2691b1d</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2021-06-25
+</td>
+</tr>
 <tr>
 <td>
 <a href="https://github.com/mluetge/TCRM_Christina/blob/15749187078b2d2facfac912abc1f9be2aa6fd89/docs/figure/characterizeFibroblasts.Rmd/vis grp-1.png" target="_blank">1574918</a>
@@ -811,6 +1225,9 @@ mluetge
 </table>
 </div>
 </div>
+<pre class="r"><code>DimPlot(seurat, reduction = &quot;umap&quot;, group.by = &quot;grp&quot;, cols=colGrp)+
+  theme_void() </code></pre>
+<p><img src="figure/characterizeFibroblasts.Rmd/vis%20grp-2.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
 <div id="sample" class="section level3">
 <h3>Sample</h3>
@@ -823,7 +1240,7 @@ mluetge
 <p><img src="figure/characterizeFibroblasts.Rmd/vis%20sample-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-vis-sample-1">
-Past versions of “vis sample-1.png”
+Past versions of "vis sample-1.png"
 </button>
 </p>
 <div id="fig-no-spaces-vis-sample-1" class="collapse">
@@ -843,6 +1260,17 @@ Date
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/2691b1d89a643045aebcc6dda37bfcb61d72168c/docs/figure/characterizeFibroblasts.Rmd/vis sample-1.png" target="_blank">2691b1d</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2021-06-25
+</td>
+</tr>
 <tr>
 <td>
 <a href="https://github.com/mluetge/TCRM_Christina/blob/15749187078b2d2facfac912abc1f9be2aa6fd89/docs/figure/characterizeFibroblasts.Rmd/vis sample-1.png" target="_blank">1574918</a>
@@ -869,6 +1297,9 @@ mluetge
 </table>
 </div>
 </div>
+<pre class="r"><code>DimPlot(seurat, reduction = &quot;umap&quot;, group.by = &quot;dataset&quot;, cols=colSmp)+
+  theme_void() </code></pre>
+<p><img src="figure/characterizeFibroblasts.Rmd/vis%20sample-2.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
 <div id="batch" class="section level3">
 <h3>batch</h3>
@@ -881,7 +1312,7 @@ mluetge
 <p><img src="figure/characterizeFibroblasts.Rmd/vis%20batch-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-vis-batch-1">
-Past versions of “vis batch-1.png”
+Past versions of "vis batch-1.png"
 </button>
 </p>
 <div id="fig-no-spaces-vis-batch-1" class="collapse">
@@ -939,7 +1370,7 @@ mluetge
 <p><img src="figure/characterizeFibroblasts.Rmd/vis%20timepoint-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-vis-timepoint-1">
-Past versions of “vis timepoint-1.png”
+Past versions of "vis timepoint-1.png"
 </button>
 </p>
 <div id="fig-no-spaces-vis-timepoint-1" class="collapse">
@@ -959,6 +1390,17 @@ Date
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/2691b1d89a643045aebcc6dda37bfcb61d72168c/docs/figure/characterizeFibroblasts.Rmd/vis timepoint-1.png" target="_blank">2691b1d</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2021-06-25
+</td>
+</tr>
 <tr>
 <td>
 <a href="https://github.com/mluetge/TCRM_Christina/blob/15749187078b2d2facfac912abc1f9be2aa6fd89/docs/figure/characterizeFibroblasts.Rmd/vis timepoint-1.png" target="_blank">1574918</a>
@@ -985,10 +1427,13 @@ mluetge
 </table>
 </div>
 </div>
+<pre class="r"><code>DimPlot(seurat, reduction = &quot;umap&quot;, group.by = &quot;time&quot;, cols=colTime)+
+  theme_void() </code></pre>
+<p><img src="figure/characterizeFibroblasts.Rmd/vis%20timepoint-2.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
 </div>
 <div id="gene-signatures" class="section level2 tabset">
-<h2>gene signatures</h2>
+<h2 class="tabset">gene signatures</h2>
 <pre class="r"><code>c0Sig &lt;- data.frame(gene=c(&quot;Ckb&quot;,&quot;Smoc2&quot;,&quot;Thbs1&quot;,&quot;Spon2&quot;,&quot;Rpl26&quot;,&quot;Col5a3&quot;)) %&gt;%
   mutate(signature=&quot;C0&quot;)
 
@@ -1009,7 +1454,7 @@ allGenes &lt;- data.frame(geneID = rownames(seurat)) %&gt;%
 allSign &lt;- rbind(c0Sig, c1Sig, c5Sig, c7Sig, c10Sig) %&gt;%
   left_join(., allGenes, by=&quot;gene&quot;)</code></pre>
 <div id="map-signature-on-umap" class="section level3 tabset">
-<h3>map signature on umap</h3>
+<h3 class="tabset">map signature on umap</h3>
 <pre class="r"><code>sce &lt;- as.SingleCellExperiment(seurat)
 sigNam &lt;- unique(allSign$signature)
 
@@ -1049,7 +1494,7 @@ plots_dp &lt;- lapply(sigNam,
 <p><img src="figure/characterizeFibroblasts.Rmd/map sign C0-1.png" width="432" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-map-sign-C0-1">
-Past versions of “map sign C0-1.png”
+Past versions of "map sign C0-1.png"
 </button>
 </p>
 <div id="fig-no-spaces-map-sign-C0-1" class="collapse">
@@ -1101,7 +1546,7 @@ mluetge
 <p><img src="figure/characterizeFibroblasts.Rmd/map sign C1-1.png" width="432" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-map-sign-C1-1">
-Past versions of “map sign C1-1.png”
+Past versions of "map sign C1-1.png"
 </button>
 </p>
 <div id="fig-no-spaces-map-sign-C1-1" class="collapse">
@@ -1153,7 +1598,7 @@ mluetge
 <p><img src="figure/characterizeFibroblasts.Rmd/map sign C5-1.png" width="432" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-map-sign-C5-1">
-Past versions of “map sign C5-1.png”
+Past versions of "map sign C5-1.png"
 </button>
 </p>
 <div id="fig-no-spaces-map-sign-C5-1" class="collapse">
@@ -1205,7 +1650,7 @@ mluetge
 <p><img src="figure/characterizeFibroblasts.Rmd/map sign C7-1.png" width="432" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-map-sign-C7-1">
-Past versions of “map sign C7-1.png”
+Past versions of "map sign C7-1.png"
 </button>
 </p>
 <div id="fig-no-spaces-map-sign-C7-1" class="collapse">
@@ -1257,7 +1702,7 @@ mluetge
 <p><img src="figure/characterizeFibroblasts.Rmd/map sign C10-1.png" width="432" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-map-sign-C10-1">
-Past versions of “map sign C10-1.png”
+Past versions of "map sign C10-1.png"
 </button>
 </p>
 <div id="fig-no-spaces-map-sign-C10-1" class="collapse">
@@ -1305,8 +1750,9 @@ mluetge
 </div>
 </div>
 </div>
-<div id="map-signature-on-umap-each-timepoint-plus-cond" class="section level3 tabset">
-<h3>map signature on umap each timepoint plus cond</h3>
+<div id="map-signature-on-umap-each-timepoint-plus-cond"
+class="section level3 tabset">
+<h3 class="tabset">map signature on umap each timepoint plus cond</h3>
 <pre class="r"><code>template_dpt &lt;- c(
     &quot;#### {{sig}}\n&quot;,
     &quot;```{r map sign time {{sig}},fig.height=3.5, fig.width=4.5, echo = FALSE}\n&quot;,
@@ -1349,7 +1795,7 @@ plots_dpt &lt;- lapply(sigNam,
 <p><img src="figure/characterizeFibroblasts.Rmd/map sign time C0-1.png" width="432" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-map-sign-time-C0-1">
-Past versions of “map sign time C0-1.png”
+Past versions of "map sign time C0-1.png"
 </button>
 </p>
 <div id="fig-no-spaces-map-sign-time-C0-1" class="collapse">
@@ -1400,7 +1846,7 @@ mluetge
 <p><img src="figure/characterizeFibroblasts.Rmd/map sign time C0-2.png" width="432" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-map-sign-time-C0-2">
-Past versions of “map sign time C0-2.png”
+Past versions of "map sign time C0-2.png"
 </button>
 </p>
 <div id="fig-no-spaces-map-sign-time-C0-2" class="collapse">
@@ -1451,7 +1897,7 @@ mluetge
 <p><img src="figure/characterizeFibroblasts.Rmd/map sign time C0-3.png" width="432" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-map-sign-time-C0-3">
-Past versions of “map sign time C0-3.png”
+Past versions of "map sign time C0-3.png"
 </button>
 </p>
 <div id="fig-no-spaces-map-sign-time-C0-3" class="collapse">
@@ -1502,7 +1948,7 @@ mluetge
 <p><img src="figure/characterizeFibroblasts.Rmd/map sign time C0-4.png" width="432" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-map-sign-time-C0-4">
-Past versions of “map sign time C0-4.png”
+Past versions of "map sign time C0-4.png"
 </button>
 </p>
 <div id="fig-no-spaces-map-sign-time-C0-4" class="collapse">
@@ -1548,57 +1994,6 @@ mluetge
 </table>
 </div>
 </div>
-<pre><code>
-[[5]]</code></pre>
-<p><img src="figure/characterizeFibroblasts.Rmd/map sign time C0-5.png" width="432" style="display: block; margin: auto;" /></p>
-<p>
-<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-map-sign-time-C0-5">
-Past versions of “map sign time C0-5.png”
-</button>
-</p>
-<div id="fig-no-spaces-map-sign-time-C0-5" class="collapse">
-<div class="table-responsive">
-<table class="table table-condensed table-hover">
-<thead>
-<tr>
-<th>
-Version
-</th>
-<th>
-Author
-</th>
-<th>
-Date
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-<a href="https://github.com/mluetge/TCRM_Christina/blob/15749187078b2d2facfac912abc1f9be2aa6fd89/figure/characterizeFibroblasts.Rmd/map sign time C0-5.png" target="_blank">1574918</a>
-</td>
-<td>
-mluetge
-</td>
-<td>
-2021-06-21
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/mluetge/TCRM_Christina/blob/4ff79ca4a84e3c999619ed05c71f618d15326ba4/figure/characterizeFibroblasts.Rmd/map sign time C0-5.png" target="_blank">4ff79ca</a>
-</td>
-<td>
-mluetge
-</td>
-<td>
-2021-06-07
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
 </div>
 <div id="c1-1" class="section level4">
 <h4>C1</h4>
@@ -1606,7 +2001,7 @@ mluetge
 <p><img src="figure/characterizeFibroblasts.Rmd/map sign time C1-1.png" width="432" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-map-sign-time-C1-1">
-Past versions of “map sign time C1-1.png”
+Past versions of "map sign time C1-1.png"
 </button>
 </p>
 <div id="fig-no-spaces-map-sign-time-C1-1" class="collapse">
@@ -1657,7 +2052,7 @@ mluetge
 <p><img src="figure/characterizeFibroblasts.Rmd/map sign time C1-2.png" width="432" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-map-sign-time-C1-2">
-Past versions of “map sign time C1-2.png”
+Past versions of "map sign time C1-2.png"
 </button>
 </p>
 <div id="fig-no-spaces-map-sign-time-C1-2" class="collapse">
@@ -1708,7 +2103,7 @@ mluetge
 <p><img src="figure/characterizeFibroblasts.Rmd/map sign time C1-3.png" width="432" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-map-sign-time-C1-3">
-Past versions of “map sign time C1-3.png”
+Past versions of "map sign time C1-3.png"
 </button>
 </p>
 <div id="fig-no-spaces-map-sign-time-C1-3" class="collapse">
@@ -1759,7 +2154,7 @@ mluetge
 <p><img src="figure/characterizeFibroblasts.Rmd/map sign time C1-4.png" width="432" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-map-sign-time-C1-4">
-Past versions of “map sign time C1-4.png”
+Past versions of "map sign time C1-4.png"
 </button>
 </p>
 <div id="fig-no-spaces-map-sign-time-C1-4" class="collapse">
@@ -1805,57 +2200,6 @@ mluetge
 </table>
 </div>
 </div>
-<pre><code>
-[[5]]</code></pre>
-<p><img src="figure/characterizeFibroblasts.Rmd/map sign time C1-5.png" width="432" style="display: block; margin: auto;" /></p>
-<p>
-<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-map-sign-time-C1-5">
-Past versions of “map sign time C1-5.png”
-</button>
-</p>
-<div id="fig-no-spaces-map-sign-time-C1-5" class="collapse">
-<div class="table-responsive">
-<table class="table table-condensed table-hover">
-<thead>
-<tr>
-<th>
-Version
-</th>
-<th>
-Author
-</th>
-<th>
-Date
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-<a href="https://github.com/mluetge/TCRM_Christina/blob/15749187078b2d2facfac912abc1f9be2aa6fd89/figure/characterizeFibroblasts.Rmd/map sign time C1-5.png" target="_blank">1574918</a>
-</td>
-<td>
-mluetge
-</td>
-<td>
-2021-06-21
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/mluetge/TCRM_Christina/blob/4ff79ca4a84e3c999619ed05c71f618d15326ba4/figure/characterizeFibroblasts.Rmd/map sign time C1-5.png" target="_blank">4ff79ca</a>
-</td>
-<td>
-mluetge
-</td>
-<td>
-2021-06-07
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
 </div>
 <div id="c5-1" class="section level4">
 <h4>C5</h4>
@@ -1863,7 +2207,7 @@ mluetge
 <p><img src="figure/characterizeFibroblasts.Rmd/map sign time C5-1.png" width="432" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-map-sign-time-C5-1">
-Past versions of “map sign time C5-1.png”
+Past versions of "map sign time C5-1.png"
 </button>
 </p>
 <div id="fig-no-spaces-map-sign-time-C5-1" class="collapse">
@@ -1914,7 +2258,7 @@ mluetge
 <p><img src="figure/characterizeFibroblasts.Rmd/map sign time C5-2.png" width="432" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-map-sign-time-C5-2">
-Past versions of “map sign time C5-2.png”
+Past versions of "map sign time C5-2.png"
 </button>
 </p>
 <div id="fig-no-spaces-map-sign-time-C5-2" class="collapse">
@@ -1965,7 +2309,7 @@ mluetge
 <p><img src="figure/characterizeFibroblasts.Rmd/map sign time C5-3.png" width="432" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-map-sign-time-C5-3">
-Past versions of “map sign time C5-3.png”
+Past versions of "map sign time C5-3.png"
 </button>
 </p>
 <div id="fig-no-spaces-map-sign-time-C5-3" class="collapse">
@@ -2016,7 +2360,7 @@ mluetge
 <p><img src="figure/characterizeFibroblasts.Rmd/map sign time C5-4.png" width="432" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-map-sign-time-C5-4">
-Past versions of “map sign time C5-4.png”
+Past versions of "map sign time C5-4.png"
 </button>
 </p>
 <div id="fig-no-spaces-map-sign-time-C5-4" class="collapse">
@@ -2062,57 +2406,6 @@ mluetge
 </table>
 </div>
 </div>
-<pre><code>
-[[5]]</code></pre>
-<p><img src="figure/characterizeFibroblasts.Rmd/map sign time C5-5.png" width="432" style="display: block; margin: auto;" /></p>
-<p>
-<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-map-sign-time-C5-5">
-Past versions of “map sign time C5-5.png”
-</button>
-</p>
-<div id="fig-no-spaces-map-sign-time-C5-5" class="collapse">
-<div class="table-responsive">
-<table class="table table-condensed table-hover">
-<thead>
-<tr>
-<th>
-Version
-</th>
-<th>
-Author
-</th>
-<th>
-Date
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-<a href="https://github.com/mluetge/TCRM_Christina/blob/15749187078b2d2facfac912abc1f9be2aa6fd89/figure/characterizeFibroblasts.Rmd/map sign time C5-5.png" target="_blank">1574918</a>
-</td>
-<td>
-mluetge
-</td>
-<td>
-2021-06-21
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/mluetge/TCRM_Christina/blob/4ff79ca4a84e3c999619ed05c71f618d15326ba4/figure/characterizeFibroblasts.Rmd/map sign time C5-5.png" target="_blank">4ff79ca</a>
-</td>
-<td>
-mluetge
-</td>
-<td>
-2021-06-07
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
 </div>
 <div id="c7-1" class="section level4">
 <h4>C7</h4>
@@ -2120,7 +2413,7 @@ mluetge
 <p><img src="figure/characterizeFibroblasts.Rmd/map sign time C7-1.png" width="432" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-map-sign-time-C7-1">
-Past versions of “map sign time C7-1.png”
+Past versions of "map sign time C7-1.png"
 </button>
 </p>
 <div id="fig-no-spaces-map-sign-time-C7-1" class="collapse">
@@ -2171,7 +2464,7 @@ mluetge
 <p><img src="figure/characterizeFibroblasts.Rmd/map sign time C7-2.png" width="432" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-map-sign-time-C7-2">
-Past versions of “map sign time C7-2.png”
+Past versions of "map sign time C7-2.png"
 </button>
 </p>
 <div id="fig-no-spaces-map-sign-time-C7-2" class="collapse">
@@ -2222,7 +2515,7 @@ mluetge
 <p><img src="figure/characterizeFibroblasts.Rmd/map sign time C7-3.png" width="432" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-map-sign-time-C7-3">
-Past versions of “map sign time C7-3.png”
+Past versions of "map sign time C7-3.png"
 </button>
 </p>
 <div id="fig-no-spaces-map-sign-time-C7-3" class="collapse">
@@ -2273,7 +2566,7 @@ mluetge
 <p><img src="figure/characterizeFibroblasts.Rmd/map sign time C7-4.png" width="432" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-map-sign-time-C7-4">
-Past versions of “map sign time C7-4.png”
+Past versions of "map sign time C7-4.png"
 </button>
 </p>
 <div id="fig-no-spaces-map-sign-time-C7-4" class="collapse">
@@ -2319,57 +2612,6 @@ mluetge
 </table>
 </div>
 </div>
-<pre><code>
-[[5]]</code></pre>
-<p><img src="figure/characterizeFibroblasts.Rmd/map sign time C7-5.png" width="432" style="display: block; margin: auto;" /></p>
-<p>
-<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-map-sign-time-C7-5">
-Past versions of “map sign time C7-5.png”
-</button>
-</p>
-<div id="fig-no-spaces-map-sign-time-C7-5" class="collapse">
-<div class="table-responsive">
-<table class="table table-condensed table-hover">
-<thead>
-<tr>
-<th>
-Version
-</th>
-<th>
-Author
-</th>
-<th>
-Date
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-<a href="https://github.com/mluetge/TCRM_Christina/blob/15749187078b2d2facfac912abc1f9be2aa6fd89/figure/characterizeFibroblasts.Rmd/map sign time C7-5.png" target="_blank">1574918</a>
-</td>
-<td>
-mluetge
-</td>
-<td>
-2021-06-21
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/mluetge/TCRM_Christina/blob/4ff79ca4a84e3c999619ed05c71f618d15326ba4/figure/characterizeFibroblasts.Rmd/map sign time C7-5.png" target="_blank">4ff79ca</a>
-</td>
-<td>
-mluetge
-</td>
-<td>
-2021-06-07
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
 </div>
 <div id="c10-1" class="section level4">
 <h4>C10</h4>
@@ -2377,7 +2619,7 @@ mluetge
 <p><img src="figure/characterizeFibroblasts.Rmd/map sign time C10-1.png" width="432" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-map-sign-time-C10-1">
-Past versions of “map sign time C10-1.png”
+Past versions of "map sign time C10-1.png"
 </button>
 </p>
 <div id="fig-no-spaces-map-sign-time-C10-1" class="collapse">
@@ -2428,7 +2670,7 @@ mluetge
 <p><img src="figure/characterizeFibroblasts.Rmd/map sign time C10-2.png" width="432" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-map-sign-time-C10-2">
-Past versions of “map sign time C10-2.png”
+Past versions of "map sign time C10-2.png"
 </button>
 </p>
 <div id="fig-no-spaces-map-sign-time-C10-2" class="collapse">
@@ -2479,7 +2721,7 @@ mluetge
 <p><img src="figure/characterizeFibroblasts.Rmd/map sign time C10-3.png" width="432" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-map-sign-time-C10-3">
-Past versions of “map sign time C10-3.png”
+Past versions of "map sign time C10-3.png"
 </button>
 </p>
 <div id="fig-no-spaces-map-sign-time-C10-3" class="collapse">
@@ -2530,7 +2772,7 @@ mluetge
 <p><img src="figure/characterizeFibroblasts.Rmd/map sign time C10-4.png" width="432" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-map-sign-time-C10-4">
-Past versions of “map sign time C10-4.png”
+Past versions of "map sign time C10-4.png"
 </button>
 </p>
 <div id="fig-no-spaces-map-sign-time-C10-4" class="collapse">
@@ -2576,61 +2818,10 @@ mluetge
 </table>
 </div>
 </div>
-<pre><code>
-[[5]]</code></pre>
-<p><img src="figure/characterizeFibroblasts.Rmd/map sign time C10-5.png" width="432" style="display: block; margin: auto;" /></p>
-<p>
-<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-map-sign-time-C10-5">
-Past versions of “map sign time C10-5.png”
-</button>
-</p>
-<div id="fig-no-spaces-map-sign-time-C10-5" class="collapse">
-<div class="table-responsive">
-<table class="table table-condensed table-hover">
-<thead>
-<tr>
-<th>
-Version
-</th>
-<th>
-Author
-</th>
-<th>
-Date
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-<a href="https://github.com/mluetge/TCRM_Christina/blob/15749187078b2d2facfac912abc1f9be2aa6fd89/figure/characterizeFibroblasts.Rmd/map sign time C10-5.png" target="_blank">1574918</a>
-</td>
-<td>
-mluetge
-</td>
-<td>
-2021-06-21
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/mluetge/TCRM_Christina/blob/4ff79ca4a84e3c999619ed05c71f618d15326ba4/figure/characterizeFibroblasts.Rmd/map sign time C10-5.png" target="_blank">4ff79ca</a>
-</td>
-<td>
-mluetge
-</td>
-<td>
-2021-06-07
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
 </div>
 </div>
 <div id="map-signature-on-umap-cutoff-2" class="section level3 tabset">
-<h3>map signature on umap cutoff 2</h3>
+<h3 class="tabset">map signature on umap cutoff 2</h3>
 <pre class="r"><code>sce &lt;- as.SingleCellExperiment(seurat)
 sigNam &lt;- unique(allSign$signature)
 
@@ -2671,7 +2862,7 @@ plots_dp &lt;- lapply(sigNam,
 <p><img src="figure/characterizeFibroblasts.Rmd/map sign cut 2 C0-1.png" width="432" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-map-sign-cut-2-C0-1">
-Past versions of “map sign cut 2 C0-1.png”
+Past versions of "map sign cut 2 C0-1.png"
 </button>
 </p>
 <div id="fig-no-spaces-map-sign-cut-2-C0-1" class="collapse">
@@ -2712,7 +2903,7 @@ mluetge
 <p><img src="figure/characterizeFibroblasts.Rmd/map sign cut 2 C1-1.png" width="432" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-map-sign-cut-2-C1-1">
-Past versions of “map sign cut 2 C1-1.png”
+Past versions of "map sign cut 2 C1-1.png"
 </button>
 </p>
 <div id="fig-no-spaces-map-sign-cut-2-C1-1" class="collapse">
@@ -2753,7 +2944,7 @@ mluetge
 <p><img src="figure/characterizeFibroblasts.Rmd/map sign cut 2 C5-1.png" width="432" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-map-sign-cut-2-C5-1">
-Past versions of “map sign cut 2 C5-1.png”
+Past versions of "map sign cut 2 C5-1.png"
 </button>
 </p>
 <div id="fig-no-spaces-map-sign-cut-2-C5-1" class="collapse">
@@ -2794,7 +2985,7 @@ mluetge
 <p><img src="figure/characterizeFibroblasts.Rmd/map sign cut 2 C7-1.png" width="432" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-map-sign-cut-2-C7-1">
-Past versions of “map sign cut 2 C7-1.png”
+Past versions of "map sign cut 2 C7-1.png"
 </button>
 </p>
 <div id="fig-no-spaces-map-sign-cut-2-C7-1" class="collapse">
@@ -2835,7 +3026,7 @@ mluetge
 <p><img src="figure/characterizeFibroblasts.Rmd/map sign cut 2 C10-1.png" width="432" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-map-sign-cut-2-C10-1">
-Past versions of “map sign cut 2 C10-1.png”
+Past versions of "map sign cut 2 C10-1.png"
 </button>
 </p>
 <div id="fig-no-spaces-map-sign-cut-2-C10-1" class="collapse">
@@ -2872,8 +3063,10 @@ mluetge
 </div>
 </div>
 </div>
-<div id="map-signature-on-umap-each-timepoint-plus-cond-cut-2" class="section level3 tabset">
-<h3>map signature on umap each timepoint plus cond cut 2</h3>
+<div id="map-signature-on-umap-each-timepoint-plus-cond-cut-2"
+class="section level3 tabset">
+<h3 class="tabset">map signature on umap each timepoint plus cond cut
+2</h3>
 <pre class="r"><code>template_dpt &lt;- c(
     &quot;#### {{sig}}\n&quot;,
     &quot;```{r map sign time cut 2 {{sig}},fig.height=3.5, fig.width=4.5, echo = FALSE}\n&quot;,
@@ -2917,7 +3110,7 @@ plots_dpt &lt;- lapply(sigNam,
 <p><img src="figure/characterizeFibroblasts.Rmd/map sign time cut 2 C0-1.png" width="432" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-map-sign-time-cut-2-C0-1">
-Past versions of “map sign time cut 2 C0-1.png”
+Past versions of "map sign time cut 2 C0-1.png"
 </button>
 </p>
 <div id="fig-no-spaces-map-sign-time-cut-2-C0-1" class="collapse">
@@ -2957,7 +3150,7 @@ mluetge
 <p><img src="figure/characterizeFibroblasts.Rmd/map sign time cut 2 C0-2.png" width="432" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-map-sign-time-cut-2-C0-2">
-Past versions of “map sign time cut 2 C0-2.png”
+Past versions of "map sign time cut 2 C0-2.png"
 </button>
 </p>
 <div id="fig-no-spaces-map-sign-time-cut-2-C0-2" class="collapse">
@@ -2997,7 +3190,7 @@ mluetge
 <p><img src="figure/characterizeFibroblasts.Rmd/map sign time cut 2 C0-3.png" width="432" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-map-sign-time-cut-2-C0-3">
-Past versions of “map sign time cut 2 C0-3.png”
+Past versions of "map sign time cut 2 C0-3.png"
 </button>
 </p>
 <div id="fig-no-spaces-map-sign-time-cut-2-C0-3" class="collapse">
@@ -3037,7 +3230,7 @@ mluetge
 <p><img src="figure/characterizeFibroblasts.Rmd/map sign time cut 2 C0-4.png" width="432" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-map-sign-time-cut-2-C0-4">
-Past versions of “map sign time cut 2 C0-4.png”
+Past versions of "map sign time cut 2 C0-4.png"
 </button>
 </p>
 <div id="fig-no-spaces-map-sign-time-cut-2-C0-4" class="collapse">
@@ -3072,46 +3265,6 @@ mluetge
 </table>
 </div>
 </div>
-<pre><code>
-[[5]]</code></pre>
-<p><img src="figure/characterizeFibroblasts.Rmd/map sign time cut 2 C0-5.png" width="432" style="display: block; margin: auto;" /></p>
-<p>
-<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-map-sign-time-cut-2-C0-5">
-Past versions of “map sign time cut 2 C0-5.png”
-</button>
-</p>
-<div id="fig-no-spaces-map-sign-time-cut-2-C0-5" class="collapse">
-<div class="table-responsive">
-<table class="table table-condensed table-hover">
-<thead>
-<tr>
-<th>
-Version
-</th>
-<th>
-Author
-</th>
-<th>
-Date
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-<a href="https://github.com/mluetge/TCRM_Christina/blob/15749187078b2d2facfac912abc1f9be2aa6fd89/figure/characterizeFibroblasts.Rmd/map sign time cut 2 C0-5.png" target="_blank">1574918</a>
-</td>
-<td>
-mluetge
-</td>
-<td>
-2021-06-21
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
 </div>
 <div id="c1-3" class="section level4">
 <h4>C1</h4>
@@ -3119,7 +3272,7 @@ mluetge
 <p><img src="figure/characterizeFibroblasts.Rmd/map sign time cut 2 C1-1.png" width="432" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-map-sign-time-cut-2-C1-1">
-Past versions of “map sign time cut 2 C1-1.png”
+Past versions of "map sign time cut 2 C1-1.png"
 </button>
 </p>
 <div id="fig-no-spaces-map-sign-time-cut-2-C1-1" class="collapse">
@@ -3159,7 +3312,7 @@ mluetge
 <p><img src="figure/characterizeFibroblasts.Rmd/map sign time cut 2 C1-2.png" width="432" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-map-sign-time-cut-2-C1-2">
-Past versions of “map sign time cut 2 C1-2.png”
+Past versions of "map sign time cut 2 C1-2.png"
 </button>
 </p>
 <div id="fig-no-spaces-map-sign-time-cut-2-C1-2" class="collapse">
@@ -3199,7 +3352,7 @@ mluetge
 <p><img src="figure/characterizeFibroblasts.Rmd/map sign time cut 2 C1-3.png" width="432" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-map-sign-time-cut-2-C1-3">
-Past versions of “map sign time cut 2 C1-3.png”
+Past versions of "map sign time cut 2 C1-3.png"
 </button>
 </p>
 <div id="fig-no-spaces-map-sign-time-cut-2-C1-3" class="collapse">
@@ -3239,7 +3392,7 @@ mluetge
 <p><img src="figure/characterizeFibroblasts.Rmd/map sign time cut 2 C1-4.png" width="432" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-map-sign-time-cut-2-C1-4">
-Past versions of “map sign time cut 2 C1-4.png”
+Past versions of "map sign time cut 2 C1-4.png"
 </button>
 </p>
 <div id="fig-no-spaces-map-sign-time-cut-2-C1-4" class="collapse">
@@ -3274,46 +3427,6 @@ mluetge
 </table>
 </div>
 </div>
-<pre><code>
-[[5]]</code></pre>
-<p><img src="figure/characterizeFibroblasts.Rmd/map sign time cut 2 C1-5.png" width="432" style="display: block; margin: auto;" /></p>
-<p>
-<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-map-sign-time-cut-2-C1-5">
-Past versions of “map sign time cut 2 C1-5.png”
-</button>
-</p>
-<div id="fig-no-spaces-map-sign-time-cut-2-C1-5" class="collapse">
-<div class="table-responsive">
-<table class="table table-condensed table-hover">
-<thead>
-<tr>
-<th>
-Version
-</th>
-<th>
-Author
-</th>
-<th>
-Date
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-<a href="https://github.com/mluetge/TCRM_Christina/blob/15749187078b2d2facfac912abc1f9be2aa6fd89/figure/characterizeFibroblasts.Rmd/map sign time cut 2 C1-5.png" target="_blank">1574918</a>
-</td>
-<td>
-mluetge
-</td>
-<td>
-2021-06-21
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
 </div>
 <div id="c5-3" class="section level4">
 <h4>C5</h4>
@@ -3321,7 +3434,7 @@ mluetge
 <p><img src="figure/characterizeFibroblasts.Rmd/map sign time cut 2 C5-1.png" width="432" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-map-sign-time-cut-2-C5-1">
-Past versions of “map sign time cut 2 C5-1.png”
+Past versions of "map sign time cut 2 C5-1.png"
 </button>
 </p>
 <div id="fig-no-spaces-map-sign-time-cut-2-C5-1" class="collapse">
@@ -3361,7 +3474,7 @@ mluetge
 <p><img src="figure/characterizeFibroblasts.Rmd/map sign time cut 2 C5-2.png" width="432" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-map-sign-time-cut-2-C5-2">
-Past versions of “map sign time cut 2 C5-2.png”
+Past versions of "map sign time cut 2 C5-2.png"
 </button>
 </p>
 <div id="fig-no-spaces-map-sign-time-cut-2-C5-2" class="collapse">
@@ -3401,7 +3514,7 @@ mluetge
 <p><img src="figure/characterizeFibroblasts.Rmd/map sign time cut 2 C5-3.png" width="432" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-map-sign-time-cut-2-C5-3">
-Past versions of “map sign time cut 2 C5-3.png”
+Past versions of "map sign time cut 2 C5-3.png"
 </button>
 </p>
 <div id="fig-no-spaces-map-sign-time-cut-2-C5-3" class="collapse">
@@ -3441,7 +3554,7 @@ mluetge
 <p><img src="figure/characterizeFibroblasts.Rmd/map sign time cut 2 C5-4.png" width="432" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-map-sign-time-cut-2-C5-4">
-Past versions of “map sign time cut 2 C5-4.png”
+Past versions of "map sign time cut 2 C5-4.png"
 </button>
 </p>
 <div id="fig-no-spaces-map-sign-time-cut-2-C5-4" class="collapse">
@@ -3476,46 +3589,6 @@ mluetge
 </table>
 </div>
 </div>
-<pre><code>
-[[5]]</code></pre>
-<p><img src="figure/characterizeFibroblasts.Rmd/map sign time cut 2 C5-5.png" width="432" style="display: block; margin: auto;" /></p>
-<p>
-<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-map-sign-time-cut-2-C5-5">
-Past versions of “map sign time cut 2 C5-5.png”
-</button>
-</p>
-<div id="fig-no-spaces-map-sign-time-cut-2-C5-5" class="collapse">
-<div class="table-responsive">
-<table class="table table-condensed table-hover">
-<thead>
-<tr>
-<th>
-Version
-</th>
-<th>
-Author
-</th>
-<th>
-Date
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-<a href="https://github.com/mluetge/TCRM_Christina/blob/15749187078b2d2facfac912abc1f9be2aa6fd89/figure/characterizeFibroblasts.Rmd/map sign time cut 2 C5-5.png" target="_blank">1574918</a>
-</td>
-<td>
-mluetge
-</td>
-<td>
-2021-06-21
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
 </div>
 <div id="c7-3" class="section level4">
 <h4>C7</h4>
@@ -3523,7 +3596,7 @@ mluetge
 <p><img src="figure/characterizeFibroblasts.Rmd/map sign time cut 2 C7-1.png" width="432" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-map-sign-time-cut-2-C7-1">
-Past versions of “map sign time cut 2 C7-1.png”
+Past versions of "map sign time cut 2 C7-1.png"
 </button>
 </p>
 <div id="fig-no-spaces-map-sign-time-cut-2-C7-1" class="collapse">
@@ -3563,7 +3636,7 @@ mluetge
 <p><img src="figure/characterizeFibroblasts.Rmd/map sign time cut 2 C7-2.png" width="432" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-map-sign-time-cut-2-C7-2">
-Past versions of “map sign time cut 2 C7-2.png”
+Past versions of "map sign time cut 2 C7-2.png"
 </button>
 </p>
 <div id="fig-no-spaces-map-sign-time-cut-2-C7-2" class="collapse">
@@ -3603,7 +3676,7 @@ mluetge
 <p><img src="figure/characterizeFibroblasts.Rmd/map sign time cut 2 C7-3.png" width="432" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-map-sign-time-cut-2-C7-3">
-Past versions of “map sign time cut 2 C7-3.png”
+Past versions of "map sign time cut 2 C7-3.png"
 </button>
 </p>
 <div id="fig-no-spaces-map-sign-time-cut-2-C7-3" class="collapse">
@@ -3643,7 +3716,7 @@ mluetge
 <p><img src="figure/characterizeFibroblasts.Rmd/map sign time cut 2 C7-4.png" width="432" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-map-sign-time-cut-2-C7-4">
-Past versions of “map sign time cut 2 C7-4.png”
+Past versions of "map sign time cut 2 C7-4.png"
 </button>
 </p>
 <div id="fig-no-spaces-map-sign-time-cut-2-C7-4" class="collapse">
@@ -3678,46 +3751,6 @@ mluetge
 </table>
 </div>
 </div>
-<pre><code>
-[[5]]</code></pre>
-<p><img src="figure/characterizeFibroblasts.Rmd/map sign time cut 2 C7-5.png" width="432" style="display: block; margin: auto;" /></p>
-<p>
-<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-map-sign-time-cut-2-C7-5">
-Past versions of “map sign time cut 2 C7-5.png”
-</button>
-</p>
-<div id="fig-no-spaces-map-sign-time-cut-2-C7-5" class="collapse">
-<div class="table-responsive">
-<table class="table table-condensed table-hover">
-<thead>
-<tr>
-<th>
-Version
-</th>
-<th>
-Author
-</th>
-<th>
-Date
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-<a href="https://github.com/mluetge/TCRM_Christina/blob/15749187078b2d2facfac912abc1f9be2aa6fd89/figure/characterizeFibroblasts.Rmd/map sign time cut 2 C7-5.png" target="_blank">1574918</a>
-</td>
-<td>
-mluetge
-</td>
-<td>
-2021-06-21
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
 </div>
 <div id="c10-3" class="section level4">
 <h4>C10</h4>
@@ -3725,7 +3758,7 @@ mluetge
 <p><img src="figure/characterizeFibroblasts.Rmd/map sign time cut 2 C10-1.png" width="432" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-map-sign-time-cut-2-C10-1">
-Past versions of “map sign time cut 2 C10-1.png”
+Past versions of "map sign time cut 2 C10-1.png"
 </button>
 </p>
 <div id="fig-no-spaces-map-sign-time-cut-2-C10-1" class="collapse">
@@ -3765,7 +3798,7 @@ mluetge
 <p><img src="figure/characterizeFibroblasts.Rmd/map sign time cut 2 C10-2.png" width="432" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-map-sign-time-cut-2-C10-2">
-Past versions of “map sign time cut 2 C10-2.png”
+Past versions of "map sign time cut 2 C10-2.png"
 </button>
 </p>
 <div id="fig-no-spaces-map-sign-time-cut-2-C10-2" class="collapse">
@@ -3805,7 +3838,7 @@ mluetge
 <p><img src="figure/characterizeFibroblasts.Rmd/map sign time cut 2 C10-3.png" width="432" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-map-sign-time-cut-2-C10-3">
-Past versions of “map sign time cut 2 C10-3.png”
+Past versions of "map sign time cut 2 C10-3.png"
 </button>
 </p>
 <div id="fig-no-spaces-map-sign-time-cut-2-C10-3" class="collapse">
@@ -3845,7 +3878,7 @@ mluetge
 <p><img src="figure/characterizeFibroblasts.Rmd/map sign time cut 2 C10-4.png" width="432" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-map-sign-time-cut-2-C10-4">
-Past versions of “map sign time cut 2 C10-4.png”
+Past versions of "map sign time cut 2 C10-4.png"
 </button>
 </p>
 <div id="fig-no-spaces-map-sign-time-cut-2-C10-4" class="collapse">
@@ -3868,46 +3901,6 @@ Date
 <tr>
 <td>
 <a href="https://github.com/mluetge/TCRM_Christina/blob/15749187078b2d2facfac912abc1f9be2aa6fd89/figure/characterizeFibroblasts.Rmd/map sign time cut 2 C10-4.png" target="_blank">1574918</a>
-</td>
-<td>
-mluetge
-</td>
-<td>
-2021-06-21
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-<pre><code>
-[[5]]</code></pre>
-<p><img src="figure/characterizeFibroblasts.Rmd/map sign time cut 2 C10-5.png" width="432" style="display: block; margin: auto;" /></p>
-<p>
-<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-map-sign-time-cut-2-C10-5">
-Past versions of “map sign time cut 2 C10-5.png”
-</button>
-</p>
-<div id="fig-no-spaces-map-sign-time-cut-2-C10-5" class="collapse">
-<div class="table-responsive">
-<table class="table table-condensed table-hover">
-<thead>
-<tr>
-<th>
-Version
-</th>
-<th>
-Author
-</th>
-<th>
-Date
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-<a href="https://github.com/mluetge/TCRM_Christina/blob/15749187078b2d2facfac912abc1f9be2aa6fd89/figure/characterizeFibroblasts.Rmd/map sign time cut 2 C10-5.png" target="_blank">1574918</a>
 </td>
 <td>
 mluetge
@@ -4001,7 +3994,7 @@ pOut &lt;- avgHeatmap(seurat = seurat, selGenes = allSign,
 <p><img src="figure/characterizeFibroblasts.Rmd/avg%20expression%20sign%20genes-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-avg-expression-sign-genes-1">
-Past versions of “avg expression sign genes-1.png”
+Past versions of "avg expression sign genes-1.png"
 </button>
 </p>
 <div id="fig-no-spaces-avg-expression-sign-genes-1" class="collapse">
@@ -4037,7 +4030,8 @@ mluetge
 </div>
 </div>
 </div>
-<div id="avg-expression-heatmap-aross-timepoints-and-condition" class="section level3">
+<div id="avg-expression-heatmap-aross-timepoints-and-condition"
+class="section level3">
 <h3>avg expression heatmap aross timepoints and condition</h3>
 <pre class="r"><code>Idents(seurat) &lt;- seurat$time_plus_grp
 grpCnt &lt;- allSign %&gt;% group_by(signature) %&gt;% summarise(cnt=n())
@@ -4053,10 +4047,11 @@ pOut &lt;- avgHeatmap(seurat = seurat, selGenes = allSign,
 <p><img src="figure/characterizeFibroblasts.Rmd/avg%20expression%20sign%20genes%20across%20time%20plus%20grp-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-avg-expression-sign-genes-across-time-plus-grp-1">
-Past versions of “avg expression sign genes across time plus grp-1.png”
+Past versions of "avg expression sign genes across time plus grp-1.png"
 </button>
 </p>
-<div id="fig-no-spaces-avg-expression-sign-genes-across-time-plus-grp-1" class="collapse">
+<div id="fig-no-spaces-avg-expression-sign-genes-across-time-plus-grp-1"
+class="collapse">
 <div class="table-responsive">
 <table class="table table-condensed table-hover">
 <thead>
@@ -4091,7 +4086,7 @@ mluetge
 </div>
 </div>
 <div id="expression-of-selected-genes" class="section level2 tabset">
-<h2>expression of selected genes</h2>
+<h2 class="tabset">expression of selected genes</h2>
 <pre class="r"><code>selGenes &lt;- c(&quot;Grem1&quot;, &quot;Grem2&quot;, &quot;Bmp2&quot;,&quot;Bmp4&quot;, &quot;Bmp7&quot;, &quot;Bmpr1a&quot;, &quot;Bmpr1b&quot;,
               &quot;Bmpr2&quot;, &quot;Bst1&quot;, &quot;Clu&quot;, &quot;Ncam1&quot;, &quot;Ccl2&quot;, &quot;Cxcl9&quot;, &quot;Il11&quot;, &quot;Timp1&quot;,
               &quot;Plaur&quot;, &quot;Hif1a&quot;, &quot;Sod2&quot;, &quot;Ccl19&quot;, &quot;Cxcl13&quot;, &quot;Il33&quot;, &quot;Il6&quot;,
@@ -4099,7 +4094,7 @@ mluetge
 selGenesLong &lt;- data.frame(gene=rownames(seurat)) %&gt;%
   mutate(short=gsub(&quot;^.*\\.&quot;, &quot;&quot;, gene)) %&gt;% filter(short %in% selGenes)</code></pre>
 <div id="sel-genes-across-all" class="section level3 tabset">
-<h3>sel Genes across all</h3>
+<h3 class="tabset">sel Genes across all</h3>
 <pre class="r"><code>template_fp &lt;- c(
     &quot;#### {{sel}}\n&quot;,
     &quot;```{r sel Genes across all {{sel}},fig.height=3, fig.width=4, echo = FALSE}\n&quot;,
@@ -4123,10 +4118,11 @@ plots_fp &lt;- lapply(selGenesLong$gene,
 <p><img src="figure/characterizeFibroblasts.Rmd/sel Genes across all ENSMUSG00000067336.Bmpr2-1.png" width="384" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-sel-Genes-across-all-ENSMUSG00000067336.Bmpr2-1">
-Past versions of “sel Genes across all ENSMUSG00000067336.Bmpr2-1.png”
+Past versions of "sel Genes across all ENSMUSG00000067336.Bmpr2-1.png"
 </button>
 </p>
-<div id="fig-no-spaces-sel-Genes-across-all-ENSMUSG00000067336.Bmpr2-1" class="collapse">
+<div id="fig-no-spaces-sel-Genes-across-all-ENSMUSG00000067336.Bmpr2-1"
+class="collapse">
 <div class="table-responsive">
 <table class="table table-condensed table-hover">
 <thead>
@@ -4164,10 +4160,11 @@ mluetge
 <p><img src="figure/characterizeFibroblasts.Rmd/sel Genes across all ENSMUSG00000050069.Grem2-1.png" width="384" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-sel-Genes-across-all-ENSMUSG00000050069.Grem2-1">
-Past versions of “sel Genes across all ENSMUSG00000050069.Grem2-1.png”
+Past versions of "sel Genes across all ENSMUSG00000050069.Grem2-1.png"
 </button>
 </p>
-<div id="fig-no-spaces-sel-Genes-across-all-ENSMUSG00000050069.Grem2-1" class="collapse">
+<div id="fig-no-spaces-sel-Genes-across-all-ENSMUSG00000050069.Grem2-1"
+class="collapse">
 <div class="table-responsive">
 <table class="table table-condensed table-hover">
 <thead>
@@ -4205,10 +4202,11 @@ mluetge
 <p><img src="figure/characterizeFibroblasts.Rmd/sel Genes across all ENSMUSG00000027358.Bmp2-1.png" width="384" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-sel-Genes-across-all-ENSMUSG00000027358.Bmp2-1">
-Past versions of “sel Genes across all ENSMUSG00000027358.Bmp2-1.png”
+Past versions of "sel Genes across all ENSMUSG00000027358.Bmp2-1.png"
 </button>
 </p>
-<div id="fig-no-spaces-sel-Genes-across-all-ENSMUSG00000027358.Bmp2-1" class="collapse">
+<div id="fig-no-spaces-sel-Genes-across-all-ENSMUSG00000027358.Bmp2-1"
+class="collapse">
 <div class="table-responsive">
 <table class="table table-condensed table-hover">
 <thead>
@@ -4246,10 +4244,11 @@ mluetge
 <p><img src="figure/characterizeFibroblasts.Rmd/sel Genes across all ENSMUSG00000008999.Bmp7-1.png" width="384" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-sel-Genes-across-all-ENSMUSG00000008999.Bmp7-1">
-Past versions of “sel Genes across all ENSMUSG00000008999.Bmp7-1.png”
+Past versions of "sel Genes across all ENSMUSG00000008999.Bmp7-1.png"
 </button>
 </p>
-<div id="fig-no-spaces-sel-Genes-across-all-ENSMUSG00000008999.Bmp7-1" class="collapse">
+<div id="fig-no-spaces-sel-Genes-across-all-ENSMUSG00000008999.Bmp7-1"
+class="collapse">
 <div class="table-responsive">
 <table class="table table-condensed table-hover">
 <thead>
@@ -4287,10 +4286,11 @@ mluetge
 <p><img src="figure/characterizeFibroblasts.Rmd/sel Genes across all ENSMUSG00000001131.Timp1-1.png" width="384" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-sel-Genes-across-all-ENSMUSG00000001131.Timp1-1">
-Past versions of “sel Genes across all ENSMUSG00000001131.Timp1-1.png”
+Past versions of "sel Genes across all ENSMUSG00000001131.Timp1-1.png"
 </button>
 </p>
-<div id="fig-no-spaces-sel-Genes-across-all-ENSMUSG00000001131.Timp1-1" class="collapse">
+<div id="fig-no-spaces-sel-Genes-across-all-ENSMUSG00000001131.Timp1-1"
+class="collapse">
 <div class="table-responsive">
 <table class="table table-condensed table-hover">
 <thead>
@@ -4326,16 +4326,55 @@ mluetge
 <div id="ensmusg00000027962.vcam1" class="section level4">
 <h4>ENSMUSG00000027962.Vcam1</h4>
 <p><img src="figure/characterizeFibroblasts.Rmd/sel Genes across all ENSMUSG00000027962.Vcam1-1.png" width="384" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-sel-Genes-across-all-ENSMUSG00000027962.Vcam1-1">
+Past versions of "sel Genes across all ENSMUSG00000027962.Vcam1-1.png"
+</button>
+</p>
+<div id="fig-no-spaces-sel-Genes-across-all-ENSMUSG00000027962.Vcam1-1"
+class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/2691b1d89a643045aebcc6dda37bfcb61d72168c/figure/characterizeFibroblasts.Rmd/sel Genes across all ENSMUSG00000027962.Vcam1-1.png" target="_blank">2691b1d</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2021-06-25
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 <div id="ensmusg00000052430.bmpr1b" class="section level4">
 <h4>ENSMUSG00000052430.Bmpr1b</h4>
 <p><img src="figure/characterizeFibroblasts.Rmd/sel Genes across all ENSMUSG00000052430.Bmpr1b-1.png" width="384" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-sel-Genes-across-all-ENSMUSG00000052430.Bmpr1b-1">
-Past versions of “sel Genes across all ENSMUSG00000052430.Bmpr1b-1.png”
+Past versions of "sel Genes across all ENSMUSG00000052430.Bmpr1b-1.png"
 </button>
 </p>
-<div id="fig-no-spaces-sel-Genes-across-all-ENSMUSG00000052430.Bmpr1b-1" class="collapse">
+<div id="fig-no-spaces-sel-Genes-across-all-ENSMUSG00000052430.Bmpr1b-1"
+class="collapse">
 <div class="table-responsive">
 <table class="table table-condensed table-hover">
 <thead>
@@ -4373,10 +4412,11 @@ mluetge
 <p><img src="figure/characterizeFibroblasts.Rmd/sel Genes across all ENSMUSG00000071005.Ccl19-1.png" width="384" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-sel-Genes-across-all-ENSMUSG00000071005.Ccl19-1">
-Past versions of “sel Genes across all ENSMUSG00000071005.Ccl19-1.png”
+Past versions of "sel Genes across all ENSMUSG00000071005.Ccl19-1.png"
 </button>
 </p>
-<div id="fig-no-spaces-sel-Genes-across-all-ENSMUSG00000071005.Ccl19-1" class="collapse">
+<div id="fig-no-spaces-sel-Genes-across-all-ENSMUSG00000071005.Ccl19-1"
+class="collapse">
 <div class="table-responsive">
 <table class="table table-condensed table-hover">
 <thead>
@@ -4412,16 +4452,55 @@ mluetge
 <div id="ensmusg00000025746.il6" class="section level4">
 <h4>ENSMUSG00000025746.Il6</h4>
 <p><img src="figure/characterizeFibroblasts.Rmd/sel Genes across all ENSMUSG00000025746.Il6-1.png" width="384" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-sel-Genes-across-all-ENSMUSG00000025746.Il6-1">
+Past versions of "sel Genes across all ENSMUSG00000025746.Il6-1.png"
+</button>
+</p>
+<div id="fig-no-spaces-sel-Genes-across-all-ENSMUSG00000025746.Il6-1"
+class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/2691b1d89a643045aebcc6dda37bfcb61d72168c/figure/characterizeFibroblasts.Rmd/sel Genes across all ENSMUSG00000025746.Il6-1.png" target="_blank">2691b1d</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2021-06-25
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 <div id="ensmusg00000029082.bst1" class="section level4">
 <h4>ENSMUSG00000029082.Bst1</h4>
 <p><img src="figure/characterizeFibroblasts.Rmd/sel Genes across all ENSMUSG00000029082.Bst1-1.png" width="384" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-sel-Genes-across-all-ENSMUSG00000029082.Bst1-1">
-Past versions of “sel Genes across all ENSMUSG00000029082.Bst1-1.png”
+Past versions of "sel Genes across all ENSMUSG00000029082.Bst1-1.png"
 </button>
 </p>
-<div id="fig-no-spaces-sel-Genes-across-all-ENSMUSG00000029082.Bst1-1" class="collapse">
+<div id="fig-no-spaces-sel-Genes-across-all-ENSMUSG00000029082.Bst1-1"
+class="collapse">
 <div class="table-responsive">
 <table class="table table-condensed table-hover">
 <thead>
@@ -4459,10 +4538,11 @@ mluetge
 <p><img src="figure/characterizeFibroblasts.Rmd/sel Genes across all ENSMUSG00000029417.Cxcl9-1.png" width="384" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-sel-Genes-across-all-ENSMUSG00000029417.Cxcl9-1">
-Past versions of “sel Genes across all ENSMUSG00000029417.Cxcl9-1.png”
+Past versions of "sel Genes across all ENSMUSG00000029417.Cxcl9-1.png"
 </button>
 </p>
-<div id="fig-no-spaces-sel-Genes-across-all-ENSMUSG00000029417.Cxcl9-1" class="collapse">
+<div id="fig-no-spaces-sel-Genes-across-all-ENSMUSG00000029417.Cxcl9-1"
+class="collapse">
 <div class="table-responsive">
 <table class="table table-condensed table-hover">
 <thead>
@@ -4500,10 +4580,11 @@ mluetge
 <p><img src="figure/characterizeFibroblasts.Rmd/sel Genes across all ENSMUSG00000023078.Cxcl13-1.png" width="384" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-sel-Genes-across-all-ENSMUSG00000023078.Cxcl13-1">
-Past versions of “sel Genes across all ENSMUSG00000023078.Cxcl13-1.png”
+Past versions of "sel Genes across all ENSMUSG00000023078.Cxcl13-1.png"
 </button>
 </p>
-<div id="fig-no-spaces-sel-Genes-across-all-ENSMUSG00000023078.Cxcl13-1" class="collapse">
+<div id="fig-no-spaces-sel-Genes-across-all-ENSMUSG00000023078.Cxcl13-1"
+class="collapse">
 <div class="table-responsive">
 <table class="table table-condensed table-hover">
 <thead>
@@ -4541,10 +4622,11 @@ mluetge
 <p><img src="figure/characterizeFibroblasts.Rmd/sel Genes across all ENSMUSG00000004371.Il11-1.png" width="384" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-sel-Genes-across-all-ENSMUSG00000004371.Il11-1">
-Past versions of “sel Genes across all ENSMUSG00000004371.Il11-1.png”
+Past versions of "sel Genes across all ENSMUSG00000004371.Il11-1.png"
 </button>
 </p>
-<div id="fig-no-spaces-sel-Genes-across-all-ENSMUSG00000004371.Il11-1" class="collapse">
+<div id="fig-no-spaces-sel-Genes-across-all-ENSMUSG00000004371.Il11-1"
+class="collapse">
 <div class="table-responsive">
 <table class="table table-condensed table-hover">
 <thead>
@@ -4582,10 +4664,11 @@ mluetge
 <p><img src="figure/characterizeFibroblasts.Rmd/sel Genes across all ENSMUSG00000046223.Plaur-1.png" width="384" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-sel-Genes-across-all-ENSMUSG00000046223.Plaur-1">
-Past versions of “sel Genes across all ENSMUSG00000046223.Plaur-1.png”
+Past versions of "sel Genes across all ENSMUSG00000046223.Plaur-1.png"
 </button>
 </p>
-<div id="fig-no-spaces-sel-Genes-across-all-ENSMUSG00000046223.Plaur-1" class="collapse">
+<div id="fig-no-spaces-sel-Genes-across-all-ENSMUSG00000046223.Plaur-1"
+class="collapse">
 <div class="table-responsive">
 <table class="table table-condensed table-hover">
 <thead>
@@ -4623,10 +4706,11 @@ mluetge
 <p><img src="figure/characterizeFibroblasts.Rmd/sel Genes across all ENSMUSG00000021796.Bmpr1a-1.png" width="384" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-sel-Genes-across-all-ENSMUSG00000021796.Bmpr1a-1">
-Past versions of “sel Genes across all ENSMUSG00000021796.Bmpr1a-1.png”
+Past versions of "sel Genes across all ENSMUSG00000021796.Bmpr1a-1.png"
 </button>
 </p>
-<div id="fig-no-spaces-sel-Genes-across-all-ENSMUSG00000021796.Bmpr1a-1" class="collapse">
+<div id="fig-no-spaces-sel-Genes-across-all-ENSMUSG00000021796.Bmpr1a-1"
+class="collapse">
 <div class="table-responsive">
 <table class="table table-condensed table-hover">
 <thead>
@@ -4664,10 +4748,11 @@ mluetge
 <p><img src="figure/characterizeFibroblasts.Rmd/sel Genes across all ENSMUSG00000021835.Bmp4-1.png" width="384" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-sel-Genes-across-all-ENSMUSG00000021835.Bmp4-1">
-Past versions of “sel Genes across all ENSMUSG00000021835.Bmp4-1.png”
+Past versions of "sel Genes across all ENSMUSG00000021835.Bmp4-1.png"
 </button>
 </p>
-<div id="fig-no-spaces-sel-Genes-across-all-ENSMUSG00000021835.Bmp4-1" class="collapse">
+<div id="fig-no-spaces-sel-Genes-across-all-ENSMUSG00000021835.Bmp4-1"
+class="collapse">
 <div class="table-responsive">
 <table class="table table-condensed table-hover">
 <thead>
@@ -4705,10 +4790,11 @@ mluetge
 <p><img src="figure/characterizeFibroblasts.Rmd/sel Genes across all ENSMUSG00000022037.Clu-1.png" width="384" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-sel-Genes-across-all-ENSMUSG00000022037.Clu-1">
-Past versions of “sel Genes across all ENSMUSG00000022037.Clu-1.png”
+Past versions of "sel Genes across all ENSMUSG00000022037.Clu-1.png"
 </button>
 </p>
-<div id="fig-no-spaces-sel-Genes-across-all-ENSMUSG00000022037.Clu-1" class="collapse">
+<div id="fig-no-spaces-sel-Genes-across-all-ENSMUSG00000022037.Clu-1"
+class="collapse">
 <div class="table-responsive">
 <table class="table table-condensed table-hover">
 <thead>
@@ -4744,16 +4830,55 @@ mluetge
 <div id="ensmusg00000037405.icam1" class="section level4">
 <h4>ENSMUSG00000037405.Icam1</h4>
 <p><img src="figure/characterizeFibroblasts.Rmd/sel Genes across all ENSMUSG00000037405.Icam1-1.png" width="384" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-sel-Genes-across-all-ENSMUSG00000037405.Icam1-1">
+Past versions of "sel Genes across all ENSMUSG00000037405.Icam1-1.png"
+</button>
+</p>
+<div id="fig-no-spaces-sel-Genes-across-all-ENSMUSG00000037405.Icam1-1"
+class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/2691b1d89a643045aebcc6dda37bfcb61d72168c/figure/characterizeFibroblasts.Rmd/sel Genes across all ENSMUSG00000037405.Icam1-1.png" target="_blank">2691b1d</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2021-06-25
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 <div id="ensmusg00000039542.ncam1" class="section level4">
 <h4>ENSMUSG00000039542.Ncam1</h4>
 <p><img src="figure/characterizeFibroblasts.Rmd/sel Genes across all ENSMUSG00000039542.Ncam1-1.png" width="384" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-sel-Genes-across-all-ENSMUSG00000039542.Ncam1-1">
-Past versions of “sel Genes across all ENSMUSG00000039542.Ncam1-1.png”
+Past versions of "sel Genes across all ENSMUSG00000039542.Ncam1-1.png"
 </button>
 </p>
-<div id="fig-no-spaces-sel-Genes-across-all-ENSMUSG00000039542.Ncam1-1" class="collapse">
+<div id="fig-no-spaces-sel-Genes-across-all-ENSMUSG00000039542.Ncam1-1"
+class="collapse">
 <div class="table-responsive">
 <table class="table table-condensed table-hover">
 <thead>
@@ -4791,10 +4916,11 @@ mluetge
 <p><img src="figure/characterizeFibroblasts.Rmd/sel Genes across all ENSMUSG00000035385.Ccl2-1.png" width="384" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-sel-Genes-across-all-ENSMUSG00000035385.Ccl2-1">
-Past versions of “sel Genes across all ENSMUSG00000035385.Ccl2-1.png”
+Past versions of "sel Genes across all ENSMUSG00000035385.Ccl2-1.png"
 </button>
 </p>
-<div id="fig-no-spaces-sel-Genes-across-all-ENSMUSG00000035385.Ccl2-1" class="collapse">
+<div id="fig-no-spaces-sel-Genes-across-all-ENSMUSG00000035385.Ccl2-1"
+class="collapse">
 <div class="table-responsive">
 <table class="table table-condensed table-hover">
 <thead>
@@ -4832,10 +4958,11 @@ mluetge
 <p><img src="figure/characterizeFibroblasts.Rmd/sel Genes across all ENSMUSG00000021109.Hif1a-1.png" width="384" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-sel-Genes-across-all-ENSMUSG00000021109.Hif1a-1">
-Past versions of “sel Genes across all ENSMUSG00000021109.Hif1a-1.png”
+Past versions of "sel Genes across all ENSMUSG00000021109.Hif1a-1.png"
 </button>
 </p>
-<div id="fig-no-spaces-sel-Genes-across-all-ENSMUSG00000021109.Hif1a-1" class="collapse">
+<div id="fig-no-spaces-sel-Genes-across-all-ENSMUSG00000021109.Hif1a-1"
+class="collapse">
 <div class="table-responsive">
 <table class="table table-condensed table-hover">
 <thead>
@@ -4871,16 +4998,55 @@ mluetge
 <div id="ensmusg00000075602.ly6a" class="section level4">
 <h4>ENSMUSG00000075602.Ly6a</h4>
 <p><img src="figure/characterizeFibroblasts.Rmd/sel Genes across all ENSMUSG00000075602.Ly6a-1.png" width="384" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-sel-Genes-across-all-ENSMUSG00000075602.Ly6a-1">
+Past versions of "sel Genes across all ENSMUSG00000075602.Ly6a-1.png"
+</button>
+</p>
+<div id="fig-no-spaces-sel-Genes-across-all-ENSMUSG00000075602.Ly6a-1"
+class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/2691b1d89a643045aebcc6dda37bfcb61d72168c/figure/characterizeFibroblasts.Rmd/sel Genes across all ENSMUSG00000075602.Ly6a-1.png" target="_blank">2691b1d</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2021-06-25
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 <div id="ensmusg00000006818.sod2" class="section level4">
 <h4>ENSMUSG00000006818.Sod2</h4>
 <p><img src="figure/characterizeFibroblasts.Rmd/sel Genes across all ENSMUSG00000006818.Sod2-1.png" width="384" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-sel-Genes-across-all-ENSMUSG00000006818.Sod2-1">
-Past versions of “sel Genes across all ENSMUSG00000006818.Sod2-1.png”
+Past versions of "sel Genes across all ENSMUSG00000006818.Sod2-1.png"
 </button>
 </p>
-<div id="fig-no-spaces-sel-Genes-across-all-ENSMUSG00000006818.Sod2-1" class="collapse">
+<div id="fig-no-spaces-sel-Genes-across-all-ENSMUSG00000006818.Sod2-1"
+class="collapse">
 <div class="table-responsive">
 <table class="table table-condensed table-hover">
 <thead>
@@ -4916,16 +5082,55 @@ mluetge
 <div id="ensmusg00000036594.h2-aa" class="section level4">
 <h4>ENSMUSG00000036594.H2-Aa</h4>
 <p><img src="figure/characterizeFibroblasts.Rmd/sel Genes across all ENSMUSG00000036594.H2-Aa-1.png" width="384" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-sel-Genes-across-all-ENSMUSG00000036594.H2-Aa-1">
+Past versions of "sel Genes across all ENSMUSG00000036594.H2-Aa-1.png"
+</button>
+</p>
+<div id="fig-no-spaces-sel-Genes-across-all-ENSMUSG00000036594.H2-Aa-1"
+class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/2691b1d89a643045aebcc6dda37bfcb61d72168c/figure/characterizeFibroblasts.Rmd/sel Genes across all ENSMUSG00000036594.H2-Aa-1.png" target="_blank">2691b1d</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2021-06-25
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 <div id="ensmusg00000024810.il33" class="section level4">
 <h4>ENSMUSG00000024810.Il33</h4>
 <p><img src="figure/characterizeFibroblasts.Rmd/sel Genes across all ENSMUSG00000024810.Il33-1.png" width="384" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-sel-Genes-across-all-ENSMUSG00000024810.Il33-1">
-Past versions of “sel Genes across all ENSMUSG00000024810.Il33-1.png”
+Past versions of "sel Genes across all ENSMUSG00000024810.Il33-1.png"
 </button>
 </p>
-<div id="fig-no-spaces-sel-Genes-across-all-ENSMUSG00000024810.Il33-1" class="collapse">
+<div id="fig-no-spaces-sel-Genes-across-all-ENSMUSG00000024810.Il33-1"
+class="collapse">
 <div class="table-responsive">
 <table class="table table-condensed table-hover">
 <thead>
@@ -4961,16 +5166,55 @@ mluetge
 <div id="rosa26eyfp.rosa26eyfp" class="section level4">
 <h4>Rosa26eyfp.Rosa26eyfp</h4>
 <p><img src="figure/characterizeFibroblasts.Rmd/sel Genes across all Rosa26eyfp.Rosa26eyfp-1.png" width="384" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-sel-Genes-across-all-Rosa26eyfp.Rosa26eyfp-1">
+Past versions of "sel Genes across all Rosa26eyfp.Rosa26eyfp-1.png"
+</button>
+</p>
+<div id="fig-no-spaces-sel-Genes-across-all-Rosa26eyfp.Rosa26eyfp-1"
+class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/2691b1d89a643045aebcc6dda37bfcb61d72168c/figure/characterizeFibroblasts.Rmd/sel Genes across all Rosa26eyfp.Rosa26eyfp-1.png" target="_blank">2691b1d</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2021-06-25
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 <div id="ensmusg00000074934.grem1" class="section level4">
 <h4>ENSMUSG00000074934.Grem1</h4>
 <p><img src="figure/characterizeFibroblasts.Rmd/sel Genes across all ENSMUSG00000074934.Grem1-1.png" width="384" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-sel-Genes-across-all-ENSMUSG00000074934.Grem1-1">
-Past versions of “sel Genes across all ENSMUSG00000074934.Grem1-1.png”
+Past versions of "sel Genes across all ENSMUSG00000074934.Grem1-1.png"
 </button>
 </p>
-<div id="fig-no-spaces-sel-Genes-across-all-ENSMUSG00000074934.Grem1-1" class="collapse">
+<div id="fig-no-spaces-sel-Genes-across-all-ENSMUSG00000074934.Grem1-1"
+class="collapse">
 <div class="table-responsive">
 <table class="table table-condensed table-hover">
 <thead>
@@ -5005,7 +5249,7 @@ mluetge
 </div>
 </div>
 <div id="sel-genes-split-by-grp" class="section level3 tabset">
-<h3>sel Genes split by grp</h3>
+<h3 class="tabset">sel Genes split by grp</h3>
 <pre class="r"><code>template_fp &lt;- c(
     &quot;#### {{sel}}\n&quot;,
     &quot;```{r sel Genes split by grp {{sel}},fig.height=3, fig.width=8, echo = FALSE}\n&quot;,
@@ -5030,10 +5274,12 @@ plots_fp &lt;- lapply(selGenesLong$gene,
 <p><img src="figure/characterizeFibroblasts.Rmd/sel Genes split by grp ENSMUSG00000067336.Bmpr2-1.png" width="768" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-sel-Genes-split-by-grp-ENSMUSG00000067336.Bmpr2-1">
-Past versions of “sel Genes split by grp ENSMUSG00000067336.Bmpr2-1.png”
+Past versions of "sel Genes split by grp ENSMUSG00000067336.Bmpr2-1.png"
 </button>
 </p>
-<div id="fig-no-spaces-sel-Genes-split-by-grp-ENSMUSG00000067336.Bmpr2-1" class="collapse">
+<div
+id="fig-no-spaces-sel-Genes-split-by-grp-ENSMUSG00000067336.Bmpr2-1"
+class="collapse">
 <div class="table-responsive">
 <table class="table table-condensed table-hover">
 <thead>
@@ -5071,10 +5317,12 @@ mluetge
 <p><img src="figure/characterizeFibroblasts.Rmd/sel Genes split by grp ENSMUSG00000050069.Grem2-1.png" width="768" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-sel-Genes-split-by-grp-ENSMUSG00000050069.Grem2-1">
-Past versions of “sel Genes split by grp ENSMUSG00000050069.Grem2-1.png”
+Past versions of "sel Genes split by grp ENSMUSG00000050069.Grem2-1.png"
 </button>
 </p>
-<div id="fig-no-spaces-sel-Genes-split-by-grp-ENSMUSG00000050069.Grem2-1" class="collapse">
+<div
+id="fig-no-spaces-sel-Genes-split-by-grp-ENSMUSG00000050069.Grem2-1"
+class="collapse">
 <div class="table-responsive">
 <table class="table table-condensed table-hover">
 <thead>
@@ -5112,10 +5360,11 @@ mluetge
 <p><img src="figure/characterizeFibroblasts.Rmd/sel Genes split by grp ENSMUSG00000027358.Bmp2-1.png" width="768" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-sel-Genes-split-by-grp-ENSMUSG00000027358.Bmp2-1">
-Past versions of “sel Genes split by grp ENSMUSG00000027358.Bmp2-1.png”
+Past versions of "sel Genes split by grp ENSMUSG00000027358.Bmp2-1.png"
 </button>
 </p>
-<div id="fig-no-spaces-sel-Genes-split-by-grp-ENSMUSG00000027358.Bmp2-1" class="collapse">
+<div id="fig-no-spaces-sel-Genes-split-by-grp-ENSMUSG00000027358.Bmp2-1"
+class="collapse">
 <div class="table-responsive">
 <table class="table table-condensed table-hover">
 <thead>
@@ -5153,10 +5402,11 @@ mluetge
 <p><img src="figure/characterizeFibroblasts.Rmd/sel Genes split by grp ENSMUSG00000008999.Bmp7-1.png" width="768" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-sel-Genes-split-by-grp-ENSMUSG00000008999.Bmp7-1">
-Past versions of “sel Genes split by grp ENSMUSG00000008999.Bmp7-1.png”
+Past versions of "sel Genes split by grp ENSMUSG00000008999.Bmp7-1.png"
 </button>
 </p>
-<div id="fig-no-spaces-sel-Genes-split-by-grp-ENSMUSG00000008999.Bmp7-1" class="collapse">
+<div id="fig-no-spaces-sel-Genes-split-by-grp-ENSMUSG00000008999.Bmp7-1"
+class="collapse">
 <div class="table-responsive">
 <table class="table table-condensed table-hover">
 <thead>
@@ -5194,10 +5444,12 @@ mluetge
 <p><img src="figure/characterizeFibroblasts.Rmd/sel Genes split by grp ENSMUSG00000001131.Timp1-1.png" width="768" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-sel-Genes-split-by-grp-ENSMUSG00000001131.Timp1-1">
-Past versions of “sel Genes split by grp ENSMUSG00000001131.Timp1-1.png”
+Past versions of "sel Genes split by grp ENSMUSG00000001131.Timp1-1.png"
 </button>
 </p>
-<div id="fig-no-spaces-sel-Genes-split-by-grp-ENSMUSG00000001131.Timp1-1" class="collapse">
+<div
+id="fig-no-spaces-sel-Genes-split-by-grp-ENSMUSG00000001131.Timp1-1"
+class="collapse">
 <div class="table-responsive">
 <table class="table table-condensed table-hover">
 <thead>
@@ -5233,16 +5485,58 @@ mluetge
 <div id="ensmusg00000027962.vcam1-1" class="section level4">
 <h4>ENSMUSG00000027962.Vcam1</h4>
 <p><img src="figure/characterizeFibroblasts.Rmd/sel Genes split by grp ENSMUSG00000027962.Vcam1-1.png" width="768" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-sel-Genes-split-by-grp-ENSMUSG00000027962.Vcam1-1">
+Past versions of "sel Genes split by grp ENSMUSG00000027962.Vcam1-1.png"
+</button>
+</p>
+<div
+id="fig-no-spaces-sel-Genes-split-by-grp-ENSMUSG00000027962.Vcam1-1"
+class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/2691b1d89a643045aebcc6dda37bfcb61d72168c/figure/characterizeFibroblasts.Rmd/sel Genes split by grp ENSMUSG00000027962.Vcam1-1.png" target="_blank">2691b1d</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2021-06-25
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 <div id="ensmusg00000052430.bmpr1b-1" class="section level4">
 <h4>ENSMUSG00000052430.Bmpr1b</h4>
 <p><img src="figure/characterizeFibroblasts.Rmd/sel Genes split by grp ENSMUSG00000052430.Bmpr1b-1.png" width="768" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-sel-Genes-split-by-grp-ENSMUSG00000052430.Bmpr1b-1">
-Past versions of “sel Genes split by grp ENSMUSG00000052430.Bmpr1b-1.png”
+Past versions of "sel Genes split by grp
+ENSMUSG00000052430.Bmpr1b-1.png"
 </button>
 </p>
-<div id="fig-no-spaces-sel-Genes-split-by-grp-ENSMUSG00000052430.Bmpr1b-1" class="collapse">
+<div
+id="fig-no-spaces-sel-Genes-split-by-grp-ENSMUSG00000052430.Bmpr1b-1"
+class="collapse">
 <div class="table-responsive">
 <table class="table table-condensed table-hover">
 <thead>
@@ -5280,10 +5574,12 @@ mluetge
 <p><img src="figure/characterizeFibroblasts.Rmd/sel Genes split by grp ENSMUSG00000071005.Ccl19-1.png" width="768" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-sel-Genes-split-by-grp-ENSMUSG00000071005.Ccl19-1">
-Past versions of “sel Genes split by grp ENSMUSG00000071005.Ccl19-1.png”
+Past versions of "sel Genes split by grp ENSMUSG00000071005.Ccl19-1.png"
 </button>
 </p>
-<div id="fig-no-spaces-sel-Genes-split-by-grp-ENSMUSG00000071005.Ccl19-1" class="collapse">
+<div
+id="fig-no-spaces-sel-Genes-split-by-grp-ENSMUSG00000071005.Ccl19-1"
+class="collapse">
 <div class="table-responsive">
 <table class="table table-condensed table-hover">
 <thead>
@@ -5319,16 +5615,55 @@ mluetge
 <div id="ensmusg00000025746.il6-1" class="section level4">
 <h4>ENSMUSG00000025746.Il6</h4>
 <p><img src="figure/characterizeFibroblasts.Rmd/sel Genes split by grp ENSMUSG00000025746.Il6-1.png" width="768" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-sel-Genes-split-by-grp-ENSMUSG00000025746.Il6-1">
+Past versions of "sel Genes split by grp ENSMUSG00000025746.Il6-1.png"
+</button>
+</p>
+<div id="fig-no-spaces-sel-Genes-split-by-grp-ENSMUSG00000025746.Il6-1"
+class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/2691b1d89a643045aebcc6dda37bfcb61d72168c/figure/characterizeFibroblasts.Rmd/sel Genes split by grp ENSMUSG00000025746.Il6-1.png" target="_blank">2691b1d</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2021-06-25
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 <div id="ensmusg00000029082.bst1-1" class="section level4">
 <h4>ENSMUSG00000029082.Bst1</h4>
 <p><img src="figure/characterizeFibroblasts.Rmd/sel Genes split by grp ENSMUSG00000029082.Bst1-1.png" width="768" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-sel-Genes-split-by-grp-ENSMUSG00000029082.Bst1-1">
-Past versions of “sel Genes split by grp ENSMUSG00000029082.Bst1-1.png”
+Past versions of "sel Genes split by grp ENSMUSG00000029082.Bst1-1.png"
 </button>
 </p>
-<div id="fig-no-spaces-sel-Genes-split-by-grp-ENSMUSG00000029082.Bst1-1" class="collapse">
+<div id="fig-no-spaces-sel-Genes-split-by-grp-ENSMUSG00000029082.Bst1-1"
+class="collapse">
 <div class="table-responsive">
 <table class="table table-condensed table-hover">
 <thead>
@@ -5366,10 +5701,12 @@ mluetge
 <p><img src="figure/characterizeFibroblasts.Rmd/sel Genes split by grp ENSMUSG00000029417.Cxcl9-1.png" width="768" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-sel-Genes-split-by-grp-ENSMUSG00000029417.Cxcl9-1">
-Past versions of “sel Genes split by grp ENSMUSG00000029417.Cxcl9-1.png”
+Past versions of "sel Genes split by grp ENSMUSG00000029417.Cxcl9-1.png"
 </button>
 </p>
-<div id="fig-no-spaces-sel-Genes-split-by-grp-ENSMUSG00000029417.Cxcl9-1" class="collapse">
+<div
+id="fig-no-spaces-sel-Genes-split-by-grp-ENSMUSG00000029417.Cxcl9-1"
+class="collapse">
 <div class="table-responsive">
 <table class="table table-condensed table-hover">
 <thead>
@@ -5407,10 +5744,13 @@ mluetge
 <p><img src="figure/characterizeFibroblasts.Rmd/sel Genes split by grp ENSMUSG00000023078.Cxcl13-1.png" width="768" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-sel-Genes-split-by-grp-ENSMUSG00000023078.Cxcl13-1">
-Past versions of “sel Genes split by grp ENSMUSG00000023078.Cxcl13-1.png”
+Past versions of "sel Genes split by grp
+ENSMUSG00000023078.Cxcl13-1.png"
 </button>
 </p>
-<div id="fig-no-spaces-sel-Genes-split-by-grp-ENSMUSG00000023078.Cxcl13-1" class="collapse">
+<div
+id="fig-no-spaces-sel-Genes-split-by-grp-ENSMUSG00000023078.Cxcl13-1"
+class="collapse">
 <div class="table-responsive">
 <table class="table table-condensed table-hover">
 <thead>
@@ -5448,10 +5788,11 @@ mluetge
 <p><img src="figure/characterizeFibroblasts.Rmd/sel Genes split by grp ENSMUSG00000004371.Il11-1.png" width="768" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-sel-Genes-split-by-grp-ENSMUSG00000004371.Il11-1">
-Past versions of “sel Genes split by grp ENSMUSG00000004371.Il11-1.png”
+Past versions of "sel Genes split by grp ENSMUSG00000004371.Il11-1.png"
 </button>
 </p>
-<div id="fig-no-spaces-sel-Genes-split-by-grp-ENSMUSG00000004371.Il11-1" class="collapse">
+<div id="fig-no-spaces-sel-Genes-split-by-grp-ENSMUSG00000004371.Il11-1"
+class="collapse">
 <div class="table-responsive">
 <table class="table table-condensed table-hover">
 <thead>
@@ -5489,10 +5830,12 @@ mluetge
 <p><img src="figure/characterizeFibroblasts.Rmd/sel Genes split by grp ENSMUSG00000046223.Plaur-1.png" width="768" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-sel-Genes-split-by-grp-ENSMUSG00000046223.Plaur-1">
-Past versions of “sel Genes split by grp ENSMUSG00000046223.Plaur-1.png”
+Past versions of "sel Genes split by grp ENSMUSG00000046223.Plaur-1.png"
 </button>
 </p>
-<div id="fig-no-spaces-sel-Genes-split-by-grp-ENSMUSG00000046223.Plaur-1" class="collapse">
+<div
+id="fig-no-spaces-sel-Genes-split-by-grp-ENSMUSG00000046223.Plaur-1"
+class="collapse">
 <div class="table-responsive">
 <table class="table table-condensed table-hover">
 <thead>
@@ -5530,10 +5873,13 @@ mluetge
 <p><img src="figure/characterizeFibroblasts.Rmd/sel Genes split by grp ENSMUSG00000021796.Bmpr1a-1.png" width="768" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-sel-Genes-split-by-grp-ENSMUSG00000021796.Bmpr1a-1">
-Past versions of “sel Genes split by grp ENSMUSG00000021796.Bmpr1a-1.png”
+Past versions of "sel Genes split by grp
+ENSMUSG00000021796.Bmpr1a-1.png"
 </button>
 </p>
-<div id="fig-no-spaces-sel-Genes-split-by-grp-ENSMUSG00000021796.Bmpr1a-1" class="collapse">
+<div
+id="fig-no-spaces-sel-Genes-split-by-grp-ENSMUSG00000021796.Bmpr1a-1"
+class="collapse">
 <div class="table-responsive">
 <table class="table table-condensed table-hover">
 <thead>
@@ -5571,10 +5917,11 @@ mluetge
 <p><img src="figure/characterizeFibroblasts.Rmd/sel Genes split by grp ENSMUSG00000021835.Bmp4-1.png" width="768" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-sel-Genes-split-by-grp-ENSMUSG00000021835.Bmp4-1">
-Past versions of “sel Genes split by grp ENSMUSG00000021835.Bmp4-1.png”
+Past versions of "sel Genes split by grp ENSMUSG00000021835.Bmp4-1.png"
 </button>
 </p>
-<div id="fig-no-spaces-sel-Genes-split-by-grp-ENSMUSG00000021835.Bmp4-1" class="collapse">
+<div id="fig-no-spaces-sel-Genes-split-by-grp-ENSMUSG00000021835.Bmp4-1"
+class="collapse">
 <div class="table-responsive">
 <table class="table table-condensed table-hover">
 <thead>
@@ -5612,10 +5959,11 @@ mluetge
 <p><img src="figure/characterizeFibroblasts.Rmd/sel Genes split by grp ENSMUSG00000022037.Clu-1.png" width="768" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-sel-Genes-split-by-grp-ENSMUSG00000022037.Clu-1">
-Past versions of “sel Genes split by grp ENSMUSG00000022037.Clu-1.png”
+Past versions of "sel Genes split by grp ENSMUSG00000022037.Clu-1.png"
 </button>
 </p>
-<div id="fig-no-spaces-sel-Genes-split-by-grp-ENSMUSG00000022037.Clu-1" class="collapse">
+<div id="fig-no-spaces-sel-Genes-split-by-grp-ENSMUSG00000022037.Clu-1"
+class="collapse">
 <div class="table-responsive">
 <table class="table table-condensed table-hover">
 <thead>
@@ -5651,16 +5999,57 @@ mluetge
 <div id="ensmusg00000037405.icam1-1" class="section level4">
 <h4>ENSMUSG00000037405.Icam1</h4>
 <p><img src="figure/characterizeFibroblasts.Rmd/sel Genes split by grp ENSMUSG00000037405.Icam1-1.png" width="768" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-sel-Genes-split-by-grp-ENSMUSG00000037405.Icam1-1">
+Past versions of "sel Genes split by grp ENSMUSG00000037405.Icam1-1.png"
+</button>
+</p>
+<div
+id="fig-no-spaces-sel-Genes-split-by-grp-ENSMUSG00000037405.Icam1-1"
+class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/2691b1d89a643045aebcc6dda37bfcb61d72168c/figure/characterizeFibroblasts.Rmd/sel Genes split by grp ENSMUSG00000037405.Icam1-1.png" target="_blank">2691b1d</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2021-06-25
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 <div id="ensmusg00000039542.ncam1-1" class="section level4">
 <h4>ENSMUSG00000039542.Ncam1</h4>
 <p><img src="figure/characterizeFibroblasts.Rmd/sel Genes split by grp ENSMUSG00000039542.Ncam1-1.png" width="768" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-sel-Genes-split-by-grp-ENSMUSG00000039542.Ncam1-1">
-Past versions of “sel Genes split by grp ENSMUSG00000039542.Ncam1-1.png”
+Past versions of "sel Genes split by grp ENSMUSG00000039542.Ncam1-1.png"
 </button>
 </p>
-<div id="fig-no-spaces-sel-Genes-split-by-grp-ENSMUSG00000039542.Ncam1-1" class="collapse">
+<div
+id="fig-no-spaces-sel-Genes-split-by-grp-ENSMUSG00000039542.Ncam1-1"
+class="collapse">
 <div class="table-responsive">
 <table class="table table-condensed table-hover">
 <thead>
@@ -5698,10 +6087,11 @@ mluetge
 <p><img src="figure/characterizeFibroblasts.Rmd/sel Genes split by grp ENSMUSG00000035385.Ccl2-1.png" width="768" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-sel-Genes-split-by-grp-ENSMUSG00000035385.Ccl2-1">
-Past versions of “sel Genes split by grp ENSMUSG00000035385.Ccl2-1.png”
+Past versions of "sel Genes split by grp ENSMUSG00000035385.Ccl2-1.png"
 </button>
 </p>
-<div id="fig-no-spaces-sel-Genes-split-by-grp-ENSMUSG00000035385.Ccl2-1" class="collapse">
+<div id="fig-no-spaces-sel-Genes-split-by-grp-ENSMUSG00000035385.Ccl2-1"
+class="collapse">
 <div class="table-responsive">
 <table class="table table-condensed table-hover">
 <thead>
@@ -5739,10 +6129,12 @@ mluetge
 <p><img src="figure/characterizeFibroblasts.Rmd/sel Genes split by grp ENSMUSG00000021109.Hif1a-1.png" width="768" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-sel-Genes-split-by-grp-ENSMUSG00000021109.Hif1a-1">
-Past versions of “sel Genes split by grp ENSMUSG00000021109.Hif1a-1.png”
+Past versions of "sel Genes split by grp ENSMUSG00000021109.Hif1a-1.png"
 </button>
 </p>
-<div id="fig-no-spaces-sel-Genes-split-by-grp-ENSMUSG00000021109.Hif1a-1" class="collapse">
+<div
+id="fig-no-spaces-sel-Genes-split-by-grp-ENSMUSG00000021109.Hif1a-1"
+class="collapse">
 <div class="table-responsive">
 <table class="table table-condensed table-hover">
 <thead>
@@ -5778,16 +6170,55 @@ mluetge
 <div id="ensmusg00000075602.ly6a-1" class="section level4">
 <h4>ENSMUSG00000075602.Ly6a</h4>
 <p><img src="figure/characterizeFibroblasts.Rmd/sel Genes split by grp ENSMUSG00000075602.Ly6a-1.png" width="768" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-sel-Genes-split-by-grp-ENSMUSG00000075602.Ly6a-1">
+Past versions of "sel Genes split by grp ENSMUSG00000075602.Ly6a-1.png"
+</button>
+</p>
+<div id="fig-no-spaces-sel-Genes-split-by-grp-ENSMUSG00000075602.Ly6a-1"
+class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/2691b1d89a643045aebcc6dda37bfcb61d72168c/figure/characterizeFibroblasts.Rmd/sel Genes split by grp ENSMUSG00000075602.Ly6a-1.png" target="_blank">2691b1d</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2021-06-25
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 <div id="ensmusg00000006818.sod2-1" class="section level4">
 <h4>ENSMUSG00000006818.Sod2</h4>
 <p><img src="figure/characterizeFibroblasts.Rmd/sel Genes split by grp ENSMUSG00000006818.Sod2-1.png" width="768" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-sel-Genes-split-by-grp-ENSMUSG00000006818.Sod2-1">
-Past versions of “sel Genes split by grp ENSMUSG00000006818.Sod2-1.png”
+Past versions of "sel Genes split by grp ENSMUSG00000006818.Sod2-1.png"
 </button>
 </p>
-<div id="fig-no-spaces-sel-Genes-split-by-grp-ENSMUSG00000006818.Sod2-1" class="collapse">
+<div id="fig-no-spaces-sel-Genes-split-by-grp-ENSMUSG00000006818.Sod2-1"
+class="collapse">
 <div class="table-responsive">
 <table class="table table-condensed table-hover">
 <thead>
@@ -5823,16 +6254,56 @@ mluetge
 <div id="ensmusg00000036594.h2-aa-1" class="section level4">
 <h4>ENSMUSG00000036594.H2-Aa</h4>
 <p><img src="figure/characterizeFibroblasts.Rmd/sel Genes split by grp ENSMUSG00000036594.H2-Aa-1.png" width="768" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-sel-Genes-split-by-grp-ENSMUSG00000036594.H2-Aa-1">
+Past versions of "sel Genes split by grp ENSMUSG00000036594.H2-Aa-1.png"
+</button>
+</p>
+<div
+id="fig-no-spaces-sel-Genes-split-by-grp-ENSMUSG00000036594.H2-Aa-1"
+class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/2691b1d89a643045aebcc6dda37bfcb61d72168c/figure/characterizeFibroblasts.Rmd/sel Genes split by grp ENSMUSG00000036594.H2-Aa-1.png" target="_blank">2691b1d</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2021-06-25
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 <div id="ensmusg00000024810.il33-1" class="section level4">
 <h4>ENSMUSG00000024810.Il33</h4>
 <p><img src="figure/characterizeFibroblasts.Rmd/sel Genes split by grp ENSMUSG00000024810.Il33-1.png" width="768" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-sel-Genes-split-by-grp-ENSMUSG00000024810.Il33-1">
-Past versions of “sel Genes split by grp ENSMUSG00000024810.Il33-1.png”
+Past versions of "sel Genes split by grp ENSMUSG00000024810.Il33-1.png"
 </button>
 </p>
-<div id="fig-no-spaces-sel-Genes-split-by-grp-ENSMUSG00000024810.Il33-1" class="collapse">
+<div id="fig-no-spaces-sel-Genes-split-by-grp-ENSMUSG00000024810.Il33-1"
+class="collapse">
 <div class="table-responsive">
 <table class="table table-condensed table-hover">
 <thead>
@@ -5868,16 +6339,56 @@ mluetge
 <div id="rosa26eyfp.rosa26eyfp-1" class="section level4">
 <h4>Rosa26eyfp.Rosa26eyfp</h4>
 <p><img src="figure/characterizeFibroblasts.Rmd/sel Genes split by grp Rosa26eyfp.Rosa26eyfp-1.png" width="768" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-sel-Genes-split-by-grp-Rosa26eyfp.Rosa26eyfp-1">
+Past versions of "sel Genes split by grp Rosa26eyfp.Rosa26eyfp-1.png"
+</button>
+</p>
+<div id="fig-no-spaces-sel-Genes-split-by-grp-Rosa26eyfp.Rosa26eyfp-1"
+class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/2691b1d89a643045aebcc6dda37bfcb61d72168c/figure/characterizeFibroblasts.Rmd/sel Genes split by grp Rosa26eyfp.Rosa26eyfp-1.png" target="_blank">2691b1d</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2021-06-25
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 <div id="ensmusg00000074934.grem1-1" class="section level4">
 <h4>ENSMUSG00000074934.Grem1</h4>
 <p><img src="figure/characterizeFibroblasts.Rmd/sel Genes split by grp ENSMUSG00000074934.Grem1-1.png" width="768" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-sel-Genes-split-by-grp-ENSMUSG00000074934.Grem1-1">
-Past versions of “sel Genes split by grp ENSMUSG00000074934.Grem1-1.png”
+Past versions of "sel Genes split by grp ENSMUSG00000074934.Grem1-1.png"
 </button>
 </p>
-<div id="fig-no-spaces-sel-Genes-split-by-grp-ENSMUSG00000074934.Grem1-1" class="collapse">
+<div
+id="fig-no-spaces-sel-Genes-split-by-grp-ENSMUSG00000074934.Grem1-1"
+class="collapse">
 <div class="table-responsive">
 <table class="table table-condensed table-hover">
 <thead>
@@ -5912,7 +6423,7 @@ mluetge
 </div>
 </div>
 <div id="sel-genes-split-by-time" class="section level3 tabset">
-<h3>sel Genes split by time</h3>
+<h3 class="tabset">sel Genes split by time</h3>
 <pre class="r"><code>template_fp &lt;- c(
     &quot;#### {{sel}}\n&quot;,
     &quot;```{r sel Genes split by time {{sel}},fig.height=3, fig.width=12, echo = FALSE}\n&quot;,
@@ -5937,10 +6448,13 @@ plots_fp &lt;- lapply(selGenesLong$gene,
 <p><img src="figure/characterizeFibroblasts.Rmd/sel Genes split by time ENSMUSG00000067336.Bmpr2-1.png" width="1152" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-sel-Genes-split-by-time-ENSMUSG00000067336.Bmpr2-1">
-Past versions of “sel Genes split by time ENSMUSG00000067336.Bmpr2-1.png”
+Past versions of "sel Genes split by time
+ENSMUSG00000067336.Bmpr2-1.png"
 </button>
 </p>
-<div id="fig-no-spaces-sel-Genes-split-by-time-ENSMUSG00000067336.Bmpr2-1" class="collapse">
+<div
+id="fig-no-spaces-sel-Genes-split-by-time-ENSMUSG00000067336.Bmpr2-1"
+class="collapse">
 <div class="table-responsive">
 <table class="table table-condensed table-hover">
 <thead>
@@ -5978,10 +6492,13 @@ mluetge
 <p><img src="figure/characterizeFibroblasts.Rmd/sel Genes split by time ENSMUSG00000050069.Grem2-1.png" width="1152" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-sel-Genes-split-by-time-ENSMUSG00000050069.Grem2-1">
-Past versions of “sel Genes split by time ENSMUSG00000050069.Grem2-1.png”
+Past versions of "sel Genes split by time
+ENSMUSG00000050069.Grem2-1.png"
 </button>
 </p>
-<div id="fig-no-spaces-sel-Genes-split-by-time-ENSMUSG00000050069.Grem2-1" class="collapse">
+<div
+id="fig-no-spaces-sel-Genes-split-by-time-ENSMUSG00000050069.Grem2-1"
+class="collapse">
 <div class="table-responsive">
 <table class="table table-condensed table-hover">
 <thead>
@@ -6019,10 +6536,12 @@ mluetge
 <p><img src="figure/characterizeFibroblasts.Rmd/sel Genes split by time ENSMUSG00000027358.Bmp2-1.png" width="1152" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-sel-Genes-split-by-time-ENSMUSG00000027358.Bmp2-1">
-Past versions of “sel Genes split by time ENSMUSG00000027358.Bmp2-1.png”
+Past versions of "sel Genes split by time ENSMUSG00000027358.Bmp2-1.png"
 </button>
 </p>
-<div id="fig-no-spaces-sel-Genes-split-by-time-ENSMUSG00000027358.Bmp2-1" class="collapse">
+<div
+id="fig-no-spaces-sel-Genes-split-by-time-ENSMUSG00000027358.Bmp2-1"
+class="collapse">
 <div class="table-responsive">
 <table class="table table-condensed table-hover">
 <thead>
@@ -6060,10 +6579,12 @@ mluetge
 <p><img src="figure/characterizeFibroblasts.Rmd/sel Genes split by time ENSMUSG00000008999.Bmp7-1.png" width="1152" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-sel-Genes-split-by-time-ENSMUSG00000008999.Bmp7-1">
-Past versions of “sel Genes split by time ENSMUSG00000008999.Bmp7-1.png”
+Past versions of "sel Genes split by time ENSMUSG00000008999.Bmp7-1.png"
 </button>
 </p>
-<div id="fig-no-spaces-sel-Genes-split-by-time-ENSMUSG00000008999.Bmp7-1" class="collapse">
+<div
+id="fig-no-spaces-sel-Genes-split-by-time-ENSMUSG00000008999.Bmp7-1"
+class="collapse">
 <div class="table-responsive">
 <table class="table table-condensed table-hover">
 <thead>
@@ -6101,10 +6622,13 @@ mluetge
 <p><img src="figure/characterizeFibroblasts.Rmd/sel Genes split by time ENSMUSG00000001131.Timp1-1.png" width="1152" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-sel-Genes-split-by-time-ENSMUSG00000001131.Timp1-1">
-Past versions of “sel Genes split by time ENSMUSG00000001131.Timp1-1.png”
+Past versions of "sel Genes split by time
+ENSMUSG00000001131.Timp1-1.png"
 </button>
 </p>
-<div id="fig-no-spaces-sel-Genes-split-by-time-ENSMUSG00000001131.Timp1-1" class="collapse">
+<div
+id="fig-no-spaces-sel-Genes-split-by-time-ENSMUSG00000001131.Timp1-1"
+class="collapse">
 <div class="table-responsive">
 <table class="table table-condensed table-hover">
 <thead>
@@ -6140,16 +6664,59 @@ mluetge
 <div id="ensmusg00000027962.vcam1-2" class="section level4">
 <h4>ENSMUSG00000027962.Vcam1</h4>
 <p><img src="figure/characterizeFibroblasts.Rmd/sel Genes split by time ENSMUSG00000027962.Vcam1-1.png" width="1152" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-sel-Genes-split-by-time-ENSMUSG00000027962.Vcam1-1">
+Past versions of "sel Genes split by time
+ENSMUSG00000027962.Vcam1-1.png"
+</button>
+</p>
+<div
+id="fig-no-spaces-sel-Genes-split-by-time-ENSMUSG00000027962.Vcam1-1"
+class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/2691b1d89a643045aebcc6dda37bfcb61d72168c/figure/characterizeFibroblasts.Rmd/sel Genes split by time ENSMUSG00000027962.Vcam1-1.png" target="_blank">2691b1d</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2021-06-25
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 <div id="ensmusg00000052430.bmpr1b-2" class="section level4">
 <h4>ENSMUSG00000052430.Bmpr1b</h4>
 <p><img src="figure/characterizeFibroblasts.Rmd/sel Genes split by time ENSMUSG00000052430.Bmpr1b-1.png" width="1152" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-sel-Genes-split-by-time-ENSMUSG00000052430.Bmpr1b-1">
-Past versions of “sel Genes split by time ENSMUSG00000052430.Bmpr1b-1.png”
+Past versions of "sel Genes split by time
+ENSMUSG00000052430.Bmpr1b-1.png"
 </button>
 </p>
-<div id="fig-no-spaces-sel-Genes-split-by-time-ENSMUSG00000052430.Bmpr1b-1" class="collapse">
+<div
+id="fig-no-spaces-sel-Genes-split-by-time-ENSMUSG00000052430.Bmpr1b-1"
+class="collapse">
 <div class="table-responsive">
 <table class="table table-condensed table-hover">
 <thead>
@@ -6187,10 +6754,13 @@ mluetge
 <p><img src="figure/characterizeFibroblasts.Rmd/sel Genes split by time ENSMUSG00000071005.Ccl19-1.png" width="1152" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-sel-Genes-split-by-time-ENSMUSG00000071005.Ccl19-1">
-Past versions of “sel Genes split by time ENSMUSG00000071005.Ccl19-1.png”
+Past versions of "sel Genes split by time
+ENSMUSG00000071005.Ccl19-1.png"
 </button>
 </p>
-<div id="fig-no-spaces-sel-Genes-split-by-time-ENSMUSG00000071005.Ccl19-1" class="collapse">
+<div
+id="fig-no-spaces-sel-Genes-split-by-time-ENSMUSG00000071005.Ccl19-1"
+class="collapse">
 <div class="table-responsive">
 <table class="table table-condensed table-hover">
 <thead>
@@ -6226,16 +6796,56 @@ mluetge
 <div id="ensmusg00000025746.il6-2" class="section level4">
 <h4>ENSMUSG00000025746.Il6</h4>
 <p><img src="figure/characterizeFibroblasts.Rmd/sel Genes split by time ENSMUSG00000025746.Il6-1.png" width="1152" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-sel-Genes-split-by-time-ENSMUSG00000025746.Il6-1">
+Past versions of "sel Genes split by time ENSMUSG00000025746.Il6-1.png"
+</button>
+</p>
+<div id="fig-no-spaces-sel-Genes-split-by-time-ENSMUSG00000025746.Il6-1"
+class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/2691b1d89a643045aebcc6dda37bfcb61d72168c/figure/characterizeFibroblasts.Rmd/sel Genes split by time ENSMUSG00000025746.Il6-1.png" target="_blank">2691b1d</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2021-06-25
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 <div id="ensmusg00000029082.bst1-2" class="section level4">
 <h4>ENSMUSG00000029082.Bst1</h4>
 <p><img src="figure/characterizeFibroblasts.Rmd/sel Genes split by time ENSMUSG00000029082.Bst1-1.png" width="1152" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-sel-Genes-split-by-time-ENSMUSG00000029082.Bst1-1">
-Past versions of “sel Genes split by time ENSMUSG00000029082.Bst1-1.png”
+Past versions of "sel Genes split by time ENSMUSG00000029082.Bst1-1.png"
 </button>
 </p>
-<div id="fig-no-spaces-sel-Genes-split-by-time-ENSMUSG00000029082.Bst1-1" class="collapse">
+<div
+id="fig-no-spaces-sel-Genes-split-by-time-ENSMUSG00000029082.Bst1-1"
+class="collapse">
 <div class="table-responsive">
 <table class="table table-condensed table-hover">
 <thead>
@@ -6273,10 +6883,13 @@ mluetge
 <p><img src="figure/characterizeFibroblasts.Rmd/sel Genes split by time ENSMUSG00000029417.Cxcl9-1.png" width="1152" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-sel-Genes-split-by-time-ENSMUSG00000029417.Cxcl9-1">
-Past versions of “sel Genes split by time ENSMUSG00000029417.Cxcl9-1.png”
+Past versions of "sel Genes split by time
+ENSMUSG00000029417.Cxcl9-1.png"
 </button>
 </p>
-<div id="fig-no-spaces-sel-Genes-split-by-time-ENSMUSG00000029417.Cxcl9-1" class="collapse">
+<div
+id="fig-no-spaces-sel-Genes-split-by-time-ENSMUSG00000029417.Cxcl9-1"
+class="collapse">
 <div class="table-responsive">
 <table class="table table-condensed table-hover">
 <thead>
@@ -6314,10 +6927,13 @@ mluetge
 <p><img src="figure/characterizeFibroblasts.Rmd/sel Genes split by time ENSMUSG00000023078.Cxcl13-1.png" width="1152" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-sel-Genes-split-by-time-ENSMUSG00000023078.Cxcl13-1">
-Past versions of “sel Genes split by time ENSMUSG00000023078.Cxcl13-1.png”
+Past versions of "sel Genes split by time
+ENSMUSG00000023078.Cxcl13-1.png"
 </button>
 </p>
-<div id="fig-no-spaces-sel-Genes-split-by-time-ENSMUSG00000023078.Cxcl13-1" class="collapse">
+<div
+id="fig-no-spaces-sel-Genes-split-by-time-ENSMUSG00000023078.Cxcl13-1"
+class="collapse">
 <div class="table-responsive">
 <table class="table table-condensed table-hover">
 <thead>
@@ -6355,10 +6971,12 @@ mluetge
 <p><img src="figure/characterizeFibroblasts.Rmd/sel Genes split by time ENSMUSG00000004371.Il11-1.png" width="1152" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-sel-Genes-split-by-time-ENSMUSG00000004371.Il11-1">
-Past versions of “sel Genes split by time ENSMUSG00000004371.Il11-1.png”
+Past versions of "sel Genes split by time ENSMUSG00000004371.Il11-1.png"
 </button>
 </p>
-<div id="fig-no-spaces-sel-Genes-split-by-time-ENSMUSG00000004371.Il11-1" class="collapse">
+<div
+id="fig-no-spaces-sel-Genes-split-by-time-ENSMUSG00000004371.Il11-1"
+class="collapse">
 <div class="table-responsive">
 <table class="table table-condensed table-hover">
 <thead>
@@ -6396,10 +7014,13 @@ mluetge
 <p><img src="figure/characterizeFibroblasts.Rmd/sel Genes split by time ENSMUSG00000046223.Plaur-1.png" width="1152" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-sel-Genes-split-by-time-ENSMUSG00000046223.Plaur-1">
-Past versions of “sel Genes split by time ENSMUSG00000046223.Plaur-1.png”
+Past versions of "sel Genes split by time
+ENSMUSG00000046223.Plaur-1.png"
 </button>
 </p>
-<div id="fig-no-spaces-sel-Genes-split-by-time-ENSMUSG00000046223.Plaur-1" class="collapse">
+<div
+id="fig-no-spaces-sel-Genes-split-by-time-ENSMUSG00000046223.Plaur-1"
+class="collapse">
 <div class="table-responsive">
 <table class="table table-condensed table-hover">
 <thead>
@@ -6437,10 +7058,13 @@ mluetge
 <p><img src="figure/characterizeFibroblasts.Rmd/sel Genes split by time ENSMUSG00000021796.Bmpr1a-1.png" width="1152" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-sel-Genes-split-by-time-ENSMUSG00000021796.Bmpr1a-1">
-Past versions of “sel Genes split by time ENSMUSG00000021796.Bmpr1a-1.png”
+Past versions of "sel Genes split by time
+ENSMUSG00000021796.Bmpr1a-1.png"
 </button>
 </p>
-<div id="fig-no-spaces-sel-Genes-split-by-time-ENSMUSG00000021796.Bmpr1a-1" class="collapse">
+<div
+id="fig-no-spaces-sel-Genes-split-by-time-ENSMUSG00000021796.Bmpr1a-1"
+class="collapse">
 <div class="table-responsive">
 <table class="table table-condensed table-hover">
 <thead>
@@ -6478,10 +7102,12 @@ mluetge
 <p><img src="figure/characterizeFibroblasts.Rmd/sel Genes split by time ENSMUSG00000021835.Bmp4-1.png" width="1152" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-sel-Genes-split-by-time-ENSMUSG00000021835.Bmp4-1">
-Past versions of “sel Genes split by time ENSMUSG00000021835.Bmp4-1.png”
+Past versions of "sel Genes split by time ENSMUSG00000021835.Bmp4-1.png"
 </button>
 </p>
-<div id="fig-no-spaces-sel-Genes-split-by-time-ENSMUSG00000021835.Bmp4-1" class="collapse">
+<div
+id="fig-no-spaces-sel-Genes-split-by-time-ENSMUSG00000021835.Bmp4-1"
+class="collapse">
 <div class="table-responsive">
 <table class="table table-condensed table-hover">
 <thead>
@@ -6519,10 +7145,11 @@ mluetge
 <p><img src="figure/characterizeFibroblasts.Rmd/sel Genes split by time ENSMUSG00000022037.Clu-1.png" width="1152" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-sel-Genes-split-by-time-ENSMUSG00000022037.Clu-1">
-Past versions of “sel Genes split by time ENSMUSG00000022037.Clu-1.png”
+Past versions of "sel Genes split by time ENSMUSG00000022037.Clu-1.png"
 </button>
 </p>
-<div id="fig-no-spaces-sel-Genes-split-by-time-ENSMUSG00000022037.Clu-1" class="collapse">
+<div id="fig-no-spaces-sel-Genes-split-by-time-ENSMUSG00000022037.Clu-1"
+class="collapse">
 <div class="table-responsive">
 <table class="table table-condensed table-hover">
 <thead>
@@ -6558,16 +7185,59 @@ mluetge
 <div id="ensmusg00000037405.icam1-2" class="section level4">
 <h4>ENSMUSG00000037405.Icam1</h4>
 <p><img src="figure/characterizeFibroblasts.Rmd/sel Genes split by time ENSMUSG00000037405.Icam1-1.png" width="1152" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-sel-Genes-split-by-time-ENSMUSG00000037405.Icam1-1">
+Past versions of "sel Genes split by time
+ENSMUSG00000037405.Icam1-1.png"
+</button>
+</p>
+<div
+id="fig-no-spaces-sel-Genes-split-by-time-ENSMUSG00000037405.Icam1-1"
+class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/2691b1d89a643045aebcc6dda37bfcb61d72168c/figure/characterizeFibroblasts.Rmd/sel Genes split by time ENSMUSG00000037405.Icam1-1.png" target="_blank">2691b1d</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2021-06-25
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 <div id="ensmusg00000039542.ncam1-2" class="section level4">
 <h4>ENSMUSG00000039542.Ncam1</h4>
 <p><img src="figure/characterizeFibroblasts.Rmd/sel Genes split by time ENSMUSG00000039542.Ncam1-1.png" width="1152" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-sel-Genes-split-by-time-ENSMUSG00000039542.Ncam1-1">
-Past versions of “sel Genes split by time ENSMUSG00000039542.Ncam1-1.png”
+Past versions of "sel Genes split by time
+ENSMUSG00000039542.Ncam1-1.png"
 </button>
 </p>
-<div id="fig-no-spaces-sel-Genes-split-by-time-ENSMUSG00000039542.Ncam1-1" class="collapse">
+<div
+id="fig-no-spaces-sel-Genes-split-by-time-ENSMUSG00000039542.Ncam1-1"
+class="collapse">
 <div class="table-responsive">
 <table class="table table-condensed table-hover">
 <thead>
@@ -6605,10 +7275,12 @@ mluetge
 <p><img src="figure/characterizeFibroblasts.Rmd/sel Genes split by time ENSMUSG00000035385.Ccl2-1.png" width="1152" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-sel-Genes-split-by-time-ENSMUSG00000035385.Ccl2-1">
-Past versions of “sel Genes split by time ENSMUSG00000035385.Ccl2-1.png”
+Past versions of "sel Genes split by time ENSMUSG00000035385.Ccl2-1.png"
 </button>
 </p>
-<div id="fig-no-spaces-sel-Genes-split-by-time-ENSMUSG00000035385.Ccl2-1" class="collapse">
+<div
+id="fig-no-spaces-sel-Genes-split-by-time-ENSMUSG00000035385.Ccl2-1"
+class="collapse">
 <div class="table-responsive">
 <table class="table table-condensed table-hover">
 <thead>
@@ -6646,10 +7318,13 @@ mluetge
 <p><img src="figure/characterizeFibroblasts.Rmd/sel Genes split by time ENSMUSG00000021109.Hif1a-1.png" width="1152" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-sel-Genes-split-by-time-ENSMUSG00000021109.Hif1a-1">
-Past versions of “sel Genes split by time ENSMUSG00000021109.Hif1a-1.png”
+Past versions of "sel Genes split by time
+ENSMUSG00000021109.Hif1a-1.png"
 </button>
 </p>
-<div id="fig-no-spaces-sel-Genes-split-by-time-ENSMUSG00000021109.Hif1a-1" class="collapse">
+<div
+id="fig-no-spaces-sel-Genes-split-by-time-ENSMUSG00000021109.Hif1a-1"
+class="collapse">
 <div class="table-responsive">
 <table class="table table-condensed table-hover">
 <thead>
@@ -6685,16 +7360,57 @@ mluetge
 <div id="ensmusg00000075602.ly6a-2" class="section level4">
 <h4>ENSMUSG00000075602.Ly6a</h4>
 <p><img src="figure/characterizeFibroblasts.Rmd/sel Genes split by time ENSMUSG00000075602.Ly6a-1.png" width="1152" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-sel-Genes-split-by-time-ENSMUSG00000075602.Ly6a-1">
+Past versions of "sel Genes split by time ENSMUSG00000075602.Ly6a-1.png"
+</button>
+</p>
+<div
+id="fig-no-spaces-sel-Genes-split-by-time-ENSMUSG00000075602.Ly6a-1"
+class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/2691b1d89a643045aebcc6dda37bfcb61d72168c/figure/characterizeFibroblasts.Rmd/sel Genes split by time ENSMUSG00000075602.Ly6a-1.png" target="_blank">2691b1d</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2021-06-25
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 <div id="ensmusg00000006818.sod2-2" class="section level4">
 <h4>ENSMUSG00000006818.Sod2</h4>
 <p><img src="figure/characterizeFibroblasts.Rmd/sel Genes split by time ENSMUSG00000006818.Sod2-1.png" width="1152" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-sel-Genes-split-by-time-ENSMUSG00000006818.Sod2-1">
-Past versions of “sel Genes split by time ENSMUSG00000006818.Sod2-1.png”
+Past versions of "sel Genes split by time ENSMUSG00000006818.Sod2-1.png"
 </button>
 </p>
-<div id="fig-no-spaces-sel-Genes-split-by-time-ENSMUSG00000006818.Sod2-1" class="collapse">
+<div
+id="fig-no-spaces-sel-Genes-split-by-time-ENSMUSG00000006818.Sod2-1"
+class="collapse">
 <div class="table-responsive">
 <table class="table table-condensed table-hover">
 <thead>
@@ -6730,16 +7446,58 @@ mluetge
 <div id="ensmusg00000036594.h2-aa-2" class="section level4">
 <h4>ENSMUSG00000036594.H2-Aa</h4>
 <p><img src="figure/characterizeFibroblasts.Rmd/sel Genes split by time ENSMUSG00000036594.H2-Aa-1.png" width="1152" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-sel-Genes-split-by-time-ENSMUSG00000036594.H2-Aa-1">
+Past versions of "sel Genes split by time
+ENSMUSG00000036594.H2-Aa-1.png"
+</button>
+</p>
+<div
+id="fig-no-spaces-sel-Genes-split-by-time-ENSMUSG00000036594.H2-Aa-1"
+class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/2691b1d89a643045aebcc6dda37bfcb61d72168c/figure/characterizeFibroblasts.Rmd/sel Genes split by time ENSMUSG00000036594.H2-Aa-1.png" target="_blank">2691b1d</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2021-06-25
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 <div id="ensmusg00000024810.il33-2" class="section level4">
 <h4>ENSMUSG00000024810.Il33</h4>
 <p><img src="figure/characterizeFibroblasts.Rmd/sel Genes split by time ENSMUSG00000024810.Il33-1.png" width="1152" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-sel-Genes-split-by-time-ENSMUSG00000024810.Il33-1">
-Past versions of “sel Genes split by time ENSMUSG00000024810.Il33-1.png”
+Past versions of "sel Genes split by time ENSMUSG00000024810.Il33-1.png"
 </button>
 </p>
-<div id="fig-no-spaces-sel-Genes-split-by-time-ENSMUSG00000024810.Il33-1" class="collapse">
+<div
+id="fig-no-spaces-sel-Genes-split-by-time-ENSMUSG00000024810.Il33-1"
+class="collapse">
 <div class="table-responsive">
 <table class="table table-condensed table-hover">
 <thead>
@@ -6775,16 +7533,57 @@ mluetge
 <div id="rosa26eyfp.rosa26eyfp-2" class="section level4">
 <h4>Rosa26eyfp.Rosa26eyfp</h4>
 <p><img src="figure/characterizeFibroblasts.Rmd/sel Genes split by time Rosa26eyfp.Rosa26eyfp-1.png" width="1152" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-sel-Genes-split-by-time-Rosa26eyfp.Rosa26eyfp-1">
+Past versions of "sel Genes split by time Rosa26eyfp.Rosa26eyfp-1.png"
+</button>
+</p>
+<div id="fig-no-spaces-sel-Genes-split-by-time-Rosa26eyfp.Rosa26eyfp-1"
+class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/TCRM_Christina/blob/2691b1d89a643045aebcc6dda37bfcb61d72168c/figure/characterizeFibroblasts.Rmd/sel Genes split by time Rosa26eyfp.Rosa26eyfp-1.png" target="_blank">2691b1d</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2021-06-25
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 <div id="ensmusg00000074934.grem1-2" class="section level4">
 <h4>ENSMUSG00000074934.Grem1</h4>
 <p><img src="figure/characterizeFibroblasts.Rmd/sel Genes split by time ENSMUSG00000074934.Grem1-1.png" width="1152" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-sel-Genes-split-by-time-ENSMUSG00000074934.Grem1-1">
-Past versions of “sel Genes split by time ENSMUSG00000074934.Grem1-1.png”
+Past versions of "sel Genes split by time
+ENSMUSG00000074934.Grem1-1.png"
 </button>
 </p>
-<div id="fig-no-spaces-sel-Genes-split-by-time-ENSMUSG00000074934.Grem1-1" class="collapse">
+<div
+id="fig-no-spaces-sel-Genes-split-by-time-ENSMUSG00000074934.Grem1-1"
+class="collapse">
 <div class="table-responsive">
 <table class="table table-condensed table-hover">
 <thead>
@@ -6819,240 +7618,272 @@ mluetge
 </div>
 </div>
 </div>
+<div id="bmp-signaling" class="section level2">
+<h2>BMP signaling</h2>
+<div id="violin-plots" class="section level3">
+<h3>violin plots</h3>
+<pre class="r"><code>genes &lt;- data.frame(geneID=rownames(seurat)) %&gt;% 
+  mutate(gene = gsub(&quot;.*\\.&quot;, &quot;&quot;, geneID))
+selGenes &lt;- data.frame(gene = c(&quot;Bmp2&quot;, &quot;Bmp4&quot;, &quot;Bmpr1a&quot;,&quot;Bmpr1b&quot;,&quot;Bmpr2&quot;)) %&gt;%
+  left_join(., genes, by = &quot;gene&quot;)
+
+
+pList &lt;- sapply(selGenes$geneID, function(x){
+  p &lt;- VlnPlot(object = seurat, features = x,
+               group.by = &quot;RNA_snn_res.0.4&quot;,
+               cols = colPal, pt.size = 0,
+               fill.by = &quot;ident&quot;
+               )
+  plot(p)
+})</code></pre>
+<p><img src="figure/characterizeFibroblasts.Rmd/violinplots%20BMP-1.png" width="672" style="display: block; margin: auto;" /><img src="figure/characterizeFibroblasts.Rmd/violinplots%20BMP-2.png" width="672" style="display: block; margin: auto;" /><img src="figure/characterizeFibroblasts.Rmd/violinplots%20BMP-3.png" width="672" style="display: block; margin: auto;" /><img src="figure/characterizeFibroblasts.Rmd/violinplots%20BMP-4.png" width="672" style="display: block; margin: auto;" /><img src="figure/characterizeFibroblasts.Rmd/violinplots%20BMP-5.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+</div>
 <div id="session-info" class="section level2">
 <h2>session info</h2>
 <pre class="r"><code>sessionInfo()</code></pre>
-<pre><code>R version 4.0.0 (2020-04-24)
+<pre><code>R version 4.2.1 (2022-06-23)
 Platform: x86_64-apple-darwin17.0 (64-bit)
-Running under: macOS Catalina 10.15.7
+Running under: macOS Big Sur ... 10.16
 
 Matrix products: default
-BLAS:   /Library/Frameworks/R.framework/Versions/4.0/Resources/lib/libRblas.dylib
-LAPACK: /Library/Frameworks/R.framework/Versions/4.0/Resources/lib/libRlapack.dylib
+BLAS:   /Library/Frameworks/R.framework/Versions/4.2/Resources/lib/libRblas.0.dylib
+LAPACK: /Library/Frameworks/R.framework/Versions/4.2/Resources/lib/libRlapack.dylib
 
 locale:
 [1] en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8
 
 attached base packages:
-[1] parallel  stats4    stats     graphics  grDevices utils     datasets 
-[8] methods   base     
+[1] stats4    stats     graphics  grDevices utils     datasets  methods  
+[8] base     
 
 other attached packages:
- [1] CellMixS_1.4.2              kSamples_1.2-9             
- [3] SuppDists_1.1-9.5           RColorBrewer_1.1-2         
+ [1] CellMixS_1.12.0             kSamples_1.2-9             
+ [3] SuppDists_1.1-9.7           RColorBrewer_1.1-3         
  [5] pheatmap_1.0.12             ggpubr_0.4.0               
  [7] ggsci_2.9                   runSeurat3_0.1.0           
- [9] here_1.0.1                  magrittr_2.0.1             
-[11] SeuratObject_4.0.2          Seurat_4.0.3               
-[13] forcats_0.5.1               stringr_1.4.0              
-[15] dplyr_1.0.7                 purrr_0.3.4                
-[17] readr_1.4.0                 tidyr_1.1.3                
-[19] tibble_3.1.2                ggplot2_3.3.4              
-[21] tidyverse_1.3.1             SingleCellExperiment_1.10.1
-[23] SummarizedExperiment_1.18.2 DelayedArray_0.14.1        
-[25] matrixStats_0.59.0          Biobase_2.48.0             
-[27] GenomicRanges_1.40.0        GenomeInfoDb_1.24.2        
-[29] IRanges_2.22.2              S4Vectors_0.26.1           
-[31] BiocGenerics_0.34.0        
+ [9] here_1.0.1                  magrittr_2.0.3             
+[11] sp_1.5-0                    SeuratObject_4.1.0         
+[13] Seurat_4.1.1                forcats_0.5.1              
+[15] stringr_1.4.0               dplyr_1.0.9                
+[17] purrr_0.3.4                 readr_2.1.2                
+[19] tidyr_1.2.0                 tibble_3.1.8               
+[21] ggplot2_3.3.6               tidyverse_1.3.2            
+[23] SingleCellExperiment_1.18.0 SummarizedExperiment_1.26.1
+[25] Biobase_2.56.0              GenomicRanges_1.48.0       
+[27] GenomeInfoDb_1.32.2         IRanges_2.30.0             
+[29] S4Vectors_0.34.0            BiocGenerics_0.42.0        
+[31] MatrixGenerics_1.8.1        matrixStats_0.62.0         
 
 loaded via a namespace (and not attached):
-  [1] utf8_1.2.1                reticulate_1.20          
-  [3] tidyselect_1.1.1          htmlwidgets_1.5.3        
-  [5] grid_4.0.0                BiocParallel_1.22.0      
-  [7] Rtsne_0.15                munsell_0.5.0            
-  [9] codetools_0.2-18          ica_1.0-2                
- [11] future_1.21.0             miniUI_0.1.1.1           
- [13] withr_2.4.2               colorspace_2.0-2         
- [15] highr_0.9                 knitr_1.33               
- [17] rstudioapi_0.13           ROCR_1.0-11              
- [19] ggsignif_0.6.2            tensor_1.5               
- [21] listenv_0.8.0             labeling_0.4.2           
- [23] git2r_0.28.0              GenomeInfoDbData_1.2.3   
- [25] polyclip_1.10-0           farver_2.1.0             
- [27] rprojroot_2.0.2           parallelly_1.26.0        
- [29] vctrs_0.3.8               generics_0.1.0           
- [31] xfun_0.24                 R6_2.5.0                 
- [33] ggbeeswarm_0.6.0          rsvd_1.0.5               
- [35] bitops_1.0-7              spatstat.utils_2.2-0     
- [37] assertthat_0.2.1          promises_1.2.0.1         
- [39] scales_1.1.1              beeswarm_0.4.0           
- [41] gtable_0.3.0              globals_0.14.0           
- [43] goftest_1.2-2             workflowr_1.6.2          
- [45] rlang_0.4.11              splines_4.0.0            
- [47] rstatix_0.7.0             lazyeval_0.2.2           
- [49] spatstat.geom_2.2-0       broom_0.7.8              
- [51] yaml_2.2.1                reshape2_1.4.4           
- [53] abind_1.4-5               modelr_0.1.8             
- [55] backports_1.2.1           httpuv_1.6.1             
- [57] tools_4.0.0               ellipsis_0.3.2           
- [59] spatstat.core_2.2-0       jquerylib_0.1.4          
- [61] ggridges_0.5.3            Rcpp_1.0.6               
- [63] plyr_1.8.6                zlibbioc_1.34.0          
- [65] RCurl_1.98-1.3            rpart_4.1-15             
- [67] deldir_0.2-10             viridis_0.6.1            
- [69] pbapply_1.4-3             cowplot_1.1.1            
- [71] zoo_1.8-9                 haven_2.4.1              
- [73] ggrepel_0.9.1             cluster_2.1.2            
- [75] fs_1.5.0                  data.table_1.14.0        
- [77] scattermore_0.7           openxlsx_4.2.4           
- [79] lmtest_0.9-38             reprex_2.0.0             
- [81] RANN_2.6.1                whisker_0.4              
- [83] fitdistrplus_1.1-5        hms_1.1.0                
- [85] patchwork_1.1.1           mime_0.11                
- [87] evaluate_0.14             xtable_1.8-4             
- [89] rio_0.5.27                readxl_1.3.1             
- [91] gridExtra_2.3             compiler_4.0.0           
- [93] scater_1.16.2             KernSmooth_2.23-20       
- [95] crayon_1.4.1              htmltools_0.5.1.1        
- [97] mgcv_1.8-36               later_1.2.0              
- [99] lubridate_1.7.10          DBI_1.1.1                
-[101] dbplyr_2.1.1              MASS_7.3-54              
-[103] Matrix_1.3-4              car_3.0-10               
-[105] cli_2.5.0                 igraph_1.2.6             
-[107] pkgconfig_2.0.3           foreign_0.8-81           
-[109] plotly_4.9.4.1            spatstat.sparse_2.0-0    
-[111] xml2_1.3.2                vipor_0.4.5              
-[113] bslib_0.2.5.1             XVector_0.28.0           
-[115] rvest_1.0.0               digest_0.6.27            
-[117] sctransform_0.3.2         RcppAnnoy_0.0.18         
-[119] spatstat.data_2.1-0       rmarkdown_2.9            
-[121] cellranger_1.1.0          leiden_0.3.8             
-[123] uwot_0.1.10               DelayedMatrixStats_1.10.1
-[125] curl_4.3.2                shiny_1.6.0              
-[127] lifecycle_1.0.0           nlme_3.1-152             
-[129] jsonlite_1.7.2            carData_3.0-4            
-[131] BiocNeighbors_1.6.0       viridisLite_0.4.0        
-[133] fansi_0.5.0               pillar_1.6.1             
-[135] lattice_0.20-44           fastmap_1.1.0            
-[137] httr_1.4.2                survival_3.2-11          
-[139] glue_1.4.2                zip_2.2.0                
-[141] png_0.1-7                 stringi_1.6.2            
-[143] sass_0.4.0                BiocSingular_1.4.0       
-[145] irlba_2.3.3               future.apply_1.7.0       </code></pre>
+  [1] utf8_1.2.2                reticulate_1.25          
+  [3] tidyselect_1.1.2          htmlwidgets_1.5.4        
+  [5] BiocParallel_1.30.3       grid_4.2.1               
+  [7] Rtsne_0.16                ScaledMatrix_1.4.0       
+  [9] munsell_0.5.0             codetools_0.2-18         
+ [11] ica_1.0-3                 future_1.27.0            
+ [13] miniUI_0.1.1.1            withr_2.5.0              
+ [15] spatstat.random_2.2-0     colorspace_2.0-3         
+ [17] progressr_0.10.1          highr_0.9                
+ [19] knitr_1.39                rstudioapi_0.13          
+ [21] ROCR_1.0-11               ggsignif_0.6.3           
+ [23] tensor_1.5                listenv_0.8.0            
+ [25] labeling_0.4.2            git2r_0.30.1             
+ [27] GenomeInfoDbData_1.2.8    polyclip_1.10-0          
+ [29] farver_2.1.1              rprojroot_2.0.3          
+ [31] parallelly_1.32.1         vctrs_0.4.1              
+ [33] generics_0.1.3            xfun_0.31                
+ [35] R6_2.5.1                  ggbeeswarm_0.6.0         
+ [37] rsvd_1.0.5                bitops_1.0-7             
+ [39] spatstat.utils_2.3-1      cachem_1.0.6             
+ [41] DelayedArray_0.22.0       assertthat_0.2.1         
+ [43] promises_1.2.0.1          scales_1.2.0             
+ [45] googlesheets4_1.0.0       beeswarm_0.4.0           
+ [47] rgeos_0.5-9               gtable_0.3.0             
+ [49] beachmat_2.12.0           globals_0.15.1           
+ [51] goftest_1.2-3             workflowr_1.7.0          
+ [53] rlang_1.0.4               splines_4.2.1            
+ [55] rstatix_0.7.0             lazyeval_0.2.2           
+ [57] gargle_1.2.0              spatstat.geom_2.4-0      
+ [59] broom_1.0.0               yaml_2.3.5               
+ [61] reshape2_1.4.4            abind_1.4-5              
+ [63] modelr_0.1.8              backports_1.4.1          
+ [65] httpuv_1.6.5              tools_4.2.1              
+ [67] ellipsis_0.3.2            spatstat.core_2.4-4      
+ [69] jquerylib_0.1.4           ggridges_0.5.3           
+ [71] Rcpp_1.0.9                plyr_1.8.7               
+ [73] sparseMatrixStats_1.8.0   zlibbioc_1.42.0          
+ [75] RCurl_1.98-1.8            rpart_4.1.16             
+ [77] deldir_1.0-6              viridis_0.6.2            
+ [79] pbapply_1.5-0             cowplot_1.1.1            
+ [81] zoo_1.8-10                haven_2.5.0              
+ [83] ggrepel_0.9.1             cluster_2.1.3            
+ [85] fs_1.5.2                  data.table_1.14.2        
+ [87] scattermore_0.8           lmtest_0.9-40            
+ [89] reprex_2.0.1              RANN_2.6.1               
+ [91] googledrive_2.0.0         whisker_0.4              
+ [93] fitdistrplus_1.1-8        hms_1.1.1                
+ [95] patchwork_1.1.1           mime_0.12                
+ [97] evaluate_0.15             xtable_1.8-4             
+ [99] readxl_1.4.0              gridExtra_2.3            
+[101] scater_1.24.0             compiler_4.2.1           
+[103] KernSmooth_2.23-20        crayon_1.5.1             
+[105] htmltools_0.5.3           mgcv_1.8-40              
+[107] later_1.3.0               tzdb_0.3.0               
+[109] lubridate_1.8.0           DBI_1.1.3                
+[111] dbplyr_2.2.1              MASS_7.3-58.1            
+[113] Matrix_1.4-1              car_3.1-0                
+[115] cli_3.3.0                 parallel_4.2.1           
+[117] igraph_1.3.4              pkgconfig_2.0.3          
+[119] scuttle_1.6.2             plotly_4.10.0            
+[121] spatstat.sparse_2.1-1     xml2_1.3.3               
+[123] vipor_0.4.5               bslib_0.4.0              
+[125] XVector_0.36.0            rvest_1.0.2              
+[127] digest_0.6.29             sctransform_0.3.3        
+[129] RcppAnnoy_0.0.19          spatstat.data_2.2-0      
+[131] rmarkdown_2.14            cellranger_1.1.0         
+[133] leiden_0.4.2              uwot_0.1.11              
+[135] DelayedMatrixStats_1.18.0 shiny_1.7.2              
+[137] lifecycle_1.0.1           nlme_3.1-158             
+[139] jsonlite_1.8.0            BiocNeighbors_1.14.0     
+[141] carData_3.0-5             viridisLite_0.4.0        
+[143] fansi_1.0.3               pillar_1.8.0             
+[145] lattice_0.20-45           fastmap_1.1.0            
+[147] httr_1.4.3                survival_3.3-1           
+[149] glue_1.6.2                png_0.1-7                
+[151] stringi_1.7.8             sass_0.4.2               
+[153] BiocSingular_1.12.0       irlba_2.3.5              
+[155] future.apply_1.9.0       </code></pre>
 <pre class="r"><code>date()</code></pre>
-<pre><code>[1] &quot;Fri Jun 25 11:10:49 2021&quot;</code></pre>
+<pre><code>[1] &quot;Thu Aug  4 10:43:25 2022&quot;</code></pre>
 <br>
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">
-<span class="glyphicon glyphicon-wrench" aria-hidden="true"></span> Session information
+<span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>
+Session information
 </button>
 </p>
 <div id="workflowr-sessioninfo" class="collapse">
 <pre class="r"><code>sessionInfo()</code></pre>
-<pre><code>R version 4.0.0 (2020-04-24)
+<pre><code>R version 4.2.1 (2022-06-23)
 Platform: x86_64-apple-darwin17.0 (64-bit)
-Running under: macOS Catalina 10.15.7
+Running under: macOS Big Sur ... 10.16
 
 Matrix products: default
-BLAS:   /Library/Frameworks/R.framework/Versions/4.0/Resources/lib/libRblas.dylib
-LAPACK: /Library/Frameworks/R.framework/Versions/4.0/Resources/lib/libRlapack.dylib
+BLAS:   /Library/Frameworks/R.framework/Versions/4.2/Resources/lib/libRblas.0.dylib
+LAPACK: /Library/Frameworks/R.framework/Versions/4.2/Resources/lib/libRlapack.dylib
 
 locale:
 [1] en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8
 
 attached base packages:
-[1] parallel  stats4    stats     graphics  grDevices utils     datasets 
-[8] methods   base     
+[1] stats4    stats     graphics  grDevices utils     datasets  methods  
+[8] base     
 
 other attached packages:
- [1] CellMixS_1.4.2              kSamples_1.2-9             
- [3] SuppDists_1.1-9.5           RColorBrewer_1.1-2         
+ [1] CellMixS_1.12.0             kSamples_1.2-9             
+ [3] SuppDists_1.1-9.7           RColorBrewer_1.1-3         
  [5] pheatmap_1.0.12             ggpubr_0.4.0               
  [7] ggsci_2.9                   runSeurat3_0.1.0           
- [9] here_1.0.1                  magrittr_2.0.1             
-[11] SeuratObject_4.0.2          Seurat_4.0.3               
-[13] forcats_0.5.1               stringr_1.4.0              
-[15] dplyr_1.0.7                 purrr_0.3.4                
-[17] readr_1.4.0                 tidyr_1.1.3                
-[19] tibble_3.1.2                ggplot2_3.3.4              
-[21] tidyverse_1.3.1             SingleCellExperiment_1.10.1
-[23] SummarizedExperiment_1.18.2 DelayedArray_0.14.1        
-[25] matrixStats_0.59.0          Biobase_2.48.0             
-[27] GenomicRanges_1.40.0        GenomeInfoDb_1.24.2        
-[29] IRanges_2.22.2              S4Vectors_0.26.1           
-[31] BiocGenerics_0.34.0        
+ [9] here_1.0.1                  magrittr_2.0.3             
+[11] sp_1.5-0                    SeuratObject_4.1.0         
+[13] Seurat_4.1.1                forcats_0.5.1              
+[15] stringr_1.4.0               dplyr_1.0.9                
+[17] purrr_0.3.4                 readr_2.1.2                
+[19] tidyr_1.2.0                 tibble_3.1.8               
+[21] ggplot2_3.3.6               tidyverse_1.3.2            
+[23] SingleCellExperiment_1.18.0 SummarizedExperiment_1.26.1
+[25] Biobase_2.56.0              GenomicRanges_1.48.0       
+[27] GenomeInfoDb_1.32.2         IRanges_2.30.0             
+[29] S4Vectors_0.34.0            BiocGenerics_0.42.0        
+[31] MatrixGenerics_1.8.1        matrixStats_0.62.0         
 
 loaded via a namespace (and not attached):
-  [1] utf8_1.2.1                reticulate_1.20          
-  [3] tidyselect_1.1.1          htmlwidgets_1.5.3        
-  [5] grid_4.0.0                BiocParallel_1.22.0      
-  [7] Rtsne_0.15                munsell_0.5.0            
-  [9] codetools_0.2-18          ica_1.0-2                
- [11] future_1.21.0             miniUI_0.1.1.1           
- [13] withr_2.4.2               colorspace_2.0-2         
- [15] highr_0.9                 knitr_1.33               
- [17] rstudioapi_0.13           ROCR_1.0-11              
- [19] ggsignif_0.6.2            tensor_1.5               
- [21] listenv_0.8.0             labeling_0.4.2           
- [23] git2r_0.28.0              GenomeInfoDbData_1.2.3   
- [25] polyclip_1.10-0           farver_2.1.0             
- [27] rprojroot_2.0.2           parallelly_1.26.0        
- [29] vctrs_0.3.8               generics_0.1.0           
- [31] xfun_0.24                 R6_2.5.0                 
- [33] ggbeeswarm_0.6.0          rsvd_1.0.5               
- [35] bitops_1.0-7              spatstat.utils_2.2-0     
- [37] assertthat_0.2.1          promises_1.2.0.1         
- [39] scales_1.1.1              beeswarm_0.4.0           
- [41] gtable_0.3.0              globals_0.14.0           
- [43] goftest_1.2-2             workflowr_1.6.2          
- [45] rlang_0.4.11              splines_4.0.0            
- [47] rstatix_0.7.0             lazyeval_0.2.2           
- [49] spatstat.geom_2.2-0       broom_0.7.8              
- [51] yaml_2.2.1                reshape2_1.4.4           
- [53] abind_1.4-5               modelr_0.1.8             
- [55] backports_1.2.1           httpuv_1.6.1             
- [57] tools_4.0.0               ellipsis_0.3.2           
- [59] spatstat.core_2.2-0       jquerylib_0.1.4          
- [61] ggridges_0.5.3            Rcpp_1.0.6               
- [63] plyr_1.8.6                zlibbioc_1.34.0          
- [65] RCurl_1.98-1.3            rpart_4.1-15             
- [67] deldir_0.2-10             viridis_0.6.1            
- [69] pbapply_1.4-3             cowplot_1.1.1            
- [71] zoo_1.8-9                 haven_2.4.1              
- [73] ggrepel_0.9.1             cluster_2.1.2            
- [75] fs_1.5.0                  data.table_1.14.0        
- [77] scattermore_0.7           openxlsx_4.2.4           
- [79] lmtest_0.9-38             reprex_2.0.0             
- [81] RANN_2.6.1                whisker_0.4              
- [83] fitdistrplus_1.1-5        hms_1.1.0                
- [85] patchwork_1.1.1           mime_0.11                
- [87] evaluate_0.14             xtable_1.8-4             
- [89] rio_0.5.27                readxl_1.3.1             
- [91] gridExtra_2.3             compiler_4.0.0           
- [93] scater_1.16.2             KernSmooth_2.23-20       
- [95] crayon_1.4.1              htmltools_0.5.1.1        
- [97] mgcv_1.8-36               later_1.2.0              
- [99] lubridate_1.7.10          DBI_1.1.1                
-[101] dbplyr_2.1.1              MASS_7.3-54              
-[103] Matrix_1.3-4              car_3.0-10               
-[105] cli_2.5.0                 igraph_1.2.6             
-[107] pkgconfig_2.0.3           foreign_0.8-81           
-[109] plotly_4.9.4.1            spatstat.sparse_2.0-0    
-[111] xml2_1.3.2                vipor_0.4.5              
-[113] bslib_0.2.5.1             XVector_0.28.0           
-[115] rvest_1.0.0               digest_0.6.27            
-[117] sctransform_0.3.2         RcppAnnoy_0.0.18         
-[119] spatstat.data_2.1-0       rmarkdown_2.9            
-[121] cellranger_1.1.0          leiden_0.3.8             
-[123] uwot_0.1.10               DelayedMatrixStats_1.10.1
-[125] curl_4.3.2                shiny_1.6.0              
-[127] lifecycle_1.0.0           nlme_3.1-152             
-[129] jsonlite_1.7.2            carData_3.0-4            
-[131] BiocNeighbors_1.6.0       viridisLite_0.4.0        
-[133] fansi_0.5.0               pillar_1.6.1             
-[135] lattice_0.20-44           fastmap_1.1.0            
-[137] httr_1.4.2                survival_3.2-11          
-[139] glue_1.4.2                zip_2.2.0                
-[141] png_0.1-7                 stringi_1.6.2            
-[143] sass_0.4.0                BiocSingular_1.4.0       
-[145] irlba_2.3.3               future.apply_1.7.0       </code></pre>
+  [1] utf8_1.2.2                reticulate_1.25          
+  [3] tidyselect_1.1.2          htmlwidgets_1.5.4        
+  [5] BiocParallel_1.30.3       grid_4.2.1               
+  [7] Rtsne_0.16                ScaledMatrix_1.4.0       
+  [9] munsell_0.5.0             codetools_0.2-18         
+ [11] ica_1.0-3                 future_1.27.0            
+ [13] miniUI_0.1.1.1            withr_2.5.0              
+ [15] spatstat.random_2.2-0     colorspace_2.0-3         
+ [17] progressr_0.10.1          highr_0.9                
+ [19] knitr_1.39                rstudioapi_0.13          
+ [21] ROCR_1.0-11               ggsignif_0.6.3           
+ [23] tensor_1.5                listenv_0.8.0            
+ [25] labeling_0.4.2            git2r_0.30.1             
+ [27] GenomeInfoDbData_1.2.8    polyclip_1.10-0          
+ [29] farver_2.1.1              rprojroot_2.0.3          
+ [31] parallelly_1.32.1         vctrs_0.4.1              
+ [33] generics_0.1.3            xfun_0.31                
+ [35] R6_2.5.1                  ggbeeswarm_0.6.0         
+ [37] rsvd_1.0.5                bitops_1.0-7             
+ [39] spatstat.utils_2.3-1      cachem_1.0.6             
+ [41] DelayedArray_0.22.0       assertthat_0.2.1         
+ [43] promises_1.2.0.1          scales_1.2.0             
+ [45] googlesheets4_1.0.0       beeswarm_0.4.0           
+ [47] rgeos_0.5-9               gtable_0.3.0             
+ [49] beachmat_2.12.0           globals_0.15.1           
+ [51] goftest_1.2-3             workflowr_1.7.0          
+ [53] rlang_1.0.4               splines_4.2.1            
+ [55] rstatix_0.7.0             lazyeval_0.2.2           
+ [57] gargle_1.2.0              spatstat.geom_2.4-0      
+ [59] broom_1.0.0               yaml_2.3.5               
+ [61] reshape2_1.4.4            abind_1.4-5              
+ [63] modelr_0.1.8              backports_1.4.1          
+ [65] httpuv_1.6.5              tools_4.2.1              
+ [67] ellipsis_0.3.2            spatstat.core_2.4-4      
+ [69] jquerylib_0.1.4           ggridges_0.5.3           
+ [71] Rcpp_1.0.9                plyr_1.8.7               
+ [73] sparseMatrixStats_1.8.0   zlibbioc_1.42.0          
+ [75] RCurl_1.98-1.8            rpart_4.1.16             
+ [77] deldir_1.0-6              viridis_0.6.2            
+ [79] pbapply_1.5-0             cowplot_1.1.1            
+ [81] zoo_1.8-10                haven_2.5.0              
+ [83] ggrepel_0.9.1             cluster_2.1.3            
+ [85] fs_1.5.2                  data.table_1.14.2        
+ [87] scattermore_0.8           lmtest_0.9-40            
+ [89] reprex_2.0.1              RANN_2.6.1               
+ [91] googledrive_2.0.0         whisker_0.4              
+ [93] fitdistrplus_1.1-8        hms_1.1.1                
+ [95] patchwork_1.1.1           mime_0.12                
+ [97] evaluate_0.15             xtable_1.8-4             
+ [99] readxl_1.4.0              gridExtra_2.3            
+[101] scater_1.24.0             compiler_4.2.1           
+[103] KernSmooth_2.23-20        crayon_1.5.1             
+[105] htmltools_0.5.3           mgcv_1.8-40              
+[107] later_1.3.0               tzdb_0.3.0               
+[109] lubridate_1.8.0           DBI_1.1.3                
+[111] dbplyr_2.2.1              MASS_7.3-58.1            
+[113] Matrix_1.4-1              car_3.1-0                
+[115] cli_3.3.0                 parallel_4.2.1           
+[117] igraph_1.3.4              pkgconfig_2.0.3          
+[119] scuttle_1.6.2             plotly_4.10.0            
+[121] spatstat.sparse_2.1-1     xml2_1.3.3               
+[123] vipor_0.4.5               bslib_0.4.0              
+[125] XVector_0.36.0            rvest_1.0.2              
+[127] digest_0.6.29             sctransform_0.3.3        
+[129] RcppAnnoy_0.0.19          spatstat.data_2.2-0      
+[131] rmarkdown_2.14            cellranger_1.1.0         
+[133] leiden_0.4.2              uwot_0.1.11              
+[135] DelayedMatrixStats_1.18.0 shiny_1.7.2              
+[137] lifecycle_1.0.1           nlme_3.1-158             
+[139] jsonlite_1.8.0            BiocNeighbors_1.14.0     
+[141] carData_3.0-5             viridisLite_0.4.0        
+[143] fansi_1.0.3               pillar_1.8.0             
+[145] lattice_0.20-45           fastmap_1.1.0            
+[147] httr_1.4.3                survival_3.3-1           
+[149] glue_1.6.2                png_0.1-7                
+[151] stringi_1.7.8             sass_0.4.2               
+[153] BiocSingular_1.12.0       irlba_2.3.5              
+[155] future.apply_1.9.0       </code></pre>
 </div>
 </div>
 
 
 <!-- Adjust MathJax settings so that all math formulae are shown using
 TeX fonts only; see
-http://docs.mathjax.org/en/latest/configuration.html.  This will make
+https://docs.mathjax.org/en/latest/web/configuration.html. This will make
 the presentation more consistent at the cost of the webpage sometimes
 taking slightly longer to load. Note that this only works because the
 footer is added to webpages before the MathJax javascript. -->
@@ -7061,6 +7892,8 @@ footer is added to webpages before the MathJax javascript. -->
     "HTML-CSS": { availableFonts: ["TeX"] }
   });
 </script>
+
+
 
 
 </div>
