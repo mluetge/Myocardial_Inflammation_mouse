@@ -38,6 +38,7 @@ suppressPackageStartupMessages({
   library(RColorBrewer)
   library(CellMixS)
   library(scater)
+  library(destiny)
 })
 
 ```
@@ -356,6 +357,95 @@ plots_dpt <- lapply(sigNam,
 
 `r knitr::knit(text = unlist(plots_dpt))`
 
+### run Diffusionmap
+```{r run DM, eval=FALSE, include=TRUE}
+library(DelayedArray)
+library(DelayedMatrixStats)
+
+## from scater: subset to 500 most variable genes
+dmMat <- sce@assays@data@listData$logcounts
+rv <- rowVars(DelayedArray(dmMat))
+o <- order(rv, decreasing = TRUE)
+subset_row <- head(o, 500)
+dmMat <- dmMat[subset_row,, drop = FALSE]
+rv <- rv[subset_row]
+dmMat <- t(dmMat)
+dmMat <- as.matrix(dmMat)
+
+dm <- destiny::DiffusionMap(dmMat, verbose = TRUE, k=100)
+reducedDim(sce, 'DiffusionMap') <- dm@eigenvectors[, 1:2, drop = FALSE]
+
+
+saveRDS(sce, file=paste0(basedir, 
+                         "/data/TCRM_all10samplesMerged_wo12w_sce.rds"))
+```
+
+### vis DM
+```{r vis DM}
+sce <- readRDS(file=paste0(basedir, 
+                           "/data/TCRM_all10samplesMerged_wo12w_sce.rds"))
+
+p <- visGroup(sce, 'grp', dim_red = 'DiffusionMap') +
+    scale_colour_manual(values = colGrp) +
+    theme_classic() + 
+    theme(axis.text = element_blank(),
+          axis.ticks = element_blank()) +
+    labs(x='Dimension 1', y='Dimension 2')
+p
+
+p <- visGroup(sce, 'RNA_snn_res.0.4', dim_red = 'DiffusionMap') +
+    scale_colour_manual(values = colPal) +
+    theme_classic() + 
+    theme(axis.text = element_blank(),
+          axis.ticks = element_blank()) +
+    labs(x='Dimension 1', y='Dimension 2')
+p
+
+```
+
+
+### plot signatures DM
+```{r map sign DM}
+
+sigNam <- unique(allSign$signature)
+
+template_dp <- c(
+    "#### {{sig}}\n",
+    "```{r map sign DM cut 2 {{sig}},fig.height=3.5, fig.width=4.5, echo = FALSE}\n",
+    "sign <- as.character('{{sig}}')",
+    "signGenes <- allSign %>% dplyr::filter(signature == sign)",
+    "sceSub <- sce[which(rownames(sce) %in% signGenes$geneID),]",
+    "cntMat <- rowSums(
+                t(as.matrix(sceSub@assays@data$logcounts)))/nrow(signGenes)",
+    "sceSub$sign <- cntMat",
+    "maxCM <- max(cntMat)",
+    "minCM <- min(cntMat)",
+    "maxCM <- 2",
+    "pal = colorRampPalette(rev(brewer.pal(11, 'RdBu')))",
+    "sc <- scale_colour_gradientn(colours = pal(100), limits=c(minCM,maxCM),
+    na.value = pal(100)[100])",
+    "p <- visGroup(sceSub, 'sign', dim_red = 'DiffusionMap') +
+    sc +
+    guides(colour = guide_colourbar(title = '')) +
+    ggtitle(paste0(sign, ' signature')) +
+    theme_classic() + 
+    theme(axis.text = element_blank(),
+          axis.ticks = element_blank()) +
+    labs(x='Dimension 1', y='Dimension 2')",
+    "p\n",
+    "```\n",
+    "\n"
+)
+
+
+plots_dpt <- lapply(sigNam, 
+  function(sig) knitr::knit_expand(text = template_dp)
+)
+
+
+```
+
+`r knitr::knit(text = unlist(plots_dpt))`
 
 ### avg expression heatmap aross cluster
 ```{r avg heatmap funct}
