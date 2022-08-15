@@ -535,11 +535,9 @@ plots_ah <- lapply(grpVec,
 `r knitr::knit(text = unlist(plots_ah))`
 
 ## Dotplot with selGenes
-```{r dotplot, fig.height=5, fig.width=3.5}
+```{r dotplot, fig.height=4, fig.width=3.8}
 
-selGenesDat <- data.frame(gene=c("Bmp4", "Bmpr2", "Ccn1", "Mapk3", "Id1",
-                                 "Id3", "B2m", "H2-Ab1", "Tap1", "C3",
-                                 "Cxcl16", "Stat1"))
+selGenesDat <- data.frame(gene=c("Bmp2", "Bmp4", "Bmpr1a", "Bmpr1b", "Bmpr2"))
 
 genes <- data.frame(ensID=rownames(seurat)) %>%
   mutate(gene=gsub("^.*\\.", "", ensID))
@@ -569,7 +567,8 @@ DotPlot(seurat, assay="RNA", features = selGenes$ensID, scale =T, dot.scale =10,
   scale_x_discrete(breaks=selGenes$ensID, labels=selGenes$gene) +
   xlab("") + ylab("")
 
-DotPlot(seurat, assay="RNA", features = selGenes$ensID, scale =F) +
+DotPlot(seurat, assay="RNA", features = selGenes$ensID, scale =F,
+        dot.min = 0, dot.scale = 3, scale.by = "size") +
   scale_color_viridis_c() +
   coord_flip() +
   theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
