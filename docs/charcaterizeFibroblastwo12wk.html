@@ -1,0 +1,1652 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+<meta name="author" content="Mechthild Lütge" />
+
+<meta name="date" content="2020-05-14" />
+
+<title>Merge samples</title>
+
+<script src="charcaterizeFibroblastwo12wk_files/header-attrs-2.15/header-attrs.js"></script>
+<script src="charcaterizeFibroblastwo12wk_files/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="charcaterizeFibroblastwo12wk_files/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="charcaterizeFibroblastwo12wk_files/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="charcaterizeFibroblastwo12wk_files/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="charcaterizeFibroblastwo12wk_files/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="charcaterizeFibroblastwo12wk_files/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="charcaterizeFibroblastwo12wk_files/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="charcaterizeFibroblastwo12wk_files/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="charcaterizeFibroblastwo12wk_files/navigation-1.1/tabsets.js"></script>
+<script src="charcaterizeFibroblastwo12wk_files/navigation-1.1/codefolding.js"></script>
+<link href="charcaterizeFibroblastwo12wk_files/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="charcaterizeFibroblastwo12wk_files/highlightjs-9.12.0/highlight.js"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+<style type="text/css">
+.code-folding-btn { margin-bottom: 4px; }
+</style>
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div id="header">
+
+<div class="btn-group pull-right float-right">
+<button type="button" class="btn btn-default btn-xs btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span>Code</span> <span class="caret"></span></button>
+<ul class="dropdown-menu dropdown-menu-right" style="min-width: 50px;">
+<li><a id="rmd-show-all-code" href="#">Show All Code</a></li>
+<li><a id="rmd-hide-all-code" href="#">Hide All Code</a></li>
+</ul>
+</div>
+
+
+
+<h1 class="title toc-ignore">Merge samples</h1>
+<h4 class="author">Mechthild Lütge</h4>
+<h4 class="date">14 May 2020</h4>
+
+</div>
+
+
+<div id="load-packages" class="section level2">
+<h2>load packages</h2>
+<pre class="r"><code>suppressPackageStartupMessages({
+  library(SingleCellExperiment)
+  library(tidyverse)
+  library(Seurat)
+  library(magrittr)
+  library(dplyr)
+  library(purrr)
+  library(ggplot2)
+  library(here)
+  library(runSeurat3)
+  library(ggsci)
+  library(ggpubr)
+  library(pheatmap)
+  library(RColorBrewer)
+  library(CellMixS)
+  library(scater)
+  library(destiny)
+})</code></pre>
+</div>
+<div id="set-dir" class="section level2">
+<h2>set dir</h2>
+<pre class="r"><code>basedir &lt;- here()
+seurat &lt;- readRDS(file = paste0(basedir, 
+                              &quot;/data/TCRM_all10samplesMerged_wo12w_seurat.rds&quot;))
+
+seurat$time_plus_grp &lt;- paste0(seurat$time, &quot;_&quot;, seurat$grp)
+
+## Remove cluster with cycling cells (mki67 high) and
+## endothelial cells (Chdh5, Pecam1 high)
+seurat &lt;- subset(seurat, RNA_snn_res.0.4 %in% c(&quot;10&quot;, &quot;11&quot;), invert = T)</code></pre>
+</div>
+<div id="color-vectors" class="section level2">
+<h2>color vectors</h2>
+<pre class="r"><code>colPal &lt;- pal_igv()(length(levels(seurat)))
+colGrp &lt;- pal_jama()(length(unique(seurat$grp)))
+colSmp &lt;- c(pal_uchicago()(8), pal_npg()(8))[1:length(unique(seurat$dataset))]
+colTime &lt;- pal_npg()(length(unique(seurat$time)))
+
+names(colPal) &lt;- levels(seurat)
+names(colGrp) &lt;- unique(seurat$grp)
+names(colSmp) &lt;- unique(seurat$dataset)
+names(colTime) &lt;- unique(seurat$time)</code></pre>
+</div>
+<div id="vis-data" class="section level2 tabset">
+<h2 class="tabset">vis data</h2>
+<div id="clusters" class="section level3">
+<h3>clusters</h3>
+<pre class="r"><code>DimPlot(seurat, reduction = &quot;umap&quot;, cols=colPal)+
+  theme_bw() +
+  theme(axis.text = element_blank(), axis.ticks = element_blank(), 
+        panel.grid.minor = element_blank()) +
+  xlab(&quot;UMAP1&quot;) +
+  ylab(&quot;UMAP2&quot;)</code></pre>
+<p><img src="charcaterizeFibroblastwo12wk_files/figure-html/vis%20cluster-1.png" width="672" /></p>
+<pre class="r"><code>DimPlot(seurat, reduction = &quot;umap&quot;, cols=colPal)+
+  theme_void() </code></pre>
+<p><img src="charcaterizeFibroblastwo12wk_files/figure-html/vis%20cluster-2.png" width="672" /></p>
+</div>
+<div id="group" class="section level3">
+<h3>group</h3>
+<pre class="r"><code>DimPlot(seurat, reduction = &quot;umap&quot;, group.by = &quot;grp&quot;, cols=colGrp)+
+  theme_bw() +
+  theme(axis.text = element_blank(), axis.ticks = element_blank(), 
+        panel.grid.minor = element_blank()) +
+  xlab(&quot;UMAP1&quot;) +
+  ylab(&quot;UMAP2&quot;)</code></pre>
+<p><img src="charcaterizeFibroblastwo12wk_files/figure-html/vis%20grp-1.png" width="672" /></p>
+<pre class="r"><code>DimPlot(seurat, reduction = &quot;umap&quot;, group.by = &quot;grp&quot;, cols=colGrp)+
+  theme_void() </code></pre>
+<p><img src="charcaterizeFibroblastwo12wk_files/figure-html/vis%20grp-2.png" width="672" /></p>
+</div>
+<div id="sample" class="section level3">
+<h3>Sample</h3>
+<pre class="r"><code>DimPlot(seurat, reduction = &quot;umap&quot;, group.by = &quot;dataset&quot;, cols=colSmp)+
+  theme_bw() +
+  theme(axis.text = element_blank(), axis.ticks = element_blank(), 
+        panel.grid.minor = element_blank()) +
+  xlab(&quot;UMAP1&quot;) +
+  ylab(&quot;UMAP2&quot;)</code></pre>
+<p><img src="charcaterizeFibroblastwo12wk_files/figure-html/vis%20sample-1.png" width="672" /></p>
+<pre class="r"><code>DimPlot(seurat, reduction = &quot;umap&quot;, group.by = &quot;dataset&quot;, cols=colSmp)+
+  theme_void() </code></pre>
+<p><img src="charcaterizeFibroblastwo12wk_files/figure-html/vis%20sample-2.png" width="672" /></p>
+</div>
+<div id="batch" class="section level3">
+<h3>batch</h3>
+<pre class="r"><code>DimPlot(seurat, reduction = &quot;umap&quot;, group.by = &quot;batch&quot;)+
+  theme_bw() +
+  theme(axis.text = element_blank(), axis.ticks = element_blank(), 
+        panel.grid.minor = element_blank()) +
+  xlab(&quot;UMAP1&quot;) +
+  ylab(&quot;UMAP2&quot;)</code></pre>
+<p><img src="charcaterizeFibroblastwo12wk_files/figure-html/vis%20batch-1.png" width="672" /></p>
+</div>
+<div id="timepoint" class="section level3">
+<h3>timepoint</h3>
+<pre class="r"><code>DimPlot(seurat, reduction = &quot;umap&quot;, group.by = &quot;time&quot;, cols=colTime)+
+  theme_bw() +
+  theme(axis.text = element_blank(), axis.ticks = element_blank(), 
+        panel.grid.minor = element_blank()) +
+  xlab(&quot;UMAP1&quot;) +
+  ylab(&quot;UMAP2&quot;)</code></pre>
+<p><img src="charcaterizeFibroblastwo12wk_files/figure-html/vis%20timepoint-1.png" width="672" /></p>
+<pre class="r"><code>DimPlot(seurat, reduction = &quot;umap&quot;, group.by = &quot;time&quot;, cols=colTime)+
+  theme_void() </code></pre>
+<p><img src="charcaterizeFibroblastwo12wk_files/figure-html/vis%20timepoint-2.png" width="672" /></p>
+</div>
+</div>
+<div id="cluster-marker" class="section level2">
+<h2>cluster marker</h2>
+<pre class="r"><code>Idents(seurat) &lt;- seurat$RNA_snn_res.0.4
+seurat_markers &lt;- FindAllMarkers(seurat, only.pos = T, , min.pct = 0.25,
+                                     logfc.threshold = 0.25,
+                                     test.use = &quot;wilcox&quot;)
+
+write.table(seurat_markers, quote=F, row.names = T, col.names = T, sep= &quot;\t&quot;,
+            file = paste0(basedir,&quot;/data/TCRM_all10samplesMerged_wo12w_&quot;,
+                          &quot;markerGenes.txt&quot;))</code></pre>
+</div>
+<div id="gene-signatures" class="section level2 tabset">
+<h2 class="tabset">gene signatures</h2>
+<pre class="r"><code>c0Sig &lt;- data.frame(gene=c(&quot;Cxcl9&quot;, &quot;Cxcl10&quot;, &quot;Ccl2&quot;, &quot;Cxcl5&quot;, &quot;Ccl19&quot;,
+                           &quot;Cxcl12&quot;, &quot;Cxcl1&quot;)) %&gt;%
+  mutate(signature=&quot;CellRecruitment&quot;)
+
+c1Sig &lt;- data.frame(gene=c(&quot;H2-D1&quot;, &quot;H2-K1&quot;,&quot;B2m&quot;,&quot;H2-Ab1&quot;,&quot;H2-Q7&quot;,&quot;H2-Aa&quot;,
+                           &quot;Tap1&quot;)) %&gt;% 
+  mutate(signature=&quot;AntigenPresentation&quot;)
+
+c5Sig &lt;- data.frame(gene=c(&quot;Ly6a&quot;,&quot;Bst2&quot;,&quot;Vcam1&quot;,&quot;Icam1&quot;,&quot;Ncam1&quot;,&quot;C3&quot;,
+                           &quot;Nfkbia&quot;)) %&gt;%
+  mutate(signature=&quot;ActivationInteraction&quot;)
+
+c7Sig &lt;- data.frame(gene=c(&quot;Timp1&quot;,&quot;Sod2&quot;,&quot;Il33&quot;,&quot;Hif1a&quot;,&quot;Plaur&quot;,&quot;Cxcl16&quot;)) %&gt;%
+  mutate(signature=&quot;DamageRemodeling&quot;)
+
+c10Sig &lt;- data.frame(gene=c(&quot;Nr4a1&quot;,&quot;Pi16&quot;,&quot;Pdpn&quot;,&quot;Cd34&quot;,&quot;Pdgfra&quot;,&quot;Col1a1&quot;)) %&gt;%
+  mutate(signature=&quot;FBidentity&quot;)
+
+ARsig &lt;- data.frame(gene=c(&quot;Col8a1&quot;,&quot;Col4a4&quot;,&quot;Col4a1&quot;,&quot;Col4a5&quot;,&quot;Col5a3&quot;)) %&gt;%
+  mutate(signature=&quot;TissueStructure&quot;)
+
+IIsig &lt;- data.frame(gene=c(&quot;Bmp4&quot;,&quot;Id1&quot;,&quot;Tcf4&quot;,&quot;Jun&quot;,&quot;Tgfb1&quot;,&quot;Ccn1&quot;)) %&gt;%
+  mutate(signature=&quot;TissueHomeostasis&quot;)
+
+allGenes &lt;- data.frame(geneID = rownames(seurat)) %&gt;%
+  mutate(gene=gsub(&quot;^.*\\.&quot;,&quot;&quot;, geneID))
+allSign &lt;- rbind(c0Sig, c1Sig, c5Sig, c7Sig, c10Sig, ARsig, IIsig) %&gt;%
+  left_join(., allGenes, by=&quot;gene&quot;)</code></pre>
+<div id="map-signature-on-umap" class="section level3 tabset">
+<h3 class="tabset">map signature on umap</h3>
+<pre class="r"><code>sce &lt;- as.SingleCellExperiment(seurat)
+sigNam &lt;- unique(allSign$signature)
+
+template_dp &lt;- c(
+    &quot;#### {{sig}}\n&quot;,
+    &quot;```{r map sign {{sig}},fig.height=3.5, fig.width=4.5, echo = FALSE}\n&quot;,
+    &quot;sign &lt;- as.character(&#39;{{sig}}&#39;)&quot;,
+    &quot;signGenes &lt;- allSign %&gt;% dplyr::filter(signature == sign)&quot;,
+    &quot;sceSub &lt;- sce[which(rownames(sce) %in% signGenes$geneID),]&quot;,
+    &quot;cntMat &lt;- rowSums(
+                t(as.matrix(sceSub@assays@data$logcounts)))/nrow(signGenes)&quot;,
+    &quot;sceSub$sign &lt;- cntMat&quot;,
+    &quot;maxCM &lt;- max(cntMat)&quot;,
+    &quot;minCM &lt;- min(cntMat)&quot;,
+    &quot;pal = colorRampPalette(rev(brewer.pal(11, &#39;RdBu&#39;)))&quot;,
+    &quot;sc &lt;- scale_colour_gradientn(colours = pal(100), limits=c(minCM,maxCM),
+    na.value = pal(100)[100])&quot;,
+    &quot;p &lt;- visGroup(sceSub, &#39;sign&#39;, dim_red = &#39;UMAP&#39;) +
+    sc +
+    guides(colour = guide_colourbar(title = &#39;&#39;)) +
+    ggtitle(paste0(sign, &#39; signature&#39;)) +
+    theme_classic() + 
+    theme(axis.text = element_blank(),
+          axis.ticks = element_blank()) +
+    labs(x=&#39;Dimension 1&#39;, y=&#39;Dimension 2&#39;)&quot;,
+    &quot;p\n&quot;,
+    &quot;```\n&quot;,
+    &quot;\n&quot;
+)
+
+
+plots_dp &lt;- lapply(sigNam, 
+  function(sig) knitr::knit_expand(text = template_dp)
+)</code></pre>
+<div id="cellrecruitment" class="section level4">
+<h4>CellRecruitment</h4>
+<p><img src="charcaterizeFibroblastwo12wk_files/figure-html/map%20sign%20CellRecruitment-1.png" width="432" /></p>
+</div>
+<div id="antigenpresentation" class="section level4">
+<h4>AntigenPresentation</h4>
+<p><img src="charcaterizeFibroblastwo12wk_files/figure-html/map%20sign%20AntigenPresentation-1.png" width="432" /></p>
+</div>
+<div id="activationinteraction" class="section level4">
+<h4>ActivationInteraction</h4>
+<p><img src="charcaterizeFibroblastwo12wk_files/figure-html/map%20sign%20ActivationInteraction-1.png" width="432" /></p>
+</div>
+<div id="damageremodeling" class="section level4">
+<h4>DamageRemodeling</h4>
+<p><img src="charcaterizeFibroblastwo12wk_files/figure-html/map%20sign%20DamageRemodeling-1.png" width="432" /></p>
+</div>
+<div id="fbidentity" class="section level4">
+<h4>FBidentity</h4>
+<p><img src="charcaterizeFibroblastwo12wk_files/figure-html/map%20sign%20FBidentity-1.png" width="432" /></p>
+</div>
+<div id="tissuestructure" class="section level4">
+<h4>TissueStructure</h4>
+<p><img src="charcaterizeFibroblastwo12wk_files/figure-html/map%20sign%20TissueStructure-1.png" width="432" /></p>
+</div>
+<div id="tissuehomeostasis" class="section level4">
+<h4>TissueHomeostasis</h4>
+<p><img src="charcaterizeFibroblastwo12wk_files/figure-html/map%20sign%20TissueHomeostasis-1.png" width="432" /></p>
+</div>
+</div>
+<div id="map-signature-on-umap-each-timepoint-plus-cond"
+class="section level3 tabset">
+<h3 class="tabset">map signature on umap each timepoint plus cond</h3>
+<pre class="r"><code>template_dpt &lt;- c(
+    &quot;#### {{sig}}\n&quot;,
+    &quot;```{r map sign time {{sig}},fig.height=3.5, fig.width=4.5, echo = FALSE}\n&quot;,
+    &quot;sign &lt;- as.character(&#39;{{sig}}&#39;)&quot;,
+    &quot;signGenes &lt;- allSign %&gt;% dplyr::filter(signature == sign)&quot;,
+    &quot;pList &lt;- NULL&quot;,
+    &quot;for(i in 1:length(unique(sce$time_plus_grp))){&quot;,
+      &quot;tiP &lt;- unique(sce$time_plus_grp)[i]&quot;,
+      &quot;sceSub &lt;- sce[which(rownames(sce) %in% signGenes$geneID),]&quot;,
+      &quot;sceSub &lt;- sceSub[,sceSub$time_plus_grp == tiP]&quot;,
+      &quot;cntMat &lt;- rowSums(
+                t(as.matrix(sceSub@assays@data$logcounts)))/nrow(signGenes)&quot;,
+      &quot;sceSub$sign &lt;- cntMat&quot;,
+      &quot;maxCM &lt;- max(cntMat)&quot;,
+      &quot;minCM &lt;- min(cntMat)&quot;,
+      &quot;pal = colorRampPalette(rev(brewer.pal(11, &#39;RdBu&#39;)))&quot;,
+      &quot;sc &lt;- scale_colour_gradientn(colours = pal(100), limits=c(minCM,maxCM),
+      na.value = pal(100)[100])&quot;,
+      &quot;p &lt;- visGroup(sceSub, &#39;sign&#39;, dim_red = &#39;UMAP&#39;) +
+      sc +
+      guides(colour = guide_colourbar(title = &#39;&#39;)) +
+      ggtitle(paste0(sign, &#39; signature &#39;, tiP)) +
+      theme_classic() + 
+      theme(axis.text = element_blank(),
+          axis.ticks = element_blank()) +
+      labs(x=&#39;Dimension 1&#39;, y=&#39;Dimension 2&#39;)&quot;,
+      &quot;pList[[i]] &lt;- p}&quot;,
+    &quot;pList\n&quot;,
+    &quot;```\n&quot;,
+    &quot;\n&quot;
+)
+
+
+plots_dpt &lt;- lapply(sigNam, 
+  function(sig) knitr::knit_expand(text = template_dpt)
+)</code></pre>
+<div id="cellrecruitment-1" class="section level4">
+<h4>CellRecruitment</h4>
+<pre><code>## [[1]]</code></pre>
+<p><img src="charcaterizeFibroblastwo12wk_files/figure-html/map%20sign%20time%20CellRecruitment-1.png" width="432" /></p>
+<pre><code>## 
+## [[2]]</code></pre>
+<p><img src="charcaterizeFibroblastwo12wk_files/figure-html/map%20sign%20time%20CellRecruitment-2.png" width="432" /></p>
+<pre><code>## 
+## [[3]]</code></pre>
+<p><img src="charcaterizeFibroblastwo12wk_files/figure-html/map%20sign%20time%20CellRecruitment-3.png" width="432" /></p>
+<pre><code>## 
+## [[4]]</code></pre>
+<p><img src="charcaterizeFibroblastwo12wk_files/figure-html/map%20sign%20time%20CellRecruitment-4.png" width="432" /></p>
+</div>
+<div id="antigenpresentation-1" class="section level4">
+<h4>AntigenPresentation</h4>
+<pre><code>## [[1]]</code></pre>
+<p><img src="charcaterizeFibroblastwo12wk_files/figure-html/map%20sign%20time%20AntigenPresentation-1.png" width="432" /></p>
+<pre><code>## 
+## [[2]]</code></pre>
+<p><img src="charcaterizeFibroblastwo12wk_files/figure-html/map%20sign%20time%20AntigenPresentation-2.png" width="432" /></p>
+<pre><code>## 
+## [[3]]</code></pre>
+<p><img src="charcaterizeFibroblastwo12wk_files/figure-html/map%20sign%20time%20AntigenPresentation-3.png" width="432" /></p>
+<pre><code>## 
+## [[4]]</code></pre>
+<p><img src="charcaterizeFibroblastwo12wk_files/figure-html/map%20sign%20time%20AntigenPresentation-4.png" width="432" /></p>
+</div>
+<div id="activationinteraction-1" class="section level4">
+<h4>ActivationInteraction</h4>
+<pre><code>## [[1]]</code></pre>
+<p><img src="charcaterizeFibroblastwo12wk_files/figure-html/map%20sign%20time%20ActivationInteraction-1.png" width="432" /></p>
+<pre><code>## 
+## [[2]]</code></pre>
+<p><img src="charcaterizeFibroblastwo12wk_files/figure-html/map%20sign%20time%20ActivationInteraction-2.png" width="432" /></p>
+<pre><code>## 
+## [[3]]</code></pre>
+<p><img src="charcaterizeFibroblastwo12wk_files/figure-html/map%20sign%20time%20ActivationInteraction-3.png" width="432" /></p>
+<pre><code>## 
+## [[4]]</code></pre>
+<p><img src="charcaterizeFibroblastwo12wk_files/figure-html/map%20sign%20time%20ActivationInteraction-4.png" width="432" /></p>
+</div>
+<div id="damageremodeling-1" class="section level4">
+<h4>DamageRemodeling</h4>
+<pre><code>## [[1]]</code></pre>
+<p><img src="charcaterizeFibroblastwo12wk_files/figure-html/map%20sign%20time%20DamageRemodeling-1.png" width="432" /></p>
+<pre><code>## 
+## [[2]]</code></pre>
+<p><img src="charcaterizeFibroblastwo12wk_files/figure-html/map%20sign%20time%20DamageRemodeling-2.png" width="432" /></p>
+<pre><code>## 
+## [[3]]</code></pre>
+<p><img src="charcaterizeFibroblastwo12wk_files/figure-html/map%20sign%20time%20DamageRemodeling-3.png" width="432" /></p>
+<pre><code>## 
+## [[4]]</code></pre>
+<p><img src="charcaterizeFibroblastwo12wk_files/figure-html/map%20sign%20time%20DamageRemodeling-4.png" width="432" /></p>
+</div>
+<div id="fbidentity-1" class="section level4">
+<h4>FBidentity</h4>
+<pre><code>## [[1]]</code></pre>
+<p><img src="charcaterizeFibroblastwo12wk_files/figure-html/map%20sign%20time%20FBidentity-1.png" width="432" /></p>
+<pre><code>## 
+## [[2]]</code></pre>
+<p><img src="charcaterizeFibroblastwo12wk_files/figure-html/map%20sign%20time%20FBidentity-2.png" width="432" /></p>
+<pre><code>## 
+## [[3]]</code></pre>
+<p><img src="charcaterizeFibroblastwo12wk_files/figure-html/map%20sign%20time%20FBidentity-3.png" width="432" /></p>
+<pre><code>## 
+## [[4]]</code></pre>
+<p><img src="charcaterizeFibroblastwo12wk_files/figure-html/map%20sign%20time%20FBidentity-4.png" width="432" /></p>
+</div>
+<div id="tissuestructure-1" class="section level4">
+<h4>TissueStructure</h4>
+<pre><code>## [[1]]</code></pre>
+<p><img src="charcaterizeFibroblastwo12wk_files/figure-html/map%20sign%20time%20TissueStructure-1.png" width="432" /></p>
+<pre><code>## 
+## [[2]]</code></pre>
+<p><img src="charcaterizeFibroblastwo12wk_files/figure-html/map%20sign%20time%20TissueStructure-2.png" width="432" /></p>
+<pre><code>## 
+## [[3]]</code></pre>
+<p><img src="charcaterizeFibroblastwo12wk_files/figure-html/map%20sign%20time%20TissueStructure-3.png" width="432" /></p>
+<pre><code>## 
+## [[4]]</code></pre>
+<p><img src="charcaterizeFibroblastwo12wk_files/figure-html/map%20sign%20time%20TissueStructure-4.png" width="432" /></p>
+</div>
+<div id="tissuehomeostasis-1" class="section level4">
+<h4>TissueHomeostasis</h4>
+<pre><code>## [[1]]</code></pre>
+<p><img src="charcaterizeFibroblastwo12wk_files/figure-html/map%20sign%20time%20TissueHomeostasis-1.png" width="432" /></p>
+<pre><code>## 
+## [[2]]</code></pre>
+<p><img src="charcaterizeFibroblastwo12wk_files/figure-html/map%20sign%20time%20TissueHomeostasis-2.png" width="432" /></p>
+<pre><code>## 
+## [[3]]</code></pre>
+<p><img src="charcaterizeFibroblastwo12wk_files/figure-html/map%20sign%20time%20TissueHomeostasis-3.png" width="432" /></p>
+<pre><code>## 
+## [[4]]</code></pre>
+<p><img src="charcaterizeFibroblastwo12wk_files/figure-html/map%20sign%20time%20TissueHomeostasis-4.png" width="432" /></p>
+</div>
+</div>
+<div id="map-signature-on-umap-cutoff-2" class="section level3 tabset">
+<h3 class="tabset">map signature on umap cutoff 2</h3>
+<pre class="r"><code>sce &lt;- as.SingleCellExperiment(seurat)
+sigNam &lt;- unique(allSign$signature)
+
+template_dp &lt;- c(
+    &quot;#### {{sig}}\n&quot;,
+    &quot;```{r map sign cut 2 {{sig}},fig.height=3.5, fig.width=4.5, echo = FALSE}\n&quot;,
+    &quot;sign &lt;- as.character(&#39;{{sig}}&#39;)&quot;,
+    &quot;signGenes &lt;- allSign %&gt;% dplyr::filter(signature == sign)&quot;,
+    &quot;sceSub &lt;- sce[which(rownames(sce) %in% signGenes$geneID),]&quot;,
+    &quot;cntMat &lt;- rowSums(
+                t(as.matrix(sceSub@assays@data$logcounts)))/nrow(signGenes)&quot;,
+    &quot;sceSub$sign &lt;- cntMat&quot;,
+    &quot;maxCM &lt;- max(cntMat)&quot;,
+    &quot;minCM &lt;- min(cntMat)&quot;,
+    &quot;maxCM &lt;- 2&quot;,
+    &quot;pal = colorRampPalette(rev(brewer.pal(11, &#39;RdBu&#39;)))&quot;,
+    &quot;sc &lt;- scale_colour_gradientn(colours = pal(100), limits=c(minCM,maxCM),
+    na.value = pal(100)[100])&quot;,
+    &quot;p &lt;- visGroup(sceSub, &#39;sign&#39;, dim_red = &#39;UMAP&#39;) +
+    sc +
+    guides(colour = guide_colourbar(title = &#39;&#39;)) +
+    ggtitle(paste0(sign, &#39; signature&#39;)) +
+    theme_classic() + 
+    theme(axis.text = element_blank(),
+          axis.ticks = element_blank()) +
+    labs(x=&#39;Dimension 1&#39;, y=&#39;Dimension 2&#39;)&quot;,
+    &quot;p\n&quot;,
+    &quot;```\n&quot;,
+    &quot;\n&quot;
+)
+
+
+plots_dp &lt;- lapply(sigNam, 
+  function(sig) knitr::knit_expand(text = template_dp)
+)</code></pre>
+<div id="cellrecruitment-2" class="section level4">
+<h4>CellRecruitment</h4>
+<p><img src="charcaterizeFibroblastwo12wk_files/figure-html/map%20sign%20cut%202%20CellRecruitment-1.png" width="432" /></p>
+</div>
+<div id="antigenpresentation-2" class="section level4">
+<h4>AntigenPresentation</h4>
+<p><img src="charcaterizeFibroblastwo12wk_files/figure-html/map%20sign%20cut%202%20AntigenPresentation-1.png" width="432" /></p>
+</div>
+<div id="activationinteraction-2" class="section level4">
+<h4>ActivationInteraction</h4>
+<p><img src="charcaterizeFibroblastwo12wk_files/figure-html/map%20sign%20cut%202%20ActivationInteraction-1.png" width="432" /></p>
+</div>
+<div id="damageremodeling-2" class="section level4">
+<h4>DamageRemodeling</h4>
+<p><img src="charcaterizeFibroblastwo12wk_files/figure-html/map%20sign%20cut%202%20DamageRemodeling-1.png" width="432" /></p>
+</div>
+<div id="fbidentity-2" class="section level4">
+<h4>FBidentity</h4>
+<p><img src="charcaterizeFibroblastwo12wk_files/figure-html/map%20sign%20cut%202%20FBidentity-1.png" width="432" /></p>
+</div>
+<div id="tissuestructure-2" class="section level4">
+<h4>TissueStructure</h4>
+<p><img src="charcaterizeFibroblastwo12wk_files/figure-html/map%20sign%20cut%202%20TissueStructure-1.png" width="432" /></p>
+</div>
+<div id="tissuehomeostasis-2" class="section level4">
+<h4>TissueHomeostasis</h4>
+<p><img src="charcaterizeFibroblastwo12wk_files/figure-html/map%20sign%20cut%202%20TissueHomeostasis-1.png" width="432" /></p>
+</div>
+</div>
+<div id="map-signature-on-umap-each-timepoint-plus-cond-cut-2"
+class="section level3 tabset">
+<h3 class="tabset">map signature on umap each timepoint plus cond cut
+2</h3>
+<pre class="r"><code>template_dpt &lt;- c(
+    &quot;#### {{sig}}\n&quot;,
+    &quot;```{r map sign time cut 2 {{sig}},fig.height=3.5, fig.width=4.5, echo = FALSE}\n&quot;,
+    &quot;sign &lt;- as.character(&#39;{{sig}}&#39;)&quot;,
+    &quot;signGenes &lt;- allSign %&gt;% dplyr::filter(signature == sign)&quot;,
+    &quot;pList &lt;- NULL&quot;,
+    &quot;for(i in 1:length(unique(sce$time_plus_grp))){&quot;,
+      &quot;tiP &lt;- unique(sce$time_plus_grp)[i]&quot;,
+      &quot;sceSub &lt;- sce[which(rownames(sce) %in% signGenes$geneID),]&quot;,
+      &quot;sceSub &lt;- sceSub[,sceSub$time_plus_grp == tiP]&quot;,
+      &quot;cntMat &lt;- rowSums(
+                t(as.matrix(sceSub@assays@data$logcounts)))/nrow(signGenes)&quot;,
+      &quot;sceSub$sign &lt;- cntMat&quot;,
+      &quot;maxCM &lt;- max(cntMat)&quot;,
+      &quot;minCM &lt;- min(cntMat)&quot;,
+      &quot;maxCM &lt;- 2&quot;,
+      &quot;pal = colorRampPalette(rev(brewer.pal(11, &#39;RdBu&#39;)))&quot;,
+      &quot;sc &lt;- scale_colour_gradientn(colours = pal(100), limits=c(minCM,maxCM),
+      na.value = pal(100)[100])&quot;,
+      &quot;p &lt;- visGroup(sceSub, &#39;sign&#39;, dim_red = &#39;UMAP&#39;) +
+      sc +
+      guides(colour = guide_colourbar(title = &#39;&#39;)) +
+      ggtitle(paste0(sign, &#39; signature &#39;, tiP)) +
+      theme_classic() + 
+      theme(axis.text = element_blank(),
+          axis.ticks = element_blank()) +
+      labs(x=&#39;Dimension 1&#39;, y=&#39;Dimension 2&#39;)&quot;,
+      &quot;pList[[i]] &lt;- p}&quot;,
+    &quot;pList\n&quot;,
+    &quot;```\n&quot;,
+    &quot;\n&quot;
+)
+
+
+plots_dpt &lt;- lapply(sigNam, 
+  function(sig) knitr::knit_expand(text = template_dpt)
+)</code></pre>
+<div id="cellrecruitment-3" class="section level4">
+<h4>CellRecruitment</h4>
+<pre><code>## [[1]]</code></pre>
+<p><img src="charcaterizeFibroblastwo12wk_files/figure-html/map%20sign%20time%20cut%202%20CellRecruitment-1.png" width="432" /></p>
+<pre><code>## 
+## [[2]]</code></pre>
+<p><img src="charcaterizeFibroblastwo12wk_files/figure-html/map%20sign%20time%20cut%202%20CellRecruitment-2.png" width="432" /></p>
+<pre><code>## 
+## [[3]]</code></pre>
+<p><img src="charcaterizeFibroblastwo12wk_files/figure-html/map%20sign%20time%20cut%202%20CellRecruitment-3.png" width="432" /></p>
+<pre><code>## 
+## [[4]]</code></pre>
+<p><img src="charcaterizeFibroblastwo12wk_files/figure-html/map%20sign%20time%20cut%202%20CellRecruitment-4.png" width="432" /></p>
+</div>
+<div id="antigenpresentation-3" class="section level4">
+<h4>AntigenPresentation</h4>
+<pre><code>## [[1]]</code></pre>
+<p><img src="charcaterizeFibroblastwo12wk_files/figure-html/map%20sign%20time%20cut%202%20AntigenPresentation-1.png" width="432" /></p>
+<pre><code>## 
+## [[2]]</code></pre>
+<p><img src="charcaterizeFibroblastwo12wk_files/figure-html/map%20sign%20time%20cut%202%20AntigenPresentation-2.png" width="432" /></p>
+<pre><code>## 
+## [[3]]</code></pre>
+<p><img src="charcaterizeFibroblastwo12wk_files/figure-html/map%20sign%20time%20cut%202%20AntigenPresentation-3.png" width="432" /></p>
+<pre><code>## 
+## [[4]]</code></pre>
+<p><img src="charcaterizeFibroblastwo12wk_files/figure-html/map%20sign%20time%20cut%202%20AntigenPresentation-4.png" width="432" /></p>
+</div>
+<div id="activationinteraction-3" class="section level4">
+<h4>ActivationInteraction</h4>
+<pre><code>## [[1]]</code></pre>
+<p><img src="charcaterizeFibroblastwo12wk_files/figure-html/map%20sign%20time%20cut%202%20ActivationInteraction-1.png" width="432" /></p>
+<pre><code>## 
+## [[2]]</code></pre>
+<p><img src="charcaterizeFibroblastwo12wk_files/figure-html/map%20sign%20time%20cut%202%20ActivationInteraction-2.png" width="432" /></p>
+<pre><code>## 
+## [[3]]</code></pre>
+<p><img src="charcaterizeFibroblastwo12wk_files/figure-html/map%20sign%20time%20cut%202%20ActivationInteraction-3.png" width="432" /></p>
+<pre><code>## 
+## [[4]]</code></pre>
+<p><img src="charcaterizeFibroblastwo12wk_files/figure-html/map%20sign%20time%20cut%202%20ActivationInteraction-4.png" width="432" /></p>
+</div>
+<div id="damageremodeling-3" class="section level4">
+<h4>DamageRemodeling</h4>
+<pre><code>## [[1]]</code></pre>
+<p><img src="charcaterizeFibroblastwo12wk_files/figure-html/map%20sign%20time%20cut%202%20DamageRemodeling-1.png" width="432" /></p>
+<pre><code>## 
+## [[2]]</code></pre>
+<p><img src="charcaterizeFibroblastwo12wk_files/figure-html/map%20sign%20time%20cut%202%20DamageRemodeling-2.png" width="432" /></p>
+<pre><code>## 
+## [[3]]</code></pre>
+<p><img src="charcaterizeFibroblastwo12wk_files/figure-html/map%20sign%20time%20cut%202%20DamageRemodeling-3.png" width="432" /></p>
+<pre><code>## 
+## [[4]]</code></pre>
+<p><img src="charcaterizeFibroblastwo12wk_files/figure-html/map%20sign%20time%20cut%202%20DamageRemodeling-4.png" width="432" /></p>
+</div>
+<div id="fbidentity-3" class="section level4">
+<h4>FBidentity</h4>
+<pre><code>## [[1]]</code></pre>
+<p><img src="charcaterizeFibroblastwo12wk_files/figure-html/map%20sign%20time%20cut%202%20FBidentity-1.png" width="432" /></p>
+<pre><code>## 
+## [[2]]</code></pre>
+<p><img src="charcaterizeFibroblastwo12wk_files/figure-html/map%20sign%20time%20cut%202%20FBidentity-2.png" width="432" /></p>
+<pre><code>## 
+## [[3]]</code></pre>
+<p><img src="charcaterizeFibroblastwo12wk_files/figure-html/map%20sign%20time%20cut%202%20FBidentity-3.png" width="432" /></p>
+<pre><code>## 
+## [[4]]</code></pre>
+<p><img src="charcaterizeFibroblastwo12wk_files/figure-html/map%20sign%20time%20cut%202%20FBidentity-4.png" width="432" /></p>
+</div>
+<div id="tissuestructure-3" class="section level4">
+<h4>TissueStructure</h4>
+<pre><code>## [[1]]</code></pre>
+<p><img src="charcaterizeFibroblastwo12wk_files/figure-html/map%20sign%20time%20cut%202%20TissueStructure-1.png" width="432" /></p>
+<pre><code>## 
+## [[2]]</code></pre>
+<p><img src="charcaterizeFibroblastwo12wk_files/figure-html/map%20sign%20time%20cut%202%20TissueStructure-2.png" width="432" /></p>
+<pre><code>## 
+## [[3]]</code></pre>
+<p><img src="charcaterizeFibroblastwo12wk_files/figure-html/map%20sign%20time%20cut%202%20TissueStructure-3.png" width="432" /></p>
+<pre><code>## 
+## [[4]]</code></pre>
+<p><img src="charcaterizeFibroblastwo12wk_files/figure-html/map%20sign%20time%20cut%202%20TissueStructure-4.png" width="432" /></p>
+</div>
+<div id="tissuehomeostasis-3" class="section level4">
+<h4>TissueHomeostasis</h4>
+<pre><code>## [[1]]</code></pre>
+<p><img src="charcaterizeFibroblastwo12wk_files/figure-html/map%20sign%20time%20cut%202%20TissueHomeostasis-1.png" width="432" /></p>
+<pre><code>## 
+## [[2]]</code></pre>
+<p><img src="charcaterizeFibroblastwo12wk_files/figure-html/map%20sign%20time%20cut%202%20TissueHomeostasis-2.png" width="432" /></p>
+<pre><code>## 
+## [[3]]</code></pre>
+<p><img src="charcaterizeFibroblastwo12wk_files/figure-html/map%20sign%20time%20cut%202%20TissueHomeostasis-3.png" width="432" /></p>
+<pre><code>## 
+## [[4]]</code></pre>
+<p><img src="charcaterizeFibroblastwo12wk_files/figure-html/map%20sign%20time%20cut%202%20TissueHomeostasis-4.png" width="432" /></p>
+</div>
+</div>
+<div id="run-diffusionmap" class="section level3">
+<h3>run Diffusionmap</h3>
+<pre class="r"><code>library(DelayedArray)
+library(DelayedMatrixStats)
+
+## from scater: subset to 500 most variable genes
+dmMat &lt;- sce@assays@data@listData$logcounts
+rv &lt;- rowVars(DelayedArray(dmMat))
+o &lt;- order(rv, decreasing = TRUE)
+subset_row &lt;- head(o, 500)
+dmMat &lt;- dmMat[subset_row,, drop = FALSE]
+rv &lt;- rv[subset_row]
+dmMat &lt;- t(dmMat)
+dmMat &lt;- as.matrix(dmMat)
+
+dm &lt;- destiny::DiffusionMap(dmMat, verbose = TRUE, k=100)
+reducedDim(sce, &#39;DiffusionMap&#39;) &lt;- dm@eigenvectors[, 1:2, drop = FALSE]
+
+
+saveRDS(sce, file=paste0(basedir, 
+                         &quot;/data/TCRM_all10samplesMerged_wo12w_sce.rds&quot;))</code></pre>
+</div>
+<div id="vis-dm" class="section level3">
+<h3>vis DM</h3>
+<pre class="r"><code>sce &lt;- readRDS(file=paste0(basedir, 
+                           &quot;/data/TCRM_all10samplesMerged_wo12w_sce.rds&quot;))
+
+p &lt;- visGroup(sce, &#39;grp&#39;, dim_red = &#39;DiffusionMap&#39;) +
+    scale_colour_manual(values = colGrp) +
+    theme_classic() + 
+    theme(axis.text = element_blank(),
+          axis.ticks = element_blank()) +
+    labs(x=&#39;Dimension 1&#39;, y=&#39;Dimension 2&#39;)
+p</code></pre>
+<p><img src="charcaterizeFibroblastwo12wk_files/figure-html/vis%20DM-1.png" width="672" /></p>
+<pre class="r"><code>p &lt;- visGroup(sce, &#39;RNA_snn_res.0.4&#39;, dim_red = &#39;DiffusionMap&#39;) +
+    scale_colour_manual(values = colPal) +
+    theme_classic() + 
+    theme(axis.text = element_blank(),
+          axis.ticks = element_blank()) +
+    labs(x=&#39;Dimension 1&#39;, y=&#39;Dimension 2&#39;)
+p</code></pre>
+<p><img src="charcaterizeFibroblastwo12wk_files/figure-html/vis%20DM-2.png" width="672" /></p>
+</div>
+<div id="plot-signatures-dm" class="section level3">
+<h3>plot signatures DM</h3>
+<pre class="r"><code>sigNam &lt;- unique(allSign$signature)
+
+template_dp &lt;- c(
+    &quot;#### {{sig}}\n&quot;,
+    &quot;```{r map sign DM cut 2 {{sig}},fig.height=3.5, fig.width=4.5, echo = FALSE}\n&quot;,
+    &quot;sign &lt;- as.character(&#39;{{sig}}&#39;)&quot;,
+    &quot;signGenes &lt;- allSign %&gt;% dplyr::filter(signature == sign)&quot;,
+    &quot;sceSub &lt;- sce[which(rownames(sce) %in% signGenes$geneID),]&quot;,
+    &quot;cntMat &lt;- rowSums(
+                t(as.matrix(sceSub@assays@data$logcounts)))/nrow(signGenes)&quot;,
+    &quot;sceSub$sign &lt;- cntMat&quot;,
+    &quot;maxCM &lt;- max(cntMat)&quot;,
+    &quot;minCM &lt;- min(cntMat)&quot;,
+    &quot;maxCM &lt;- 2&quot;,
+    &quot;pal = colorRampPalette(rev(brewer.pal(11, &#39;RdBu&#39;)))&quot;,
+    &quot;sc &lt;- scale_colour_gradientn(colours = pal(100), limits=c(minCM,maxCM),
+    na.value = pal(100)[100])&quot;,
+    &quot;p &lt;- visGroup(sceSub, &#39;sign&#39;, dim_red = &#39;DiffusionMap&#39;) +
+    sc +
+    guides(colour = guide_colourbar(title = &#39;&#39;)) +
+    ggtitle(paste0(sign, &#39; signature&#39;)) +
+    theme_classic() + 
+    theme(axis.text = element_blank(),
+          axis.ticks = element_blank()) +
+    labs(x=&#39;Dimension 1&#39;, y=&#39;Dimension 2&#39;)&quot;,
+    &quot;p\n&quot;,
+    &quot;```\n&quot;,
+    &quot;\n&quot;
+)
+
+
+plots_dpt &lt;- lapply(sigNam, 
+  function(sig) knitr::knit_expand(text = template_dp)
+)</code></pre>
+<div id="cellrecruitment-4" class="section level4">
+<h4>CellRecruitment</h4>
+<p><img src="charcaterizeFibroblastwo12wk_files/figure-html/map%20sign%20DM%20cut%202%20CellRecruitment-1.png" width="432" /></p>
+</div>
+<div id="antigenpresentation-4" class="section level4">
+<h4>AntigenPresentation</h4>
+<p><img src="charcaterizeFibroblastwo12wk_files/figure-html/map%20sign%20DM%20cut%202%20AntigenPresentation-1.png" width="432" /></p>
+</div>
+<div id="activationinteraction-4" class="section level4">
+<h4>ActivationInteraction</h4>
+<p><img src="charcaterizeFibroblastwo12wk_files/figure-html/map%20sign%20DM%20cut%202%20ActivationInteraction-1.png" width="432" /></p>
+</div>
+<div id="damageremodeling-4" class="section level4">
+<h4>DamageRemodeling</h4>
+<p><img src="charcaterizeFibroblastwo12wk_files/figure-html/map%20sign%20DM%20cut%202%20DamageRemodeling-1.png" width="432" /></p>
+</div>
+<div id="fbidentity-4" class="section level4">
+<h4>FBidentity</h4>
+<p><img src="charcaterizeFibroblastwo12wk_files/figure-html/map%20sign%20DM%20cut%202%20FBidentity-1.png" width="432" /></p>
+</div>
+<div id="tissuestructure-4" class="section level4">
+<h4>TissueStructure</h4>
+<p><img src="charcaterizeFibroblastwo12wk_files/figure-html/map%20sign%20DM%20cut%202%20TissueStructure-1.png" width="432" /></p>
+</div>
+<div id="tissuehomeostasis-4" class="section level4">
+<h4>TissueHomeostasis</h4>
+<p><img src="charcaterizeFibroblastwo12wk_files/figure-html/map%20sign%20DM%20cut%202%20TissueHomeostasis-1.png" width="432" /></p>
+</div>
+</div>
+<div id="avg-expression-heatmap-aross-cluster" class="section level3">
+<h3>avg expression heatmap aross cluster</h3>
+<pre class="r"><code>avgHeatmap &lt;- function(seurat, selGenes, colVecIdent, colVecCond=NULL,
+                       ordVec=NULL, gapVecR=NULL, gapVecC=NULL,cc=FALSE,
+                       cr=FALSE, condCol=FALSE){
+  
+  selGenes &lt;- selGenes$gene
+  
+  ## assay data
+  clusterAssigned &lt;- as.data.frame(Idents(seurat)) %&gt;%
+  dplyr::mutate(cell=rownames(.))
+  colnames(clusterAssigned)[1] &lt;- &quot;ident&quot;
+  seuratDat &lt;- GetAssayData(seurat)
+  
+  ## genes of interest
+  genes &lt;- data.frame(gene=rownames(seurat)) %&gt;% 
+    mutate(geneID=gsub(&quot;^.*\\.&quot;, &quot;&quot;, gene)) %&gt;% filter(geneID %in% selGenes)
+
+  ## matrix with averaged cnts per ident
+  logNormExpres &lt;- as.data.frame(t(as.matrix(
+    seuratDat[which(rownames(seuratDat) %in% genes$gene),])))
+  logNormExpres &lt;- logNormExpres %&gt;% dplyr::mutate(cell=rownames(.)) %&gt;%
+    dplyr::left_join(.,clusterAssigned, by=c(&quot;cell&quot;)) %&gt;%
+    dplyr::select(-cell) %&gt;% dplyr::group_by(ident) %&gt;%
+    dplyr::summarise_all(mean)
+  logNormExpresMa &lt;- logNormExpres %&gt;% dplyr::select(-ident) %&gt;% as.matrix()
+  rownames(logNormExpresMa) &lt;- logNormExpres$ident
+  logNormExpresMa &lt;- t(logNormExpresMa)
+  rownames(logNormExpresMa) &lt;- gsub(&quot;^.*?\\.&quot;,&quot;&quot;,rownames(logNormExpresMa))
+  
+  ## remove genes if they are all the same in all groups
+  ind &lt;- apply(logNormExpresMa, 1, sd) == 0
+  logNormExpresMa &lt;- logNormExpresMa[!ind,]
+  genes &lt;- genes[!ind,]
+
+  ## color columns according to cluster
+  annotation_col &lt;- as.data.frame(gsub(&quot;(^.*?_)&quot;,&quot;&quot;,
+                                       colnames(logNormExpresMa)))%&gt;%
+    dplyr::mutate(celltype=gsub(&quot;(_.*$)&quot;,&quot;&quot;,colnames(logNormExpresMa)))
+  colnames(annotation_col)[1] &lt;- &quot;col1&quot;
+  annotation_col &lt;- annotation_col %&gt;%
+    dplyr::mutate(cond = gsub(&quot;(^[0-9]_?)&quot;,&quot;&quot;,col1)) %&gt;%
+    dplyr::select(cond, celltype)
+  rownames(annotation_col) &lt;- colnames(logNormExpresMa) 
+
+  ann_colors = list(
+      cond = colVecCond,
+      celltype=colVecIdent)
+  if(is.null(ann_colors$cond)){
+    annotation_col$cond &lt;- NULL
+  }
+  
+  ## adjust order
+  logNormExpresMa &lt;- logNormExpresMa[selGenes,]
+  if(is.null(ordVec)){
+    ordVec &lt;- levels(seurat)
+  }
+  logNormExpresMa &lt;- logNormExpresMa[,ordVec]
+
+  ## scaled row-wise
+  pheatmap(logNormExpresMa, scale=&quot;row&quot; ,treeheight_row = 0, cluster_rows = cr, 
+         cluster_cols = cc,
+         color = colorRampPalette(c(&quot;#2166AC&quot;, &quot;#F7F7F7&quot;, &quot;#B2182B&quot;))(50),
+         annotation_col = annotation_col, cellwidth=15, cellheight=10,
+         annotation_colors = ann_colors, gaps_row = gapVecR, gaps_col = gapVecC)
+}</code></pre>
+<pre class="r"><code>grpCnt &lt;- allSign %&gt;% group_by(signature) %&gt;% summarise(cnt=n())
+gapR &lt;- data.frame(signature=unique(allSign$signature)) %&gt;% 
+  left_join(.,grpCnt, by=&quot;signature&quot;) %&gt;% mutate(cumSum=cumsum(cnt)) 
+ordVec &lt;- levels(seurat)
+
+pOut &lt;- avgHeatmap(seurat = seurat, selGenes = allSign,
+                  colVecIdent = colPal, 
+                  ordVec=ordVec,
+                  gapVecR=gapR$cumSum, gapVecC=NULL,cc=F,
+                  cr=F, condCol=F)</code></pre>
+<p><img src="charcaterizeFibroblastwo12wk_files/figure-html/avg%20expression%20sign%20genes-1.png" width="672" /></p>
+</div>
+<div id="avg-expression-heatmap-aross-timepoints-and-condition"
+class="section level3">
+<h3>avg expression heatmap aross timepoints and condition</h3>
+<pre class="r"><code>Idents(seurat) &lt;- seurat$time_plus_grp
+grpCnt &lt;- allSign %&gt;% group_by(signature) %&gt;% summarise(cnt=n())
+gapR &lt;- data.frame(signature=unique(allSign$signature)) %&gt;% 
+  left_join(.,grpCnt, by=&quot;signature&quot;) %&gt;% mutate(cumSum=cumsum(cnt)) 
+ordVec &lt;- levels(seurat)[order(levels(seurat))]
+
+pOut &lt;- avgHeatmap(seurat = seurat, selGenes = allSign,
+                  colVecIdent = colTime, 
+                  ordVec=ordVec,
+                  gapVecR=gapR$cumSum, gapVecC=NULL,cc=F,
+                  cr=F, condCol=T, colVecCond = colGrp)</code></pre>
+<p><img src="charcaterizeFibroblastwo12wk_files/figure-html/avg%20expression%20sign%20genes%20across%20time%20plus%20grp-1.png" width="672" /></p>
+</div>
+</div>
+<div id="expression-of-selected-genes" class="section level2 tabset">
+<h2 class="tabset">expression of selected genes</h2>
+<pre class="r"><code>selGenes &lt;- c(&quot;Cxcl9&quot;, &quot;Cxcl10&quot;, &quot;Ccl2&quot;, &quot;Cxcl5&quot;, &quot;Ccl19&quot;,&quot;Cxcl12&quot;, &quot;Cxcl1&quot;, 
+              &quot;H2-D1&quot;,&quot;H2-K1&quot;,&quot;B2m&quot;,&quot;H2-Ab1&quot;,&quot;H2-Q7&quot;,&quot;H2-Aa&quot;,&quot;Tap1&quot;, &quot;Ly6a&quot;,
+              &quot;Bst2&quot;,&quot;Vcam1&quot;,&quot;Icam1&quot;,&quot;Ncam1&quot;,&quot;C3&quot;,&quot;Nfkbia&quot;,&quot;Timp1&quot;,&quot;Sod2&quot;,&quot;Il33&quot;,
+              &quot;Hif1a&quot;,&quot;Plaur&quot;,&quot;Cxcl16&quot;,&quot;Nr4a1&quot;,&quot;Pi16&quot;,&quot;Pdpn&quot;,&quot;Cd34&quot;,&quot;Pdgfra&quot;,
+              &quot;Col1a1&quot;,&quot;Col8a1&quot;,&quot;Col4a4&quot;,&quot;Col4a1&quot;,&quot;Col4a5&quot;,&quot;Col5a3&quot;,&quot;Bmp4&quot;,
+              &quot;Id1&quot;,&quot;Tcf4&quot;,&quot;Jun&quot;,&quot;Tgfb1&quot;,&quot;Ccn1&quot;)
+selGenesLong &lt;- data.frame(gene=rownames(seurat)) %&gt;%
+  mutate(short=gsub(&quot;^.*\\.&quot;, &quot;&quot;, gene)) %&gt;% filter(short %in% selGenes)</code></pre>
+<div id="sel-genes-across-all" class="section level3 tabset">
+<h3 class="tabset">sel Genes across all</h3>
+<pre class="r"><code>template_fp &lt;- c(
+    &quot;#### {{sel}}\n&quot;,
+    &quot;```{r sel Genes across all {{sel}},fig.height=3, fig.width=4, echo = FALSE}\n&quot;,
+    &quot;selGene &lt;- as.character(&#39;{{sel}}&#39;)&quot;,
+    &quot;p &lt;- FeaturePlot(seurat, reduction = &#39;umap&#39;,
+      features = selGene,
+      cols=c(&#39;lightgrey&#39;, &#39;darkred&#39;),
+              order = T)+
+    theme(legend.position=&#39;right&#39;)&quot;,
+    &quot;p\n&quot;,
+    &quot;```\n&quot;,
+    &quot;\n&quot;
+)
+
+
+plots_fp &lt;- lapply(selGenesLong$gene, 
+  function(sel) knitr::knit_expand(text = template_fp)
+)</code></pre>
+<div id="ensmusg00000067158.col4a4" class="section level4">
+<h4>ENSMUSG00000067158.Col4a4</h4>
+<p><img src="charcaterizeFibroblastwo12wk_files/figure-html/sel%20Genes%20across%20all%20ENSMUSG00000067158.Col4a4-1.png" width="384" /></p>
+</div>
+<div id="ensmusg00000016494.cd34" class="section level4">
+<h4>ENSMUSG00000016494.Cd34</h4>
+<p><img src="charcaterizeFibroblastwo12wk_files/figure-html/sel%20Genes%20across%20all%20ENSMUSG00000016494.Cd34-1.png" width="384" /></p>
+</div>
+<div id="ensmusg00000060802.b2m" class="section level4">
+<h4>ENSMUSG00000060802.B2m</h4>
+<p><img src="charcaterizeFibroblastwo12wk_files/figure-html/sel%20Genes%20across%20all%20ENSMUSG00000060802.B2m-1.png" width="384" /></p>
+</div>
+<div id="ensmusg00000042745.id1" class="section level4">
+<h4>ENSMUSG00000042745.Id1</h4>
+<p><img src="charcaterizeFibroblastwo12wk_files/figure-html/sel%20Genes%20across%20all%20ENSMUSG00000042745.Id1-1.png" width="384" /></p>
+</div>
+<div id="ensmusg00000001131.timp1" class="section level4">
+<h4>ENSMUSG00000001131.Timp1</h4>
+<p><img src="charcaterizeFibroblastwo12wk_files/figure-html/sel%20Genes%20across%20all%20ENSMUSG00000001131.Timp1-1.png" width="384" /></p>
+</div>
+<div id="ensmusg00000031274.col4a5" class="section level4">
+<h4>ENSMUSG00000031274.Col4a5</h4>
+<p><img src="charcaterizeFibroblastwo12wk_files/figure-html/sel%20Genes%20across%20all%20ENSMUSG00000031274.Col4a5-1.png" width="384" /></p>
+</div>
+<div id="ensmusg00000027962.vcam1" class="section level4">
+<h4>ENSMUSG00000027962.Vcam1</h4>
+<p><img src="charcaterizeFibroblastwo12wk_files/figure-html/sel%20Genes%20across%20all%20ENSMUSG00000027962.Vcam1-1.png" width="384" /></p>
+</div>
+<div id="ensmusg00000028195.ccn1" class="section level4">
+<h4>ENSMUSG00000028195.Ccn1</h4>
+<p><img src="charcaterizeFibroblastwo12wk_files/figure-html/sel%20Genes%20across%20all%20ENSMUSG00000028195.Ccn1-1.png" width="384" /></p>
+</div>
+<div id="ensmusg00000071005.ccl19" class="section level4">
+<h4>ENSMUSG00000071005.Ccl19</h4>
+<p><img src="charcaterizeFibroblastwo12wk_files/figure-html/sel%20Genes%20across%20all%20ENSMUSG00000071005.Ccl19-1.png" width="384" /></p>
+</div>
+<div id="ensmusg00000052684.jun" class="section level4">
+<h4>ENSMUSG00000052684.Jun</h4>
+<p><img src="charcaterizeFibroblastwo12wk_files/figure-html/sel%20Genes%20across%20all%20ENSMUSG00000052684.Jun-1.png" width="384" /></p>
+</div>
+<div id="ensmusg00000028583.pdpn" class="section level4">
+<h4>ENSMUSG00000028583.Pdpn</h4>
+<p><img src="charcaterizeFibroblastwo12wk_files/figure-html/sel%20Genes%20across%20all%20ENSMUSG00000028583.Pdpn-1.png" width="384" /></p>
+</div>
+<div id="ensmusg00000029231.pdgfra" class="section level4">
+<h4>ENSMUSG00000029231.Pdgfra</h4>
+<p><img src="charcaterizeFibroblastwo12wk_files/figure-html/sel%20Genes%20across%20all%20ENSMUSG00000029231.Pdgfra-1.png" width="384" /></p>
+</div>
+<div id="ensmusg00000029371.cxcl5" class="section level4">
+<h4>ENSMUSG00000029371.Cxcl5</h4>
+<p><img src="charcaterizeFibroblastwo12wk_files/figure-html/sel%20Genes%20across%20all%20ENSMUSG00000029371.Cxcl5-1.png" width="384" /></p>
+</div>
+<div id="ensmusg00000029380.cxcl1" class="section level4">
+<h4>ENSMUSG00000029380.Cxcl1</h4>
+<p><img src="charcaterizeFibroblastwo12wk_files/figure-html/sel%20Genes%20across%20all%20ENSMUSG00000029380.Cxcl1-1.png" width="384" /></p>
+</div>
+<div id="ensmusg00000029417.cxcl9" class="section level4">
+<h4>ENSMUSG00000029417.Cxcl9</h4>
+<p><img src="charcaterizeFibroblastwo12wk_files/figure-html/sel%20Genes%20across%20all%20ENSMUSG00000029417.Cxcl9-1.png" width="384" /></p>
+</div>
+<div id="ensmusg00000034855.cxcl10" class="section level4">
+<h4>ENSMUSG00000034855.Cxcl10</h4>
+<p><img src="charcaterizeFibroblastwo12wk_files/figure-html/sel%20Genes%20across%20all%20ENSMUSG00000034855.Cxcl10-1.png" width="384" /></p>
+</div>
+<div id="ensmusg00000061353.cxcl12" class="section level4">
+<h4>ENSMUSG00000061353.Cxcl12</h4>
+<p><img src="charcaterizeFibroblastwo12wk_files/figure-html/sel%20Genes%20across%20all%20ENSMUSG00000061353.Cxcl12-1.png" width="384" /></p>
+</div>
+<div id="ensmusg00000046223.plaur" class="section level4">
+<h4>ENSMUSG00000046223.Plaur</h4>
+<p><img src="charcaterizeFibroblastwo12wk_files/figure-html/sel%20Genes%20across%20all%20ENSMUSG00000046223.Plaur-1.png" width="384" /></p>
+</div>
+<div id="ensmusg00000002603.tgfb1" class="section level4">
+<h4>ENSMUSG00000002603.Tgfb1</h4>
+<p><img src="charcaterizeFibroblastwo12wk_files/figure-html/sel%20Genes%20across%20all%20ENSMUSG00000002603.Tgfb1-1.png" width="384" /></p>
+</div>
+<div id="ensmusg00000031502.col4a1" class="section level4">
+<h4>ENSMUSG00000031502.Col4a1</h4>
+<p><img src="charcaterizeFibroblastwo12wk_files/figure-html/sel%20Genes%20across%20all%20ENSMUSG00000031502.Col4a1-1.png" width="384" /></p>
+</div>
+<div id="ensmusg00000046718.bst2" class="section level4">
+<h4>ENSMUSG00000046718.Bst2</h4>
+<p><img src="charcaterizeFibroblastwo12wk_files/figure-html/sel%20Genes%20across%20all%20ENSMUSG00000046718.Bst2-1.png" width="384" /></p>
+</div>
+<div id="ensmusg00000021835.bmp4" class="section level4">
+<h4>ENSMUSG00000021835.Bmp4</h4>
+<p><img src="charcaterizeFibroblastwo12wk_files/figure-html/sel%20Genes%20across%20all%20ENSMUSG00000021835.Bmp4-1.png" width="384" /></p>
+</div>
+<div id="ensmusg00000004098.col5a3" class="section level4">
+<h4>ENSMUSG00000004098.Col5a3</h4>
+<p><img src="charcaterizeFibroblastwo12wk_files/figure-html/sel%20Genes%20across%20all%20ENSMUSG00000004098.Col5a3-1.png" width="384" /></p>
+</div>
+<div id="ensmusg00000037405.icam1" class="section level4">
+<h4>ENSMUSG00000037405.Icam1</h4>
+<p><img src="charcaterizeFibroblastwo12wk_files/figure-html/sel%20Genes%20across%20all%20ENSMUSG00000037405.Icam1-1.png" width="384" /></p>
+</div>
+<div id="ensmusg00000039542.ncam1" class="section level4">
+<h4>ENSMUSG00000039542.Ncam1</h4>
+<p><img src="charcaterizeFibroblastwo12wk_files/figure-html/sel%20Genes%20across%20all%20ENSMUSG00000039542.Ncam1-1.png" width="384" /></p>
+</div>
+<div id="ensmusg00000018920.cxcl16" class="section level4">
+<h4>ENSMUSG00000018920.Cxcl16</h4>
+<p><img src="charcaterizeFibroblastwo12wk_files/figure-html/sel%20Genes%20across%20all%20ENSMUSG00000018920.Cxcl16-1.png" width="384" /></p>
+</div>
+<div id="ensmusg00000035385.ccl2" class="section level4">
+<h4>ENSMUSG00000035385.Ccl2</h4>
+<p><img src="charcaterizeFibroblastwo12wk_files/figure-html/sel%20Genes%20across%20all%20ENSMUSG00000035385.Ccl2-1.png" width="384" /></p>
+</div>
+<div id="ensmusg00000001506.col1a1" class="section level4">
+<h4>ENSMUSG00000001506.Col1a1</h4>
+<p><img src="charcaterizeFibroblastwo12wk_files/figure-html/sel%20Genes%20across%20all%20ENSMUSG00000001506.Col1a1-1.png" width="384" /></p>
+</div>
+<div id="ensmusg00000021025.nfkbia" class="section level4">
+<h4>ENSMUSG00000021025.Nfkbia</h4>
+<p><img src="charcaterizeFibroblastwo12wk_files/figure-html/sel%20Genes%20across%20all%20ENSMUSG00000021025.Nfkbia-1.png" width="384" /></p>
+</div>
+<div id="ensmusg00000021109.hif1a" class="section level4">
+<h4>ENSMUSG00000021109.Hif1a</h4>
+<p><img src="charcaterizeFibroblastwo12wk_files/figure-html/sel%20Genes%20across%20all%20ENSMUSG00000021109.Hif1a-1.png" width="384" /></p>
+</div>
+<div id="ensmusg00000075602.ly6a" class="section level4">
+<h4>ENSMUSG00000075602.Ly6a</h4>
+<p><img src="charcaterizeFibroblastwo12wk_files/figure-html/sel%20Genes%20across%20all%20ENSMUSG00000075602.Ly6a-1.png" width="384" /></p>
+</div>
+<div id="ensmusg00000023034.nr4a1" class="section level4">
+<h4>ENSMUSG00000023034.Nr4a1</h4>
+<p><img src="charcaterizeFibroblastwo12wk_files/figure-html/sel%20Genes%20across%20all%20ENSMUSG00000023034.Nr4a1-1.png" width="384" /></p>
+</div>
+<div id="ensmusg00000068196.col8a1" class="section level4">
+<h4>ENSMUSG00000068196.Col8a1</h4>
+<p><img src="charcaterizeFibroblastwo12wk_files/figure-html/sel%20Genes%20across%20all%20ENSMUSG00000068196.Col8a1-1.png" width="384" /></p>
+</div>
+<div id="ensmusg00000006818.sod2" class="section level4">
+<h4>ENSMUSG00000006818.Sod2</h4>
+<p><img src="charcaterizeFibroblastwo12wk_files/figure-html/sel%20Genes%20across%20all%20ENSMUSG00000006818.Sod2-1.png" width="384" /></p>
+</div>
+<div id="ensmusg00000024011.pi16" class="section level4">
+<h4>ENSMUSG00000024011.Pi16</h4>
+<p><img src="charcaterizeFibroblastwo12wk_files/figure-html/sel%20Genes%20across%20all%20ENSMUSG00000024011.Pi16-1.png" width="384" /></p>
+</div>
+<div id="ensmusg00000061232.h2-k1" class="section level4">
+<h4>ENSMUSG00000061232.H2-K1</h4>
+<p><img src="charcaterizeFibroblastwo12wk_files/figure-html/sel%20Genes%20across%20all%20ENSMUSG00000061232.H2-K1-1.png" width="384" /></p>
+</div>
+<div id="ensmusg00000037321.tap1" class="section level4">
+<h4>ENSMUSG00000037321.Tap1</h4>
+<p><img src="charcaterizeFibroblastwo12wk_files/figure-html/sel%20Genes%20across%20all%20ENSMUSG00000037321.Tap1-1.png" width="384" /></p>
+</div>
+<div id="ensmusg00000073421.h2-ab1" class="section level4">
+<h4>ENSMUSG00000073421.H2-Ab1</h4>
+<p><img src="charcaterizeFibroblastwo12wk_files/figure-html/sel%20Genes%20across%20all%20ENSMUSG00000073421.H2-Ab1-1.png" width="384" /></p>
+</div>
+<div id="ensmusg00000036594.h2-aa" class="section level4">
+<h4>ENSMUSG00000036594.H2-Aa</h4>
+<p><img src="charcaterizeFibroblastwo12wk_files/figure-html/sel%20Genes%20across%20all%20ENSMUSG00000036594.H2-Aa-1.png" width="384" /></p>
+</div>
+<div id="ensmusg00000073411.h2-d1" class="section level4">
+<h4>ENSMUSG00000073411.H2-D1</h4>
+<p><img src="charcaterizeFibroblastwo12wk_files/figure-html/sel%20Genes%20across%20all%20ENSMUSG00000073411.H2-D1-1.png" width="384" /></p>
+</div>
+<div id="ensmusg00000060550.h2-q7" class="section level4">
+<h4>ENSMUSG00000060550.H2-Q7</h4>
+<p><img src="charcaterizeFibroblastwo12wk_files/figure-html/sel%20Genes%20across%20all%20ENSMUSG00000060550.H2-Q7-1.png" width="384" /></p>
+</div>
+<div id="ensmusg00000024164.c3" class="section level4">
+<h4>ENSMUSG00000024164.C3</h4>
+<p><img src="charcaterizeFibroblastwo12wk_files/figure-html/sel%20Genes%20across%20all%20ENSMUSG00000024164.C3-1.png" width="384" /></p>
+</div>
+<div id="ensmusg00000053477.tcf4" class="section level4">
+<h4>ENSMUSG00000053477.Tcf4</h4>
+<p><img src="charcaterizeFibroblastwo12wk_files/figure-html/sel%20Genes%20across%20all%20ENSMUSG00000053477.Tcf4-1.png" width="384" /></p>
+</div>
+<div id="ensmusg00000024810.il33" class="section level4">
+<h4>ENSMUSG00000024810.Il33</h4>
+<p><img src="charcaterizeFibroblastwo12wk_files/figure-html/sel%20Genes%20across%20all%20ENSMUSG00000024810.Il33-1.png" width="384" /></p>
+</div>
+</div>
+<div id="sel-genes-split-by-grp" class="section level3 tabset">
+<h3 class="tabset">sel Genes split by grp</h3>
+<pre class="r"><code>template_fp &lt;- c(
+    &quot;#### {{sel}}\n&quot;,
+    &quot;```{r sel Genes split by grp {{sel}},fig.height=3, fig.width=8, echo = FALSE}\n&quot;,
+    &quot;selGene &lt;- as.character(&#39;{{sel}}&#39;)&quot;,
+    &quot;p &lt;- FeaturePlot(seurat, reduction = &#39;umap&#39;,
+      features = selGene,
+      cols=c(&#39;lightgrey&#39;, &#39;darkred&#39;),
+      order = T,
+      split.by = &#39;grp&#39;)+
+    theme(legend.position=&#39;right&#39;)&quot;,
+    &quot;p\n&quot;,
+    &quot;```\n&quot;,
+    &quot;\n&quot;
+)
+
+
+plots_fp &lt;- lapply(selGenesLong$gene, 
+  function(sel) knitr::knit_expand(text = template_fp)
+)</code></pre>
+<div id="ensmusg00000067158.col4a4-1" class="section level4">
+<h4>ENSMUSG00000067158.Col4a4</h4>
+<p><img src="charcaterizeFibroblastwo12wk_files/figure-html/sel%20Genes%20split%20by%20grp%20ENSMUSG00000067158.Col4a4-1.png" width="768" /></p>
+</div>
+<div id="ensmusg00000016494.cd34-1" class="section level4">
+<h4>ENSMUSG00000016494.Cd34</h4>
+<p><img src="charcaterizeFibroblastwo12wk_files/figure-html/sel%20Genes%20split%20by%20grp%20ENSMUSG00000016494.Cd34-1.png" width="768" /></p>
+</div>
+<div id="ensmusg00000060802.b2m-1" class="section level4">
+<h4>ENSMUSG00000060802.B2m</h4>
+<p><img src="charcaterizeFibroblastwo12wk_files/figure-html/sel%20Genes%20split%20by%20grp%20ENSMUSG00000060802.B2m-1.png" width="768" /></p>
+</div>
+<div id="ensmusg00000042745.id1-1" class="section level4">
+<h4>ENSMUSG00000042745.Id1</h4>
+<p><img src="charcaterizeFibroblastwo12wk_files/figure-html/sel%20Genes%20split%20by%20grp%20ENSMUSG00000042745.Id1-1.png" width="768" /></p>
+</div>
+<div id="ensmusg00000001131.timp1-1" class="section level4">
+<h4>ENSMUSG00000001131.Timp1</h4>
+<p><img src="charcaterizeFibroblastwo12wk_files/figure-html/sel%20Genes%20split%20by%20grp%20ENSMUSG00000001131.Timp1-1.png" width="768" /></p>
+</div>
+<div id="ensmusg00000031274.col4a5-1" class="section level4">
+<h4>ENSMUSG00000031274.Col4a5</h4>
+<p><img src="charcaterizeFibroblastwo12wk_files/figure-html/sel%20Genes%20split%20by%20grp%20ENSMUSG00000031274.Col4a5-1.png" width="768" /></p>
+</div>
+<div id="ensmusg00000027962.vcam1-1" class="section level4">
+<h4>ENSMUSG00000027962.Vcam1</h4>
+<p><img src="charcaterizeFibroblastwo12wk_files/figure-html/sel%20Genes%20split%20by%20grp%20ENSMUSG00000027962.Vcam1-1.png" width="768" /></p>
+</div>
+<div id="ensmusg00000028195.ccn1-1" class="section level4">
+<h4>ENSMUSG00000028195.Ccn1</h4>
+<p><img src="charcaterizeFibroblastwo12wk_files/figure-html/sel%20Genes%20split%20by%20grp%20ENSMUSG00000028195.Ccn1-1.png" width="768" /></p>
+</div>
+<div id="ensmusg00000071005.ccl19-1" class="section level4">
+<h4>ENSMUSG00000071005.Ccl19</h4>
+<p><img src="charcaterizeFibroblastwo12wk_files/figure-html/sel%20Genes%20split%20by%20grp%20ENSMUSG00000071005.Ccl19-1.png" width="768" /></p>
+</div>
+<div id="ensmusg00000052684.jun-1" class="section level4">
+<h4>ENSMUSG00000052684.Jun</h4>
+<p><img src="charcaterizeFibroblastwo12wk_files/figure-html/sel%20Genes%20split%20by%20grp%20ENSMUSG00000052684.Jun-1.png" width="768" /></p>
+</div>
+<div id="ensmusg00000028583.pdpn-1" class="section level4">
+<h4>ENSMUSG00000028583.Pdpn</h4>
+<p><img src="charcaterizeFibroblastwo12wk_files/figure-html/sel%20Genes%20split%20by%20grp%20ENSMUSG00000028583.Pdpn-1.png" width="768" /></p>
+</div>
+<div id="ensmusg00000029231.pdgfra-1" class="section level4">
+<h4>ENSMUSG00000029231.Pdgfra</h4>
+<p><img src="charcaterizeFibroblastwo12wk_files/figure-html/sel%20Genes%20split%20by%20grp%20ENSMUSG00000029231.Pdgfra-1.png" width="768" /></p>
+</div>
+<div id="ensmusg00000029371.cxcl5-1" class="section level4">
+<h4>ENSMUSG00000029371.Cxcl5</h4>
+<p><img src="charcaterizeFibroblastwo12wk_files/figure-html/sel%20Genes%20split%20by%20grp%20ENSMUSG00000029371.Cxcl5-1.png" width="768" /></p>
+</div>
+<div id="ensmusg00000029380.cxcl1-1" class="section level4">
+<h4>ENSMUSG00000029380.Cxcl1</h4>
+<p><img src="charcaterizeFibroblastwo12wk_files/figure-html/sel%20Genes%20split%20by%20grp%20ENSMUSG00000029380.Cxcl1-1.png" width="768" /></p>
+</div>
+<div id="ensmusg00000029417.cxcl9-1" class="section level4">
+<h4>ENSMUSG00000029417.Cxcl9</h4>
+<p><img src="charcaterizeFibroblastwo12wk_files/figure-html/sel%20Genes%20split%20by%20grp%20ENSMUSG00000029417.Cxcl9-1.png" width="768" /></p>
+</div>
+<div id="ensmusg00000034855.cxcl10-1" class="section level4">
+<h4>ENSMUSG00000034855.Cxcl10</h4>
+<p><img src="charcaterizeFibroblastwo12wk_files/figure-html/sel%20Genes%20split%20by%20grp%20ENSMUSG00000034855.Cxcl10-1.png" width="768" /></p>
+</div>
+<div id="ensmusg00000061353.cxcl12-1" class="section level4">
+<h4>ENSMUSG00000061353.Cxcl12</h4>
+<p><img src="charcaterizeFibroblastwo12wk_files/figure-html/sel%20Genes%20split%20by%20grp%20ENSMUSG00000061353.Cxcl12-1.png" width="768" /></p>
+</div>
+<div id="ensmusg00000046223.plaur-1" class="section level4">
+<h4>ENSMUSG00000046223.Plaur</h4>
+<p><img src="charcaterizeFibroblastwo12wk_files/figure-html/sel%20Genes%20split%20by%20grp%20ENSMUSG00000046223.Plaur-1.png" width="768" /></p>
+</div>
+<div id="ensmusg00000002603.tgfb1-1" class="section level4">
+<h4>ENSMUSG00000002603.Tgfb1</h4>
+<p><img src="charcaterizeFibroblastwo12wk_files/figure-html/sel%20Genes%20split%20by%20grp%20ENSMUSG00000002603.Tgfb1-1.png" width="768" /></p>
+</div>
+<div id="ensmusg00000031502.col4a1-1" class="section level4">
+<h4>ENSMUSG00000031502.Col4a1</h4>
+<p><img src="charcaterizeFibroblastwo12wk_files/figure-html/sel%20Genes%20split%20by%20grp%20ENSMUSG00000031502.Col4a1-1.png" width="768" /></p>
+</div>
+<div id="ensmusg00000046718.bst2-1" class="section level4">
+<h4>ENSMUSG00000046718.Bst2</h4>
+<p><img src="charcaterizeFibroblastwo12wk_files/figure-html/sel%20Genes%20split%20by%20grp%20ENSMUSG00000046718.Bst2-1.png" width="768" /></p>
+</div>
+<div id="ensmusg00000021835.bmp4-1" class="section level4">
+<h4>ENSMUSG00000021835.Bmp4</h4>
+<p><img src="charcaterizeFibroblastwo12wk_files/figure-html/sel%20Genes%20split%20by%20grp%20ENSMUSG00000021835.Bmp4-1.png" width="768" /></p>
+</div>
+<div id="ensmusg00000004098.col5a3-1" class="section level4">
+<h4>ENSMUSG00000004098.Col5a3</h4>
+<p><img src="charcaterizeFibroblastwo12wk_files/figure-html/sel%20Genes%20split%20by%20grp%20ENSMUSG00000004098.Col5a3-1.png" width="768" /></p>
+</div>
+<div id="ensmusg00000037405.icam1-1" class="section level4">
+<h4>ENSMUSG00000037405.Icam1</h4>
+<p><img src="charcaterizeFibroblastwo12wk_files/figure-html/sel%20Genes%20split%20by%20grp%20ENSMUSG00000037405.Icam1-1.png" width="768" /></p>
+</div>
+<div id="ensmusg00000039542.ncam1-1" class="section level4">
+<h4>ENSMUSG00000039542.Ncam1</h4>
+<p><img src="charcaterizeFibroblastwo12wk_files/figure-html/sel%20Genes%20split%20by%20grp%20ENSMUSG00000039542.Ncam1-1.png" width="768" /></p>
+</div>
+<div id="ensmusg00000018920.cxcl16-1" class="section level4">
+<h4>ENSMUSG00000018920.Cxcl16</h4>
+<p><img src="charcaterizeFibroblastwo12wk_files/figure-html/sel%20Genes%20split%20by%20grp%20ENSMUSG00000018920.Cxcl16-1.png" width="768" /></p>
+</div>
+<div id="ensmusg00000035385.ccl2-1" class="section level4">
+<h4>ENSMUSG00000035385.Ccl2</h4>
+<p><img src="charcaterizeFibroblastwo12wk_files/figure-html/sel%20Genes%20split%20by%20grp%20ENSMUSG00000035385.Ccl2-1.png" width="768" /></p>
+</div>
+<div id="ensmusg00000001506.col1a1-1" class="section level4">
+<h4>ENSMUSG00000001506.Col1a1</h4>
+<p><img src="charcaterizeFibroblastwo12wk_files/figure-html/sel%20Genes%20split%20by%20grp%20ENSMUSG00000001506.Col1a1-1.png" width="768" /></p>
+</div>
+<div id="ensmusg00000021025.nfkbia-1" class="section level4">
+<h4>ENSMUSG00000021025.Nfkbia</h4>
+<p><img src="charcaterizeFibroblastwo12wk_files/figure-html/sel%20Genes%20split%20by%20grp%20ENSMUSG00000021025.Nfkbia-1.png" width="768" /></p>
+</div>
+<div id="ensmusg00000021109.hif1a-1" class="section level4">
+<h4>ENSMUSG00000021109.Hif1a</h4>
+<p><img src="charcaterizeFibroblastwo12wk_files/figure-html/sel%20Genes%20split%20by%20grp%20ENSMUSG00000021109.Hif1a-1.png" width="768" /></p>
+</div>
+<div id="ensmusg00000075602.ly6a-1" class="section level4">
+<h4>ENSMUSG00000075602.Ly6a</h4>
+<p><img src="charcaterizeFibroblastwo12wk_files/figure-html/sel%20Genes%20split%20by%20grp%20ENSMUSG00000075602.Ly6a-1.png" width="768" /></p>
+</div>
+<div id="ensmusg00000023034.nr4a1-1" class="section level4">
+<h4>ENSMUSG00000023034.Nr4a1</h4>
+<p><img src="charcaterizeFibroblastwo12wk_files/figure-html/sel%20Genes%20split%20by%20grp%20ENSMUSG00000023034.Nr4a1-1.png" width="768" /></p>
+</div>
+<div id="ensmusg00000068196.col8a1-1" class="section level4">
+<h4>ENSMUSG00000068196.Col8a1</h4>
+<p><img src="charcaterizeFibroblastwo12wk_files/figure-html/sel%20Genes%20split%20by%20grp%20ENSMUSG00000068196.Col8a1-1.png" width="768" /></p>
+</div>
+<div id="ensmusg00000006818.sod2-1" class="section level4">
+<h4>ENSMUSG00000006818.Sod2</h4>
+<p><img src="charcaterizeFibroblastwo12wk_files/figure-html/sel%20Genes%20split%20by%20grp%20ENSMUSG00000006818.Sod2-1.png" width="768" /></p>
+</div>
+<div id="ensmusg00000024011.pi16-1" class="section level4">
+<h4>ENSMUSG00000024011.Pi16</h4>
+<p><img src="charcaterizeFibroblastwo12wk_files/figure-html/sel%20Genes%20split%20by%20grp%20ENSMUSG00000024011.Pi16-1.png" width="768" /></p>
+</div>
+<div id="ensmusg00000061232.h2-k1-1" class="section level4">
+<h4>ENSMUSG00000061232.H2-K1</h4>
+<p><img src="charcaterizeFibroblastwo12wk_files/figure-html/sel%20Genes%20split%20by%20grp%20ENSMUSG00000061232.H2-K1-1.png" width="768" /></p>
+</div>
+<div id="ensmusg00000037321.tap1-1" class="section level4">
+<h4>ENSMUSG00000037321.Tap1</h4>
+<p><img src="charcaterizeFibroblastwo12wk_files/figure-html/sel%20Genes%20split%20by%20grp%20ENSMUSG00000037321.Tap1-1.png" width="768" /></p>
+</div>
+<div id="ensmusg00000073421.h2-ab1-1" class="section level4">
+<h4>ENSMUSG00000073421.H2-Ab1</h4>
+<p><img src="charcaterizeFibroblastwo12wk_files/figure-html/sel%20Genes%20split%20by%20grp%20ENSMUSG00000073421.H2-Ab1-1.png" width="768" /></p>
+</div>
+<div id="ensmusg00000036594.h2-aa-1" class="section level4">
+<h4>ENSMUSG00000036594.H2-Aa</h4>
+<p><img src="charcaterizeFibroblastwo12wk_files/figure-html/sel%20Genes%20split%20by%20grp%20ENSMUSG00000036594.H2-Aa-1.png" width="768" /></p>
+</div>
+<div id="ensmusg00000073411.h2-d1-1" class="section level4">
+<h4>ENSMUSG00000073411.H2-D1</h4>
+<p><img src="charcaterizeFibroblastwo12wk_files/figure-html/sel%20Genes%20split%20by%20grp%20ENSMUSG00000073411.H2-D1-1.png" width="768" /></p>
+</div>
+<div id="ensmusg00000060550.h2-q7-1" class="section level4">
+<h4>ENSMUSG00000060550.H2-Q7</h4>
+<p><img src="charcaterizeFibroblastwo12wk_files/figure-html/sel%20Genes%20split%20by%20grp%20ENSMUSG00000060550.H2-Q7-1.png" width="768" /></p>
+</div>
+<div id="ensmusg00000024164.c3-1" class="section level4">
+<h4>ENSMUSG00000024164.C3</h4>
+<p><img src="charcaterizeFibroblastwo12wk_files/figure-html/sel%20Genes%20split%20by%20grp%20ENSMUSG00000024164.C3-1.png" width="768" /></p>
+</div>
+<div id="ensmusg00000053477.tcf4-1" class="section level4">
+<h4>ENSMUSG00000053477.Tcf4</h4>
+<p><img src="charcaterizeFibroblastwo12wk_files/figure-html/sel%20Genes%20split%20by%20grp%20ENSMUSG00000053477.Tcf4-1.png" width="768" /></p>
+</div>
+<div id="ensmusg00000024810.il33-1" class="section level4">
+<h4>ENSMUSG00000024810.Il33</h4>
+<p><img src="charcaterizeFibroblastwo12wk_files/figure-html/sel%20Genes%20split%20by%20grp%20ENSMUSG00000024810.Il33-1.png" width="768" /></p>
+</div>
+</div>
+</div>
+<div id="session-info" class="section level2">
+<h2>session info</h2>
+<pre class="r"><code>sessionInfo()</code></pre>
+<pre><code>## R version 4.2.1 (2022-06-23)
+## Platform: x86_64-apple-darwin17.0 (64-bit)
+## Running under: macOS Big Sur ... 10.16
+## 
+## Matrix products: default
+## BLAS:   /Library/Frameworks/R.framework/Versions/4.2/Resources/lib/libRblas.0.dylib
+## LAPACK: /Library/Frameworks/R.framework/Versions/4.2/Resources/lib/libRlapack.dylib
+## 
+## locale:
+## [1] en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8
+## 
+## attached base packages:
+## [1] stats4    stats     graphics  grDevices utils     datasets  methods  
+## [8] base     
+## 
+## other attached packages:
+##  [1] destiny_3.10.0              scater_1.24.0              
+##  [3] scuttle_1.6.2               CellMixS_1.12.0            
+##  [5] kSamples_1.2-9              SuppDists_1.1-9.7          
+##  [7] RColorBrewer_1.1-3          pheatmap_1.0.12            
+##  [9] ggpubr_0.4.0                ggsci_2.9                  
+## [11] runSeurat3_0.1.0            here_1.0.1                 
+## [13] magrittr_2.0.3              sp_1.5-0                   
+## [15] SeuratObject_4.1.0          Seurat_4.1.1               
+## [17] forcats_0.5.1               stringr_1.4.1              
+## [19] dplyr_1.0.9                 purrr_0.3.4                
+## [21] readr_2.1.2                 tidyr_1.2.0                
+## [23] tibble_3.1.8                ggplot2_3.3.6              
+## [25] tidyverse_1.3.2             SingleCellExperiment_1.18.0
+## [27] SummarizedExperiment_1.26.1 Biobase_2.56.0             
+## [29] GenomicRanges_1.48.0        GenomeInfoDb_1.32.3        
+## [31] IRanges_2.30.0              S4Vectors_0.34.0           
+## [33] BiocGenerics_0.42.0         MatrixGenerics_1.8.1       
+## [35] matrixStats_0.62.0          workflowr_1.7.0            
+## 
+## loaded via a namespace (and not attached):
+##   [1] ggthemes_4.2.4            scattermore_0.8          
+##   [3] knitr_1.39                irlba_2.3.5              
+##   [5] DelayedArray_0.22.0       data.table_1.14.2        
+##   [7] rpart_4.1.16              RCurl_1.98-1.8           
+##   [9] generics_0.1.3            ScaledMatrix_1.4.0       
+##  [11] callr_3.7.1               cowplot_1.1.1            
+##  [13] RANN_2.6.1                proxy_0.4-27             
+##  [15] future_1.27.0             tzdb_0.3.0               
+##  [17] spatstat.data_2.2-0       xml2_1.3.3               
+##  [19] lubridate_1.8.0           httpuv_1.6.5             
+##  [21] assertthat_0.2.1          viridis_0.6.2            
+##  [23] gargle_1.2.0              xfun_0.32                
+##  [25] hms_1.1.2                 jquerylib_0.1.4          
+##  [27] evaluate_0.16             promises_1.2.0.1         
+##  [29] DEoptimR_1.0-11           fansi_1.0.3              
+##  [31] dbplyr_2.2.1              readxl_1.4.0             
+##  [33] igraph_1.3.4              DBI_1.1.3                
+##  [35] htmlwidgets_1.5.4         spatstat.geom_2.4-0      
+##  [37] googledrive_2.0.0         ellipsis_0.3.2           
+##  [39] RSpectra_0.16-1           backports_1.4.1          
+##  [41] deldir_1.0-6              sparseMatrixStats_1.8.0  
+##  [43] vctrs_0.4.1               TTR_0.24.3               
+##  [45] ROCR_1.0-11               abind_1.4-5              
+##  [47] cachem_1.0.6              RcppEigen_0.3.3.9.2      
+##  [49] withr_2.5.0               robustbase_0.95-0        
+##  [51] progressr_0.10.1          vcd_1.4-10               
+##  [53] sctransform_0.3.3         xts_0.12.1               
+##  [55] goftest_1.2-3             cluster_2.1.3            
+##  [57] lazyeval_0.2.2            laeken_0.5.2             
+##  [59] crayon_1.5.1              labeling_0.4.2           
+##  [61] pkgconfig_2.0.3           nlme_3.1-159             
+##  [63] vipor_0.4.5               nnet_7.3-17              
+##  [65] rlang_1.0.4               globals_0.16.0           
+##  [67] lifecycle_1.0.1           miniUI_0.1.1.1           
+##  [69] modelr_0.1.8              rsvd_1.0.5               
+##  [71] cellranger_1.1.0          rprojroot_2.0.3          
+##  [73] polyclip_1.10-0           RcppHNSW_0.4.1           
+##  [75] lmtest_0.9-40             Matrix_1.4-1             
+##  [77] carData_3.0-5             boot_1.3-28              
+##  [79] zoo_1.8-10                reprex_2.0.1             
+##  [81] beeswarm_0.4.0            whisker_0.4              
+##  [83] ggridges_0.5.3            processx_3.7.0           
+##  [85] googlesheets4_1.0.1       png_0.1-7                
+##  [87] viridisLite_0.4.0         bitops_1.0-7             
+##  [89] getPass_0.2-2             KernSmooth_2.23-20       
+##  [91] DelayedMatrixStats_1.18.0 parallelly_1.32.1        
+##  [93] spatstat.random_2.2-0     rstatix_0.7.0            
+##  [95] ggsignif_0.6.3            beachmat_2.12.0          
+##  [97] scales_1.2.1              hexbin_1.28.2            
+##  [99] plyr_1.8.7                ica_1.0-3                
+## [101] zlibbioc_1.42.0           compiler_4.2.1           
+## [103] pcaMethods_1.88.0         fitdistrplus_1.1-8       
+## [105] cli_3.3.0                 XVector_0.36.0           
+## [107] listenv_0.8.0             patchwork_1.1.1          
+## [109] pbapply_1.5-0             ps_1.7.1                 
+## [111] ggplot.multistats_1.0.0   MASS_7.3-58.1            
+## [113] mgcv_1.8-40               tidyselect_1.1.2         
+## [115] stringi_1.7.8             highr_0.9                
+## [117] yaml_2.3.5                BiocSingular_1.12.0      
+## [119] ggrepel_0.9.1             grid_4.2.1               
+## [121] sass_0.4.2                tools_4.2.1              
+## [123] future.apply_1.9.0        parallel_4.2.1           
+## [125] rstudioapi_0.13           git2r_0.30.1             
+## [127] gridExtra_2.3             smoother_1.1             
+## [129] farver_2.1.1              scatterplot3d_0.3-41     
+## [131] Rtsne_0.16                digest_0.6.29            
+## [133] rgeos_0.5-9               shiny_1.7.2              
+## [135] Rcpp_1.0.9                car_3.1-0                
+## [137] broom_1.0.0               later_1.3.0              
+## [139] RcppAnnoy_0.0.19          httr_1.4.3               
+## [141] colorspace_2.0-3          rvest_1.0.2              
+## [143] fs_1.5.2                  tensor_1.5               
+## [145] ranger_0.14.1             reticulate_1.25          
+## [147] splines_4.2.1             uwot_0.1.11              
+## [149] spatstat.utils_2.3-1      plotly_4.10.0            
+## [151] xtable_1.8-4              jsonlite_1.8.0           
+## [153] R6_2.5.1                  pillar_1.8.1             
+## [155] htmltools_0.5.3           mime_0.12                
+## [157] glue_1.6.2                fastmap_1.1.0            
+## [159] VIM_6.1.1                 BiocParallel_1.30.3      
+## [161] BiocNeighbors_1.14.0      class_7.3-20             
+## [163] codetools_0.2-18          utf8_1.2.2               
+## [165] lattice_0.20-45           bslib_0.4.0              
+## [167] spatstat.sparse_2.1-1     curl_4.3.2               
+## [169] ggbeeswarm_0.6.0          leiden_0.4.2             
+## [171] limma_3.52.2              survival_3.4-0           
+## [173] rmarkdown_2.15            munsell_0.5.0            
+## [175] e1071_1.7-11              GenomeInfoDbData_1.2.8   
+## [177] haven_2.5.0               reshape2_1.4.4           
+## [179] gtable_0.3.0              spatstat.core_2.4-4</code></pre>
+<pre class="r"><code>date()</code></pre>
+<pre><code>## [1] &quot;Mon Aug 22 09:18:57 2022&quot;</code></pre>
+</div>
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+<script>
+$(document).ready(function () {
+  window.initializeCodeFolding("show" === "show");
+});
+</script>
+
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
