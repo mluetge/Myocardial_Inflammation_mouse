@@ -118,6 +118,9 @@ table(seurat$seqType, seurat$treatment)
 
 seurat <- subset(seurat, seqType == "sn")
 seurat <- rerunSeurat3(seurat)
+saveRDS(seurat, file = paste0(basedir,
+                      "/data/MuHeart_Fibroblasts14D102plusIsotype12wk_snOnly", 
+                      "_seurat.rds"))
 
 ```
 
