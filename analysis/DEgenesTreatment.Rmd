@@ -575,6 +575,17 @@ DotPlot(seurat, assay="RNA", features = selGenes$ensID, scale =F,
   scale_x_discrete(breaks=selGenes$ensID, labels=selGenes$gene) +
   xlab("") + ylab("")
 
+selGenesDat <- data.frame(gene=c("Bmp4", "Bmpr1a", "Id1", "Bmpr2"))
+selGenes <- selGenesDat %>% 
+  left_join(., genes, by="gene")
+
+DotPlot(seurat, assay="RNA", features = selGenes$ensID, scale =F,
+        dot.min = 0.05, dot.scale = 9, scale.by = "radius") +
+  scale_color_viridis_c() +
+  coord_flip() +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
+  scale_x_discrete(breaks=selGenes$ensID, labels=selGenes$gene) +
+  xlab("") + ylab("")
 
 ```
 
@@ -586,6 +597,14 @@ seuratSub <- subset(seurat, label == "Fibroblasts")
 
 Idents(seuratSub) <- seuratSub$treatment
 
+selGenesDat <- data.frame(gene=c("Bmp2", "Bmp4", "Bmpr1a", "Bmpr1b", "Bmpr2"))
+
+genes <- data.frame(ensID=rownames(seurat)) %>%
+  mutate(gene=gsub("^.*\\.", "", ensID))
+selGenes <- selGenesDat %>% 
+  left_join(., genes, by="gene")
+
+
 DotPlot(seuratSub, assay="RNA", features = selGenes$ensID, scale =F,
         dot.min = 0, dot.scale = 3, scale.by = "size") +
   scale_color_viridis_c() +
@@ -595,12 +614,34 @@ DotPlot(seuratSub, assay="RNA", features = selGenes$ensID, scale =F,
   xlab("") + ylab("")
 
 
+selGenesDat <- data.frame(gene=c("Bmp4", "Bmpr1a", "Id1", "Bmpr2", "Id2"))
+selGenes <- selGenesDat %>% 
+  left_join(., genes, by="gene")
+
+DotPlot(seuratSub, assay="RNA", features = selGenes$ensID, scale =F,
+        dot.min = 0.05, dot.scale = 9, scale.by = "radius") +
+  scale_color_viridis_c() +
+  coord_flip() +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
+  scale_x_discrete(breaks=selGenes$ensID, labels=selGenes$gene) +
+  xlab("") + ylab("")
+
+
+
 ```
 
 
 
 ## Dotplot with selGenes label plus treatment
 ```{r dotplot label plus treatment, fig.height=6, fig.width=10}
+
+selGenesDat <- data.frame(gene=c("Bmp2", "Bmp4", "Bmpr1a", "Bmpr1b", "Bmpr2"))
+
+genes <- data.frame(ensID=rownames(seurat)) %>%
+  mutate(gene=gsub("^.*\\.", "", ensID))
+selGenes <- selGenesDat %>% 
+  left_join(., genes, by="gene")
+
 
 ordDat <- expand.grid(levels(seurat$label), unique(seurat$treatment)) %>% 
   mutate(ord=paste0(Var1, "_", Var2)) %>% arrange(., Var1)

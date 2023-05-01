@@ -1,0 +1,333 @@
+---
+title: "Sign Fibroblasts 14D102 vs isotype"
+author: "Mechthild Lütge"
+date: "Dec 2022"
+output:
+  html_document:
+    self_contained: no
+    code_folding: show
+    number_sections: no
+    toc: yes
+    toc_depth: 3
+    toc_float: true
+    collapsed: no
+    smooth_scroll: yes
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(warning = FALSE, message = FALSE, dev = c("png", "pdf"))
+set.seed(1000)
+```
+
+## load packages
+```{r libs}
+suppressPackageStartupMessages({
+  library(SingleCellExperiment)
+  library(tidyverse)
+  library(Seurat)
+  library(magrittr)
+  library(dplyr)
+  library(purrr)
+  library(ggplot2)
+  library(here)
+  library(runSeurat3)
+  library(ggsci)
+  library(pheatmap)
+  library(ggpubr)
+  library(RColorBrewer)
+})
+
+```
+
+## heatmap function
+
+```{r avg heatmap funct}
+avgHeatmap <- function(seurat, selGenes, colVecIdent, colVecCond=NULL,
+                       ordVec=NULL, gapVecR=NULL, gapVecC=NULL,cc=FALSE,
+                       cr=FALSE, condCol=FALSE){
+  
+  selGenes <- selGenes$gene
+  
+  ## assay data
+  clusterAssigned <- as.data.frame(Idents(seurat)) %>%
+  dplyr::mutate(cell=rownames(.))
+  colnames(clusterAssigned)[1] <- "ident"
+  seuratDat <- GetAssayData(seurat)
+  
+  ## genes of interest
+  genes <- data.frame(gene=rownames(seurat)) %>% 
+    mutate(geneID=gsub("^.*\\.", "", gene)) %>% filter(geneID %in% selGenes)
+
+  ## matrix with averaged cnts per ident
+  logNormExpres <- as.data.frame(t(as.matrix(
+    seuratDat[which(rownames(seuratDat) %in% genes$gene),])))
+  logNormExpres <- logNormExpres %>% dplyr::mutate(cell=rownames(.)) %>%
+    dplyr::left_join(.,clusterAssigned, by=c("cell")) %>%
+    dplyr::select(-cell) %>% dplyr::group_by(ident) %>%
+    dplyr::summarise_all(mean)
+  logNormExpresMa <- logNormExpres %>% dplyr::select(-ident) %>% as.matrix()
+  rownames(logNormExpresMa) <- logNormExpres$ident
+  logNormExpresMa <- t(logNormExpresMa)
+  rownames(logNormExpresMa) <- gsub("^.*?\\.","",rownames(logNormExpresMa))
+  
+  ## remove genes if they are all the same in all groups
+  ind <- apply(logNormExpresMa, 1, sd) == 0
+  logNormExpresMa <- logNormExpresMa[!ind,]
+  genes <- genes[!ind,]
+
+  ## color columns according to cluster
+  annotation_col <- as.data.frame(gsub("(^.*?_)","",
+                                       colnames(logNormExpresMa)))%>%
+    dplyr::mutate(celltype=gsub("(_.*$)","",colnames(logNormExpresMa)))
+  colnames(annotation_col)[1] <- "col1"
+  annotation_col <- annotation_col %>%
+    dplyr::mutate(cond = gsub(".*_","",col1)) %>%
+    dplyr::select(cond, celltype)
+  rownames(annotation_col) <- colnames(logNormExpresMa) 
+
+  ann_colors = list(
+      cond = colVecCond,
+      celltype=colVecIdent)
+  if(is.null(ann_colors$cond)){
+    annotation_col$cond <- NULL
+  }
+  
+  ## adjust order
+  logNormExpresMa <- logNormExpresMa[selGenes,]
+  if(is.null(ordVec)){
+    ordVec <- levels(seurat)
+  }
+  logNormExpresMa <- logNormExpresMa[,ordVec]
+
+  ## scaled row-wise
+  pheatmap(logNormExpresMa, scale="row" ,treeheight_row = 0, cluster_rows = cr, 
+         cluster_cols = cc,
+         color = colorRampPalette(c("#2166AC", "#F7F7F7", "#B2182B"))(50),
+         annotation_col = annotation_col, cellwidth=15, cellheight=10,
+         annotation_colors = ann_colors, gaps_row = gapVecR, gaps_col = gapVecC)
+}
+
+```
+
+
+## set dir and subset data on Fibroblasts
+```{r set dir}
+basedir <- here()
+seurat <- readRDS(file = paste0(basedir,
+                      "/data/MuHeart_totalCellsPlusTreated_integratedLabeled", 
+                      "_seurat.rds"))
+seurat$age[which(seurat$treatment != "no")] <- "12wk"
+dim(seurat)
+seurat <- subset(seurat, label == "Fibroblasts")
+seurat <- subset(seurat, treatment != "no")
+dim(seurat)
+table(seurat$treatment)
+table(seurat$seqType, seurat$treatment)
+
+```
+
+
+
+## color vectors
+```{r colVec}
+
+colPal <- pal_igv()(length(levels(seurat)))
+colGrp <- pal_jama()(length(unique(seurat$grp)))
+colAge <- pal_uchicago()(length(unique(seurat$age)))
+colStype <- pal_aaas()(length(unique(seurat$seqType)))
+colDat <- c(pal_npg()(10),
+            pal_futurama()(10))[1:(length(unique(seurat$dataset)))]
+colTreat <- pal_jama()(length(unique(seurat$treatment)))
+
+names(colPal) <- levels(seurat)
+names(colGrp) <- unique(seurat$grp)
+names(colAge) <- unique(seurat$age)
+names(colStype) <- unique(seurat$seqType)
+names(colDat) <- unique(seurat$dataset)
+names(colTreat) <- unique(seurat$treatment)
+
+colLab <- c("#5050FF", "#CE3D32", "#749B58", "#F0E685",
+            "#466983", "#BA6388", "#5DB1DD", "#802268",
+            "#6BD76B", "#D595A7", "#924822", "#837B8D",
+            "#C75127", "#D58F5C", "#7A65A5", "#E4AF69")
+
+names(colLab) <- c("InfMonos", "Tcells", "Endothelial", "Macrophages",
+                   "Fibroblasts", "DCs", "NKcells", "Perivascular",
+                   "Neutrophils", "Bcells", "Cardiomyocytes", "proliferating",
+                   "pDCs", "endocardialEndothelial", "Eosinophils",
+                   "GlialCells")
+```
+
+## vis data {.tabset}
+
+
+### Sample
+```{r vis sample, fig.height=3.5, fig.width=6}
+
+DimPlot(seurat, reduction = "umap", group.by = "dataset", cols=colDat)+
+  theme_bw() +
+  theme(axis.text = element_blank(), axis.ticks = element_blank(), 
+        panel.grid.minor = element_blank()) +
+  xlab("UMAP1") +
+  ylab("UMAP2")
+
+
+```
+
+### SeqType
+```{r vis seqType}
+
+DimPlot(seurat, reduction = "umap", group.by = "seqType", cols=colStype)+
+  theme_bw() +
+  theme(axis.text = element_blank(), axis.ticks = element_blank(), 
+        panel.grid.minor = element_blank()) +
+  xlab("UMAP1") +
+  ylab("UMAP2")
+
+DimPlot(seurat, reduction = "umap", group.by = "seqType", cols=colStype)+
+  theme_void() 
+```
+
+### Treatment
+```{r vis treat}
+
+DimPlot(seurat, reduction = "umap", group.by = "treatment", cols=colTreat)+
+  theme_bw() +
+  theme(axis.text = element_blank(), axis.ticks = element_blank(), 
+        panel.grid.minor = element_blank()) +
+  xlab("UMAP1") +
+  ylab("UMAP2")
+
+DimPlot(seurat, reduction = "umap", group.by = "treatment", cols=colTreat)+
+  theme_void() 
+
+```
+
+
+## gene signatures {.tabset}
+```{r define gene signatures}
+
+c0Sig <- data.frame(gene=c("Cxcl9", "Cxcl10", "Ccl2", "Cxcl5", "Ccl19",
+                           "Cxcl12", "Cxcl1")) %>%
+  mutate(signature="CellRecruitment")
+
+c1Sig <- data.frame(gene=c("H2-D1", "H2-K1","B2m","H2-Ab1","H2-Q7","H2-Aa",
+                           "Tap1")) %>% 
+  mutate(signature="AntigenPresentation")
+
+c5Sig <- data.frame(gene=c("Ly6a","Bst2","Vcam1","Icam1","Ncam1","C3",
+                           "Nfkbia")) %>%
+  mutate(signature="ActivationInteraction")
+
+c7Sig <- data.frame(gene=c("Timp1","Sod2","Il33","Hif1a","Plaur","Cxcl16")) %>%
+  mutate(signature="DamageRemodeling")
+
+c10Sig <- data.frame(gene=c("Nr4a1","Pi16","Pdpn","Cd34","Pdgfra","Col1a1")) %>%
+  mutate(signature="FBidentity")
+
+ARsig <- data.frame(gene=c("Col8a1","Col4a4","Col4a1","Col4a5","Col5a3")) %>%
+  mutate(signature="TissueStructure")
+
+IIsig <- data.frame(gene=c("Bmp4","Id1","Tcf4","Jun","Tgfb1","Ccn1")) %>%
+  mutate(signature="TissueHomeostasis")
+
+allGenes <- data.frame(geneID = rownames(seurat)) %>%
+  mutate(gene=gsub("^.*\\.","", geneID))
+allSign <- rbind(c0Sig, c1Sig, c5Sig, c7Sig, c10Sig, ARsig, IIsig) %>%
+  left_join(., allGenes, by="gene")
+```
+
+
+## Dotplot
+```{r dotplot sign genes, fig.height=4, fig.width=4}
+
+Idents(seurat) <- seurat$treatment
+signNam <- unique(allSign$signature)
+lapply(signNam, function(sig){
+  signSub <- allSign %>% filter(signature == sig)
+  DotPlot(seurat, assay="RNA", features = signSub$geneID, scale =F,
+        cluster.idents = F, dot.min = 0, dot.scale = 8, scale.by = "size") +
+  scale_color_viridis_c() +
+  coord_flip() +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
+  scale_x_discrete(breaks=signSub$geneID, labels=signSub$gene) +
+  xlab("") + ylab("")
+})
+
+```
+
+sc Heatmap
+```{r sc heatmap}
+
+signNam <- unique(allSign$signature)
+seurat <- ScaleData(seurat)
+
+lapply(signNam, function(sig){
+  signSub <- allSign %>% filter(signature == sig)
+DoHeatmap(seurat, features = signSub$geneID, group.by = "treatment", 
+          group.colors = colTreat, label = F,
+          disp.min = -0.5, disp.max = 1.5) +
+  scale_fill_continuous(type = "viridis") +
+  scale_y_discrete(breaks=signSub$geneID, labels=signSub$gene) 
+})
+
+```
+
+## Heatmap with FC
+```{r Heatmap with Foldchanges, fig.height=6, fig.width=18}
+
+Idents(seurat) <- seurat$treatment
+overallDE <- FindAllMarkers(object = seurat, assay ="RNA",
+                                     only.pos = TRUE, min.pct = 0.01,
+                                     logfc.threshold = 0.05,
+                                     test.use = "wilcox")
+
+logFCdat <- overallDE %>%
+  mutate(log2FC=ifelse(cluster=="isotype", -1*avg_log2FC, avg_log2FC)) %>% 
+  mutate(geneID=gene) %>% 
+  dplyr::select(log2FC, geneID)
+
+geneIDdat <- allSign %>%
+  left_join(., logFCdat, by="geneID") %>% 
+  dplyr::select(-geneID) %>% 
+  filter(!is.na(log2FC)) %>% 
+  spread(., signature, log2FC)
+
+geneIDmat <- t(as.matrix(geneIDdat[,-1]))
+colnames(geneIDmat) <- geneIDdat$gene
+ordDat <- allSign %>% filter(gene %in% colnames(geneIDmat))
+geneIDmat <- geneIDmat[unique(ordDat$signature),ordDat$gene]
+
+pheatmap(geneIDmat, scale="none" ,treeheight_row = 0, cluster_rows = F, 
+         cluster_cols = F, na_col = "#FFFFFF",
+         color = colorRampPalette(c("#005083", "#0064ab","#0064ab","#6876a4",
+                                    "#9f8a89","#c99f6e", "#f0b64d","#f0b64d",
+                                    "#f0b64d","#ffd28f"))(20),
+         breaks = seq(from=-1, to=1,by=0.1),
+         cellwidth=15, cellheight=10,
+         main = "log2FC Fibroblasts: 14D102 vs Isotype")
+
+genesOut <- c("Cxcl1", "Cxcl12", "Ncam1", "Timp1", "Il33", "Cxcl16", "Pdgfra")
+geneIDmatSub <- geneIDmat[,-which(colnames(geneIDmat) %in% genesOut)]
+pheatmap(geneIDmatSub, scale="none" ,treeheight_row = 0, cluster_rows = F, 
+         cluster_cols = F, na_col = "#FFFFFF",
+         color = colorRampPalette(c("#005083", "#0064ab","#0064ab","#6876a4",
+                                    "#9f8a89","#c99f6e", "#f0b64d","#f0b64d",
+                                    "#f0b64d","#ffd28f"))(20),
+         breaks = seq(from=-1, to=1,by=0.1),
+         cellwidth=15, cellheight=10,
+         main = "log2FC Fibroblasts: 14D102 vs Isotype")
+
+```
+
+
+## session info
+```{r session info}
+sessionInfo()
+date()
+```
+
+
+
+

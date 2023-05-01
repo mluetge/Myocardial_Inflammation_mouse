@@ -286,12 +286,34 @@ DimPlot(seurat, reduction = "umap", group.by = "label", cols=colLab,
 
 ```
 
-## vis sel genes violin
+### col plus split by seqType
+```{r vis plus split seqType, fig.height=3.5, fig.width=7}
+
+DimPlot(seurat, reduction = "umap", group.by = "seqType", cols=colStype,
+        split.by = "seqType")+
+  theme_void() 
+
+```
+
+### col plus split by age
+```{r vis plus split age, fig.height=3.5, fig.width=7}
+
+DimPlot(seurat, reduction = "umap", group.by = "age", cols=colAge,
+        split.by = "age")+
+  theme_void() 
+
+```
+
+
+
+## vis BMPs {.tabset}
+### violin
 ```{r vis sel genes violin}
 
 genesDat <- data.frame(EnsID=rownames(seurat)) %>% 
   mutate(gene=gsub(".*\\.", "", EnsID))
-selGenes <- data.frame(gene=c("Bmp2", "Bmp4", "Bmpr1a", "Bmpr1b", "Bmpr2")) %>% 
+selGenes <- data.frame(gene=c("Bmp2", "Bmp4", "Bmpr1a", "Bmpr1b", "Bmpr2",
+                              "Bmp7")) %>% 
   left_join(., genesDat, by="gene")
 
 Idents(seurat) <- seurat$grp
@@ -317,11 +339,24 @@ pList <- sapply(selGenes$EnsID, function(x){
 ```
 
 
-## vis sel genes heatmap
+### heatmap
 ```{r vis sel genes heatmap, fig.height=6, fig.width=14}
 selGenesHM <- selGenes %>% mutate(gene = EnsID)
+
+ordFix <- c("Bcells_control","Bcells_TCRM","Tcells_control","Tcells_TCRM",
+            "NKcells_control","NKcells_TCRM","Eosinophils_control",
+            "Eosinophils_TCRM","InfMonos_control","InfMonos_TCRM",
+            "Macrophages_control","Macrophages_TCRM","Neutrophils_control",
+            "Neutrophils_TCRM","pDCs_control","pDCs_TCRM","DCs_control",
+            "DCs_TCRM","proliferating_control","proliferating_TCRM",
+            "Cardiomyocytes_control","Cardiomyocytes_TCRM",
+            "endocardialEndothelial_control", "endocardialEndothelial_TCRM",
+            "Endothelial_control","Endothelial_TCRM","Fibroblasts_control",
+            "Fibroblasts_TCRM","GlialCells_control","GlialCells_TCRM",
+            "Perivascular_control","Perivascular_TCRM")
+
 seurat$label_plus_grp <- paste0(seurat$label, "_", seurat$grp)
-seurat$label_plus_grp <- factor(seurat$label_plus_grp)
+seurat$label_plus_grp <- factor(seurat$label_plus_grp, levels = ordFix)
 Idents(seurat) <- seurat$label_plus_grp
 gapVecCol <- seq(2, length(unique(seurat$label_plus_grp)), by=2)
 pOut <- avgHeatmap(seurat = seurat, selGenes = selGenesHM,
@@ -332,12 +367,45 @@ pOut <- avgHeatmap(seurat = seurat, selGenes = selGenesHM,
 
 ```
 
-## vis sel genes dotplot across label
-```{r vis sel genes Dotplot across label, fig.height=5, fig.width=7}
+### dotplot across label
+```{r vis sel genes Dotplot across label, fig.height=5, fig.width=9}
 
 Idents(seurat) <- seurat$label_plus_grp
 DotPlot(seurat, assay="RNA", features = selGenes$EnsID, scale =T,
-        cluster.idents = T, dot.min = 0, dot.scale = 3, scale.by = "size") +
+        cluster.idents = F, dot.min = 0, dot.scale = 3, scale.by = "size") +
+  scale_color_viridis_c() +
+  coord_flip() +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
+  scale_x_discrete(breaks=selGenes$EnsID, labels=selGenes$gene) +
+  xlab("") + ylab("")
+
+DotPlot(seurat, assay="RNA", features = selGenes$EnsID, scale =F,
+        cluster.idents = F, dot.min = 0, dot.scale = 5, scale.by = "size") +
+  scale_color_viridis_c() +
+  coord_flip() +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
+  scale_x_discrete(breaks=selGenes$EnsID, labels=selGenes$gene) +
+  xlab("") + ylab("")
+
+## only Bmp4 and Bmpr1a
+selGenesSub <- selGenes %>% filter(gene %in% c("Bmpr1a", "Bmp4"))
+DotPlot(seurat, assay="RNA", features = selGenesSub$EnsID, scale =F,
+        cluster.idents = F, dot.min = 0, dot.scale = 5, scale.by = "size") +
+  scale_color_viridis_c() +
+  coord_flip() +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
+  scale_x_discrete(breaks=selGenesSub$EnsID, labels=selGenesSub$gene) +
+  xlab("") + ylab("")
+
+```
+
+
+### dotplot total
+```{r vis sel genes Dotplot total, fig.height=4, fig.width=4}
+
+Idents(seurat) <- seurat$grp
+DotPlot(seurat, assay="RNA", features = selGenes$EnsID, scale =F,
+        cluster.idents = T, dot.min = 0, dot.scale = 8, scale.by = "size") +
   scale_color_viridis_c() +
   coord_flip() +
   theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
@@ -348,12 +416,175 @@ DotPlot(seurat, assay="RNA", features = selGenes$EnsID, scale =T,
 
 ```
 
-## vis sel genes dotplot total
-```{r vis sel genes Dotplot total, fig.height=4, fig.width=4}
+
+## vis BMP inhibitors {.tabset}
+### violin
+```{r vis BMP inhibitors violin}
+
+genesDat <- data.frame(EnsID=rownames(seurat)) %>% 
+  mutate(gene=gsub(".*\\.", "", EnsID))
+selGenes <- data.frame(gene=c("Sost", "Sostdc1", "Chrd", "Ccn2", "Fst",
+                              "Nog")) %>% 
+  left_join(., genesDat, by="gene")
+
+Idents(seurat) <- seurat$grp
+#seuratSub <- subset(seurat, downsample = min(table(seurat$cond2)))
+
+pList <- sapply(selGenes$EnsID, function(x){
+  p <- VlnPlot(object = seurat, features = x,
+               group.by = "grp",
+               cols = colGrp, pt.size = 0
+               )
+  plot(p)
+})
+
+pList <- sapply(selGenes$EnsID, function(x){
+  p <- VlnPlot(object = seurat, features = x,
+               group.by = "label", split.by = "grp",
+               cols = colGrp, pt.size = 0
+               )
+  plot(p)
+})
+
+
+```
+
+
+### heatmap
+```{r vis BMP inhibitors heatmap, fig.height=6, fig.width=14}
+selGenesHM <- selGenes %>% mutate(gene = EnsID)
+
+Idents(seurat) <- seurat$label_plus_grp
+gapVecCol <- seq(2, length(unique(seurat$label_plus_grp)), by=2)
+pOut <- avgHeatmap(seurat = seurat, selGenes = selGenesHM,
+                    colVecIdent = colLab, colVecCond=colGrp,
+                    ordVec=levels(seurat$label_plus_grp),
+                    gapVecR=NULL, gapVecC=gapVecCol,cc=FALSE,
+                    cr=T, condCol=T)
+
+```
+
+### dotplot across label
+```{r vis BMP inhibitors Dotplot across label, fig.height=5, fig.width=9}
+
+Idents(seurat) <- seurat$label_plus_grp
+DotPlot(seurat, assay="RNA", features = selGenes$EnsID, scale =T,
+        cluster.idents = F, dot.min = 0, dot.scale = 3, scale.by = "size") +
+  scale_color_viridis_c() +
+  coord_flip() +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
+  scale_x_discrete(breaks=selGenes$EnsID, labels=selGenes$gene) +
+  xlab("") + ylab("")
+
+DotPlot(seurat, assay="RNA", features = selGenes$EnsID, scale =F,
+        cluster.idents = F, dot.min = 0, dot.scale = 5, scale.by = "size") +
+  scale_color_viridis_c() +
+  coord_flip() +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
+  scale_x_discrete(breaks=selGenes$EnsID, labels=selGenes$gene) +
+  xlab("") + ylab("")
+
+
+```
+
+
+### dotplot total
+```{r vis BMP inhibitors Dotplot total, fig.height=4, fig.width=4}
 
 Idents(seurat) <- seurat$grp
 DotPlot(seurat, assay="RNA", features = selGenes$EnsID, scale =F,
-        cluster.idents = T, dot.min = 0, dot.scale = 3, scale.by = "size") +
+        cluster.idents = T, dot.min = 0, dot.scale = 8, scale.by = "size") +
+  scale_color_viridis_c() +
+  coord_flip() +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
+  scale_x_discrete(breaks=selGenes$EnsID, labels=selGenes$gene) +
+  xlab("") + ylab("")
+
+
+
+```
+
+
+## vis BMP downstream sign {.tabset}
+### violin
+```{r vis BMP downstream violin}
+
+genesDat <- data.frame(EnsID=rownames(seurat)) %>% 
+  mutate(gene=gsub(".*\\.", "", EnsID))
+selGenes <- data.frame(gene=c("Id1", "Id2", "Id3", "Id4", "Ccn2", "Serpine1",
+                              "Smad6", "Smad7","Bambi", "Rasef", "Msx1",
+                              "Msx2", "Msx3", "Lef1", "Gata2", "Gata3", "Tbx2",
+                              "Creb3l1", "Prdx2", "Klf10", "Snai1", "Bmpr2",
+                              "Hey1", "Hes1")) %>% 
+  left_join(., genesDat, by="gene")
+
+Idents(seurat) <- seurat$grp
+#seuratSub <- subset(seurat, downsample = min(table(seurat$cond2)))
+
+pList <- sapply(selGenes$EnsID, function(x){
+  p <- VlnPlot(object = seurat, features = x,
+               group.by = "grp",
+               cols = colGrp, pt.size = 0
+               )
+  plot(p)
+})
+
+pList <- sapply(selGenes$EnsID, function(x){
+  p <- VlnPlot(object = seurat, features = x,
+               group.by = "label", split.by = "grp",
+               cols = colGrp, pt.size = 0
+               )
+  plot(p)
+})
+
+
+```
+
+
+### heatmap
+```{r vis BMP downstream heatmap, fig.height=6, fig.width=14}
+selGenesHM <- selGenes %>% mutate(gene = EnsID)
+
+Idents(seurat) <- seurat$label_plus_grp
+gapVecCol <- seq(2, length(unique(seurat$label_plus_grp)), by=2)
+pOut <- avgHeatmap(seurat = seurat, selGenes = selGenesHM,
+                    colVecIdent = colLab, colVecCond=colGrp,
+                    ordVec=levels(seurat$label_plus_grp),
+                    gapVecR=NULL, gapVecC=gapVecCol,cc=FALSE,
+                    cr=T, condCol=T)
+
+```
+
+### dotplot across label
+```{r vis BMP downstream Dotplot across label, fig.height=8, fig.width=9}
+
+Idents(seurat) <- seurat$label_plus_grp
+DotPlot(seurat, assay="RNA", features = selGenes$EnsID, scale =T,
+        cluster.idents = F, dot.min = 0, dot.scale = 3, scale.by = "size") +
+  scale_color_viridis_c() +
+  coord_flip() +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
+  scale_x_discrete(breaks=selGenes$EnsID, labels=selGenes$gene) +
+  xlab("") + ylab("")
+
+DotPlot(seurat, assay="RNA", features = selGenes$EnsID, scale =F,
+        cluster.idents = F, dot.min = 0, dot.scale = 5, scale.by = "size") +
+  scale_color_viridis_c() +
+  coord_flip() +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
+  scale_x_discrete(breaks=selGenes$EnsID, labels=selGenes$gene) +
+  xlab("") + ylab("")
+
+
+```
+
+
+### dotplot total
+```{r vis BMP downstream Dotplot total, fig.height=8, fig.width=4}
+
+Idents(seurat) <- seurat$grp
+DotPlot(seurat, assay="RNA", features = selGenes$EnsID, scale =F,
+        cluster.idents = T, dot.min = 0, dot.scale = 8, scale.by = "size") +
   scale_color_viridis_c() +
   coord_flip() +
   theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
