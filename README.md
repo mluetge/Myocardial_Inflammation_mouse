@@ -1,4 +1,4 @@
-# TCRM_Christina
+# Bone morphogenic protein-4 availability in the cardiac microenvironment controls myocardial inflammation and fibrosis - Murine data
 
 This repository contains scripts to reproduce the results from murine data from "Bone morphogenic protein-4 availability in the cardiac microenvironment controls myocardial inflammation and fibrosis" and more.
 
