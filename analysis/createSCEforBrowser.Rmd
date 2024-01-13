@@ -1,0 +1,160 @@
+---
+title: "create SCE objects for browser"
+author: ""
+date: ""
+output: 
+  html_document:
+    keep_md: true
+    toc: true
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r setup, echo = FALSE}
+options(width = 100)
+knitr::opts_chunk$set(warning = FALSE, message = FALSE, dev = c("png", "pdf"))
+seed <- 1234
+```
+
+# Load packages
+
+```{r load-packages, warning = FALSE}
+suppressPackageStartupMessages({
+  library(scater)
+  library(dplyr)
+  library(reshape2)
+  library(Matrix)
+  library(purrr)
+  library(scran)
+  library(Seurat)
+  library(tidyverse)
+  library(here)
+})
+```
+
+
+## load input data
+```{r input data}
+basedir <- here()
+seuratTotal <- readRDS(file = paste0(basedir,
+                      "/data/MuHeart_totalCellsPlusTreated_integratedLabeled", 
+                      "_seurat.rds"))
+Idents(seuratTotal) <- seuratTotal$label
+seuratTotal$age[which(seuratTotal$treatment != "no")] <- "12wk"
+
+seuratFib <- readRDS(file = paste0(basedir, 
+                              "/data/TCRM_all10samplesMerged_wo12w_seurat.rds"))
+
+
+```
+
+
+# adjust label and metadata slots
+```{r adjust label}
+
+### Total cells
+seuratTotal$cond <- seuratTotal$grp
+seuratTotal$label_plus_cond <- paste0(seuratTotal$label, "_", seuratTotal$cond)
+seuratTotal$label_plus_treat <- paste0(seuratTotal$label, "_", seuratTotal$treatment)
+seuratTotal@assays$integrated <- NULL
+
+selCol <- c("dataset","label","cond","treatment", "label_plus_cond", "label_plus_treat")
+sceTotal <- as.SingleCellExperiment(seuratTotal)
+colData(sceTotal) <- colData(sceTotal)[,selCol]
+reducedDim(sceTotal, "UMAP") <- seuratTotal@reductions$umap@cell.embeddings
+remove(seuratTotal)
+
+### Fibroblasts
+seuratFib <- subset(seuratFib, seurat_clusters %in% c("11", "10"), invert=T)
+seuratFib$clusterlabel <- as.character(as.numeric(as.character(seuratFib$seurat_clusters)) +1)
+seuratFib$age <- seuratFib$time
+seuratFib$cond <- seuratFib$grp
+selCol <- c("dataset","clusterlabel","cond", "age")
+sceFib <- as.SingleCellExperiment(seuratFib)
+colData(sceFib) <- colData(sceFib)[,selCol]
+remove(seuratFib)
+
+
+```
+
+
+## reduce size of sce objects
+```{r reduce size}
+sceTotal@assays@data$counts <- NULL
+sceTotal@assays@data$scaledata <- NULL
+reducedDim(sceTotal, "TSNE") <- NULL
+reducedDim(sceTotal, "PCA") <- NULL
+
+sceFib@assays@data$counts <- NULL
+sceFib@assays@data$scaledata <- NULL
+reducedDim(sceFib, "TSNE") <- NULL
+reducedDim(sceFib, "PCA") <- NULL
+
+```
+
+
+## vis label
+```{r merge}
+
+## set color vectors
+colFib <- c("#5050FFFF", "#CE3D32FF", "#749B58FF", "#F0E685FF", "#466983FF",
+            "#BA6338FF", "#5DB1DDFF", "#802268FF", "#6BD76BFF","#D595A7FF")
+names(colFib) <- c("1",  "2" , "3" , "4" , "5" , "6" , "7" , "8" , "9" , "10")
+
+colLab <- c("#5050FF", "#CE3D32", "#749B58", "#F0E685",
+            "#466983", "#BA6388", "#5DB1DD", "#802268",
+            "#6BD76B", "#D595A7", "#924822", "#837B8D",
+            "#C75127", "#D58F5C", "#7A65A5", "#E4AF69")
+
+names(colLab) <- c("InfMonos", "Tcells", "Endothelial", "Macrophages",
+                   "Fibroblasts", "DCs", "NKcells", "Perivascular",
+                   "Neutrophils", "Bcells", "Cardiomyocytes", "proliferating",
+                   "pDCs", "endocardialEndothelial", "Eosinophils",
+                   "GlialCells")
+
+
+## plot UMAPs
+p_tsne <- scater::plotReducedDim(sceTotal, dimred="UMAP",
+                                 colour_by="label") +
+  ggplot2::scale_colour_manual(values = colLab, name = "label") 
+p_tsne 
+
+p_tsne <- scater::plotReducedDim(sceFib, dimred="UMAP",
+                                 colour_by="clusterlabel") +
+  ggplot2::scale_colour_manual(values = colFib)
+p_tsne 
+
+
+## test objects for App functions
+# p_vln <- scater::plotExpression(sceTotal, features = "ENSMUSG00000071005.Ccl19",
+#                                      x= "label",
+#                                      colour_by = "label")  +
+#          ggplot2::scale_colour_manual(values = colLab)
+# p_vln
+#  
+# p_tsne <- scater::plotReducedDim(sceTotal, dimred="UMAP",
+#                                        colour_by="ENSMUSG00000071005.Ccl19") +
+#        ggplot2::guides(fill=ggplot2::guide_legend(title="ENSMUSG00000071005.Ccl19"))
+# p_tsne
+
+```
+
+
+## save sce objects
+```{r save sce objects}
+
+saveRDS(sceTotal, file = paste0(basedir,
+                              "/data/browser/TotalCells_sce.rds"))
+saveRDS(sceFib, file = paste0(basedir,
+                              "/data/browser/Fib_sce.rds"))
+
+```
+
+
+## session info
+```{r session info}
+sessionInfo()
+date()
+```
+
+

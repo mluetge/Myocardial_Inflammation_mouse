@@ -443,6 +443,48 @@ p
 
 ```
 
+## expression level of cluster markers
+```{r expression level of cluster markers}
+
+genes <- data.frame(gene=rownames(seurat)) %>%
+  mutate(geneID=gsub(".*\\.", "", gene))
+selMarker <- read_tsv(file=paste0(basedir, "/data/clusterCharacterization", 
+                                  "TotalCellsGenes.txt")) %>% 
+  left_join(., genes, by = "geneID")
+
+Idents(seurat) <- seurat$label
+
+## assay data
+clusterAssigned <- as.data.frame(seurat$label) %>%
+  dplyr::mutate(cell=rownames(.))
+colnames(clusterAssigned)[1] <- "ident"
+seuratDat <- GetAssayData(seurat)
+  
+## genes of interest
+genes <- data.frame(gene=rownames(seurat)) %>% 
+  mutate(geneID=gsub("^.*\\.", "", gene)) %>% filter(geneID %in% selMarker$geneID)
+
+  ## matrix with averaged cnts per ident
+logNormExpres <- as.data.frame(t(as.matrix(
+  seuratDat[which(rownames(seuratDat) %in% genes$gene),])))
+logNormExpres <- logNormExpres %>% dplyr::mutate(cell=rownames(.)) %>%
+  dplyr::left_join(.,clusterAssigned, by=c("cell")) %>%
+  dplyr::select(-cell) %>% dplyr::group_by(ident) %>%
+  dplyr::summarise_all(mean)
+
+logNormExpresDat <-logNormExpres %>% column_to_rownames("ident") %>% t(.) %>% 
+  data.frame(.) %>% rownames_to_column(., var="gene")
+
+ 
+write.table(logNormExpresDat,
+            file=paste0(basedir, "/data/MuHeart_totalCells_",
+                        "AvgCntsPerLab_Clustermarker.txt"), sep="\t", row.names=F,
+            quote=F)
+
+
+```
+
+
 
 ## save object untreated with label
 ```{r save int untreated}
